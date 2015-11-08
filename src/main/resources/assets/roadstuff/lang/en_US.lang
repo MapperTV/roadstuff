@@ -1,0 +1,9 @@
+item.bitumen.name=Bitumen
+item.paint.name=Paint
+tile.asphalt01.name=Asphalt
+tile.asphalt02.name=Asphalt with white line
+tile.asphalt03.asphalt01.name=Metadata Block 1
+tile.asphalt03.asphalt02.name=Metadata Block 2
+tile.asphalt03.asphalt03.name=Metadata Block 3
+tile.asphalt03.asphalt04.name=Metadata Block 4
+tile.entitytest.number=Value : %d
