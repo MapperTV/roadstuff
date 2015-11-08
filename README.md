@@ -2,7 +2,8 @@
 A Minecraft MODification by KillerMapper
 For Minecraft 1.7.10
 
-/!\ Page in construction /!\
+/!\ NOTE! /!\
+This page is still WIP and the mod still contains test files which will be cleaned later. Sorry for the mess :)
 
 Road Stuff is a Minecraft MODification which adds road blocks and items related to roads.
 The MOD is not released yet.
