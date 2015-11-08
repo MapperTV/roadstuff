@@ -18,6 +18,9 @@ Planned features:
 - Native support for English and French languages
 
 Credits:
+
 KillerMapper
+
 MinecraftForgeFrance
+
 Minecraftforge.net
