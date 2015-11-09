@@ -34,29 +34,35 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemBlockAsphaltLines01 extends ItemBlock {
+public class ItemBlockAsphaltLines01 extends ItemBlock
+{
 
-	public ItemBlockAsphaltLines01(Block block) {
-		super(block);
-		this.setMaxDamage(0);
-		this.setHasSubtypes(true);
-	}
+    public ItemBlockAsphaltLines01(Block block)
+    {
+        super(block);
+        this.setMaxDamage(0);
+        this.setHasSubtypes(true);
+    }
 
-	public int getMetadata(int metadata) {
-		return metadata;
-	}
+    public int getMetadata(int metadata)
+    {
+        return metadata;
+    }
 
-	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamage(int metadata) {
-		return this.field_150939_a.getIcon(2, metadata);
-	}
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamage(int metadata)
+    {
+        return this.field_150939_a.getIcon(2, metadata);
+    }
 
-	public String getUnlocalizedName(ItemStack stack) {
-		int metadata = stack.getItemDamage();
-		if (metadata < 0 || metadata >= BlockAsphaltLines01.subBlock.length) {
-			metadata = 0;
-		}
-		return super.getUnlocalizedName() + "." + BlockAsphaltLines01.subBlock[metadata];
-	}
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        int metadata = stack.getItemDamage();
+        if(metadata < 0 || metadata >= BlockAsphaltLines01.subBlock.length)
+        {
+            metadata = 0;
+        }
+        return super.getUnlocalizedName() + "." + BlockAsphaltLines01.subBlock[metadata];
+    }
 
 }
