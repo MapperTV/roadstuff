@@ -66,7 +66,7 @@ public class RenderAsphaltLines implements ISimpleBlockRenderingHandler
 	@Override
 	public int getRenderId()
 	{
-		return ClientProxy.renderTestId;
+		return ClientProxy.renderAsphaltLinesId;
 	}
 	
 	//To render a ISBRH part in the inventory - Credits to MinecraftForgeFrance

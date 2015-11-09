@@ -24,28 +24,44 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.proxy;
+package net.killermapper.roadstuff.common.items;
 
-import cpw.mods.fml.client.registry.RenderingRegistry;
-import net.killermapper.roadstuff.client.render.RenderAsphaltCorner;
-import net.killermapper.roadstuff.client.render.RenderAsphaltLines;
-import net.killermapper.roadstuff.client.render.RenderTest;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.killermapper.roadstuff.common.blocks.BlockAsphaltLinesCorner01;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.IIcon;
 
-public class ClientProxy extends CommonProxy
+public class ItemBlockAsphaltCorner01 extends ItemBlock
 {
-    public static int renderTestId, renderAsphaltLinesId, renderAsphaltCornerId;
-
-    @Override
-    public void registerRender()
+    public ItemBlockAsphaltCorner01(Block block)
     {
+        super(block);
+        this.setMaxDamage(0);
+        this.setHasSubtypes(true);
+    }
 
-        System.out.println("Client side method");
-        renderTestId = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(renderTestId, new RenderTest());
-        renderAsphaltLinesId = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(renderAsphaltLinesId, new RenderAsphaltLines());
-        renderAsphaltCornerId = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(renderAsphaltCornerId, new RenderAsphaltCorner());
+    public int getMetadata(int metadata)
+    {
+        return metadata;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamage(int metadata)
+    {
+        return this.field_150939_a.getIcon(2, metadata);
+    }
+
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        int metadata = stack.getItemDamage();
+        if(metadata < 0 || metadata >= BlockAsphaltLinesCorner01.subBlock.length)
+        {
+            metadata = 0;
+        }
+        return super.getUnlocalizedName() + "." + BlockAsphaltLinesCorner01.subBlock[metadata];
     }
 
 }

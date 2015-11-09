@@ -36,10 +36,13 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.killermapper.roadstuff.common.blocks.BlockAsphaltBase01;
 import net.killermapper.roadstuff.common.blocks.BlockAsphaltLines01;
+import net.killermapper.roadstuff.common.blocks.BlockAsphaltLinesCorner01;
 import net.killermapper.roadstuff.common.blocks.TestEntityBlock;
 import net.killermapper.roadstuff.common.blocks.TestISBRH;
 import net.killermapper.roadstuff.common.blocks.TileEntityTest;
 import net.killermapper.roadstuff.common.items.ItemBitumen;
+import net.killermapper.roadstuff.common.items.ItemBlockAsphaltBase01;
+import net.killermapper.roadstuff.common.items.ItemBlockAsphaltCorner01;
 import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines01;
 import net.killermapper.roadstuff.common.items.ItemPaintbrush;
 import net.killermapper.roadstuff.proxy.CommonProxy;
@@ -61,7 +64,7 @@ public class RoadStuff
     public static CommonProxy proxy;
 
     public static Item itemBitumen, itemPaint;
-    public static Block blockAsphaltLines01, blockAsphaltBase01, blockEntityTest, blockRotateTest, renderTest;
+    public static Block blockAsphaltLines01, blockAsphaltBase01, blockEntityTest, renderTest, blockAsphaltLinesCorner01;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -76,12 +79,15 @@ public class RoadStuff
         // Block Creation
         blockAsphaltLines01 = new BlockAsphaltLines01().setBlockName("asphaltLines01").setHardness(1.5F).setResistance(10.0F).setCreativeTab(CreativeTabs.tabBlock);
         blockAsphaltBase01 = new BlockAsphaltBase01().setBlockName("asphaltBase01").setHardness(1.5F).setResistance(10.0F).setCreativeTab(CreativeTabs.tabBlock);
+        blockAsphaltLinesCorner01 = new BlockAsphaltLinesCorner01().setBlockName("asphaltLinesCorner01").setHardness(1.5F).setResistance(10.0F).setCreativeTab(CreativeTabs.tabBlock);
+
         // Tests
         blockEntityTest = new TestEntityBlock(Material.wood).setHardness(1.5F).setResistance(10.0F).setBlockName("EntityTest").setBlockTextureName(MODID + ":asphaltSewerManhole").setCreativeTab(CreativeTabs.tabBlock);
         renderTest = new TestISBRH().setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("table").setCreativeTab(CreativeTabs.tabBlock);
 
         GameRegistry.registerBlock(blockAsphaltLines01, ItemBlockAsphaltLines01.class, "asphaltLines01");
-        GameRegistry.registerBlock(blockAsphaltBase01, ItemBlockAsphaltLines01.class, "asphaltBase01");
+        GameRegistry.registerBlock(blockAsphaltBase01, ItemBlockAsphaltBase01.class, "asphaltBase01");
+        GameRegistry.registerBlock(blockAsphaltLinesCorner01, ItemBlockAsphaltCorner01.class, "asphaltLinesCorner01");
         GameRegistry.registerBlock(blockEntityTest, "entityTest");
         GameRegistry.registerBlock(renderTest, "table");
 
