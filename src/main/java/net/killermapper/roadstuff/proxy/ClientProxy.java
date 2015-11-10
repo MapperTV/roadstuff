@@ -27,13 +27,14 @@ SOFTWARE.
 package net.killermapper.roadstuff.proxy;
 
 import cpw.mods.fml.client.registry.RenderingRegistry;
+import net.killermapper.roadstuff.client.render.RenderAsphaltArrows;
 import net.killermapper.roadstuff.client.render.RenderAsphaltCorner;
 import net.killermapper.roadstuff.client.render.RenderAsphaltLines;
 import net.killermapper.roadstuff.client.render.RenderTest;
 
 public class ClientProxy extends CommonProxy
 {
-    public static int renderTestId, renderAsphaltLinesId, renderAsphaltCornerId;
+    public static int renderTestId, renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId;
 
     @Override
     public void registerRender()
@@ -46,6 +47,8 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerBlockHandler(renderAsphaltLinesId, new RenderAsphaltLines());
         renderAsphaltCornerId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderAsphaltCornerId, new RenderAsphaltCorner());
+        renderAsphaltArrowsId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(renderAsphaltArrowsId, new RenderAsphaltArrows());
     }
 
 }

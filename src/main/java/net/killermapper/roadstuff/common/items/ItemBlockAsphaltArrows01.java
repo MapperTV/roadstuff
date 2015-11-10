@@ -26,29 +26,42 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.items;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.killermapper.roadstuff.common.blocks.BlockAsphaltArrows01;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ChatComponentText;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraft.util.IIcon;
 
-public class ItemPaintbrush extends Item
+public class ItemBlockAsphaltArrows01 extends ItemBlock
 {
-
-    public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
+    public ItemBlockAsphaltArrows01(Block block)
     {
-        if(!world.isRemote)
+        super(block);
+        this.setMaxDamage(0);
+        this.setHasSubtypes(true);
+    }
+
+    public int getMetadata(int metadata)
+    {
+        return metadata;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamage(int metadata)
+    {
+        return this.field_150939_a.getIcon(2, metadata);
+    }
+
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        int metadata = stack.getItemDamage();
+        if(metadata < 0 || metadata >= BlockAsphaltArrows01.subBlock.length)
         {
-            player.addChatMessage(new ChatComponentText("serveur : ID " + world.getBlock(x, y, z)));
-            player.addChatMessage(new ChatComponentText("serveur : side " + side));
-            player.addChatMessage(new ChatComponentText("serveur : metadata " + world.getBlockMetadata(x, y, z)));
+            metadata = 0;
         }
-        if(world.getBlock(x, y, z).rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side)))
-        {
-            return true;
-        }
-        return false;
+        return super.getUnlocalizedName() + "." + BlockAsphaltArrows01.subBlock[metadata];
     }
 
 }

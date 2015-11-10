@@ -52,8 +52,9 @@ public class BlockAsphaltLinesCorner01 extends Block
     public BlockAsphaltLinesCorner01()
     {
         super(Material.rock);
+        this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
     }
-    
+
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {

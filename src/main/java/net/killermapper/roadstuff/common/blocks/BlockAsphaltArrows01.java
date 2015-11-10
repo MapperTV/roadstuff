@@ -43,13 +43,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockAsphaltLines01 extends Block
+public class BlockAsphaltArrows01 extends Block
 {
+    public static String[] subBlock = new String[] {"whitearrow", "yellowarrow", "doublewhitearrow", "doubleyellowarrow"};
+    private IIcon asphaltBase, whiteArrow, yellowArrow, doubleWhiteArrow, doubleYellowArrow;
 
-    public static String[] subBlock = new String[] {"simplewhiteline", "simpleyellowline", "largewhiteline", "largeyellowline", "doublewhiteline", "doubleyellowline"};
-    private IIcon asphaltBase, simpleWhiteLine, simpleYellowLine, largeWhiteLine, largeYellowLine, doubleWhiteLine, doubleYellowLine;
-
-    public BlockAsphaltLines01()
+    public BlockAsphaltArrows01()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -58,23 +57,19 @@ public class BlockAsphaltLines01 extends Block
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
-        return ClientProxy.renderAsphaltLinesId;
+        return ClientProxy.renderAsphaltArrowsId;
     }
 
     public int damageDropped(int metadata)
     {
-        if(metadata == 8)
+        if(metadata == 4 || metadata == 8 || metadata == 12)
             return 0;
-        if(metadata == 9)
+        if(metadata == 5 || metadata == 9 || metadata == 13)
             return 1;
-        if(metadata == 10)
+        if(metadata == 6 || metadata == 10 || metadata == 14)
             return 2;
-        if(metadata == 11)
+        if(metadata == 7 || metadata == 11 || metadata == 15)
             return 3;
-        if(metadata == 12)
-            return 4;
-        if(metadata == 13)
-            return 5;
         return metadata;
     }
 
@@ -89,92 +84,85 @@ public class BlockAsphaltLines01 extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.simpleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteLine");
-        this.simpleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowLine");
-        this.largeWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltLargeWhiteLine");
-        this.largeYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltLargeYellowLine");
-        this.doubleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleWhiteLine");
-        this.doubleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleYellowLine");
+        this.whiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltWhiteArrow");
+        this.yellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltYellowArrow");
+        this.doubleWhiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleWhiteArrow");
+        this.doubleYellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleYellowArrow");
     }
-
+    
     public IIcon getIcon(int side, int metadata)
     {
         if(side == 1)
         {
-            if(metadata == 0 || metadata == 8)
+            if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
             {
-                return this.simpleWhiteLine;
+                return this.whiteArrow;
             }
-            if(metadata == 1 || metadata == 9)
+            if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.simpleYellowLine;
+                return this.yellowArrow;
             }
-            if(metadata == 2 || metadata == 10)
+            if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.largeWhiteLine;
+                return this.doubleWhiteArrow;
             }
-            if(metadata == 3 || metadata == 11)
+            if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
             {
-                return this.largeYellowLine;
-            }
-            if(metadata == 4 || metadata == 12)
-            {
-                return this.doubleWhiteLine;
-            }
-            if(metadata == 5 || metadata == 13)
-            {
-                return this.doubleYellowLine;
+                return this.doubleYellowArrow;
             }
         }
         return this.asphaltBase;
     }
-
+    
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
     {
         int meta = 0;
         int direction = MathHelper.floor_double((double)(living.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
         if(stack.getItemDamage() == 0)
         {
-            if(direction == 0 || direction == 2)
+            if(direction == 0)
                 meta = 0;
-            if(direction == 1 || direction == 3)
+            if(direction == 1)
+                meta = 4;
+            if(direction == 2)
                 meta = 8;
+            if(direction == 3)
+                meta = 12;
         }
         if(stack.getItemDamage() == 1)
         {
-            if(direction == 0 || direction == 2)
+            if(direction == 0)
                 meta = 1;
-            if(direction == 1 || direction == 3)
+            if(direction == 1)
+                meta = 5;
+            if(direction == 2)
                 meta = 9;
+            if(direction == 3)
+                meta = 13;
         }
         if(stack.getItemDamage() == 2)
         {
-            if(direction == 0 || direction == 2)
+            if(direction == 0)
                 meta = 2;
-            if(direction == 1 || direction == 3)
+            if(direction == 1)
+                meta = 6;
+            if(direction == 2)
                 meta = 10;
+            if(direction == 3)
+                meta = 14;
         }
         if(stack.getItemDamage() == 3)
         {
-            if(direction == 0 || direction == 2)
+            if(direction == 0)
                 meta = 3;
-            if(direction == 1 || direction == 3)
+            if(direction == 1)
+                meta = 7;
+            if(direction == 2)
                 meta = 11;
-        }
-        if(stack.getItemDamage() == 4)
-        {
-            if(direction == 0 || direction == 2)
-                meta = 4;
-            if(direction == 1 || direction == 3)
-                meta = 12;
-        }
-        if(stack.getItemDamage() == 5)
-        {
-            if(direction == 0 || direction == 2)
-                meta = 5;
-            if(direction == 1 || direction == 3)
-                meta = 13;
+            if(direction == 3)
+                meta = 15;
         }
         world.setBlockMetadataWithNotify(x, y, z, meta, 2);
     }
+
 }

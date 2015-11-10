@@ -37,47 +37,51 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class BlockAsphaltBase01 extends Block {
+public class BlockAsphaltBase01 extends Block
+{
 
-	// Initializing variables
-	public static String[] subBlockAsphaltBase01 = new String[] { "asphalt", "sewermanhole" };
-	private IIcon asphaltBase, sewerManhole;
+    public static String[] subBlockAsphaltBase01 = new String[] {"asphalt", "sewermanhole"};
+    private IIcon asphaltBase, sewerManhole;
 
-	// Constructor
-	public BlockAsphaltBase01() {
-		super(Material.rock);
-	}
+    public BlockAsphaltBase01()
+    {
+        super(Material.rock);
+        this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
+    }
 
-	// To get back the good metadata when breaking block
-	public int damageDropped(int metadata) {
-		return metadata;
-	}
+    public int damageDropped(int metadata)
+    {
+        return metadata;
+    }
 
-	// Adding blocks to a creative tab
-	public void getSubBlocks(Item item, CreativeTabs tabs, List list) {
-		for (int i = 0; i < subBlockAsphaltBase01.length; i++) {
-			list.add(new ItemStack(item, 1, i));
-		}
-	}
+    public void getSubBlocks(Item item, CreativeTabs tabs, List list)
+    {
+        for(int i = 0; i < subBlockAsphaltBase01.length; i++)
+        {
+            list.add(new ItemStack(item, 1, i));
+        }
+    }
 
-	// Registering textures
-	public void registerBlockIcons(IIconRegister iconRegister) {
-		this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-		this.sewerManhole = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSewerManhole");
-	}
+    public void registerBlockIcons(IIconRegister iconRegister)
+    {
+        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
+        this.sewerManhole = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSewerManhole");
+    }
 
-	// Applying textures to the good sides
-	public IIcon getIcon(int side, int metadata) {
-		switch (metadata) {
-		case 0:
-			return this.asphaltBase;
-		case 1:
-			if (side == 1) {
-				return this.sewerManhole;
-			}
-			return this.asphaltBase;
-		default:
-			return this.asphaltBase;
-		}
-	}
+    public IIcon getIcon(int side, int metadata)
+    {
+        switch(metadata)
+        {
+            case 0:
+                return this.asphaltBase;
+            case 1:
+                if(side == 1)
+                {
+                    return this.sewerManhole;
+                }
+                return this.asphaltBase;
+            default:
+                return this.asphaltBase;
+        }
+    }
 }
