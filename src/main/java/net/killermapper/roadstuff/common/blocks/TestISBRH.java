@@ -8,17 +8,26 @@ import net.killermapper.roadstuff.common.RoadStuff;
 import net.killermapper.roadstuff.proxy.ClientProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 public class TestISBRH extends Block
-{
-
+{    
+    private IIcon top, sides, bottom;
+    
     public TestISBRH()
     {
-        super(Material.wood);
+        super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
+    }
+    
+    public void registerBlockIcons(IIconRegister iiconRegister)
+    {
+        this.top = iiconRegister.registerIcon(RoadStuff.MODID + ":blockCone01Top");
+        this.sides = iiconRegister.registerIcon(RoadStuff.MODID + ":blockCone01");
+        this.bottom = iiconRegister.registerIcon(RoadStuff.MODID + ":blockConeBottom");
     }
 
     public boolean renderAsNormalBlock()
@@ -42,10 +51,14 @@ public class TestISBRH extends Block
     {
         return true;
     }
-
+    
     public IIcon getIcon(int side, int metadata)
     {
-        return Blocks.planks.getIcon(side, 0);
+        if(side == 1)
+            return this.top;
+        if(side == 0)
+            return this.bottom;
+        return this.sides;
     }
 
 }
