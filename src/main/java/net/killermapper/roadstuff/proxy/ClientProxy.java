@@ -30,19 +30,19 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.killermapper.roadstuff.client.render.RenderAsphaltArrows;
 import net.killermapper.roadstuff.client.render.RenderAsphaltCorner;
 import net.killermapper.roadstuff.client.render.RenderAsphaltLines;
-import net.killermapper.roadstuff.client.render.RenderTest;
+import net.killermapper.roadstuff.client.render.RenderCone01;
 
 public class ClientProxy extends CommonProxy
 {
-    public static int renderTestId, renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId;
+    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderCone01Id;
 
     @Override
     public void registerRender()
     {
 
         System.out.println("Client side method");
-        renderTestId = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(renderTestId, new RenderTest());
+        renderCone01Id = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(renderCone01Id, new RenderCone01());
         renderAsphaltLinesId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderAsphaltLinesId, new RenderAsphaltLines());
         renderAsphaltCornerId = RenderingRegistry.getNextAvailableRenderId();

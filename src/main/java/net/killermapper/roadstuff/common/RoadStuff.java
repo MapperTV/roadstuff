@@ -42,8 +42,8 @@ import net.killermapper.roadstuff.common.blocks.BlockAsphaltLines01;
 import net.killermapper.roadstuff.common.blocks.BlockAsphaltLines02;
 import net.killermapper.roadstuff.common.blocks.BlockAsphaltLines03;
 import net.killermapper.roadstuff.common.blocks.BlockAsphaltLinesCorner01;
+import net.killermapper.roadstuff.common.blocks.BlockCone01;
 import net.killermapper.roadstuff.common.blocks.TestEntityBlock;
-import net.killermapper.roadstuff.common.blocks.TestISBRH;
 import net.killermapper.roadstuff.common.blocks.TileEntityTest;
 import net.killermapper.roadstuff.common.items.ItemBitumen;
 import net.killermapper.roadstuff.common.items.ItemBlockAsphaltArrows01;
@@ -87,7 +87,7 @@ public class RoadStuff
     };
 
     public static Item itemBitumen, itemPaint;
-    public static Block blockAsphaltLines01, blockAsphaltBase01, blockEntityTest, renderTest, blockAsphaltLinesCorner01, blockAsphaltLinesArrows01, blockAsphaltLines02, blockAsphaltLines03;
+    public static Block blockAsphaltLines01, blockAsphaltBase01, blockEntityTest, blockCone01, blockAsphaltLinesCorner01, blockAsphaltLinesArrows01, blockAsphaltLines02, blockAsphaltLines03;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -110,7 +110,7 @@ public class RoadStuff
 
         // Tests
         blockEntityTest = new TestEntityBlock(Material.wood).setHardness(1.5F).setResistance(10.0F).setBlockName("EntityTest").setBlockTextureName(MODID + ":asphaltSewerManhole").setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
-        renderTest = new TestISBRH().setHardness(2.0F).setResistance(5.0F).setStepSound(Block.soundTypeWood).setBlockName("table");
+        blockCone01 = new BlockCone01().setHardness(2.0F).setResistance(5.0F).setBlockName("cone01");
 
         GameRegistry.registerBlock(blockAsphaltLines01, ItemBlockAsphaltLines01.class, "asphaltLines01");
         GameRegistry.registerBlock(blockAsphaltLines02, ItemBlockAsphaltLines02.class, "asphaltLines02");
@@ -119,7 +119,7 @@ public class RoadStuff
         GameRegistry.registerBlock(blockAsphaltLinesCorner01, ItemBlockAsphaltCorner01.class, "asphaltLinesCorner01");
         GameRegistry.registerBlock(blockAsphaltLinesArrows01, ItemBlockAsphaltArrows01.class, "asphaltLinesArrows01");
         GameRegistry.registerBlock(blockEntityTest, "entityTest");
-        GameRegistry.registerBlock(renderTest, "table");
+        GameRegistry.registerBlock(blockCone01, "cone01");
 
     }
 
