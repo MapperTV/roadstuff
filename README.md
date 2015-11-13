@@ -22,6 +22,8 @@ Planned features:
 - Maybe some mod support, like Chisel
 - Probably more later
 
+Media can be found here for now: http://imgur.com/a/jCsZ7
+
 Credits:
 
 - KillerMapper
