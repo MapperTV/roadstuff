@@ -13,10 +13,11 @@ Currently including:
 - Asphalt block
 - 6 different kinds of lines, including corners and some crossings
 - Arrows
+- Traffic cones
 
 Planned features:
 - A lighter gray road version
-- More objects (road signs, cones, other decorative stuff...)
+- More objects (road signs, other decorative stuff...)
 - Native support for English and French languages
 - Maybe some mod support, like Chisel
 - Probably more later
