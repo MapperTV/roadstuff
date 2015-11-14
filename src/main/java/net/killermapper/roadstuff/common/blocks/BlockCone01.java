@@ -42,8 +42,10 @@ public class BlockCone01 extends Block
     
     public BlockCone01()
     {
-        super(Material.rock);
+        super(Material.ground);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
+        this.setStepSound(soundTypeMetal);
+        this.setHarvestLevel("pickaxe", 0);
     }
     
     public void registerBlockIcons(IIconRegister iiconRegister)

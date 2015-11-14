@@ -41,6 +41,8 @@ import net.killermapper.roadstuff.common.blocks.BlockAsphaltBase01;
 import net.killermapper.roadstuff.common.blocks.BlockAsphaltLines01;
 import net.killermapper.roadstuff.common.blocks.BlockAsphaltLines02;
 import net.killermapper.roadstuff.common.blocks.BlockAsphaltLines03;
+import net.killermapper.roadstuff.common.blocks.BlockAsphaltLines04;
+import net.killermapper.roadstuff.common.blocks.BlockAsphaltLines05;
 import net.killermapper.roadstuff.common.blocks.BlockAsphaltLinesCorner01;
 import net.killermapper.roadstuff.common.blocks.BlockCone01;
 import net.killermapper.roadstuff.common.blocks.TestEntityBlock;
@@ -52,6 +54,8 @@ import net.killermapper.roadstuff.common.items.ItemBlockAsphaltCorner01;
 import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines01;
 import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines02;
 import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines03;
+import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines04;
+import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines05;
 import net.killermapper.roadstuff.common.items.ItemPaintbrush;
 import net.killermapper.roadstuff.proxy.CommonProxy;
 import net.minecraft.block.Block;
@@ -87,7 +91,7 @@ public class RoadStuff
     };
 
     public static Item itemBitumen, itemPaint;
-    public static Block blockAsphaltLines01, blockAsphaltBase01, blockEntityTest, blockCone01, blockAsphaltLinesCorner01, blockAsphaltLinesArrows01, blockAsphaltLines02, blockAsphaltLines03;
+    public static Block blockAsphaltLines01, blockAsphaltBase01, blockEntityTest, blockCone01, blockAsphaltLinesCorner01, blockAsphaltLinesArrows01, blockAsphaltLines02, blockAsphaltLines03, blockAsphaltLines04, blockAsphaltLines05;
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -100,21 +104,25 @@ public class RoadStuff
         GameRegistry.registerItem(itemPaint, "itemPaint");
 
         // Block Creation
-        blockAsphaltLines01 = new BlockAsphaltLines01().setBlockName("asphaltLines01").setHardness(1.5F).setResistance(10.0F);
-        blockAsphaltLines02 = new BlockAsphaltLines02().setBlockName("asphaltLines02").setHardness(1.5F).setResistance(10.0F);
-        blockAsphaltLines03 = new BlockAsphaltLines03().setBlockName("asphaltLines03").setHardness(1.5F).setResistance(10.0F);
-
-        blockAsphaltBase01 = new BlockAsphaltBase01().setBlockName("asphaltBase01").setHardness(1.5F).setResistance(10.0F);
-        blockAsphaltLinesCorner01 = new BlockAsphaltLinesCorner01().setBlockName("asphaltLinesCorner01").setHardness(1.5F).setResistance(10.0F);
-        blockAsphaltLinesArrows01 = new BlockAsphaltArrows01().setBlockName("asphaltLinesArrows01").setHardness(1.5F).setResistance(10.0F);
+        blockAsphaltLines01 = new BlockAsphaltLines01().setBlockName("asphaltLines01").setHardness(1.0F).setResistance(5.0F);
+        blockAsphaltLines02 = new BlockAsphaltLines02().setBlockName("asphaltLines02").setHardness(1.0F).setResistance(5.0F);
+        blockAsphaltLines03 = new BlockAsphaltLines03().setBlockName("asphaltLines03").setHardness(1.0F).setResistance(5.0F);
+        blockAsphaltLines04 = new BlockAsphaltLines04().setBlockName("asphaltLines04").setHardness(1.0F).setResistance(5.0F);
+        blockAsphaltLines05 = new BlockAsphaltLines05().setBlockName("asphaltLines05").setHardness(1.0F).setResistance(5.0F);
+        blockAsphaltBase01 = new BlockAsphaltBase01().setBlockName("asphaltBase01").setHardness(1.0F).setResistance(5.0F);
+        blockAsphaltLinesCorner01 = new BlockAsphaltLinesCorner01().setBlockName("asphaltLinesCorner01").setHardness(1.0F).setResistance(5.0F);
+        blockAsphaltLinesArrows01 = new BlockAsphaltArrows01().setBlockName("asphaltLinesArrows01").setHardness(1.0F).setResistance(5.0F);
+        blockCone01 = new BlockCone01().setHardness(1.0F).setResistance(1.0F).setBlockName("cone01");
 
         // Tests
-        blockEntityTest = new TestEntityBlock(Material.wood).setHardness(1.5F).setResistance(10.0F).setBlockName("EntityTest").setBlockTextureName(MODID + ":asphaltSewerManhole").setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
-        blockCone01 = new BlockCone01().setHardness(2.0F).setResistance(5.0F).setBlockName("cone01");
+        blockEntityTest = new TestEntityBlock(Material.wood).setHardness(1.0F).setResistance(10.0F).setBlockName("EntityTest").setBlockTextureName(MODID + ":asphaltSewerManhole").setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
+        
 
         GameRegistry.registerBlock(blockAsphaltLines01, ItemBlockAsphaltLines01.class, "asphaltLines01");
         GameRegistry.registerBlock(blockAsphaltLines02, ItemBlockAsphaltLines02.class, "asphaltLines02");
         GameRegistry.registerBlock(blockAsphaltLines03, ItemBlockAsphaltLines03.class, "asphaltLines03");
+        GameRegistry.registerBlock(blockAsphaltLines04, ItemBlockAsphaltLines04.class, "asphaltLines04");
+        GameRegistry.registerBlock(blockAsphaltLines05, ItemBlockAsphaltLines05.class, "asphaltLines05");
         GameRegistry.registerBlock(blockAsphaltBase01, ItemBlockAsphaltBase01.class, "asphaltBase01");
         GameRegistry.registerBlock(blockAsphaltLinesCorner01, ItemBlockAsphaltCorner01.class, "asphaltLinesCorner01");
         GameRegistry.registerBlock(blockAsphaltLinesArrows01, ItemBlockAsphaltArrows01.class, "asphaltLinesArrows01");
