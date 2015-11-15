@@ -26,11 +26,12 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.proxy;
 
-public class CommonProxy {
-	
-	public void registerRender() {
-		System.out.println("Server side method");
-		
-	}
+public class CommonProxy
+{
+
+    public void registerRender()
+    {
+
+    }
 
 }
