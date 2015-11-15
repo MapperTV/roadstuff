@@ -26,6 +26,8 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.blocks;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.RoadStuff;
@@ -33,25 +35,44 @@ import net.killermapper.roadstuff.proxy.ClientProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
 
 public class BlockCone01 extends Block
-{    
-    private IIcon top, sides, bottom;
-    
+{
+    public static String[] subBlock = new String[] {"cone01", "cone02", "cone03"};
+    private IIcon top, sides, bottom, base, top2;
+
     public BlockCone01()
     {
         super(Material.ground);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
         this.setStepSound(soundTypeMetal);
     }
-    
+
     public void registerBlockIcons(IIconRegister iiconRegister)
     {
         this.top = iiconRegister.registerIcon(RoadStuff.MODID + ":blockCone01Top");
         this.sides = iiconRegister.registerIcon(RoadStuff.MODID + ":blockCone01");
         this.bottom = iiconRegister.registerIcon(RoadStuff.MODID + ":blockConeBottom");
+        this.base = iiconRegister.registerIcon(RoadStuff.MODID + ":blockConeBase");
+        this.top2 = iiconRegister.registerIcon(RoadStuff.MODID + ":blockCone02Top");
+    }
+
+    public int damageDropped(int metadata)
+    {
+        return metadata;
+    }
+
+    public void getSubBlocks(Item item, CreativeTabs tabs, List list)
+    {
+        for(int i = 0; i < subBlock.length; i++)
+        {
+            list.add(new ItemStack(item, 1, i));
+        }
     }
 
     public boolean renderAsNormalBlock()
@@ -75,11 +96,24 @@ public class BlockCone01 extends Block
     {
         return true;
     }
-    
+
     public IIcon getIcon(int side, int metadata)
     {
-        if(side == 1)
-            return this.top;
+        if(metadata == 2)
+        {
+            if(side == 1)
+                return this.base;
+        }
+        if(metadata == 0)
+        {
+            if(side == 1)
+                return this.top;
+        }
+        if(metadata == 1)
+        {
+            if(side == 1)
+                return this.top2;
+        }
         if(side == 0)
             return this.bottom;
         return this.sides;

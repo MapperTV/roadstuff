@@ -36,6 +36,7 @@ import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines02;
 import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines03;
 import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines04;
 import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines05;
+import net.killermapper.roadstuff.common.items.ItemBlockCone01;
 import net.minecraft.block.Block;
 
 public class RoadStuffBlocks
@@ -95,7 +96,7 @@ public class RoadStuffBlocks
         GameRegistry.registerBlock(blockAsphaltLinesCorner01, ItemBlockAsphaltCorner01.class, "asphaltLinesCorner01");
         GameRegistry.registerBlock(blockAsphaltArrows01, ItemBlockAsphaltArrows01.class, "asphaltLinesArrows01");
         GameRegistry.registerBlock(blockEntityTest, "entityTest");
-        GameRegistry.registerBlock(blockCone01, "cone01");
+        GameRegistry.registerBlock(blockCone01, ItemBlockCone01.class, "cone01");
     }
 
 }

@@ -34,6 +34,7 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 public class RenderCone01 implements ISimpleBlockRenderingHandler
 {
@@ -41,35 +42,106 @@ public class RenderCone01 implements ISimpleBlockRenderingHandler
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)
     {
         Tessellator tessellator = Tessellator.instance;
-        renderer.setRenderBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.0625F, 0.9375F);
-        this.renderInInventory(tessellator, renderer, block, metadata);
-        renderer.setRenderBounds(0.1875F, 0.0625F, 0.1875F, 0.8125F, 0.25F, 0.8125F);
-        this.renderInInventory(tessellator, renderer, block, metadata);
-        renderer.setRenderBounds(0.25F, 0.25F, 0.25F, 0.75F, 0.4375F, 0.75F);
-        this.renderInInventory(tessellator, renderer, block, metadata);
-        renderer.setRenderBounds(0.3125F, 0.4375F, 0.3125F, 0.6875F, 0.625F, 0.6875F);
-        this.renderInInventory(tessellator, renderer, block, metadata);
-        renderer.setRenderBounds(0.375F, 0.625F, 0.375F, 0.625F, 0.8125F, 0.625F);
-        this.renderInInventory(tessellator, renderer, block, metadata);
-        renderer.setRenderBounds(0.4375F, 0.8125F, 0.4375F, 0.5625F, 1F, 0.5625F);
-        this.renderInInventory(tessellator, renderer, block, metadata);
+        if(metadata == 0)
+        {
+            renderer.setRenderBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.0625F, 0.9375F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.1875F, 0.0625F, 0.1875F, 0.8125F, 0.25F, 0.8125F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.25F, 0.25F, 0.25F, 0.75F, 0.4375F, 0.75F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.3125F, 0.4375F, 0.3125F, 0.6875F, 0.625F, 0.6875F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.375F, 0.625F, 0.375F, 0.625F, 0.8125F, 0.625F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.4375F, 0.8125F, 0.4375F, 0.5625F, 1F, 0.5625F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+        }
+        if(metadata == 1)
+        {
+            renderer.setRenderBounds(0.125F, 0.0F, 0.0625F, 0.875F, 0.0625F, 0.9375F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.0625F, 0.0F, 0.125F, 0.125F, 0.0625F, 0.875F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.875F, 0.0F, 0.125F, 0.9375F, 0.0625F, 0.875F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+
+            renderer.setRenderBounds(0.3125F, 0.0625F, 0.255F, 0.6875F, 0.875F, 0.75F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.255F, 0.0625F, 0.3125F, 0.3125F, 0.875F, 0.6875F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.6875F, 0.0625F, 0.3125F, 0.75F, 0.875F, 0.6875F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+
+            renderer.setRenderBounds(0.3125F, 0.9375F, 0.4375F, 0.6875F, 1F, 0.5625F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.3125F, 0.875F, 0.4375F, 0.375F, 0.9375F, 0.5625F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.625F, 0.875F, 0.4375F, 0.6875F, 0.9375F, 0.5625F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+        }
+        if(metadata == 2)
+        {
+            renderer.setRenderBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.0625F, 0.75F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.375F, 0.0625F, 0.375F, 0.625F, 0.125F, 0.625F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+            renderer.setRenderBounds(0.4375F, 0.125F, 0.4375F, 0.5625F, 1F, 0.5625F);
+            this.renderInInventory(tessellator, renderer, block, metadata);
+        }
+
     }
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
     {
-        renderer.setRenderBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.0625F, 0.9375F);
-        renderer.renderStandardBlock(block, x, y, z);
-        renderer.setRenderBounds(0.1875F, 0.0625F, 0.1875F, 0.8125F, 0.25F, 0.8125F);
-        renderer.renderStandardBlock(block, x, y, z);
-        renderer.setRenderBounds(0.25F, 0.25F, 0.25F, 0.75F, 0.4375F, 0.75F);
-        renderer.renderStandardBlock(block, x, y, z);
-        renderer.setRenderBounds(0.3125F, 0.4375F, 0.3125F, 0.6875F, 0.625F, 0.6875F);
-        renderer.renderStandardBlock(block, x, y, z);
-        renderer.setRenderBounds(0.375F, 0.625F, 0.375F, 0.625F, 0.8125F, 0.625F);
-        renderer.renderStandardBlock(block, x, y, z);
-        renderer.setRenderBounds(0.4375F, 0.8125F, 0.4375F, 0.5625F, 1F, 0.5625F);
-        renderer.renderStandardBlock(block, x, y, z);
+        if(world.getBlockMetadata(x, y, z) == 0)
+        {
+            renderer.setRenderBounds(0.0625F, 0.0F, 0.0625F, 0.9375F, 0.0625F, 0.9375F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.1875F, 0.0625F, 0.1875F, 0.8125F, 0.25F, 0.8125F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.25F, 0.25F, 0.25F, 0.75F, 0.4375F, 0.75F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.3125F, 0.4375F, 0.3125F, 0.6875F, 0.625F, 0.6875F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.375F, 0.625F, 0.375F, 0.625F, 0.8125F, 0.625F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.4375F, 0.8125F, 0.4375F, 0.5625F, 1F, 0.5625F);
+            renderer.renderStandardBlock(block, x, y, z);
+        }
+        if(world.getBlockMetadata(x, y, z) == 1)
+        {
+            renderer.setRenderBounds(0.125F, 0.0F, 0.0625F, 0.875F, 0.0625F, 0.9375F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.0625F, 0.0F, 0.125F, 0.125F, 0.0625F, 0.875F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.875F, 0.0F, 0.125F, 0.9375F, 0.0625F, 0.875F);
+            renderer.renderStandardBlock(block, x, y, z);
+
+            renderer.setRenderBounds(0.3125F, 0.0625F, 0.255F, 0.6875F, 0.875F, 0.75F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.255F, 0.0625F, 0.3125F, 0.3125F, 0.875F, 0.6875F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.6875F, 0.0625F, 0.3125F, 0.75F, 0.875F, 0.6875F);
+            renderer.renderStandardBlock(block, x, y, z);
+
+            renderer.setRenderBounds(0.3125F, 0.9375F, 0.4375F, 0.6875F, 1F, 0.5625F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.3125F, 0.875F, 0.4375F, 0.375F, 0.9375F, 0.5625F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.625F, 0.875F, 0.4375F, 0.6875F, 0.9375F, 0.5625F);
+            renderer.renderStandardBlock(block, x, y, z);
+        }
+        if(world.getBlockMetadata(x, y, z) == 2)
+        {
+            renderer.setRenderBounds(0.25F, 0.0F, 0.25F, 0.75F, 0.0625F, 0.75F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.375F, 0.0625F, 0.375F, 0.625F, 0.125F, 0.625F);
+            renderer.renderStandardBlock(block, x, y, z);
+            renderer.setRenderBounds(0.4375F, 0.125F, 0.4375F, 0.5625F, 1F, 0.5625F);
+            renderer.renderStandardBlock(block, x, y, z);
+        }
         return true;
     }
 

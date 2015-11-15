@@ -40,6 +40,7 @@ import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
 import net.killermapper.roadstuff.common.blocks.TileEntityTest;
 import net.killermapper.roadstuff.common.items.ItemBitumen;
 import net.killermapper.roadstuff.common.items.ItemPaintbrush;
+import net.killermapper.roadstuff.common.items.RoadStuffItems;
 import net.killermapper.roadstuff.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -71,26 +72,16 @@ public class RoadStuff
         }
     };
 
-    public static Item itemBitumen, itemPaint;
-
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
-        // Item Creation
-        itemBitumen = new ItemBitumen().setUnlocalizedName("bitumen").setTextureName(MODID + ":itemBitumen").setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
-        itemPaint = new ItemPaintbrush().setUnlocalizedName("paint").setTextureName(MODID + ":itemPaint").setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
-
-        GameRegistry.registerItem(itemBitumen, "itemBitumen");
-        GameRegistry.registerItem(itemPaint, "itemPaint");
-
         RoadStuffBlocks.initBlocks();
-
+        RoadStuffItems.initItems();
     }
 
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-
         GameRegistry.registerTileEntity(TileEntityTest.class, "roadstuff:entityTest");
 
         proxy.registerRender();

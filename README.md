@@ -16,7 +16,7 @@ Currently including:
 - Traffic cones
 
 Planned features:
-- A lighter gray road version
+- More road versions (concrete, paved)
 - More objects (road signs, other decorative stuff...)
 - Native support for English and French languages
 - Maybe some mod support, like Chisel
@@ -29,3 +29,5 @@ Credits:
 - KillerMapper
 - MinecraftForgeFrance
 - Minecraftforge.net
+
+Note: paintbrush and bitumen icons are from ExtraUtilities and Mettalurgy 4, only for testing. I'll obviously replace them with my own textures.
