@@ -1,3 +1,4 @@
+![Logo](http://killermapper.net/roadstuffmod/RoadStuffLogo.png)
 # Road Stuff
 A Minecraft MODification by KillerMapper
 For Minecraft 1.7.10
@@ -14,6 +15,8 @@ Currently including:
 - 6 different kinds of lines, including corners and some crossings
 - Arrows
 - Traffic cones
+
+![ScreewShowcase](http://killermapper.net/roadstuffmod/RoadStuffScreenShowcase01.jpg)
 
 Planned features:
 - More road versions (concrete, paved)
