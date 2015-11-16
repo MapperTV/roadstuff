@@ -41,6 +41,7 @@ import net.minecraft.block.Block;
 
 public class RoadStuffBlocks
 {
+
     public static Block blockAsphaltLines01;
     public static Block blockAsphaltBase01;
     public static Block blockEntityTest;
@@ -51,6 +52,10 @@ public class RoadStuffBlocks
     public static Block blockAsphaltLines03;
     public static Block blockAsphaltLines04;
     public static Block blockAsphaltLines05;
+    public static Block singleSlabAsphaltBase01;
+    public static Block doubleSlabAsphaltBase01;
+    public static Block singleSlabAsphaltLines01;
+    public static Block doubleSlabAsphaltLines01;
 
     public static void initBlocks()
     {
@@ -60,6 +65,10 @@ public class RoadStuffBlocks
         RoadStuffBlocks.blockAsphaltLines04 = new BlockAsphaltLines04().setBlockName("asphaltLines04").setHardness(1.0F).setResistance(5.0F);
         RoadStuffBlocks.blockAsphaltLines05 = new BlockAsphaltLines05().setBlockName("asphaltLines05").setHardness(1.0F).setResistance(5.0F);
         RoadStuffBlocks.blockAsphaltBase01 = new BlockAsphaltBase01().setBlockName("asphaltBase01").setHardness(1.0F).setResistance(5.0F);
+        RoadStuffBlocks.singleSlabAsphaltBase01 = new BlockSlabAsphaltBase01(false, null).setBlockName("slabAsphaltBase01").setHardness(1.0F).setResistance(5.0F);
+        RoadStuffBlocks.doubleSlabAsphaltBase01 = new BlockSlabAsphaltBase01(true, null).setBlockName("slabAsphaltBase01").setHardness(1.0F).setResistance(5.0F);
+        RoadStuffBlocks.singleSlabAsphaltLines01 = new BlockSlabAsphaltLines01(false, null).setBlockName("slabAsphaltLines01").setHardness(1.0F).setResistance(5.0F);
+        RoadStuffBlocks.doubleSlabAsphaltLines01 = new BlockSlabAsphaltLines01(true, null).setBlockName("slabAsphaltLines01").setHardness(1.0F).setResistance(5.0F);
         RoadStuffBlocks.blockAsphaltLinesCorner01 = new BlockAsphaltLinesCorner01().setBlockName("asphaltLinesCorner01").setHardness(1.0F).setResistance(5.0F);
         RoadStuffBlocks.blockAsphaltArrows01 = new BlockAsphaltArrows01().setBlockName("asphaltLinesArrows01").setHardness(1.0F).setResistance(5.0F);
         RoadStuffBlocks.blockCone01 = new BlockCone01().setBlockName("cone01").setHardness(1.0F).setResistance(1.0F);
@@ -79,6 +88,10 @@ public class RoadStuffBlocks
         RoadStuffBlocks.blockAsphaltLines04.setHarvestLevel("pickaxe", 1);
         RoadStuffBlocks.blockAsphaltLines05.setHarvestLevel("pickaxe", 1);
         RoadStuffBlocks.blockAsphaltBase01.setHarvestLevel("pickaxe", 1);
+        RoadStuffBlocks.singleSlabAsphaltBase01.setHarvestLevel("pickaxe", 1);
+        RoadStuffBlocks.doubleSlabAsphaltBase01.setHarvestLevel("pickaxe", 1);
+        RoadStuffBlocks.singleSlabAsphaltLines01.setHarvestLevel("pickaxe", 1);
+        RoadStuffBlocks.doubleSlabAsphaltLines01.setHarvestLevel("pickaxe", 1);
         RoadStuffBlocks.blockAsphaltLinesCorner01.setHarvestLevel("pickaxe", 1);
         RoadStuffBlocks.blockAsphaltArrows01.setHarvestLevel("pickaxe", 1);
         RoadStuffBlocks.blockCone01.setHarvestLevel("pickaxe", 0);
@@ -93,6 +106,10 @@ public class RoadStuffBlocks
         GameRegistry.registerBlock(blockAsphaltLines04, ItemBlockAsphaltLines04.class, "asphaltLines04");
         GameRegistry.registerBlock(blockAsphaltLines05, ItemBlockAsphaltLines05.class, "asphaltLines05");
         GameRegistry.registerBlock(blockAsphaltBase01, ItemBlockAsphaltBase01.class, "asphaltBase01");
+        GameRegistry.registerBlock(singleSlabAsphaltBase01, ItemBlockSlabAsphaltBase01.class, "singleSlabAsphaltBase01");
+        GameRegistry.registerBlock(doubleSlabAsphaltBase01, ItemBlockSlabAsphaltBase01.class, "doubleSlabAsphaltBase01");
+        GameRegistry.registerBlock(singleSlabAsphaltLines01, ItemBlockSlabAsphaltLines01.class, "singleSlabAsphaltLines01");
+        GameRegistry.registerBlock(doubleSlabAsphaltLines01, ItemBlockSlabAsphaltLines01.class, "doubleSlabAsphaltLines01");
         GameRegistry.registerBlock(blockAsphaltLinesCorner01, ItemBlockAsphaltCorner01.class, "asphaltLinesCorner01");
         GameRegistry.registerBlock(blockAsphaltArrows01, ItemBlockAsphaltArrows01.class, "asphaltLinesArrows01");
         GameRegistry.registerBlock(blockEntityTest, "entityTest");

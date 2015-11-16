@@ -31,10 +31,11 @@ import net.killermapper.roadstuff.client.render.RenderAsphaltArrows;
 import net.killermapper.roadstuff.client.render.RenderAsphaltCorner;
 import net.killermapper.roadstuff.client.render.RenderAsphaltLines;
 import net.killermapper.roadstuff.client.render.RenderCone01;
+import net.killermapper.roadstuff.client.render.RenderSlabAsphaltLines;
 
 public class ClientProxy extends CommonProxy
 {
-    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderCone01Id;
+    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderSlabAsphaltLinesId, renderCone01Id;
 
     @Override
     public void registerRender()
@@ -49,6 +50,8 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerBlockHandler(renderAsphaltCornerId, new RenderAsphaltCorner());
         renderAsphaltArrowsId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderAsphaltArrowsId, new RenderAsphaltArrows());
+        renderSlabAsphaltLinesId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(renderSlabAsphaltLinesId, new RenderSlabAsphaltLines());
     }
 
 }
