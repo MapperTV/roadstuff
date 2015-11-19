@@ -37,6 +37,8 @@ import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines03;
 import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines04;
 import net.killermapper.roadstuff.common.items.ItemBlockAsphaltLines05;
 import net.killermapper.roadstuff.common.items.ItemBlockCone01;
+import net.killermapper.roadstuff.common.items.ItemBlockSlabAsphaltBase01;
+import net.killermapper.roadstuff.common.items.ItemBlockSlabAsphaltLines01;
 import net.minecraft.block.Block;
 
 public class RoadStuffBlocks

@@ -50,25 +50,28 @@ public class RenderSlabAsphaltLines implements ISimpleBlockRenderingHandler
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
     {
-        renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
-        if(world.getBlockMetadata(x, y, z) >= 8)
+        if(world.getBlockMetadata(x, y, z) >= 4 && world.getBlockMetadata(x, y, z) <= 7)
         {
+            renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
             renderer.uvRotateTop = 1;
-            renderer.setRenderBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
         }
-        
+        if(world.getBlockMetadata(x, y, z) >= 11 && world.getBlockMetadata(x, y, z) <= 15)
+        {
+            renderer.setRenderBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
+            renderer.uvRotateTop = 1;
+        }
         renderer.renderStandardBlock(block, x, y, z);
-        //Must reset the rotation or it will mess up all rotating blocks around
+        // Must reset the rotation or it will mess up all rotating blocks around
         renderer.uvRotateTop = 0;
         return true;
     }
-    
+
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
         return ClientProxy.renderSlabAsphaltLinesId;
     }
-    
+
     @Override
     public boolean shouldRender3DInInventory(int modelId)
     {
@@ -80,8 +83,8 @@ public class RenderSlabAsphaltLines implements ISimpleBlockRenderingHandler
     {
         return ClientProxy.renderAsphaltLinesId;
     }
-    
-    //To render a ISBRH part in the inventory - Credits to MinecraftForgeFrance
+
+    // To render a ISBRH part in the inventory - Credits to MinecraftForgeFrance
     private void renderInInventory(Tessellator tessellator, RenderBlocks renderer, Block block, int metadata)
     {
         GL11.glTranslatef(-0.5F, -0.5F, -0.5F);

@@ -24,8 +24,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.blocks;
+package net.killermapper.roadstuff.common.items;
 
+import net.killermapper.roadstuff.common.blocks.BlockSlabAsphaltBase01;
+import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;

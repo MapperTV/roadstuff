@@ -24,8 +24,10 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.blocks;
+package net.killermapper.roadstuff.common.items;
 
+import net.killermapper.roadstuff.common.blocks.BlockSlabAsphaltLines01;
+import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -94,8 +96,9 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
             int j1 = world.getBlockMetadata(x, y, z);
             int k1 = j1 & 7;
             boolean flag = (j1 & 8) != 0;
+            int damage = stack.getItemDamage();
 
-            if((side == 1 && !flag || side == 0 && flag) && i1 == this.theHalfSlab && k1 == stack.getItemDamage())
+            if((side == 1 && !flag || side == 0 && flag) && i1 == this.theHalfSlab && k1 == damage)
             {
                 if(world.checkNoEntityCollision(this.doubleSlab.getCollisionBoundingBoxFromPool(world, x, y, z)) && world.setBlock(x, y, z, this.doubleSlab, k1, 3))
                 {

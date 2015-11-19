@@ -37,10 +37,12 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
 public class BlockSlabAsphaltLines01 extends BlockSlab
@@ -61,7 +63,15 @@ public class BlockSlabAsphaltLines01 extends BlockSlab
     public IIcon getIcon(int side, int metadata)
     {
         int k = metadata & 7;
-        return k == 0 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 0) : k == 1 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 1) : k == 2 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 2) : k == 3 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 3) : RoadStuffBlocks.blockAsphaltBase01.getIcon(side, 0);
+        return k == 0 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 0) : 
+        k == 1 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 1) : 
+        k == 2 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 4) : 
+        k == 3 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 5) : 
+            k == 4 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 0) : 
+                k == 5 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 1) : 
+                    k == 6 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 4) : 
+                        k == 7 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 5) : 
+        RoadStuffBlocks.blockAsphaltBase01.getIcon(side, 0);
     }
     
     @SideOnly(Side.CLIENT)
@@ -84,7 +94,7 @@ public class BlockSlabAsphaltLines01 extends BlockSlab
 
     public Item getItemDropped(int metadata, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(Blocks.stone_slab);
+        return Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltLines01);
     }
 
     protected ItemStack createStackedBlock(int metadata)
@@ -113,4 +123,39 @@ public class BlockSlabAsphaltLines01 extends BlockSlab
         }
         return super.getUnlocalizedName() + "." + StepTypes[metadata];
     }
+    
+    /*public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
+    {
+        int meta = 0;
+        int direction = MathHelper.floor_double((double)(living.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
+        if(stack.getItemDamage() == 0)
+        {
+            if(direction == 0 || direction == 2)
+                meta = 0;
+            if(direction == 1 || direction == 3)
+                meta = 4;
+        }
+        if(stack.getItemDamage() == 1)
+        {
+            if(direction == 0 || direction == 2)
+                meta = 1;
+            if(direction == 1 || direction == 3)
+                meta = 5;
+        }
+        if(stack.getItemDamage() == 2)
+        {
+            if(direction == 0 || direction == 2)
+                meta = 2;
+            if(direction == 1 || direction == 3)
+                meta = 6;
+        }
+        if(stack.getItemDamage() == 3)
+        {
+            if(direction == 0 || direction == 2)
+                meta = 3;
+            if(direction == 1 || direction == 3)
+                meta = 7;
+        }
+        world.setBlockMetadataWithNotify(x, y, z, meta, 2);
+    }*/
 }
