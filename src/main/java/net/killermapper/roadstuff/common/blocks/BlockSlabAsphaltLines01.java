@@ -47,7 +47,7 @@ import net.minecraft.world.World;
 
 public class BlockSlabAsphaltLines01 extends BlockSlab
 {
-    public static final String[] StepTypes = new String[] {"simplewhiteline", "simpleyellowline", "doublewhiteline", "doubleyellowline"};
+    public static final String[] StepTypes = new String[] {"simplewhiteline", "simpleyellowline", "doublewhiteline", "doubleyellowline", "simplewhiteline90", "simpleyellowline90", "doublewhiteline90", "doubleyellowline90"};
 
     public BlockSlabAsphaltLines01(boolean isdouble, Material material)
     {
@@ -63,17 +63,9 @@ public class BlockSlabAsphaltLines01 extends BlockSlab
     public IIcon getIcon(int side, int metadata)
     {
         int k = metadata & 7;
-        return k == 0 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 0) : 
-        k == 1 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 1) : 
-        k == 2 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 4) : 
-        k == 3 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 5) : 
-            k == 4 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 0) : 
-                k == 5 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 1) : 
-                    k == 6 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 4) : 
-                        k == 7 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 5) : 
-        RoadStuffBlocks.blockAsphaltBase01.getIcon(side, 0);
+        return k == 0 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 0) : k == 1 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 1) : k == 2 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 4) : k == 3 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 5) : k == 4 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 0) : k == 5 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 1) : k == 6 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 4) : k == 7 ? RoadStuffBlocks.blockAsphaltLines01.getIcon(side, 5) : RoadStuffBlocks.blockAsphaltBase01.getIcon(side, 0);
     }
-    
+
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
@@ -95,6 +87,19 @@ public class BlockSlabAsphaltLines01 extends BlockSlab
     public Item getItemDropped(int metadata, Random rand, int fortune)
     {
         return Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltLines01);
+    }
+    
+    public int damageDropped(int metadata)
+    {
+        if(metadata == 4)
+            return 0;
+        if(metadata == 5)
+            return 1;
+        if(metadata == 6)
+            return 2;
+        if(metadata == 7)
+            return 3;
+        return metadata;
     }
 
     protected ItemStack createStackedBlock(int metadata)
@@ -123,39 +128,4 @@ public class BlockSlabAsphaltLines01 extends BlockSlab
         }
         return super.getUnlocalizedName() + "." + StepTypes[metadata];
     }
-    
-    /*public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
-    {
-        int meta = 0;
-        int direction = MathHelper.floor_double((double)(living.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
-        if(stack.getItemDamage() == 0)
-        {
-            if(direction == 0 || direction == 2)
-                meta = 0;
-            if(direction == 1 || direction == 3)
-                meta = 4;
-        }
-        if(stack.getItemDamage() == 1)
-        {
-            if(direction == 0 || direction == 2)
-                meta = 1;
-            if(direction == 1 || direction == 3)
-                meta = 5;
-        }
-        if(stack.getItemDamage() == 2)
-        {
-            if(direction == 0 || direction == 2)
-                meta = 2;
-            if(direction == 1 || direction == 3)
-                meta = 6;
-        }
-        if(stack.getItemDamage() == 3)
-        {
-            if(direction == 0 || direction == 2)
-                meta = 3;
-            if(direction == 1 || direction == 3)
-                meta = 7;
-        }
-        world.setBlockMetadataWithNotify(x, y, z, meta, 2);
-    }*/
 }

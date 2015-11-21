@@ -26,6 +26,8 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.items;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.blocks.BlockSlabAsphaltLines01;
 import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
 import net.minecraft.block.Block;
@@ -33,9 +35,8 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlockSlabAsphaltLines01 extends ItemBlock
 {
@@ -76,6 +77,7 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
         return ((BlockSlabAsphaltLines01)theHalfSlab).func_150002_b(stack.getItemDamage());
     }
 
+    // Put the bloc
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)
     {
         if(this.isFullBlock)
@@ -96,9 +98,8 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
             int j1 = world.getBlockMetadata(x, y, z);
             int k1 = j1 & 7;
             boolean flag = (j1 & 8) != 0;
-            int damage = stack.getItemDamage();
 
-            if((side == 1 && !flag || side == 0 && flag) && i1 == this.theHalfSlab && k1 == damage)
+            if((side == 1 && !flag || side == 0 && flag) && i1 == this.theHalfSlab && k1 == stack.getItemDamage())
             {
                 if(world.checkNoEntityCollision(this.doubleSlab.getCollisionBoundingBoxFromPool(world, x, y, z)) && world.setBlock(x, y, z, this.doubleSlab, k1, 3))
                 {
@@ -114,6 +115,7 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
         }
     }
 
+    // Can put the bloc?
     @SideOnly(Side.CLIENT)
     public boolean func_150936_a(World world, int x, int y, int z, int side, EntityPlayer player, ItemStack stack)
     {
@@ -165,10 +167,12 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
             meta = world.getBlockMetadata(x, y, z);
             j2 = meta & 7;
             flag = (meta & 8) != 0;
+
             return id == this.theHalfSlab && j2 == stack.getItemDamage() ? true : super.func_150936_a(world, i1, j1, k1, side, player, stack);
         }
     }
 
+    // Build bloc from upper slab
     private boolean placeDoubleSlabFromTop(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side)
     {
         if(side == 0)
