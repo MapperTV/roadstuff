@@ -52,12 +52,10 @@ public class RenderSlabAsphaltLines implements ISimpleBlockRenderingHandler
     {
         if(world.getBlockMetadata(x, y, z) >= 4 && world.getBlockMetadata(x, y, z) <= 7)
         {
-            renderer.setRenderBounds(0.0F, 0.0F, 0.0F, 1.0F, 0.5F, 1.0F);
             renderer.uvRotateTop = 1;
         }
         if(world.getBlockMetadata(x, y, z) >= 11 && world.getBlockMetadata(x, y, z) <= 15)
         {
-            renderer.setRenderBounds(0.0F, 0.5F, 0.0F, 1.0F, 1.0F, 1.0F);
             renderer.uvRotateTop = 1;
         }
         renderer.renderStandardBlock(block, x, y, z);
