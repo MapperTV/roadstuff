@@ -70,6 +70,7 @@ public class RoadStuffBlocks
     public static Block blockConcreteLine;
     public static Block blockConcreteCorner;
     public static Block blockConcreteYCross;
+    public static Block blockBitumenOre;
 
     public static void initBlocks()
     {
@@ -92,6 +93,9 @@ public class RoadStuffBlocks
         RoadStuffBlocks.blockConcreteLine = new BlockConcreteLine().setBlockName("concreteLine").setHardness(1.0F).setResistance(5.0F);
         RoadStuffBlocks.blockConcreteYCross = new BlockConcreteYCross().setBlockName("concreteYCross").setHardness(1.0F).setResistance(5.0F);
         RoadStuffBlocks.blockConcreteCorner = new BlockConcreteCorner().setBlockName("concreteCorner").setHardness(1.0F).setResistance(5.0F);
+        
+        //Ore blocks
+        RoadStuffBlocks.blockBitumenOre = new BlockRoadstuffOre().setBlockName("bitumenOre").setHardness(1.5F).setResistance(10.0F).setBlockTextureName(RoadStuff.MODID + ":oreBitumen");
         
         //Misc. blocks
         RoadStuffBlocks.blockCone01 = new BlockCone01().setBlockName("cone01").setHardness(1.0F).setResistance(1.0F);
@@ -122,6 +126,7 @@ public class RoadStuffBlocks
         RoadStuffBlocks.blockConcreteLine.setHarvestLevel("pickaxe", 1);
         RoadStuffBlocks.blockConcreteYCross.setHarvestLevel("pickaxe", 1);
         RoadStuffBlocks.blockConcreteCorner.setHarvestLevel("pickaxe", 1);
+        RoadStuffBlocks.blockBitumenOre.setHarvestLevel("pickaxe", 0);
 
     }
 
@@ -145,6 +150,7 @@ public class RoadStuffBlocks
         GameRegistry.registerBlock(blockConcreteLine, ItemBlockConcreteLine.class, "concreteLine");
         GameRegistry.registerBlock(blockConcreteYCross, ItemBlockConcreteYCross.class, "concreteYCross");
         GameRegistry.registerBlock(blockConcreteCorner, ItemBlockConcreteCorner.class, "concreteCorner");
+        GameRegistry.registerBlock(blockBitumenOre, "bitumenOre");
     }
 
 }

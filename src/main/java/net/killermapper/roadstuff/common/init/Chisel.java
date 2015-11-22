@@ -11,9 +11,12 @@ public class Chisel {
 		//Example
 		for(int i = 1; i <= 5; i++)
 		{
-			FMLInterModComms.sendMessage(IMC.CHISEL_MODID,
-					IMC.ADD_VARIATION.key,
-					"BlockAsphaltLines|roadstuff:asphaltLines0" + i + "|0");
+			for(int j = 0; j<= 3; j++)
+			{
+		         FMLInterModComms.sendMessage(IMC.getModid(),
+		                    IMC.ADD_VARIATION.key,
+		                    "BlockAsphaltLines|roadstuff:asphaltLines0" + i + "|" + j);
+			}
 		}
 	}
 }

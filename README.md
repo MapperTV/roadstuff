@@ -30,7 +30,9 @@ Media can be found here for now: http://imgur.com/a/jCsZ7
 Credits:
 
 - KillerMapper
-- MinecraftForgeFrance
-- Minecraftforge.net
+- Bodri for the help
+- MinecraftForgeFrance (tutorials)
+- Minecraftforge.net (help)
+
 
 Note: paintbrush and bitumen icons are from ExtraUtilities and Mettalurgy 4, only for testing. I'll obviously replace them with my own textures.
