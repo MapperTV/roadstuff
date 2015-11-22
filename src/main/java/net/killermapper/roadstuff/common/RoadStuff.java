@@ -26,6 +26,14 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common;
 
+import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.blocks.TileEntityTest;
+import net.killermapper.roadstuff.common.init.Chisel;
+import net.killermapper.roadstuff.common.items.RoadStuffItems;
+import net.killermapper.roadstuff.proxy.CommonProxy;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import cpw.mods.fml.common.Loader;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.Mod.EventHandler;
 import cpw.mods.fml.common.Mod.Instance;
@@ -36,14 +44,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
-import net.killermapper.roadstuff.common.blocks.TileEntityTest;
-import net.killermapper.roadstuff.common.items.ItemBitumen;
-import net.killermapper.roadstuff.common.items.ItemPaintbrush;
-import net.killermapper.roadstuff.common.items.RoadStuffItems;
-import net.killermapper.roadstuff.proxy.CommonProxy;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
 
 @Mod(modid = RoadStuff.MODID, name = "Road Stuff", version = "0.1")
 
@@ -77,6 +77,11 @@ public class RoadStuff
     {
         RoadStuffBlocks.initBlocks();
         RoadStuffItems.initItems();
+        
+        if(Loader.isModLoaded("chisel"))
+        {
+        	Chisel.sendIMC();
+        }
     }
 
     @EventHandler
