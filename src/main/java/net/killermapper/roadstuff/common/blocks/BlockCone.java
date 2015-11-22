@@ -28,7 +28,10 @@ package net.killermapper.roadstuff.common.blocks;
 
 import java.util.List;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.RoadStuff;
+import net.killermapper.roadstuff.proxy.ClientProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
@@ -36,17 +39,27 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.world.IBlockAccess;
 
-public class BlockAsphaltBase01 extends Block
+public class BlockCone extends Block
 {
+    public static String[] subBlock = new String[] {"cone01", "cone02", "cone03"};
+    private IIcon top, sides, bottom, base, top2;
 
-    public static String[] subBlockAsphaltBase01 = new String[] {"asphalt", "sewermanhole"};
-    private IIcon asphaltBase, sewerManhole;
-
-    public BlockAsphaltBase01()
+    public BlockCone()
     {
-        super(Material.rock);
+        super(Material.ground);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
+        this.setStepSound(soundTypeMetal);
+    }
+
+    public void registerBlockIcons(IIconRegister iiconRegister)
+    {
+        this.top = iiconRegister.registerIcon(RoadStuff.MODID + ":blockCone01Top");
+        this.sides = iiconRegister.registerIcon(RoadStuff.MODID + ":blockCone01");
+        this.bottom = iiconRegister.registerIcon(RoadStuff.MODID + ":blockConeBottom");
+        this.base = iiconRegister.registerIcon(RoadStuff.MODID + ":blockConeBase");
+        this.top2 = iiconRegister.registerIcon(RoadStuff.MODID + ":blockCone02Top");
     }
 
     public int damageDropped(int metadata)
@@ -56,32 +69,54 @@ public class BlockAsphaltBase01 extends Block
 
     public void getSubBlocks(Item item, CreativeTabs tabs, List list)
     {
-        for(int i = 0; i < subBlockAsphaltBase01.length; i++)
+        for(int i = 0; i < subBlock.length; i++)
         {
             list.add(new ItemStack(item, 1, i));
         }
     }
 
-    public void registerBlockIcons(IIconRegister iconRegister)
+    public boolean renderAsNormalBlock()
     {
-        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.sewerManhole = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSewerManhole");
+        return false;
+    }
+
+    public boolean isOpaqueCube()
+    {
+        return false;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public int getRenderType()
+    {
+        return ClientProxy.renderCone01Id;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side)
+    {
+        return true;
     }
 
     public IIcon getIcon(int side, int metadata)
     {
-        switch(metadata)
+        if(metadata == 2)
         {
-            case 0:
-                return this.asphaltBase;
-            case 1:
-                if(side == 1)
-                {
-                    return this.sewerManhole;
-                }
-                return this.asphaltBase;
-            default:
-                return this.asphaltBase;
+            if(side == 1)
+                return this.base;
         }
+        if(metadata == 0)
+        {
+            if(side == 1)
+                return this.top;
+        }
+        if(metadata == 1)
+        {
+            if(side == 1)
+                return this.top2;
+        }
+        if(side == 0)
+            return this.bottom;
+        return this.sides;
     }
+
 }

@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.blocks;
+package net.killermapper.roadstuff.common.blocks.asphalt;
 
 import java.util.List;
 
@@ -43,12 +43,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockAsphaltLines02 extends Block
+public class BlockAsphaltLines05 extends Block
 {
-    public static String[] subBlock = new String[] {"simplewhiteyrightcross", "simplewhiteyleftcross", "simplewhiteyfullcross", "simplewhiteycross"};
-    private IIcon asphaltBase, simpleWhiteYrightCross, simpleWhiteYleftCross, simpleWhiteYfullCross, simpleWhiteYCross;
+    public static String[] subBlock = new String[] {"simplewhitetcross", "simplewhitetcorner", "simplewhitetdoublecross", "simplewhitexcross"};
+    private IIcon asphaltBase, simplewhiteTCross, simplewhiteXCross, simplewhiteTDoubleCross, simplewhiteTCorner;
 
-    public BlockAsphaltLines02()
+    public BlockAsphaltLines05()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -68,7 +68,7 @@ public class BlockAsphaltLines02 extends Block
             return 1;
         if(metadata == 6 || metadata == 10 || metadata == 14)
             return 2;
-        if(metadata == 7 || metadata == 11 || metadata == 15)
+        if(metadata == 3)
             return 3;
         return metadata;
     }
@@ -84,36 +84,36 @@ public class BlockAsphaltLines02 extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.simpleWhiteYrightCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYrightCross");
-        this.simpleWhiteYleftCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYleftCross");
-        this.simpleWhiteYfullCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYfullCross");
-        this.simpleWhiteYCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYCross");
+        this.simplewhiteTCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteTCross");
+        this.simplewhiteXCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteXCross");
+        this.simplewhiteTDoubleCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteTDoubleCross");
+        this.simplewhiteTCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteTCorner");
     }
-    
+
     public IIcon getIcon(int side, int metadata)
     {
         if(side == 1)
         {
             if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
             {
-                return this.simpleWhiteYrightCross;
+                return this.simplewhiteTCross;
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.simpleWhiteYleftCross;
+                return this.simplewhiteTCorner;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.simpleWhiteYfullCross;
+                return this.simplewhiteTDoubleCross;
             }
-            if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
+            if(metadata == 3)
             {
-                return this.simpleWhiteYCross;
+                return this.simplewhiteXCross;
             }
         }
         return this.asphaltBase;
     }
-    
+
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
     {
         int meta = 0;
@@ -152,16 +152,7 @@ public class BlockAsphaltLines02 extends Block
                 meta = 14;
         }
         if(stack.getItemDamage() == 3)
-        {
-            if(direction == 0)
-                meta = 3;
-            if(direction == 1)
-                meta = 7;
-            if(direction == 2)
-                meta = 11;
-            if(direction == 3)
-                meta = 15;
-        }
+            meta = 3;
         world.setBlockMetadataWithNotify(x, y, z, meta, 2);
     }
 

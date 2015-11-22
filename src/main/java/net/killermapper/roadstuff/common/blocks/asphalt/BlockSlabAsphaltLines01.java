@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.blocks;
+package net.killermapper.roadstuff.common.blocks.asphalt;
 
 import java.util.List;
 import java.util.Random;
@@ -32,6 +32,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.RoadStuff;
+import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
 import net.killermapper.roadstuff.proxy.ClientProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;

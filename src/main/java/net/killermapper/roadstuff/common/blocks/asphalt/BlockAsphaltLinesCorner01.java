@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.blocks;
+package net.killermapper.roadstuff.common.blocks.asphalt;
 
 import java.util.List;
 
@@ -43,12 +43,13 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockAsphaltArrows01 extends Block
+public class BlockAsphaltLinesCorner01 extends Block
 {
-    public static String[] subBlock = new String[] {"whitearrow", "yellowarrow", "doublewhitearrow", "doubleyellowarrow"};
-    private IIcon asphaltBase, whiteArrow, yellowArrow, doubleWhiteArrow, doubleYellowArrow;
 
-    public BlockAsphaltArrows01()
+    public static String[] subBlock = new String[] {"simplewhitecorner", "simpleyellowcorner", "doublewhitecorner", "doubleyellowcorner"};
+    private IIcon asphaltBase, simpleWhiteCorner, simpleYellowCorner, doubleWhiteCorner, doubleYellowCorner;
+
+    public BlockAsphaltLinesCorner01()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -57,7 +58,7 @@ public class BlockAsphaltArrows01 extends Block
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
-        return ClientProxy.renderAsphaltArrowsId;
+        return ClientProxy.renderAsphaltCornerId;
     }
 
     public int damageDropped(int metadata)
@@ -84,36 +85,36 @@ public class BlockAsphaltArrows01 extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.whiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltWhiteArrow");
-        this.yellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltYellowArrow");
-        this.doubleWhiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleWhiteArrow");
-        this.doubleYellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleYellowArrow");
+        this.simpleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteCorner");
+        this.simpleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowCorner");
+        this.doubleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleWhiteCorner");
+        this.doubleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleYellowCorner");
     }
-    
+
     public IIcon getIcon(int side, int metadata)
     {
         if(side == 1)
         {
             if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
             {
-                return this.whiteArrow;
+                return this.simpleWhiteCorner;
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.yellowArrow;
+                return this.simpleYellowCorner;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.doubleWhiteArrow;
+                return this.doubleWhiteCorner;
             }
             if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
             {
-                return this.doubleYellowArrow;
+                return this.doubleYellowCorner;
             }
         }
         return this.asphaltBase;
     }
-    
+
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
     {
         int meta = 0;

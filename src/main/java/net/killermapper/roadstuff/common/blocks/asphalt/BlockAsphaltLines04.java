@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.blocks;
+package net.killermapper.roadstuff.common.blocks.asphalt;
 
 import java.util.List;
 
@@ -43,12 +43,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockAsphaltLines05 extends Block
+public class BlockAsphaltLines04 extends Block
 {
-    public static String[] subBlock = new String[] {"simplewhitetcross", "simplewhitetcorner", "simplewhitetdoublecross", "simplewhitexcross"};
-    private IIcon asphaltBase, simplewhiteTCross, simplewhiteXCross, simplewhiteTDoubleCross, simplewhiteTCorner;
+    public static String[] subBlock = new String[] {"simpleyellowtcross", "simpleyellowtcorner", "simpleyellowtdoublecross", "simpleyellowxcross"};
+    private IIcon asphaltBase, simpleyellowTCross, simpleyellowXCross, simpleyellowTDoubleCross, simpleyellowTCorner;
 
-    public BlockAsphaltLines05()
+    public BlockAsphaltLines04()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -84,10 +84,10 @@ public class BlockAsphaltLines05 extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.simplewhiteTCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteTCross");
-        this.simplewhiteXCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteXCross");
-        this.simplewhiteTDoubleCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteTDoubleCross");
-        this.simplewhiteTCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteTCorner");
+        this.simpleyellowTCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowTCross");
+        this.simpleyellowXCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowXCross");
+        this.simpleyellowTDoubleCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowTDoubleCross");
+        this.simpleyellowTCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowTCorner");
     }
 
     public IIcon getIcon(int side, int metadata)
@@ -96,19 +96,19 @@ public class BlockAsphaltLines05 extends Block
         {
             if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
             {
-                return this.simplewhiteTCross;
+                return this.simpleyellowTCross;
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.simplewhiteTCorner;
+                return this.simpleyellowTCorner;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.simplewhiteTDoubleCross;
+                return this.simpleyellowTDoubleCross;
             }
             if(metadata == 3)
             {
-                return this.simplewhiteXCross;
+                return this.simpleyellowXCross;
             }
         }
         return this.asphaltBase;

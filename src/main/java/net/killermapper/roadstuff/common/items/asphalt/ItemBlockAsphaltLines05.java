@@ -24,19 +24,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.items;
+package net.killermapper.roadstuff.common.items.asphalt;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.BlockAsphaltLines02;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltLines05;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemBlockAsphaltLines02 extends ItemBlock
+public class ItemBlockAsphaltLines05 extends ItemBlock
 {
-    public ItemBlockAsphaltLines02(Block block)
+    public ItemBlockAsphaltLines05(Block block)
     {
         super(block);
         this.setMaxDamage(0);
@@ -57,11 +57,11 @@ public class ItemBlockAsphaltLines02 extends ItemBlock
     public String getUnlocalizedName(ItemStack stack)
     {
         int metadata = stack.getItemDamage();
-        if(metadata < 0 || metadata >= BlockAsphaltLines02.subBlock.length)
+        if(metadata < 0 || metadata >= BlockAsphaltLines05.subBlock.length)
         {
             metadata = 0;
         }
-        return super.getUnlocalizedName() + "." + BlockAsphaltLines02.subBlock[metadata];
+        return super.getUnlocalizedName() + "." + BlockAsphaltLines05.subBlock[metadata];
     }
 
 }

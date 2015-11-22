@@ -24,44 +24,45 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.items;
+package net.killermapper.roadstuff.common.items.asphalt;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.BlockAsphaltBase01;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltLines01;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemBlockAsphaltBase01 extends ItemBlock {
-	
-	public ItemBlockAsphaltBase01(Block block) 	{
-		super(block);
-		this.setMaxDamage(0);
-		this.setHasSubtypes(true);
-	}
-	
-	public int getMetadata(int metadata)
-	{
-		return metadata;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public IIcon getIconFromDamage(int metadata)
-	{
-		return this.field_150939_a.getIcon(2, metadata);
-	}
-	
-	public String getUnlocalizedName(ItemStack stack)
-	{
-		int metadata = stack.getItemDamage();
-		if(metadata < 0 || metadata >= BlockAsphaltBase01.subBlockAsphaltBase01.length)
-		{
-			metadata = 0;
-		}
-		return super.getUnlocalizedName() + "." + BlockAsphaltBase01.subBlockAsphaltBase01[metadata];
-	}
+public class ItemBlockAsphaltLines01 extends ItemBlock
+{
 
+    public ItemBlockAsphaltLines01(Block block)
+    {
+        super(block);
+        this.setMaxDamage(0);
+        this.setHasSubtypes(true);
+    }
+
+    public int getMetadata(int metadata)
+    {
+        return metadata;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public IIcon getIconFromDamage(int metadata)
+    {
+        return this.field_150939_a.getIcon(2, metadata);
+    }
+
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        int metadata = stack.getItemDamage();
+        if(metadata < 0 || metadata >= BlockAsphaltLines01.subBlock.length)
+        {
+            metadata = 0;
+        }
+        return super.getUnlocalizedName() + "." + BlockAsphaltLines01.subBlock[metadata];
+    }
 
 }

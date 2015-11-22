@@ -24,32 +24,31 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.items;
+package net.killermapper.roadstuff.common.items.asphalt;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.BlockSlabAsphaltLines01;
 import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphaltBase01;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
-import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class ItemBlockSlabAsphaltLines01 extends ItemBlock
+public class ItemBlockSlabAsphaltBase01 extends ItemBlock
 {
     private final boolean isFullBlock;
     private final Block theHalfSlab;
     private final Block doubleSlab;
 
-    public ItemBlockSlabAsphaltLines01(Block block)
+    public ItemBlockSlabAsphaltBase01(Block block)
     {
         super(block);
-        this.theHalfSlab = RoadStuffBlocks.singleSlabAsphaltLines01;
-        this.doubleSlab = RoadStuffBlocks.doubleSlabAsphaltLines01;
-        if(block == RoadStuffBlocks.doubleSlabAsphaltLines01)
+        this.theHalfSlab = RoadStuffBlocks.singleSlabAsphaltBase01;
+        this.doubleSlab = RoadStuffBlocks.doubleSlabAsphaltBase01;
+        if(block == RoadStuffBlocks.doubleSlabAsphaltBase01)
         {
             this.isFullBlock = true;
         }
@@ -74,10 +73,9 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
 
     public String getUnlocalizedName(ItemStack stack)
     {
-        return ((BlockSlabAsphaltLines01)theHalfSlab).func_150002_b(stack.getItemDamage());
+        return ((BlockSlabAsphaltBase01)theHalfSlab).func_150002_b(stack.getItemDamage());
     }
 
-    // Put the bloc
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)
     {
         if(this.isFullBlock)
@@ -115,7 +113,6 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
         }
     }
 
-    // Can put the bloc?
     @SideOnly(Side.CLIENT)
     public boolean func_150936_a(World world, int x, int y, int z, int side, EntityPlayer player, ItemStack stack)
     {
@@ -167,12 +164,10 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
             meta = world.getBlockMetadata(x, y, z);
             j2 = meta & 7;
             flag = (meta & 8) != 0;
-
             return id == this.theHalfSlab && j2 == stack.getItemDamage() ? true : super.func_150936_a(world, i1, j1, k1, side, player, stack);
         }
     }
 
-    // Build bloc from upper slab
     private boolean placeDoubleSlabFromTop(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side)
     {
         if(side == 0)
