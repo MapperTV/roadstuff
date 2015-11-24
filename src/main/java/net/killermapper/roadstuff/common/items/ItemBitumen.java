@@ -52,7 +52,7 @@ public class ItemBitumen extends Item {
     {
         return metadata;
     }
-    
+
     public String getUnlocalizedName(ItemStack stack)
     {
         int metadata = stack.getItemDamage();

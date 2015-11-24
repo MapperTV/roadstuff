@@ -32,19 +32,28 @@ import com.cricketcraft.chisel.api.IMC;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class Chisel {
+public class Chisel
+{
 
-	public static void sendIMC()
-	{	
-		//Example
-		for(int i = 1; i <= 5; i++)
-		{
-			for(int j = 0; j<= 16; j++)
-			{
-		         FMLInterModComms.sendMessage(IMC.getModid(),
-		                    IMC.ADD_VARIATION.key,
-		                    "BlockAsphaltLines|roadstuff:asphaltLines0" + i + "|" + j);
-			}
-		}
-	}
+    public static void sendIMC()
+    {
+        //testing
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltBase01|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltLines01|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltLines01|1");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltLines01|2");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltLines01|3");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltLines01|4");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltLines01|5");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltLines01|5");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltLines02|0");
+        /* Example
+        for(int i = 1; i <= 5; i++)
+        {
+            for(int j = 0; j <= 16; j++)
+            {
+                FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltLines0" + i + "|" + j);
+            }
+        }*/
+    }
 }

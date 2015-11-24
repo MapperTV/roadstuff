@@ -8,8 +8,8 @@
   "url": "www.killermapper.net",
   "updateUrl": "",
   "authorList": ["KillerMapper"],
-  "credits": "MinecraftForgeFrance, Bodri, everyone who worked on Forge",
-  "logoFile": "",
+  "credits": "MinecraftForgeFrance, BrokenSwing, everyone who worked on Forge",
+  "logoFile": "/assets/roadstuff/logo.png",
   "screenshots": [],
   "dependencies": []
 }
