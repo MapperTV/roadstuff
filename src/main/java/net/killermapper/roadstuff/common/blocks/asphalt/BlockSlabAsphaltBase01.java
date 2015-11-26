@@ -78,7 +78,7 @@ public class BlockSlabAsphaltBase01 extends BlockSlab
 
     public Item getItemDropped(int metadata, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(Blocks.stone_slab);
+            return Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltBase01);
     }
 
     protected ItemStack createStackedBlock(int metadata)

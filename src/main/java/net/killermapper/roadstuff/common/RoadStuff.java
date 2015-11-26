@@ -43,15 +43,12 @@ import net.killermapper.roadstuff.common.blocks.TileEntityTest;
 import net.killermapper.roadstuff.common.events.EventPlayer;
 import net.killermapper.roadstuff.common.init.Chisel;
 import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
+import net.killermapper.roadstuff.common.init.RoadStuffRecipes;
 import net.killermapper.roadstuff.common.items.RoadStuffItems;
 import net.killermapper.roadstuff.common.world.OreGeneration;
 import net.killermapper.roadstuff.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.common.MinecraftForge;
 
 @Mod(modid = RoadStuff.MODID, name = "Road Stuff", version = "0.1")
 
@@ -107,9 +104,7 @@ public class RoadStuff
 
         proxy.registerRender();
 
-        GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockAsphaltBase01, 4, 0), new Object[] {"XY", "ZX", 'X', new ItemStack(RoadStuffItems.itemBitumen, 1, 1), 'Y', Blocks.sand, 'Z', Blocks.gravel});
-        GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockAsphaltBase01, 4, 1), new Object[] {"Y", "X", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltBase01, 1, 0), 'Y', Blocks.heavy_weighted_pressure_plate});
-        GameRegistry.addSmelting(new ItemStack(RoadStuffItems.itemBitumen, 1, 0), new ItemStack(RoadStuffItems.itemBitumen, 1, 1), 0.35F);
+        RoadStuffRecipes.initRecipes();
     }
 
     @EventHandler

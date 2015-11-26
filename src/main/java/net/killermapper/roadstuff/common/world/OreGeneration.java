@@ -67,7 +67,7 @@ public class OreGeneration implements IWorldGenerator
 
     private void generateSurface(World world, Random random, int x, int z)
     {
-        this.addOreSpawn(RoadStuffBlocks.blockBitumenOre, 0, Blocks.stone, world, random, x, z, 16, 16, 20, 18, 24, 72);
+        this.addOreSpawn(RoadStuffBlocks.blockBitumenOre, 0, Blocks.stone, world, random, x, z, 16, 16, 16, 10, 32, 80);
     }
 
     private void generateNether(World world, Random random, int x, int z)

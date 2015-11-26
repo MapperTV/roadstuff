@@ -90,6 +90,7 @@ public class BlockSlabAsphaltLines01 extends BlockSlab
         return Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltLines01);
     }
     
+    /*
     public int damageDropped(int metadata)
     {
         if(metadata == 4)
@@ -101,7 +102,7 @@ public class BlockSlabAsphaltLines01 extends BlockSlab
         if(metadata == 7)
             return 3;
         return metadata;
-    }
+    }*/
 
     protected ItemStack createStackedBlock(int metadata)
     {
