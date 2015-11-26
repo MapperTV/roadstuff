@@ -36,6 +36,7 @@ import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltLines03;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltLines04;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltLines05;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltLinesCorner01;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltWord1;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphaltBase01;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphaltLines01;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcrete;
@@ -55,6 +56,7 @@ import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLines02;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLines03;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLines04;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLines05;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltWord1;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockSlabAsphaltBase01;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockSlabAsphaltLines01;
 import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcrete;
@@ -95,6 +97,7 @@ public class RoadStuffBlocks
     public static Block blockConcreteArrow;
     public static Block blockBitumenOre;
     public static Block blockBitumenBlock;
+    public static Block blockAsphaltWord1;
 
     public static void initBlocks()
     {
@@ -111,6 +114,7 @@ public class RoadStuffBlocks
         doubleSlabAsphaltLines01 = new BlockSlabAsphaltLines01(true, null).setBlockName("slabAsphaltLines01").setHardness(1.0F).setResistance(5.0F);
         blockAsphaltLinesCorner01 = new BlockAsphaltLinesCorner01().setBlockName("asphaltLinesCorner01").setHardness(1.0F).setResistance(5.0F);
         blockAsphaltArrows01 = new BlockAsphaltArrows01().setBlockName("asphaltArrows01").setHardness(1.0F).setResistance(5.0F);
+        blockAsphaltWord1 = new BlockAsphaltWord1().setBlockName("asphaltWord1").setHardness(1.0F).setResistance(5.0F);
 
         // Concrete blocks
         blockConcrete = new BlockConcrete().setBlockName("concreteBase").setHardness(1.0F).setResistance(5.0F);
@@ -162,6 +166,7 @@ public class RoadStuffBlocks
         blockConcreteArrow.setHarvestLevel("pickaxe", 1);
         blockBitumenOre.setHarvestLevel("pickaxe", 0);
         blockBitumenBlock.setHarvestLevel("pickaxe", 0);
+        blockAsphaltWord1.setHarvestLevel("pickaxe", 1);
     }
 
     public static void registerBlocks()
@@ -188,6 +193,7 @@ public class RoadStuffBlocks
         GameRegistry.registerBlock(blockConcreteXCrossYellow, ItemBlockConcreteXCrossYellow.class, "concreteXCrossYellow");
         GameRegistry.registerBlock(blockConcreteCorner, ItemBlockConcreteCorner.class, "concreteCorner");
         GameRegistry.registerBlock(blockConcreteArrow, ItemBlockConcreteArrow.class, "concreteArrow");
+        GameRegistry.registerBlock(blockAsphaltWord1, ItemBlockAsphaltWord1.class, "asphaltWord1");
         GameRegistry.registerBlock(blockBitumenOre, "bitumenOre");
         GameRegistry.registerBlock(blockBitumenBlock, "bitumenBlock");
     }
