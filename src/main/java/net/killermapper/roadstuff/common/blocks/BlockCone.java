@@ -52,6 +52,37 @@ public class BlockCone extends Block
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
         this.setStepSound(soundTypeMetal);
     }
+    
+    public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
+    {
+        if(world.getBlockMetadata(x, y, z) == 0)
+        {
+            this.minX = 0.3F;
+            this.minY = 0.0F;
+            this.minZ = 0.3F;
+            this.maxX = 0.7F;
+            this.maxY = 1F;
+            this.maxZ = 0.7F;
+        }
+        if(world.getBlockMetadata(x, y, z) == 2)
+        {
+            this.minX = 0.44F;
+            this.minY = 0.0F;
+            this.minZ = 0.44F;
+            this.maxX = 0.56F;
+            this.maxY = 1F;
+            this.maxZ = 0.56F;
+        }
+        if(world.getBlockMetadata(x, y, z) == 1)
+        {
+            this.minX = 0.25F;
+            this.minY = 0.0F;
+            this.minZ = 0.25F;
+            this.maxX = 0.75F;
+            this.maxY = 0.875F;
+            this.maxZ = 0.75F;
+        }
+    }
 
     public void registerBlockIcons(IIconRegister iiconRegister)
     {
