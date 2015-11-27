@@ -24,68 +24,64 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.items;
+package net.killermapper.roadstuff.common.blocks.asphalt;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.RoadStuff;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemBitumen extends Item {
-    
-    private String[] type = new String[] {"itemBitumen", "itemLiquidBitumen"};
-    private IIcon[] IconArray;
+public class BlockAsphaltBase01 extends Block
+{
 
-    public ItemBitumen()
+    public static String[] subBlockAsphaltBase01 = new String[] {"asphalt", "sewermanhole"};
+    private IIcon asphaltBase, sewerManhole;
+
+    public BlockAsphaltBase01()
     {
+        super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
-        this.setHasSubtypes(true);
     }
-    
-    public int getMetadata(int metadata)
+
+    public int damageDropped(int metadata)
     {
         return metadata;
     }
 
-    public String getUnlocalizedName(ItemStack stack)
+    public void getSubBlocks(Item item, CreativeTabs tabs, List list)
     {
-        int metadata = stack.getItemDamage();
-        if(metadata > type.length || metadata < 0)
+        for(int i = 0; i < subBlockAsphaltBase01.length; i++)
         {
-            metadata = 0;
-        }
-        return super.getUnlocalizedName() + "." + type[metadata];
-    }
-    
-    public void registerIcons(IIconRegister iconregister)
-    {
-        IconArray = new IIcon[type.length];
-        for(int i = 0; i < type.length; i++)
-        {
-            IconArray[i] = iconregister.registerIcon(RoadStuff.MODID + ":" + type[i]);
-        }
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List list)
-    {
-        for(int metadata = 0; metadata < type.length; metadata++)
-        {
-            list.add(new ItemStack(item, 1, metadata));
+            list.add(new ItemStack(item, 1, i));
         }
     }
 
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int metadata)
+    public void registerBlockIcons(IIconRegister iconRegister)
     {
-        return metadata < type.length && metadata >= 0 ? IconArray[metadata] : IconArray[0];
+        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
+        this.sewerManhole = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSewerManhole");
     }
 
+    public IIcon getIcon(int side, int metadata)
+    {
+        switch(metadata)
+        {
+            case 0:
+                return this.asphaltBase;
+            case 1:
+                if(side == 1)
+                {
+                    return this.sewerManhole;
+                }
+                return this.asphaltBase;
+            default:
+                return this.asphaltBase;
+        }
+    }
 }
-

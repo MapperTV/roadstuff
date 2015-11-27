@@ -24,68 +24,44 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.items;
-
-import java.util.List;
+package net.killermapper.roadstuff.common.items.asphalt;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.RoadStuff;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.item.Item;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltLines02;
+import net.minecraft.block.Block;
+import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemBitumen extends Item {
-    
-    private String[] type = new String[] {"itemBitumen", "itemLiquidBitumen"};
-    private IIcon[] IconArray;
-
-    public ItemBitumen()
+public class ItemBlockAsphaltLines02 extends ItemBlock
+{
+    public ItemBlockAsphaltLines02(Block block)
     {
-        this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
+        super(block);
+        this.setMaxDamage(0);
         this.setHasSubtypes(true);
     }
-    
+
     public int getMetadata(int metadata)
     {
         return metadata;
     }
 
-    public String getUnlocalizedName(ItemStack stack)
-    {
-        int metadata = stack.getItemDamage();
-        if(metadata > type.length || metadata < 0)
-        {
-            metadata = 0;
-        }
-        return super.getUnlocalizedName() + "." + type[metadata];
-    }
-    
-    public void registerIcons(IIconRegister iconregister)
-    {
-        IconArray = new IIcon[type.length];
-        for(int i = 0; i < type.length; i++)
-        {
-            IconArray[i] = iconregister.registerIcon(RoadStuff.MODID + ":" + type[i]);
-        }
-    }
-    
-    @SideOnly(Side.CLIENT)
-    public void getSubItems(Item item, CreativeTabs creativeTabs, List list)
-    {
-        for(int metadata = 0; metadata < type.length; metadata++)
-        {
-            list.add(new ItemStack(item, 1, metadata));
-        }
-    }
-
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int metadata)
     {
-        return metadata < type.length && metadata >= 0 ? IconArray[metadata] : IconArray[0];
+        return this.field_150939_a.getIcon(2, metadata);
+    }
+
+    public String getUnlocalizedName(ItemStack stack)
+    {
+        int metadata = stack.getItemDamage();
+        if(metadata < 0 || metadata >= BlockAsphaltLines02.subBlock.length)
+        {
+            metadata = 0;
+        }
+        return super.getUnlocalizedName() + "." + BlockAsphaltLines02.subBlock[metadata];
     }
 
 }
-

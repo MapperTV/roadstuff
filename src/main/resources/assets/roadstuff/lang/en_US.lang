@@ -7,3 +7,14 @@ tile.asphalt03.asphalt02.name=Metadata Block 2
 tile.asphalt03.asphalt03.name=Metadata Block 3
 tile.asphalt03.asphalt04.name=Metadata Block 4
 tile.entitytest.number=Value : %d
+//Achievements
+achievement.roadstuff_getbitumen=Road Miner
+achievement.roadstuff_getbitumen.desc=Gather some bitumen in the world.
+achievement.roadstuff_smeltbitumen=HotRod
+achievement.roadstuff_smeltbitumen.desc=Make liquid bitumen in a furnace.
+achievement.roadstuff_craftasphalt=On The Road!
+achievement.roadstuff_craftasphalt.desc=Craft some Asphalt Blocks.
+achievement.roadstuff_craftconcrete=Gravel Cooking
+achievement.roadstuff_craftconcrete.desc=Craft some Concrete Blocks.
+achievement.roadstuff_craftcone=Not A Video Player
+achievement.roadstuff_craftcone.desc=Craft a Traffic Cone.

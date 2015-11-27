@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.blocks.concrete;
+package net.killermapper.roadstuff.common.blocks.asphalt;
 
 import java.util.List;
 
@@ -43,13 +43,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockConcreteCorner extends Block
+public class BlockAsphaltLines04 extends Block
 {
+    public static String[] subBlock = new String[] {"simpleyellowtcross", "simpleyellowtcorner", "simpleyellowtdoublecross", "simpleyellowxcross"};
+    private IIcon asphaltBase, simpleyellowTCross, simpleyellowXCross, simpleyellowTDoubleCross, simpleyellowTCorner;
 
-    public static String[] subBlock = new String[] {"concretesimplewhitecorner", "concretesimpleyellowcorner", "concretedoublewhitecorner", "concretedoubleyellowcorner"};
-    private IIcon concreteBase, simpleWhiteCorner, simpleYellowCorner, doubleWhiteCorner, doubleYellowCorner;
-
-    public BlockConcreteCorner()
+    public BlockAsphaltLines04()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -58,7 +57,7 @@ public class BlockConcreteCorner extends Block
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
-        return ClientProxy.renderAsphaltCornerId;
+        return ClientProxy.renderAsphaltArrowsId;
     }
 
     public int damageDropped(int metadata)
@@ -69,7 +68,7 @@ public class BlockConcreteCorner extends Block
             return 1;
         if(metadata == 6 || metadata == 10 || metadata == 14)
             return 2;
-        if(metadata == 7 || metadata == 11 || metadata == 15)
+        if(metadata == 3)
             return 3;
         return metadata;
     }
@@ -84,11 +83,11 @@ public class BlockConcreteCorner extends Block
 
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.concreteBase = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteBase");
-        this.simpleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWC");
-        this.simpleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYC");
-        this.doubleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDYC");
-        this.doubleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDYC");
+        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
+        this.simpleyellowTCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowTCross");
+        this.simpleyellowXCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowXCross");
+        this.simpleyellowTDoubleCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowTDoubleCross");
+        this.simpleyellowTCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowTCorner");
     }
 
     public IIcon getIcon(int side, int metadata)
@@ -97,22 +96,22 @@ public class BlockConcreteCorner extends Block
         {
             if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
             {
-                return this.simpleWhiteCorner;
+                return this.simpleyellowTCross;
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.simpleYellowCorner;
+                return this.simpleyellowTCorner;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.doubleWhiteCorner;
+                return this.simpleyellowTDoubleCross;
             }
-            if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
+            if(metadata == 3)
             {
-                return this.doubleYellowCorner;
+                return this.simpleyellowXCross;
             }
         }
-        return this.concreteBase;
+        return this.asphaltBase;
     }
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
@@ -153,16 +152,7 @@ public class BlockConcreteCorner extends Block
                 meta = 14;
         }
         if(stack.getItemDamage() == 3)
-        {
-            if(direction == 0)
-                meta = 3;
-            if(direction == 1)
-                meta = 7;
-            if(direction == 2)
-                meta = 11;
-            if(direction == 3)
-                meta = 15;
-        }
+            meta = 3;
         world.setBlockMetadataWithNotify(x, y, z, meta, 2);
     }
 

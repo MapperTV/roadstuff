@@ -43,13 +43,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockConcreteCorner extends Block
+public class BlockConcreteArrow extends Block
 {
+    public static String[] subBlock = new String[] {"whitearrowc", "yellowarrowc", "doublewhitearrowc", "doubleyellowarrowc"};
+    private IIcon concreteBase, whiteArrowC, yellowArrowC, doubleWhiteArrowC, doubleYellowArrowC;
 
-    public static String[] subBlock = new String[] {"concretesimplewhitecorner", "concretesimpleyellowcorner", "concretedoublewhitecorner", "concretedoubleyellowcorner"};
-    private IIcon concreteBase, simpleWhiteCorner, simpleYellowCorner, doubleWhiteCorner, doubleYellowCorner;
-
-    public BlockConcreteCorner()
+    public BlockConcreteArrow()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -58,7 +57,7 @@ public class BlockConcreteCorner extends Block
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
-        return ClientProxy.renderAsphaltCornerId;
+        return ClientProxy.renderAsphaltArrowsId;
     }
 
     public int damageDropped(int metadata)
@@ -85,36 +84,36 @@ public class BlockConcreteCorner extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.concreteBase = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteBase");
-        this.simpleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWC");
-        this.simpleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYC");
-        this.doubleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDYC");
-        this.doubleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDYC");
+        this.whiteArrowC = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteWhiteArrow");
+        this.yellowArrowC = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteYellowArrow");
+        this.doubleWhiteArrowC = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDoubleWhiteArrow");
+        this.doubleYellowArrowC = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDoubleYellowArrow");
     }
-
+    
     public IIcon getIcon(int side, int metadata)
     {
         if(side == 1)
         {
             if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
             {
-                return this.simpleWhiteCorner;
+                return this.whiteArrowC;
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.simpleYellowCorner;
+                return this.yellowArrowC;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.doubleWhiteCorner;
+                return this.doubleWhiteArrowC;
             }
             if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
             {
-                return this.doubleYellowCorner;
+                return this.doubleYellowArrowC;
             }
         }
         return this.concreteBase;
     }
-
+    
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
     {
         int meta = 0;
