@@ -47,6 +47,7 @@ import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteXCross;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteXCrossYellow;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteYCross;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteYCrossYellow;
+import net.killermapper.roadstuff.common.blocks.sign.BlockSignPost;
 import net.killermapper.roadstuff.common.items.ItemBlockCone;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltArrows01;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltBase01;
@@ -98,6 +99,7 @@ public class RoadStuffBlocks
     public static Block blockBitumenOre;
     public static Block blockBitumenBlock;
     public static Block blockAsphaltWord1;
+    public static Block blockSignPost;
 
     public static void initBlocks()
     {
@@ -131,6 +133,7 @@ public class RoadStuffBlocks
 
         // Misc. blocks
         blockCone = new BlockCone().setBlockName("blockCone").setHardness(1.0F).setResistance(1.0F);
+        blockSignPost = new BlockSignPost().setBlockName("signPost").setHardness(1.0F).setResistance(1.0F).setBlockTextureName(RoadStuff.MODID + ":blockTest");
         blockBitumenBlock = new BlockBase(Material.rock).setBlockName("bitumenBlock").setBlockTextureName(RoadStuff.MODID + ":bitumenBlock");
         
 
@@ -167,6 +170,7 @@ public class RoadStuffBlocks
         blockBitumenOre.setHarvestLevel("pickaxe", 0);
         blockBitumenBlock.setHarvestLevel("pickaxe", 0);
         blockAsphaltWord1.setHarvestLevel("pickaxe", 1);
+        blockSignPost.setHarvestLevel("pickaxe", 1);
     }
 
     public static void registerBlocks()
@@ -196,5 +200,6 @@ public class RoadStuffBlocks
         GameRegistry.registerBlock(blockAsphaltWord1, ItemBlockAsphaltWord1.class, "asphaltWord1");
         GameRegistry.registerBlock(blockBitumenOre, "bitumenOre");
         GameRegistry.registerBlock(blockBitumenBlock, "bitumenBlock");
+        GameRegistry.registerBlock(blockSignPost, "signPost");
     }
 }

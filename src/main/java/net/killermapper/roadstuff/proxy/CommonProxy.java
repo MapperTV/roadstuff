@@ -33,8 +33,7 @@ public class CommonProxy
 
     public void registerRender()
     {
-        RoadStuffAchievements.getBitumen.registerStat();
-        RoadStuffAchievements.smeltBitumen.registerStat();
+        
     }
 
 }

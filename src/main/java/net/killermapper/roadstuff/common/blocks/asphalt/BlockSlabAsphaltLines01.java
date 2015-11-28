@@ -90,19 +90,20 @@ public class BlockSlabAsphaltLines01 extends BlockSlab
         return Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltLines01);
     }
     
-    /*
+
     public int damageDropped(int metadata)
     {
-        if(metadata == 4)
+        if(metadata == 4 || metadata == 8 || metadata == 12)
             return 0;
-        if(metadata == 5)
+        if(metadata == 5 || metadata == 9 || metadata == 13)
             return 1;
-        if(metadata == 6)
+        if(metadata == 6 || metadata == 10 || metadata == 14)
             return 2;
-        if(metadata == 7)
+        if(metadata == 7 || metadata == 11 || metadata == 15)
             return 3;
         return metadata;
-    }*/
+    }
+
 
     protected ItemStack createStackedBlock(int metadata)
     {
