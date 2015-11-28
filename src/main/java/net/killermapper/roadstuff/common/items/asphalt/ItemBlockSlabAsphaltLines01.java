@@ -80,6 +80,40 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
     // Put the bloc
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)
     {
+    	int direction = MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+    	if(direction == 0 || direction == 2)
+    	{
+    		switch(stack.getItemDamage())
+    		{
+    			case 4:
+    				stack.setItemDamage(0);
+    				break;
+    			case 5:
+    				stack.setItemDamage(1);
+    				break;
+    			case 6:
+    				stack.setItemDamage(2);
+    				break;
+    			case 7:
+    				stack.setItemDamage(3);
+    		}
+    	}
+    	else if(direction == 1 || direction == 3)
+    	{
+    		switch(stack.getItemDamage())
+    		{
+    			case 0:
+    				stack.setItemDamage(4);
+    				break;
+    			case 1:
+    				stack.setItemDamage(5);
+    				break;
+    			case 2:
+    				stack.setItemDamage(6);
+    				break;
+    			case 3: stack.setItemDamage(7);
+    		}
+    	}
         if(this.isFullBlock)
         {
             return super.onItemUse(stack, player, world, x, y, z, side, par8, par9, par10);
