@@ -34,7 +34,6 @@ import net.minecraft.block.Block;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
-import net.minecraft.world.World;
 
 public class RenderCone01 implements ISimpleBlockRenderingHandler
 {
@@ -86,7 +85,7 @@ public class RenderCone01 implements ISimpleBlockRenderingHandler
             this.renderInInventory(tessellator, renderer, block, metadata);
             renderer.setRenderBounds(0.375F, 0.0625F, 0.375F, 0.625F, 0.125F, 0.625F);
             this.renderInInventory(tessellator, renderer, block, metadata);
-            renderer.setRenderBounds(0.4375F, 0.125F, 0.4375F, 0.5625F, 1F, 0.5625F);
+            renderer.setRenderBounds(0.4375F, 0.125F, 0.4375F, 0.5625F, 1.0F, 0.5625F);
             this.renderInInventory(tessellator, renderer, block, metadata);
         }
 
@@ -139,7 +138,7 @@ public class RenderCone01 implements ISimpleBlockRenderingHandler
             renderer.renderStandardBlock(block, x, y, z);
             renderer.setRenderBounds(0.375F, 0.0625F, 0.375F, 0.625F, 0.125F, 0.625F);
             renderer.renderStandardBlock(block, x, y, z);
-            renderer.setRenderBounds(0.4375F, 0.125F, 0.4375F, 0.5625F, 1F, 0.5625F);
+            renderer.setRenderBounds(0.4375F, 0.125F, 0.4375F, 0.5625F, 1.2F, 0.5625F);
             renderer.renderStandardBlock(block, x, y, z);
         }
         return true;

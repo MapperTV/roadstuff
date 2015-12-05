@@ -35,9 +35,12 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.killermapper.roadstuff.client.gui.RoadStuffGuiHandler;
 import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
 import net.killermapper.roadstuff.common.blocks.TileEntityTest;
 import net.killermapper.roadstuff.common.events.EventPlayer;
@@ -45,6 +48,7 @@ import net.killermapper.roadstuff.common.init.Chisel;
 import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
 import net.killermapper.roadstuff.common.init.RoadStuffRecipes;
 import net.killermapper.roadstuff.common.items.RoadStuffItems;
+import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
 import net.killermapper.roadstuff.common.world.OreGeneration;
 import net.killermapper.roadstuff.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -54,10 +58,12 @@ import net.minecraft.item.Item;
 
 public class RoadStuff
 {
+    @Instance("roadstuff")
+    public static RoadStuff instance;
 
     public static final String MODID = "roadstuff";
-    @Instance("MODID")
-    public static RoadStuff instance;
+    
+    public static SimpleNetworkWrapper network;
 
     OreGeneration oreGen = new OreGeneration();
 
@@ -79,6 +85,8 @@ public class RoadStuff
         }
     };
 
+    
+
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
     {
@@ -87,6 +95,9 @@ public class RoadStuff
         GameRegistry.registerWorldGenerator(oreGen, 0);
 
         RoadStuffAchievements.initAchievements();
+
+        network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
+        network.registerMessage(PacketSignType.Handler.class, PacketSignType.class, 0, Side.SERVER);
 
         if(Loader.isModLoaded("chisel"))
         {
@@ -97,10 +108,13 @@ public class RoadStuff
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        GameRegistry.registerTileEntity(TileEntityTest.class, "roadstuff:entityTest");
+        GameRegistry.registerTileEntity(TileEntityTest.class, RoadStuff.MODID + ":entityTest");
+        GameRegistry.registerTileEntity(TileEntityBlockTrafficSign.class, RoadStuff.MODID + ":entityBlockSign");
 
         FMLCommonHandler.instance().bus().register(new EventPlayer());
         // MinecraftForge.EVENT_BUS.register(new EventPlayer());
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new RoadStuffGuiHandler());
 
         proxy.registerRender();
 

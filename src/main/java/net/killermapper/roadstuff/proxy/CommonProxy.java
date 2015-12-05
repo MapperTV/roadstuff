@@ -26,8 +26,6 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.proxy;
 
-import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
-
 public class CommonProxy
 {
 

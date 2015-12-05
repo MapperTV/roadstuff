@@ -26,6 +26,8 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.items.asphalt;
 
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphaltBase01;
 import net.minecraft.block.Block;
@@ -34,8 +36,6 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemBlockSlabAsphaltBase01 extends ItemBlock
 {

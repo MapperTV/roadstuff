@@ -31,7 +31,7 @@ import net.killermapper.roadstuff.client.render.RenderAsphaltArrows;
 import net.killermapper.roadstuff.client.render.RenderAsphaltCorner;
 import net.killermapper.roadstuff.client.render.RenderAsphaltLines;
 import net.killermapper.roadstuff.client.render.RenderCone01;
-import net.killermapper.roadstuff.client.render.RenderSignPost;
+import net.killermapper.roadstuff.client.render.RenderTrafficSign;
 import net.killermapper.roadstuff.client.render.RenderSlabAsphaltLines;
 
 public class ClientProxy extends CommonProxy
@@ -54,7 +54,7 @@ public class ClientProxy extends CommonProxy
         renderSlabAsphaltLinesId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderSlabAsphaltLinesId, new RenderSlabAsphaltLines());
         renderSignPostId = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(renderSignPostId, new RenderSignPost());
+        RenderingRegistry.registerBlockHandler(renderSignPostId, new RenderTrafficSign());
     }
 
 }

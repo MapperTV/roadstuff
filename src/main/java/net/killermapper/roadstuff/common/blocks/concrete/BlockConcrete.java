@@ -39,7 +39,6 @@ import net.minecraft.util.IIcon;
 
 public class BlockConcrete extends Block
 {
-
     public static String[] subBlockConcrete = new String[] {"base", "manhole"};
     private IIcon concreteBase, concreteManhole;
 
