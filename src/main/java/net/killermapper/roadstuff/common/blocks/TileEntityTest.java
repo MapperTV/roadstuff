@@ -2,7 +2,6 @@
 
 package net.killermapper.roadstuff.common.blocks;
 
-import net.killermapper.roadstuff.common.RoadStuff;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 

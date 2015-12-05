@@ -24,45 +24,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.items.asphalt;
+package net.killermapper.roadstuff.client.gui;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltBase01;
-import net.minecraft.block.Block;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.IIcon;
+import cpw.mods.fml.common.network.IGuiHandler;
+import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.world.World;
 
-public class ItemBlockAsphaltBase01 extends ItemBlock
+public class RoadStuffGuiHandler implements IGuiHandler
 {
 
-    public ItemBlockAsphaltBase01(Block block)
+    @Override
+    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        super(block);
-        this.setMaxDamage(0);
-        this.setHasSubtypes(true);
+        return null;
     }
 
-    public int getMetadata(int metadata)
+    @Override
+    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
     {
-        return metadata;
-    }
-
-    @SideOnly(Side.CLIENT)
-    public IIcon getIconFromDamage(int metadata)
-    {
-        return this.field_150939_a.getIcon(2, metadata);
-    }
-
-    public String getUnlocalizedName(ItemStack stack)
-    {
-        int metadata = stack.getItemDamage();
-        if(metadata < 0 || metadata >= BlockAsphaltBase01.subBlockAsphaltBase01.length)
+        TileEntity tile = world.getTileEntity(x, y, z);
+        if(tile instanceof TileEntityBlockTrafficSign)
         {
-            metadata = 0;
+            return new GuiTrafficSign((TileEntityBlockTrafficSign)tile);
         }
-        return super.getUnlocalizedName() + "." + BlockAsphaltBase01.subBlockAsphaltBase01[metadata];
+        return null;
     }
 
 }

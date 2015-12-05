@@ -47,6 +47,7 @@ import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteXCross;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteXCrossYellow;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteYCross;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteYCrossYellow;
+import net.killermapper.roadstuff.common.blocks.sign.BlockTrafficSign;
 import net.killermapper.roadstuff.common.items.ItemBlockCone;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltArrows01;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltBase01;
@@ -67,6 +68,7 @@ import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcreteXCross;
 import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcreteXCrossYellow;
 import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcreteYCross;
 import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcreteYCrossYellow;
+import net.killermapper.roadstuff.common.items.sign.ItemBlockTrafficSign;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 
@@ -99,6 +101,7 @@ public class RoadStuffBlocks
     public static Block blockBitumenBlock;
     public static Block blockAsphaltWord1;
     public static Block blockTrafficLight;
+    public static Block blockTrafficSign;
 
     public static void initBlocks()
     {
@@ -132,15 +135,15 @@ public class RoadStuffBlocks
 
         // Misc. blocks
         blockCone = new BlockCone().setBlockName("blockCone").setHardness(1.0F).setResistance(1.0F);
+        blockTrafficSign = new BlockTrafficSign().setBlockName("blockTrafficSign").setHardness(1.0F).setResistance(1.0F);
         blockBitumenBlock = new BlockBase(Material.rock).setBlockName("bitumenBlock").setBlockTextureName(RoadStuff.MODID + ":bitumenBlock");
-        
 
         // Test
         blockEntityTest = new TestEntityBlock().setHardness(1.0F).setResistance(10.0F).setBlockName("EntityTest").setBlockTextureName(RoadStuff.MODID + ":blockTest").setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
 
-        //TraficLight blocks
+        // TraficLight blocks
         blockTrafficLight = new BlockTrafficLigth().setBlockName("traficLight");
-        
+
         registerBlocks();
         setHarvestLevels();
     }
@@ -171,6 +174,7 @@ public class RoadStuffBlocks
         blockBitumenOre.setHarvestLevel("pickaxe", 0);
         blockBitumenBlock.setHarvestLevel("pickaxe", 0);
         blockAsphaltWord1.setHarvestLevel("pickaxe", 1);
+        blockTrafficSign.setHarvestLevel("pickaxe", 1);
     }
 
     public static void registerBlocks()
@@ -201,5 +205,6 @@ public class RoadStuffBlocks
         GameRegistry.registerBlock(blockBitumenOre, "bitumenOre");
         GameRegistry.registerBlock(blockBitumenBlock, "bitumenBlock");
         GameRegistry.registerBlock(blockTrafficLight, "trafficLigth");
+        GameRegistry.registerBlock(blockTrafficSign, ItemBlockTrafficSign.class, "blockTrafficSign");
     }
 }

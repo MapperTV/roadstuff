@@ -26,15 +26,12 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.proxy;
 
-import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
-
 public class CommonProxy
 {
 
     public void registerRender()
     {
-        RoadStuffAchievements.getBitumen.registerStat();
-        RoadStuffAchievements.smeltBitumen.registerStat();
+        
     }
 
 }
