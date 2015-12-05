@@ -48,6 +48,9 @@ import net.killermapper.roadstuff.common.init.Chisel;
 import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
 import net.killermapper.roadstuff.common.init.RoadStuffRecipes;
 import net.killermapper.roadstuff.common.items.RoadStuffItems;
+import net.killermapper.roadstuff.common.network.GuiHandler;
+import net.killermapper.roadstuff.common.tileentity.TileEntityTrafficLigth;
+import net.killermapper.roadstuff.common.trafficLigth.PacketTrafficChannel;
 import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
 import net.killermapper.roadstuff.common.world.OreGeneration;
 import net.killermapper.roadstuff.proxy.CommonProxy;
@@ -62,13 +65,14 @@ public class RoadStuff
     public static RoadStuff instance;
 
     public static final String MODID = "roadstuff";
-    
+
     public static SimpleNetworkWrapper network;
 
     OreGeneration oreGen = new OreGeneration();
 
     @SidedProxy(clientSide = "net.killermapper.roadstuff.proxy.ClientProxy", serverSide = "net.killermapper.roadstuff.proxy.CommonProxy")
     public static CommonProxy proxy;
+    public static SimpleNetworkWrapper channel;
 
     public static CreativeTabs RoadStuffCreativeTabs = new CreativeTabs("RoadStuff")
     {
@@ -84,8 +88,6 @@ public class RoadStuff
             return 0;
         }
     };
-
-    
 
     @EventHandler
     public void preInit(FMLPreInitializationEvent event)
@@ -108,6 +110,7 @@ public class RoadStuff
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
+        GameRegistry.registerTileEntity(TileEntityTrafficLigth.class, "roadstuff:tileTrafficLigth");
         GameRegistry.registerTileEntity(TileEntityTest.class, RoadStuff.MODID + ":entityTest");
         GameRegistry.registerTileEntity(TileEntityBlockTrafficSign.class, RoadStuff.MODID + ":entityBlockSign");
 
@@ -119,6 +122,10 @@ public class RoadStuff
         proxy.registerRender();
 
         RoadStuffRecipes.initRecipes();
+
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+        channel = NetworkRegistry.INSTANCE.newSimpleChannel("RoadStuffPacketChannel");
+        channel.registerMessage(PacketTrafficChannel.class, PacketTrafficChannel.class, 0, Side.SERVER);
     }
 
     @EventHandler

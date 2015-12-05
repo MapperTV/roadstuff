@@ -100,6 +100,7 @@ public class RoadStuffBlocks
     public static Block blockBitumenOre;
     public static Block blockBitumenBlock;
     public static Block blockAsphaltWord1;
+    public static Block blockTrafficLight;
     public static Block blockTrafficSign;
 
     public static void initBlocks()
@@ -139,6 +140,9 @@ public class RoadStuffBlocks
 
         // Test
         blockEntityTest = new TestEntityBlock().setHardness(1.0F).setResistance(10.0F).setBlockName("EntityTest").setBlockTextureName(RoadStuff.MODID + ":blockTest").setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
+
+        // TraficLight blocks
+        blockTrafficLight = new BlockTrafficLigth().setBlockName("traficLight");
 
         registerBlocks();
         setHarvestLevels();
@@ -200,6 +204,7 @@ public class RoadStuffBlocks
         GameRegistry.registerBlock(blockAsphaltWord1, ItemBlockAsphaltWord1.class, "asphaltWord1");
         GameRegistry.registerBlock(blockBitumenOre, "bitumenOre");
         GameRegistry.registerBlock(blockBitumenBlock, "bitumenBlock");
+        GameRegistry.registerBlock(blockTrafficLight, "trafficLigth");
         GameRegistry.registerBlock(blockTrafficSign, ItemBlockTrafficSign.class, "blockTrafficSign");
     }
 }

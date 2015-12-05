@@ -26,6 +26,7 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.proxy;
 
+import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.killermapper.roadstuff.client.render.RenderAsphaltArrows;
 import net.killermapper.roadstuff.client.render.RenderAsphaltCorner;
@@ -33,10 +34,15 @@ import net.killermapper.roadstuff.client.render.RenderAsphaltLines;
 import net.killermapper.roadstuff.client.render.RenderCone01;
 import net.killermapper.roadstuff.client.render.RenderTrafficSign;
 import net.killermapper.roadstuff.client.render.RenderSlabAsphaltLines;
+import net.killermapper.roadstuff.client.render.RenderTrafficLigth;
+import net.killermapper.roadstuff.client.render.TESRTrafficLigth;
+import net.killermapper.roadstuff.common.tileentity.TileEntityTrafficLigth;
 
 public class ClientProxy extends CommonProxy
 {
-    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderSlabAsphaltLinesId, renderCone01Id, renderSignPostId;
+
+    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId,
+    renderSlabAsphaltLinesId, renderCone01Id,renderSignPostId, renderTrafficLigthId;
 
     @Override
     public void registerRender()
@@ -53,6 +59,9 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerBlockHandler(renderAsphaltArrowsId, new RenderAsphaltArrows());
         renderSlabAsphaltLinesId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderSlabAsphaltLinesId, new RenderSlabAsphaltLines());
+        renderTrafficLigthId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(renderTrafficLigthId, new RenderTrafficLigth());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrafficLigth.class, new TESRTrafficLigth());
         renderSignPostId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderSignPostId, new RenderTrafficSign());
     }

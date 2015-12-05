@@ -26,14 +26,16 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.events;
 
+import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
+import net.killermapper.roadstuff.common.items.RoadStuffItems;
+import net.killermapper.roadstuff.common.trafficLigth.TrafficLigthParamatersRegister;
+import net.minecraft.item.Item;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent;
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
-import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
-import net.killermapper.roadstuff.common.items.RoadStuffItems;
-import net.minecraft.item.Item;
+import cpw.mods.fml.common.gameevent.TickEvent;
 
 public class EventPlayer
 {
@@ -52,8 +54,8 @@ public class EventPlayer
     {
         if(eventSmelted.smelting.getItem() == RoadStuffItems.itemBitumen) // Need to find how to get metadata here
             eventSmelted.player.triggerAchievement(RoadStuffAchievements.smeltBitumen);
-        
-        if(eventSmelted.smelting.getItem() ==  Item.getItemFromBlock(RoadStuffBlocks.blockConcrete)) // Need to find how to get metadata here
+
+        if(eventSmelted.smelting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockConcrete)) // Need to find how to get metadata here
             eventSmelted.player.triggerAchievement(RoadStuffAchievements.craftConcrete);
     }
 
@@ -62,8 +64,14 @@ public class EventPlayer
     {
         if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockAsphaltBase01) && eventCrafted.crafting.getItemDamage() == 0)
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftAsphalt);
-        
+
         if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockCone))
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftCone);
+    }
+
+    @SubscribeEvent
+    public void onServerTick(TickEvent.ServerTickEvent event)
+    {
+        TrafficLigthParamatersRegister.onUpdate();
     }
 }
