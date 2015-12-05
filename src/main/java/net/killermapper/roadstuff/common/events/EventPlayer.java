@@ -26,16 +26,16 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.events;
 
+import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
+import net.killermapper.roadstuff.common.items.RoadStuffItems;
+import net.killermapper.roadstuff.common.trafficLigth.TrafficLigthParamatersRegister;
+import net.minecraft.item.Item;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemCraftedEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemPickupEvent;
 import cpw.mods.fml.common.gameevent.PlayerEvent.ItemSmeltedEvent;
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
-import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
-import net.killermapper.roadstuff.common.items.RoadStuffItems;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.event.entity.EntityJoinWorldEvent;
+import cpw.mods.fml.common.gameevent.TickEvent;
 
 public class EventPlayer
 {
@@ -67,5 +67,11 @@ public class EventPlayer
         
         if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockCone))
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftCone);
+    }
+    
+    @SubscribeEvent
+    public void onServerTick(TickEvent.ServerTickEvent event)
+    {
+    	TrafficLigthParamatersRegister.onUpdate();
     }
 }

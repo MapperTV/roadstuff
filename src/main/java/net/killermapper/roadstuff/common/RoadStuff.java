@@ -35,6 +35,8 @@ import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -45,6 +47,9 @@ import net.killermapper.roadstuff.common.init.Chisel;
 import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
 import net.killermapper.roadstuff.common.init.RoadStuffRecipes;
 import net.killermapper.roadstuff.common.items.RoadStuffItems;
+import net.killermapper.roadstuff.common.network.GuiHandler;
+import net.killermapper.roadstuff.common.tileentity.TileEntityTrafficLigth;
+import net.killermapper.roadstuff.common.trafficLigth.PacketTrafficChannel;
 import net.killermapper.roadstuff.common.world.OreGeneration;
 import net.killermapper.roadstuff.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -56,13 +61,14 @@ public class RoadStuff
 {
 
     public static final String MODID = "roadstuff";
-    @Instance("MODID")
+    @Instance("roadstuff")
     public static RoadStuff instance;
 
     OreGeneration oreGen = new OreGeneration();
 
     @SidedProxy(clientSide = "net.killermapper.roadstuff.proxy.ClientProxy", serverSide = "net.killermapper.roadstuff.proxy.CommonProxy")
     public static CommonProxy proxy;
+    public static SimpleNetworkWrapper channel;
 
     public static CreativeTabs RoadStuffCreativeTabs = new CreativeTabs("RoadStuff")
     {
@@ -98,6 +104,7 @@ public class RoadStuff
     public void init(FMLInitializationEvent event)
     {
         GameRegistry.registerTileEntity(TileEntityTest.class, "roadstuff:entityTest");
+        GameRegistry.registerTileEntity(TileEntityTrafficLigth.class, "roadstuff:tileTrafficLigth");
 
         FMLCommonHandler.instance().bus().register(new EventPlayer());
         // MinecraftForge.EVENT_BUS.register(new EventPlayer());
@@ -105,6 +112,10 @@ public class RoadStuff
         proxy.registerRender();
 
         RoadStuffRecipes.initRecipes();
+        
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+        channel = NetworkRegistry.INSTANCE.newSimpleChannel("RoadStuffPacketChannel");
+        channel.registerMessage(PacketTrafficChannel.class, PacketTrafficChannel.class, 0, Side.SERVER);
     }
 
     @EventHandler
