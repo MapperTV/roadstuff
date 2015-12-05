@@ -74,7 +74,7 @@ public class GuiTrafficLigth extends GuiScreen {
 					try {
 						int id = Integer.parseInt(this.chanID.getText());
 						int delay = Integer.parseInt(this.chanDelay.getText());
-						RoadStuff.channel.sendToServer(new PacketTrafficChannel(id, tile.xCoord, tile.yCoord, tile.zCoord, this.isReversed.isChecked(), delay));
+						RoadStuff.network.sendToServer(new PacketTrafficChannel(id, tile.xCoord, tile.yCoord, tile.zCoord, this.isReversed.isChecked(), delay));
 						this.tile.setChannel(id);
 						this.tile.setReversed(this.isReversed.isChecked());
 						this.mc.thePlayer.closeScreen();

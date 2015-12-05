@@ -27,6 +27,7 @@ SOFTWARE.
 package net.killermapper.roadstuff.client.gui;
 
 import cpw.mods.fml.common.network.IGuiHandler;
+import net.killermapper.roadstuff.common.tileentity.TileEntityTrafficLigth;
 import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
@@ -48,6 +49,10 @@ public class RoadStuffGuiHandler implements IGuiHandler
         if(tile instanceof TileEntityBlockTrafficSign)
         {
             return new GuiTrafficSign((TileEntityBlockTrafficSign)tile);
+        }
+        if(tile instanceof TileEntityTrafficLigth)
+        {
+            return new GuiTrafficLigth((TileEntityTrafficLigth)tile);
         }
         return null;
     }

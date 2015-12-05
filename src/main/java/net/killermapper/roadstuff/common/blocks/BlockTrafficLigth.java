@@ -41,7 +41,7 @@ public class BlockTrafficLigth extends Block implements ITileEntityProvider {
     {
         if (world.isRemote)
         {
-        	player.openGui(RoadStuff.instance, 0, world, x, y, z);
+        	player.openGui(RoadStuff.instance, 1, world, x, y, z);
             return true;
         }
         else
