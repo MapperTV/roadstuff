@@ -45,9 +45,10 @@ import net.minecraft.util.ResourceLocation;
 public class GuiTrafficSign extends GuiScreen
 {
     private static final ResourceLocation textures = new ResourceLocation(RoadStuff.MODID, "textures/gui/sign/signConfig.png");
-    private GuiButton buttonPrevious, buttonNext, buttonQuit;
+    private GuiButton buttonTypePrevious, buttonTypeNext, buttonShapePrevious, buttonShapeNext, buttonQuit;
     private TileEntityBlockTrafficSign tileSign;
     short currentSign = 0, maxSign = 4;
+    byte currentShape = 0;
 
     public GuiTrafficSign(TileEntityBlockTrafficSign tile)
     {
@@ -60,9 +61,11 @@ public class GuiTrafficSign extends GuiScreen
     {
         buttonList.clear();
         Keyboard.enableRepeatEvents(true);
-        buttonList.add(buttonQuit = new GuiButton(0, width / 2 - 25, height / 2 + 15, 50, 20, I18n.format("gui.trafficsign.done")));
-        buttonList.add(buttonPrevious = new GuiButton(1, width / 2 - 40, height / 2 - 10, 20, 20, "<"));
-        buttonList.add(buttonNext = new GuiButton(2, width / 2 + 20, height / 2 - 10, 20, 20, ">"));
+        buttonList.add(buttonQuit = new GuiButton(0, width / 2 - 35, height / 2 + 30, 40, 20, I18n.format("gui.trafficsign.done")));
+        buttonList.add(buttonShapePrevious = new GuiButton(1, width / 2 - 35, height / 2 - 26, 20, 20, "<"));
+        buttonList.add(buttonShapeNext = new GuiButton(2, width / 2 + 15, height / 2 - 26, 20, 20, ">"));
+        buttonList.add(buttonTypePrevious = new GuiButton(3, width / 2 - 35, height / 2 + 6, 20, 20, "<"));
+        buttonList.add(buttonTypeNext = new GuiButton(4, width / 2 + 15, height / 2 + 6, 20, 20, ">"));
     }
 
     @Override
@@ -71,34 +74,22 @@ public class GuiTrafficSign extends GuiScreen
         this.drawDefaultBackground();
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(textures);
-        drawTexturedModalRect(width / 2 - 64, height / 2 - 40, 0, 0, 128, 80);
-        drawString(fontRendererObj, "Sign Selection", width / 2 - 35, height / 2 - 28, 100);
+        drawTexturedModalRect(width / 2 - 39, height / 2 - 56, 176, 144, 78, 112);
+        drawString(fontRendererObj, I18n.format("gui.trafficsign.title"), (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.title"))) / 2, height / 2 - 50, 16777215);
+        drawString(fontRendererObj, I18n.format("gui.trafficsign.type"), (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.type"))) / 2, height / 2 - 5, 16777215);
+        drawString(fontRendererObj, I18n.format("gui.trafficsign.shape"), (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.shape"))) / 2, height / 2 - 37, 16777215);
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(textures);
-        /*
-         * switch(currentSign)
-         * {
-         * case 0:
-         * drawTexturedModalRect(width / 2 - 8, height / 2 - 8, 0, 80, 16, 16);
-         * break;
-         * case 1:
-         * drawTexturedModalRect(width / 2 - 8, height / 2 - 8, 16, 80, 16, 16);
-         * break;
-         * case 2:
-         * drawTexturedModalRect(width / 2 - 8, height / 2 - 8, 32, 80, 16, 16);
-         * break;
-         * case 3:
-         * drawTexturedModalRect(width / 2 - 8, height / 2 - 8, 48, 80, 16, 16);
-         * break;
-         * case 4:
-         * drawTexturedModalRect(width / 2 - 8, height / 2 - 8, 64, 80, 16, 16);
-         * break;
-         * default:
-         * drawTexturedModalRect(width / 2 - 8, height / 2 - 8, 0, 80, 16, 16);
-         * break;
-         * }
-         */
-        drawTexturedModalRect(width / 2 - 8, height / 2 - 8, currentSign * 16, 80, 16, 16);
+        if(currentShape == 0)
+            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentSign * 16, 0, 16, 16);
+        if(currentShape == 1)
+            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentSign * 16, 64, 16, 16);
+        if(currentShape == 2)
+            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentSign * 16, 128, 16, 16);
+        if(currentShape == 3)
+            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentSign * 16, 192, 16, 16);
+        mc.getTextureManager().bindTexture(textures);
+        drawTexturedModalRect(width / 2 - 7, height / 2 - 24, currentShape * 16 + 192, 128, 16, 16);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -107,21 +98,30 @@ public class GuiTrafficSign extends GuiScreen
     {
         if(parButton.id == 0)
         {
-            RoadStuff.network.sendToServer(new PacketSignType(this.currentSign, tileSign.xCoord, tileSign.yCoord, tileSign.zCoord));
+            RoadStuff.network.sendToServer(new PacketSignType(this.currentSign, this.currentShape, tileSign.xCoord, tileSign.yCoord, tileSign.zCoord));
             mc.displayGuiScreen((GuiScreen)null);
         }
         else if(parButton.id == 1)
-        {
-            currentSign--;
-        }
+            currentShape--;
         else if(parButton.id == 2)
+            currentShape++;
+        else if(parButton.id == 3)
+            currentSign--;
+        else if(parButton.id == 4)
             currentSign++;
 
+        //Sign and shape bounds
         if(currentSign < 0)
             currentSign = maxSign;
         else if(currentSign > maxSign)
             currentSign = 0;
+
+        if(currentShape < 0)
+            currentShape = 3;
+        else if(currentShape > 3)
+            currentShape = 0;
         System.out.println("Current selected sign: " + currentSign);
+        System.out.println("Current selected shape: " + currentShape);
     }
 
     @Override

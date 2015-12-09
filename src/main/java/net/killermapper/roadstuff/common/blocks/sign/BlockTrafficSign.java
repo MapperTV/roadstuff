@@ -50,8 +50,14 @@ import net.minecraft.world.World;
 
 public class BlockTrafficSign extends Block
 {
-    public static String[] subBlock = new String[] {"signpost", "signround", "signtriangle", "signsquare", "signdiamond", "signrectangle"};
-    private IIcon signPost, signBase, signSpeed50EU, signBaseCircle, signNoParkTop, signNoParkBottom;
+    public static String[] subBlock = new String[] {"signpost", "sign"};
+
+    // Sign textures: square - circle - triangle - diamond - misc.
+    private IIcon signSBase, signSNoParkTop, signSNoParkBottom, signSSpeedBase;
+    private IIcon signCSpeed50;
+    private IIcon signTBase;
+    private IIcon signDBase;
+    private IIcon signPost, signBase, signError;
 
     public BlockTrafficSign()
     {
@@ -80,19 +86,27 @@ public class BlockTrafficSign extends Block
 
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.signBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signBase");
-        this.signSpeed50EU = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signSpeed50EU");
         this.signPost = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signPost");
-        this.signBaseCircle = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signBaseCircle");
-        this.signNoParkTop = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signNoParkTop");
-        this.signNoParkBottom = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signNoParkBottom");
+        this.signBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signBase");
+        this.signError = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signError");
+        // Square signs
+        this.signSNoParkTop = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signSNoParkTop");
+        this.signSNoParkBottom = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signSNoParkBottom");
+        // Circle signs
+        this.signSSpeedBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signCBase");
+        this.signCSpeed50 = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signCSpeed50");
+        // Triangle signs
+        this.signTBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signTBase");
+        // Diamond signs
+        this.signDBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signDBase");
+
     }
 
     public IIcon getIcon(int side, int metadata)
     {
         if(side == 3)
         {
-            if(metadata == 2)
+            if(metadata != 0)
                 return this.signBase;
         }
         return this.signPost;
@@ -110,20 +124,47 @@ public class BlockTrafficSign extends Block
                 {
                     TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
                     short type = ((TileEntityBlockTrafficSign)tile).getSignType();
-                    switch(type)
+                    byte shape = ((TileEntityBlockTrafficSign)tile).getSignShape();
+                    switch(shape)
                     {
                         case 0:
-                            return this.signBase;
+                            switch(type)
+                            {
+                                case 1:
+                                    return this.signSNoParkTop;
+                                case 2:
+                                    return this.signSNoParkBottom;
+                                case 3:
+                                    return this.signSSpeedBase;
+                                default:
+                                    return this.signBase;
+                            }
                         case 1:
-                            return this.signNoParkTop;
+                            switch(type)
+                            {
+                                case 1:
+                                    return this.signCSpeed50;
+                                default:
+                                    return this.signBase;
+                            }
                         case 2:
-                            return this.signNoParkBottom;
+                            switch(type)
+                            {
+                                case 1:
+                                    return this.signTBase;
+                                default:
+                                    return this.signBase;
+                            }
                         case 3:
-                            return this.signBaseCircle;
-                        case 4:
-                            return this.signSpeed50EU;
+                            switch(type)
+                            {
+                                case 1:
+                                    return this.signDBase;
+                                default:
+                                    return this.signBase;
+                            }
                         default:
-                            return this.signBase;
+                            return this.signError;
                     }
                 }
             }
@@ -150,12 +191,11 @@ public class BlockTrafficSign extends Block
         this.maxY = 1F;
         this.maxZ = 0.65F;
 
-        if(world.getBlockMetadata(x, y, z) >= 1)
+        if(world.getBlockMetadata(x, y, z) == 1)
         {
             this.minX = 0.0F;
-            this.minZ = 0.5F;
             this.maxX = 1F;
-            this.maxZ = 0.65F;
+            this.maxZ = 0.7F;
         }
     }
 
@@ -177,7 +217,7 @@ public class BlockTrafficSign extends Block
         if(tile instanceof TileEntityBlockTrafficSign)
         {
             int direction = MathHelper.floor_double((double)(living.rotationYaw * 4.0F / 360.0F) + 2.5D) & 3;
-            ((TileEntityBlockTrafficSign)tile).setDirection((byte)direction);
+            ((TileEntityBlockTrafficSign)tile).setSignDirection((byte)direction);
         }
 
     }
@@ -191,8 +231,10 @@ public class BlockTrafficSign extends Block
             if(tile instanceof TileEntityBlockTrafficSign)
             {
                 TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
-                player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getDirection()));
+                player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));
+                player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
                 player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
+                System.out.println(world.loadedTileEntityList);
             }
             return true;
         }

@@ -72,26 +72,6 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
             renderer.setRenderBounds(0.3125F, 0.9375F, 0.625F, 0.6875F, 1F, 0.6875F);
             this.renderInInventory(tessellator, renderer, block, metadata);
         }
-        if(metadata == 2)
-        {
-            renderer.setRenderBounds(0.0F, 0.3125F, 0.625F, 1F, 0.6875F, 0.6875F);
-            this.renderInInventory(tessellator, renderer, block, metadata);
-        }
-        if(metadata == 3)
-        {
-            renderer.setRenderBounds(0.0F, 0.0F, 0.625F, 1F, 1F, 0.6875F);
-            this.renderInInventory(tessellator, renderer, block, metadata);
-        }
-        if(metadata == 4)
-        {
-            renderer.setRenderBounds(0.375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
-            this.renderInInventory(tessellator, renderer, block, metadata);
-        }
-        if(metadata == 5)
-        {
-            renderer.setRenderBounds(0.375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
-            this.renderInInventory(tessellator, renderer, block, metadata);
-        }
     }
 
     @Override
@@ -100,12 +80,11 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
         TileEntity tile = world.getTileEntity(x, y, z);
         if(tile instanceof TileEntityBlockTrafficSign)
         {
-            TileEntityBlockTrafficSign tileDirection = (TileEntityBlockTrafficSign)tile;
+            TileEntityBlockTrafficSign tileSign = (TileEntityBlockTrafficSign)tile;
 
-            // if(tileDirection.getDirection() == 0)
-            // {
-            // if(tileDirection.getDirection() == 1)
-            // GL11.glRotatef(tileDirection.getDirection() * 90F, 0F, 1F, 0F);
+            GL11.glPushMatrix();
+            GL11.glRotatef(90F * tileSign.getSignDirection(), 0.0F, 1.0F, 0.0F);
+
             renderer.setRenderBounds(0.4375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
             renderer.renderStandardBlock(block, x, y, z);
             renderer.setRenderBounds(0.4375F, 0.0F, 0.5F, 0.46875F, 1F, 0.5625F);
@@ -113,99 +92,81 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
             renderer.setRenderBounds(0.53125F, 0.0F, 0.5F, 0.5625F, 1F, 0.5625F);
             renderer.renderStandardBlock(block, x, y, z);
 
-            if(world.getBlockMetadata(x, y, z) == 1)
+            if(world.getBlockMetadata(x, y, z) != 0)
             {
-                renderer.setRenderBounds(0.3125F, 0.0F, 0.625F, 0.6875F, 0.0625F, 0.6875F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.1875F, 0.0625F, 0.625F, 0.8125F, 0.125F, 0.6875F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.125F, 0.125F, 0.625F, 0.875F, 0.1875F, 0.6875F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.0625F, 0.1875F, 0.625F, 0.9375F, 0.3125F, 0.6875F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.0F, 0.3125F, 0.625F, 1F, 0.6875F, 0.6875F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.0625F, 0.6875F, 0.625F, 0.9375F, 0.8125F, 0.6875F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.125F, 0.8125F, 0.625F, 0.875F, 0.875F, 0.6875F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.1875F, 0.875F, 0.625F, 0.8125F, 0.9375F, 0.6875F);
-                renderer.renderStandardBlock(block, x, y, z);
-                renderer.setRenderBounds(0.3125F, 0.9375F, 0.625F, 0.6875F, 1F, 0.6875F);
-                renderer.renderStandardBlock(block, x, y, z);
-
+                switch(tileSign.getSignShape())
+                {
+                    case 0:
+                        renderer.setRenderBounds(0.0F, 0.0F, 0.625F, 1F, 1F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        break;
+                    case 1:
+                        renderer.setRenderBounds(0.3125F, 0.0F, 0.625F, 0.6875F, 0.0625F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.1875F, 0.0625F, 0.625F, 0.8125F, 0.125F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.125F, 0.125F, 0.625F, 0.875F, 0.1875F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.0625F, 0.1875F, 0.625F, 0.9375F, 0.3125F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.0F, 0.3125F, 0.625F, 1F, 0.6875F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.0625F, 0.6875F, 0.625F, 0.9375F, 0.8125F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.125F, 0.8125F, 0.625F, 0.875F, 0.875F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.1875F, 0.875F, 0.625F, 0.8125F, 0.9375F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.3125F, 0.9375F, 0.625F, 0.6875F, 1F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        break;
+                    case 2:
+                        renderer.setRenderBounds(0.0F, 0.0F, 0.625F, 1F, 0.25F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.0625F, 0.25F, 0.625F, 0.9375F, 0.375F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.125F, 0.375F, 0.625F, 0.8875F, 0.5F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.1875F, 0.5F, 0.625F, 0.8225F, 0.625F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.25F, 0.625F, 0.625F, 0.75F, 0.75F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.3125F, 0.75F, 0.625F, 0.6875F, 0.875F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.375F, 0.875F, 0.625F, 0.625F, 1F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        break;
+                    case 3:
+                        renderer.setRenderBounds(0.375F, 0.0F, 0.625F, 0.625F, 0.0625F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.3125F, 0.0625F, 0.625F, 0.6875F, 0.125F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.25F, 0.125F, 0.625F, 0.75F, 0.1875F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.1875F, 0.1875F, 0.625F, 0.8125F, 0.25F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.125F, 0.25F, 0.625F, 0.875F, 0.3125F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.0625F, 0.3125F, 0.625F, 0.9375F, 0.375F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.0F, 0.375F, 0.625F, 1F, 0.625F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.0625F, 0.625F, 0.625F, 0.9375F, 0.6875F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.125F, 0.6875F, 0.625F, 0.875F, 0.75F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.1875F, 0.75F, 0.625F, 0.8125F, 0.8125F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.25F, 0.8125F, 0.625F, 0.75F, 0.875F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.3125F, 0.875F, 0.625F, 0.6875F, 0.9375F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        renderer.setRenderBounds(0.375F, 0.9375F, 0.625F, 0.625F, 1F, 0.6875F);
+                        renderer.renderStandardBlock(block, x, y, z);
+                        break;
+                }
             }
-            if(world.getBlockMetadata(x, y, z) == 2)
-            {
-                renderer.setRenderBounds(0.375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
-                renderer.renderStandardBlock(block, x, y, z);
-            }
-            if(world.getBlockMetadata(x, y, z) == 3)
-            {
-                renderer.setRenderBounds(0.0F, 0.0F, 0.625F, 1F, 1F, 0.6875F);
-                renderer.renderStandardBlock(block, x, y, z);
-            }
-            if(world.getBlockMetadata(x, y, z) == 4)
-            {
-                renderer.setRenderBounds(0.375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
-                renderer.renderStandardBlock(block, x, y, z);
-            }
-            if(world.getBlockMetadata(x, y, z) == 5)
-            {
-                renderer.setRenderBounds(0.375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
-                renderer.renderStandardBlock(block, x, y, z);
-            }
-            // }
-
-            /*
-             * renderer.setRenderBounds(0.4375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * renderer.setRenderBounds(0.4375F, 0.0F, 0.5F, 0.46875F, 1F, 0.5625F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * renderer.setRenderBounds(0.53125F, 0.0F, 0.5F, 0.5625F, 1F, 0.5625F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * if(world.getBlockMetadata(x, y, z) == 1)
-             * {
-             * renderer.setRenderBounds(0.3125F, 0.0F, 0.625F, 0.6875F, 0.0625F, 0.6875F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * renderer.setRenderBounds(0.1875F, 0.0625F, 0.625F, 0.8125F, 0.125F, 0.6875F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * renderer.setRenderBounds(0.125F, 0.125F, 0.625F, 0.875F, 0.1875F, 0.6875F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * renderer.setRenderBounds(0.0625F, 0.1875F, 0.625F, 0.9375F, 0.3125F, 0.6875F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * renderer.setRenderBounds(0.0F, 0.3125F, 0.625F, 1F, 0.6875F, 0.6875F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * renderer.setRenderBounds(0.0625F, 0.6875F, 0.625F, 0.9375F, 0.8125F, 0.6875F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * renderer.setRenderBounds(0.125F, 0.8125F, 0.625F, 0.875F, 0.875F, 0.6875F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * renderer.setRenderBounds(0.1875F, 0.875F, 0.625F, 0.8125F, 0.9375F, 0.6875F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * renderer.setRenderBounds(0.3125F, 0.9375F, 0.625F, 0.6875F, 1F, 0.6875F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * }
-             * if(world.getBlockMetadata(x, y, z) == 2)
-             * {
-             * renderer.setRenderBounds(0.375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * }
-             * if(world.getBlockMetadata(x, y, z) == 3)
-             * {
-             * renderer.setRenderBounds(0.0F, 0.0F, 0.625F, 1F, 1F, 0.6875F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * }
-             * if(world.getBlockMetadata(x, y, z) == 4)
-             * {
-             * renderer.setRenderBounds(0.375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * }
-             * if(world.getBlockMetadata(x, y, z) == 5)
-             * {
-             * renderer.setRenderBounds(0.375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
-             * renderer.renderStandardBlock(block, x, y, z);
-             * }
-             */
+            GL11.glPopMatrix();
         }
         return true;
     }

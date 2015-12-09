@@ -37,14 +37,16 @@ import net.minecraft.tileentity.TileEntity;
 public class PacketSignType implements IMessage
 {
     private short signType;
+    private byte signShape;
     private int tileX, tileY, tileZ;
 
     public PacketSignType()
     {}
 
-    public PacketSignType(short signType, int x, int y, int z)
+    public PacketSignType(short signType, byte signShape, int x, int y, int z)
     {
         this.signType = signType;
+        this.signShape = signShape;
         this.tileX = x;
         this.tileY = y;
         this.tileZ = z;
@@ -54,6 +56,7 @@ public class PacketSignType implements IMessage
     public void fromBytes(ByteBuf buf)
     {
         this.signType = buf.readShort();
+        this.signShape = buf.readByte();
         this.tileX = buf.readInt();
         this.tileY = buf.readInt();
         this.tileZ = buf.readInt();
@@ -63,6 +66,7 @@ public class PacketSignType implements IMessage
     public void toBytes(ByteBuf buf)
     {
         buf.writeShort(this.signType);
+        buf.writeByte(this.signShape);
         buf.writeInt(this.tileX);
         buf.writeInt(this.tileY);
         buf.writeInt(this.tileZ);
@@ -78,6 +82,7 @@ public class PacketSignType implements IMessage
             if(tile instanceof TileEntityBlockTrafficSign)
             {
                 ((TileEntityBlockTrafficSign)tile).setSignType(message.signType);
+                ((TileEntityBlockTrafficSign)tile).setSignShape(message.signShape);
             }
             return null;
         }

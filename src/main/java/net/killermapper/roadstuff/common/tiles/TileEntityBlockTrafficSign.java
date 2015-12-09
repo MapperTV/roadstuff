@@ -35,14 +35,15 @@ import net.minecraft.tileentity.TileEntity;
 
 public class TileEntityBlockTrafficSign extends TileEntity
 {
-    private byte direction;
+    private byte signDirection, signShape;
     private short signType;
 
     @Override
     public void readFromNBT(NBTTagCompound compound)
     {
         super.readFromNBT(compound);
-        this.direction = compound.getByte("Direction");
+        this.signDirection = compound.getByte("Direction");
+        this.signShape = compound.getByte("Shape");
         this.signType = compound.getShort("SignType");
         System.out.println("Got from NBT the value: " + this.signType);
     }
@@ -51,22 +52,35 @@ public class TileEntityBlockTrafficSign extends TileEntity
     public void writeToNBT(NBTTagCompound compound)
     {
         super.writeToNBT(compound);
-        compound.setByte("Direction", this.direction);
+        compound.setByte("Direction", this.signDirection);
+        compound.setByte("Shape", this.signShape);
         compound.setShort("SignType", this.signType);
         System.out.println("Wrote to NBT the value " + this.signType);
     }
 
-    public byte getDirection()
+    public byte getSignDirection()
     {
-        return direction;
+        return signDirection;
     }
 
-    public void setDirection(byte direction)
+    public void setSignDirection(byte signDirection)
     {
-        this.direction = direction;
+        this.signDirection = signDirection;
         this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
     }
-    
+
+    public byte getSignShape()
+    {
+        return signShape;
+    }
+
+    public void setSignShape(byte signShape)
+    {
+        this.signShape = signShape;
+        System.out.println("Set signShape to: " + signShape);
+        this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
+    }
+
     public short getSignType()
     {
         return signType;

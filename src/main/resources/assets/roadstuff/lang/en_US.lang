@@ -1,14 +1,21 @@
+//Items
 item.bitumen.name=Bitumen
 item.paint.name=Paint
+
+//Blocks
 tile.asphalt01.name=Asphalt
 tile.asphalt02.name=Asphalt with white line
 tile.asphalt03.asphalt01.name=Metadata Block 1
 tile.asphalt03.asphalt02.name=Metadata Block 2
 tile.asphalt03.asphalt03.name=Metadata Block 3
 tile.asphalt03.asphalt04.name=Metadata Block 4
+
+//Debug
 tile.entitytest.number=Value : %d
 tile.signdirection.number=Direction : %d
+tile.signshape.number=Shape : %d
 tile.signtype.number=Type : %d
+
 //Achievements
 achievement.roadstuff_getbitumen=Road Miner
 achievement.roadstuff_getbitumen.desc=Gather some bitumen in the world.
@@ -24,3 +31,6 @@ achievement.roadstuff_craftcone.desc=Craft a Traffic Cone.
 //GUI
 tile.sign=Trafic Sign
 gui.trafficsign.done=Done
+gui.trafficsign.title=Sign Config
+gui.trafficsign.type=Type
+gui.trafficsign.shape=Shape
