@@ -28,7 +28,7 @@ package net.killermapper.roadstuff.common.items.asphalt;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltLines04;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltXCrossYellow;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -57,11 +57,11 @@ public class ItemBlockAsphaltLines04 extends ItemBlock
     public String getUnlocalizedName(ItemStack stack)
     {
         int metadata = stack.getItemDamage();
-        if(metadata < 0 || metadata >= BlockAsphaltLines04.subBlock.length)
+        if(metadata < 0 || metadata >= BlockAsphaltXCrossYellow.subBlock.length)
         {
             metadata = 0;
         }
-        return super.getUnlocalizedName() + "." + BlockAsphaltLines04.subBlock[metadata];
+        return super.getUnlocalizedName() + "." + BlockAsphaltXCrossYellow.subBlock[metadata];
     }
 
 }

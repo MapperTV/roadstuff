@@ -29,7 +29,7 @@ package net.killermapper.roadstuff.common.items.asphalt;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
-import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphaltBase01;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphalt;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -46,9 +46,9 @@ public class ItemBlockSlabAsphaltBase01 extends ItemBlock
     public ItemBlockSlabAsphaltBase01(Block block)
     {
         super(block);
-        this.theHalfSlab = RoadStuffBlocks.singleSlabAsphaltBase01;
-        this.doubleSlab = RoadStuffBlocks.doubleSlabAsphaltBase01;
-        if(block == RoadStuffBlocks.doubleSlabAsphaltBase01)
+        this.theHalfSlab = RoadStuffBlocks.singleSlabAsphalt;
+        this.doubleSlab = RoadStuffBlocks.doubleSlabAsphalt;
+        if(block == RoadStuffBlocks.doubleSlabAsphalt)
         {
             this.isFullBlock = true;
         }
@@ -73,7 +73,7 @@ public class ItemBlockSlabAsphaltBase01 extends ItemBlock
 
     public String getUnlocalizedName(ItemStack stack)
     {
-        return ((BlockSlabAsphaltBase01)theHalfSlab).func_150002_b(stack.getItemDamage());
+        return ((BlockSlabAsphalt)theHalfSlab).func_150002_b(stack.getItemDamage());
     }
 
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)

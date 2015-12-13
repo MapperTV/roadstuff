@@ -38,46 +38,46 @@ public class Chisel
     public static void sendIMC()
     {
         // Asphalt base blocks
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffBase|roadstuff:asphaltBase01|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffBase|roadstuff:asphaltBlock|0");
         for(int i = 0; i <= 5; i++)
         {
-            FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffBase|roadstuff:asphaltLines01|" + i);
+            FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffBase|roadstuff:asphaltLine|" + i);
         }
 
         // Concrete base blocks
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffBaseC|roadstuff:concreteBase|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffBaseC|roadstuff:concreteBlock|0");
         for(int i = 0; i <= 5; i++)
         {
             FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffBaseC|roadstuff:concreteLine|" + i);
         }
 
         // Asphalt Simple White Line
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLines01|0");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLines02|0");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLines02|1");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLines02|2");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLines02|3");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLines05|0");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLines05|1");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLines05|2");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLines05|3");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLinesCorner01|0");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltArrows01|0");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltArrows01|2");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltLine|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltYCross|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltYCross|1");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltYCross|2");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltYCross|3");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltXCross|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltXCross|1");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltXCross|2");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltXCross|3");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltCorner|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltArrow|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWL|roadstuff:asphaltArrow|2");
 
         // Asphalt Simple Yellow Line
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLines01|1");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLines03|0");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLines03|1");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLines03|2");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLines03|3");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLines04|0");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLines04|1");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLines04|2");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLines04|3");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLinesCorner01|1");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltArrows01|1");
-        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltArrows01|3");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltLine|1");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltYCrossYellow|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltYCrossYellow|1");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltYCrossYellow|2");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltYCrossYellow|3");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltXCrossYellow|0");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltXCrossYellow|1");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltXCrossYellow|2");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltXCrossYellow|3");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltCorner|1");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltArrow|1");
+        FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSYL|roadstuff:asphaltArrow|3");
 
         // Concrete Simple White Line
         FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffSWLC|roadstuff:concreteLine|0");
@@ -134,16 +134,5 @@ public class Chisel
         // Concrete Double Yellow Line
         FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffDYL|roadstuff:concreteLine|5");
         FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "RoadStuffDYL|roadstuff:concreteCorner|3");
-
-        /*
-         * Example
-         * for(int i = 1; i <= 5; i++)
-         * {
-         * for(int j = 0; j <= 16; j++)
-         * {
-         * FMLInterModComms.sendMessage(IMC.getModid(), IMC.ADD_VARIATION.key, "BlockAsphaltLines|roadstuff:asphaltLines0" + i + "|" + j);
-         * }
-         * }
-         */
     }
 }

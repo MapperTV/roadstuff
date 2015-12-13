@@ -1,3 +1,6 @@
+//General
+itemGroup.RoadStuff=Road Stuff
+
 //Items
 item.bitumen.name=Bitumen
 item.paint.name=Paint

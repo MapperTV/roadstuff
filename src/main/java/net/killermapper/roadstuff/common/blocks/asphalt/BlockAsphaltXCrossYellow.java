@@ -43,13 +43,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockAsphaltLinesCorner01 extends Block
+public class BlockAsphaltXCrossYellow extends Block
 {
+    public static String[] subBlock = new String[] {"simpleyellowtcross", "simpleyellowtcorner", "simpleyellowtdoublecross", "simpleyellowxcross"};
+    private IIcon asphaltBase, simpleyellowTCross, simpleyellowXCross, simpleyellowTDoubleCross, simpleyellowTCorner;
 
-    public static String[] subBlock = new String[] {"simplewhitecorner", "simpleyellowcorner", "doublewhitecorner", "doubleyellowcorner"};
-    private IIcon asphaltBase, simpleWhiteCorner, simpleYellowCorner, doubleWhiteCorner, doubleYellowCorner;
-
-    public BlockAsphaltLinesCorner01()
+    public BlockAsphaltXCrossYellow()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -58,7 +57,7 @@ public class BlockAsphaltLinesCorner01 extends Block
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
-        return ClientProxy.renderAsphaltCornerId;
+        return ClientProxy.renderAsphaltArrowsId;
     }
 
     public int damageDropped(int metadata)
@@ -69,7 +68,7 @@ public class BlockAsphaltLinesCorner01 extends Block
             return 1;
         if(metadata == 6 || metadata == 10 || metadata == 14)
             return 2;
-        if(metadata == 7 || metadata == 11 || metadata == 15)
+        if(metadata == 3)
             return 3;
         return metadata;
     }
@@ -85,10 +84,10 @@ public class BlockAsphaltLinesCorner01 extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.simpleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteCorner");
-        this.simpleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowCorner");
-        this.doubleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleWhiteCorner");
-        this.doubleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleYellowCorner");
+        this.simpleyellowTCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowTCross");
+        this.simpleyellowXCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowXCross");
+        this.simpleyellowTDoubleCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowTDoubleCross");
+        this.simpleyellowTCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowTCorner");
     }
 
     public IIcon getIcon(int side, int metadata)
@@ -97,19 +96,19 @@ public class BlockAsphaltLinesCorner01 extends Block
         {
             if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
             {
-                return this.simpleWhiteCorner;
+                return this.simpleyellowTCross;
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.simpleYellowCorner;
+                return this.simpleyellowTCorner;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.doubleWhiteCorner;
+                return this.simpleyellowTDoubleCross;
             }
-            if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
+            if(metadata == 3)
             {
-                return this.doubleYellowCorner;
+                return this.simpleyellowXCross;
             }
         }
         return this.asphaltBase;
@@ -153,16 +152,7 @@ public class BlockAsphaltLinesCorner01 extends Block
                 meta = 14;
         }
         if(stack.getItemDamage() == 3)
-        {
-            if(direction == 0)
-                meta = 3;
-            if(direction == 1)
-                meta = 7;
-            if(direction == 2)
-                meta = 11;
-            if(direction == 3)
-                meta = 15;
-        }
+            meta = 3;
         world.setBlockMetadataWithNotify(x, y, z, meta, 2);
     }
 

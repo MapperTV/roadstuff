@@ -37,13 +37,13 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class BlockAsphaltBase01 extends Block
+public class BlockAsphalt extends Block
 {
 
     public static String[] subBlockAsphaltBase01 = new String[] {"asphalt", "sewermanhole"};
     private IIcon asphaltBase, sewerManhole;
 
-    public BlockAsphaltBase01()
+    public BlockAsphalt()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);

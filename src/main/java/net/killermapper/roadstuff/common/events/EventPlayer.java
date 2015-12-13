@@ -62,7 +62,7 @@ public class EventPlayer
     @SubscribeEvent
     public void itemCrafting(ItemCraftedEvent eventCrafted)
     {
-        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockAsphaltBase01) && eventCrafted.crafting.getItemDamage() == 0)
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockAsphalt) && eventCrafted.crafting.getItemDamage() == 0)
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftAsphalt);
 
         if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockCone))

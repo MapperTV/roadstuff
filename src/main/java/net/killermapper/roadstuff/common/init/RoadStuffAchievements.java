@@ -53,7 +53,7 @@ public class RoadStuffAchievements
     {
         getBitumen = new Achievement("achievement.roadstuff_getbitumen", "roadstuff_getbitumen", 0, -1, new ItemStack(RoadStuffItems.itemBitumen, 1, 0), null);
         smeltBitumen = new Achievement("achievement.roadstuff_smeltbitumen", "roadstuff_smeltbitumen", 2, -1, new ItemStack(RoadStuffItems.itemBitumen, 1, 1), getBitumen);
-        craftAsphalt = new Achievement("achievement.roadstuff_craftasphalt", "roadstuff_craftasphalt", 4, -1, new ItemStack(RoadStuffBlocks.blockAsphaltBase01, 1, 0), smeltBitumen);
+        craftAsphalt = new Achievement("achievement.roadstuff_craftasphalt", "roadstuff_craftasphalt", 4, -1, new ItemStack(RoadStuffBlocks.blockAsphalt, 1, 0), smeltBitumen);
         craftConcrete = new Achievement("achievement.roadstuff_craftconcrete", "roadstuff_craftconcrete", 0, 1, new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0), null);
         craftCone = new Achievement("achievement.roadstuff_craftcone", "roadstuff_craftcone", 4, -3, new ItemStack(RoadStuffBlocks.blockCone, 1, 0), smeltBitumen);
 

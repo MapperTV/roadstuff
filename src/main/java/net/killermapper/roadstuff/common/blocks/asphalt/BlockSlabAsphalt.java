@@ -43,11 +43,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class BlockSlabAsphaltBase01 extends BlockSlab
+public class BlockSlabAsphalt extends BlockSlab
 {
     public static final String[] StepTypes = new String[] {"base", "manhole"};
 
-    public BlockSlabAsphaltBase01(boolean isdouble, Material material)
+    public BlockSlabAsphalt(boolean isdouble, Material material)
     {
         super(isdouble, Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -61,35 +61,35 @@ public class BlockSlabAsphaltBase01 extends BlockSlab
     public IIcon getIcon(int side, int metadata)
     {
         int k = metadata & 7;
-        return k == 0 ? RoadStuffBlocks.blockAsphaltBase01.getBlockTextureFromSide(side) : k == 1 ? RoadStuffBlocks.blockAsphaltBase01.getIcon(side, 1) : k == 2 ? Blocks.diamond_block.getBlockTextureFromSide(side) : k == 3 ? Blocks.gold_block.getBlockTextureFromSide(side) : Blocks.iron_block.getBlockTextureFromSide(side);
+        return k == 0 ? RoadStuffBlocks.blockAsphalt.getBlockTextureFromSide(side) : k == 1 ? RoadStuffBlocks.blockAsphalt.getIcon(side, 1) : k == 2 ? Blocks.diamond_block.getBlockTextureFromSide(side) : k == 3 ? Blocks.gold_block.getBlockTextureFromSide(side) : Blocks.iron_block.getBlockTextureFromSide(side);
     }
 
     @SideOnly(Side.CLIENT)
     private static boolean func_150003_a(Block block)
     {
-        return block == RoadStuffBlocks.singleSlabAsphaltLines01;
+        return block == RoadStuffBlocks.singleSlabAsphaltLine;
     }
 
     @SideOnly(Side.CLIENT)
     public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
     {
-        return func_150003_a(this) ? Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltLines01) : Item.getItemFromBlock(RoadStuffBlocks.doubleSlabAsphaltBase01);
+        return func_150003_a(this) ? Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltLine) : Item.getItemFromBlock(RoadStuffBlocks.doubleSlabAsphalt);
     }
 
     public Item getItemDropped(int metadata, Random rand, int fortune)
     {
-            return Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltBase01);
+            return Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphalt);
     }
 
     protected ItemStack createStackedBlock(int metadata)
     {
-        return new ItemStack(RoadStuffBlocks.singleSlabAsphaltLines01, 2, metadata & 7);
+        return new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 2, metadata & 7);
     }
 
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
     {
-        if(item != Item.getItemFromBlock(RoadStuffBlocks.doubleSlabAsphaltBase01))
+        if(item != Item.getItemFromBlock(RoadStuffBlocks.doubleSlabAsphalt))
         {
             for(int i = 0; i < StepTypes.length; i++)
             {

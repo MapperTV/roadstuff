@@ -29,7 +29,7 @@ package net.killermapper.roadstuff.common.items.asphalt;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
-import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphaltLines01;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphaltLine;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
@@ -47,9 +47,9 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
     public ItemBlockSlabAsphaltLines01(Block block)
     {
         super(block);
-        this.theHalfSlab = RoadStuffBlocks.singleSlabAsphaltLines01;
-        this.doubleSlab = RoadStuffBlocks.doubleSlabAsphaltLines01;
-        if(block == RoadStuffBlocks.doubleSlabAsphaltLines01)
+        this.theHalfSlab = RoadStuffBlocks.singleSlabAsphaltLine;
+        this.doubleSlab = RoadStuffBlocks.doubleSlabAsphaltLine;
+        if(block == RoadStuffBlocks.doubleSlabAsphaltLine)
         {
             this.isFullBlock = true;
         }
@@ -74,7 +74,7 @@ public class ItemBlockSlabAsphaltLines01 extends ItemBlock
 
     public String getUnlocalizedName(ItemStack stack)
     {
-        return ((BlockSlabAsphaltLines01)theHalfSlab).func_150002_b(stack.getItemDamage());
+        return ((BlockSlabAsphaltLine)theHalfSlab).func_150002_b(stack.getItemDamage());
     }
 
     // Put the bloc

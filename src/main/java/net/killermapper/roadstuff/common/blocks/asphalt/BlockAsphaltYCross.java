@@ -43,12 +43,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockAsphaltLines05 extends Block
+public class BlockAsphaltYCross extends Block
 {
-    public static String[] subBlock = new String[] {"simplewhitetcross", "simplewhitetcorner", "simplewhitetdoublecross", "simplewhitexcross"};
-    private IIcon asphaltBase, simplewhiteTCross, simplewhiteXCross, simplewhiteTDoubleCross, simplewhiteTCorner;
+    public static String[] subBlock = new String[] {"simplewhiteyrightcross", "simplewhiteyleftcross", "simplewhiteyfullcross", "simplewhiteycross"};
+    private IIcon asphaltBase, simpleWhiteYrightCross, simpleWhiteYleftCross, simpleWhiteYfullCross, simpleWhiteYCross;
 
-    public BlockAsphaltLines05()
+    public BlockAsphaltYCross()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -68,7 +68,7 @@ public class BlockAsphaltLines05 extends Block
             return 1;
         if(metadata == 6 || metadata == 10 || metadata == 14)
             return 2;
-        if(metadata == 3)
+        if(metadata == 7 || metadata == 11 || metadata == 15)
             return 3;
         return metadata;
     }
@@ -84,36 +84,36 @@ public class BlockAsphaltLines05 extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.simplewhiteTCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteTCross");
-        this.simplewhiteXCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteXCross");
-        this.simplewhiteTDoubleCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteTDoubleCross");
-        this.simplewhiteTCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteTCorner");
+        this.simpleWhiteYrightCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYrightCross");
+        this.simpleWhiteYleftCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYleftCross");
+        this.simpleWhiteYfullCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYfullCross");
+        this.simpleWhiteYCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYCross");
     }
-
+    
     public IIcon getIcon(int side, int metadata)
     {
         if(side == 1)
         {
             if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
             {
-                return this.simplewhiteTCross;
+                return this.simpleWhiteYrightCross;
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.simplewhiteTCorner;
+                return this.simpleWhiteYleftCross;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.simplewhiteTDoubleCross;
+                return this.simpleWhiteYfullCross;
             }
-            if(metadata == 3)
+            if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
             {
-                return this.simplewhiteXCross;
+                return this.simpleWhiteYCross;
             }
         }
         return this.asphaltBase;
     }
-
+    
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
     {
         int meta = 0;
@@ -152,7 +152,16 @@ public class BlockAsphaltLines05 extends Block
                 meta = 14;
         }
         if(stack.getItemDamage() == 3)
-            meta = 3;
+        {
+            if(direction == 0)
+                meta = 3;
+            if(direction == 1)
+                meta = 7;
+            if(direction == 2)
+                meta = 11;
+            if(direction == 3)
+                meta = 15;
+        }
         world.setBlockMetadataWithNotify(x, y, z, meta, 2);
     }
 

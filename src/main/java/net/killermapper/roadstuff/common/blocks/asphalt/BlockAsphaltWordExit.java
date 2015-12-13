@@ -43,12 +43,12 @@ import net.minecraft.util.IIcon;
 import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class BlockAsphaltWord1 extends Block
+public class BlockAsphaltWordExit extends Block
 {
     public static String[] subBlock = new String[] {"wordex", "wordit", "wordst", "wordop"};
     private IIcon asphaltBase, asphaltEX, asphaltIT, asphaltST, asphaltOP;
 
-    public BlockAsphaltWord1()
+    public BlockAsphaltWordExit()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
