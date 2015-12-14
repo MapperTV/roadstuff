@@ -98,11 +98,11 @@ public class BlockConcreteXCrossYellow extends Block
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.simpleYellowXdoubleCross;
+                return this.simpleYellowXcornerCross;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.simpleYellowXcornerCross;
+                return this.simpleYellowXdoubleCross;
             }
             if(metadata == 3)
             {

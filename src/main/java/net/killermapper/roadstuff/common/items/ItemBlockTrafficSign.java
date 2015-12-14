@@ -24,12 +24,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.items.sign;
+package net.killermapper.roadstuff.common.items;
+
+import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.sign.BlockTrafficSign;
+import net.killermapper.roadstuff.common.blocks.BlockTrafficSign;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -63,6 +66,11 @@ public class ItemBlockTrafficSign extends ItemBlock
             metadata = 0;
         }
         return super.getUnlocalizedName() + "." + BlockTrafficSign.subBlock[metadata];
+    }
+    
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show)
+    {
+        list.add("Right-click to configure it.");
     }
 
 }

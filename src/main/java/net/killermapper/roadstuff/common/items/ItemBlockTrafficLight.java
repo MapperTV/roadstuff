@@ -24,37 +24,33 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.client.gui;
+package net.killermapper.roadstuff.common.items;
 
-import cpw.mods.fml.common.network.IGuiHandler;
-import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
-import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
+import java.util.List;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import net.killermapper.roadstuff.common.blocks.BlockTrafficSign;
+import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.world.World;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.IIcon;
 
-public class RoadStuffGuiHandler implements IGuiHandler
+public class ItemBlockTrafficLight extends ItemBlock
 {
 
-    @Override
-    public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    public ItemBlockTrafficLight(Block block)
     {
-        return null;
+        super(block);
     }
 
-    @Override
-    public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
+    
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show)
     {
-        TileEntity tile = world.getTileEntity(x, y, z);
-        if(tile instanceof TileEntityBlockTrafficSign)
-        {
-            return new GuiTrafficSign((TileEntityBlockTrafficSign)tile);
-        }
-        if(tile instanceof TileEntityTrafficLigth)
-        {
-            return new GuiTrafficLigth((TileEntityTrafficLigth)tile);
-        }
-        return null;
+        list.add(EnumChatFormatting.BOLD + "This is still heavily WIP!!!");
+        list.add("It has no craft or any use.");
     }
 
 }

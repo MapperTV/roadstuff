@@ -1,7 +1,7 @@
 package net.killermapper.roadstuff.client.gui;
 
 import net.killermapper.roadstuff.common.RoadStuff;
-import net.killermapper.roadstuff.common.tileentity.TileEntityTrafficLigth;
+import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
 import net.killermapper.roadstuff.common.trafficLigth.PacketTrafficChannel;
 import net.killermapper.roadstuff.common.trafficLigth.TrafficLigthParamatersRegister;
 import net.minecraft.client.gui.GuiButton;

@@ -45,8 +45,8 @@ import net.minecraft.world.World;
 
 public class BlockConcreteXCross extends Block
 {
-    public static String[] subBlock = new String[] {"concretesimplewhitexsidecross", "concretesimplewhitexdoublecross", "concretesimplewhitexcornercross", "concretesimplewhitexcross"};
-    private IIcon concreteBase, simpleWhiteXsideCross, simpleWhiteXdoubleCross, simpleWhiteXcornerCross, simpleWhiteXCross;
+    public static String[] subBlock = new String[] {"concretesimplewhitexsidecross", "concretesimplewhitexcornercross", "concretesimplewhitexdoublecross", "concretesimplewhitexcross"};
+    private IIcon concreteBase, simpleWhiteXsideCross, simpleWhiteXcornerCross, simpleWhiteXdoubleCross, simpleWhiteXCross;
 
     public BlockConcreteXCross()
     {
@@ -98,11 +98,11 @@ public class BlockConcreteXCross extends Block
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.simpleWhiteXdoubleCross;
+                return this.simpleWhiteXcornerCross;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.simpleWhiteXcornerCross;
+                return this.simpleWhiteXdoubleCross;                
             }
             if(metadata == 3)
             {

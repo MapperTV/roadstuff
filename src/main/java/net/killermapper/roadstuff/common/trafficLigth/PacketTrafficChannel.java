@@ -1,7 +1,7 @@
 package net.killermapper.roadstuff.common.trafficLigth;
 
 import io.netty.buffer.ByteBuf;
-import net.killermapper.roadstuff.common.tileentity.TileEntityTrafficLigth;
+import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import cpw.mods.fml.common.network.simpleimpl.IMessage;

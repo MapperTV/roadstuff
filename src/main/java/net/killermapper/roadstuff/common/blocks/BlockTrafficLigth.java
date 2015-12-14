@@ -1,7 +1,7 @@
 package net.killermapper.roadstuff.common.blocks;
 
 import net.killermapper.roadstuff.common.RoadStuff;
-import net.killermapper.roadstuff.common.tileentity.TileEntityTrafficLigth;
+import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
 import net.killermapper.roadstuff.proxy.ClientProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.ITileEntityProvider;

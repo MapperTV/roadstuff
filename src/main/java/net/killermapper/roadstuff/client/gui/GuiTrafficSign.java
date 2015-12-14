@@ -33,8 +33,8 @@ import com.sun.imageio.plugins.common.I18N;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.PacketSignType;
 import net.killermapper.roadstuff.common.RoadStuff;
+import net.killermapper.roadstuff.common.network.PacketSignType;
 import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;

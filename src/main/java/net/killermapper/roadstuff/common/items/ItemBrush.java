@@ -26,15 +26,23 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.items;
 
+import java.util.List;
+
+import net.killermapper.roadstuff.common.RoadStuff;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ChatComponentText;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
-public class ItemPaintbrush extends Item
+public class ItemBrush extends Item
 {
+    public ItemBrush()
+    {
+        this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
+    }
 
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float hitX, float hitY, float hitZ)
     {
@@ -49,6 +57,12 @@ public class ItemPaintbrush extends Item
             return true;
         }
         return false;
+    }
+
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show)
+    {
+        list.add(EnumChatFormatting.BOLD + "This is only for debugging!");
+        list.add("It has no craft or any use. Even for Bob Ross.");
     }
 
 }

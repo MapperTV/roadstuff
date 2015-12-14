@@ -34,11 +34,13 @@ public class RoadStuffItems
 {
     public static Item itemBitumen;
     public static Item itemPaint;
+    public static Item itemIronPart;
 
     public static void initItems()
     {
         itemBitumen = new ItemBitumen().setUnlocalizedName("bitumen").setTextureName(RoadStuff.MODID + ":itemBitumen");
-        itemPaint = new ItemPaintbrush().setUnlocalizedName("paint").setTextureName(RoadStuff.MODID + ":itemPaint").setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
+        itemIronPart = new ItemIronPart().setUnlocalizedName("ironPart").setTextureName(RoadStuff.MODID + ":itemIronPart");
+        itemPaint = new ItemBrush().setUnlocalizedName("paint").setTextureName(RoadStuff.MODID + ":itemPaint");
 
         RoadStuffItems.registerItems();
     }
@@ -46,6 +48,7 @@ public class RoadStuffItems
     public static void registerItems()
     {
         GameRegistry.registerItem(itemBitumen, "itemBitumen");
+        GameRegistry.registerItem(itemIronPart, "itemIronPart");
         GameRegistry.registerItem(itemPaint, "itemPaint");
     }
 

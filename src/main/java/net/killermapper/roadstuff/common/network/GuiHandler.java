@@ -1,7 +1,7 @@
 package net.killermapper.roadstuff.common.network;
 
 import net.killermapper.roadstuff.client.gui.GuiTrafficLigth;
-import net.killermapper.roadstuff.common.tileentity.TileEntityTrafficLigth;
+import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.world.World;

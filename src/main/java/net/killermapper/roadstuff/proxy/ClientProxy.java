@@ -36,7 +36,7 @@ import net.killermapper.roadstuff.client.render.RenderTrafficSign;
 import net.killermapper.roadstuff.client.render.RenderSlabAsphaltLines;
 import net.killermapper.roadstuff.client.render.RenderTrafficLigth;
 import net.killermapper.roadstuff.client.render.TESRTrafficLigth;
-import net.killermapper.roadstuff.common.tileentity.TileEntityTrafficLigth;
+import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
 
 public class ClientProxy extends CommonProxy
 {

@@ -1,4 +1,4 @@
-package net.killermapper.roadstuff.common.tileentity;
+package net.killermapper.roadstuff.common.tiles;
 
 import net.killermapper.roadstuff.common.trafficLigth.IChannelProvider;
 import net.killermapper.roadstuff.common.trafficLigth.TrafficLigthParamatersRegister;
