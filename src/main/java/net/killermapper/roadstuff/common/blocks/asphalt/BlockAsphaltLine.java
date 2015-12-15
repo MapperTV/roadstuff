@@ -83,13 +83,13 @@ public class BlockAsphaltLine extends Block
 
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.simpleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteLine");
-        this.simpleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleYellowLine");
-        this.largeWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltLargeWhiteLine");
-        this.largeYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltLargeYellowLine");
-        this.doubleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleWhiteLine");
-        this.doubleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleYellowLine");
+        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltBase");
+        this.simpleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleWhiteLine");
+        this.simpleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleYellowLine");
+        this.largeWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltLargeWhiteLine");
+        this.largeYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltLargeYellowLine");
+        this.doubleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltDoubleWhiteLine");
+        this.doubleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltDoubleYellowLine");
     }
 
     public IIcon getIcon(int side, int metadata)

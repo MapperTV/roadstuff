@@ -185,12 +185,10 @@ public class RoadStuffBlocks
         blockCone = new BlockCone().setBlockName("cone").setHardness(1.0F).setResistance(1.0F);
         blockTrafficSign = new BlockTrafficSign().setBlockName("trafficSign").setHardness(1.0F).setResistance(1.0F);
         blockBitumenBlock = new BlockBase(Material.rock).setBlockName("bitumenBlock").setBlockTextureName(RoadStuff.MODID + ":bitumenBlock");
+        blockTrafficLight = new BlockTrafficLigth().setBlockName("trafficLight");
 
         // Test
         blockEntityTest = new TestEntityBlock().setHardness(1.0F).setResistance(10.0F).setBlockName("EntityTest").setBlockTextureName(RoadStuff.MODID + ":blockTest").setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
-
-        // TraficLight blocks
-        blockTrafficLight = new BlockTrafficLigth().setBlockName("trafficLight");
 
         registerBlocks();
         setHarvestLevels();
@@ -198,12 +196,17 @@ public class RoadStuffBlocks
 
     public static void setHarvestLevels()
     {
+        // Asphalt Blocks
+        blockAsphalt.setHarvestLevel("pickaxe", 1);
         blockAsphaltLine.setHarvestLevel("pickaxe", 1);
         blockAsphaltYCross.setHarvestLevel("pickaxe", 1);
         blockAsphaltYCrossYellow.setHarvestLevel("pickaxe", 1);
         blockAsphaltXCrossYellow.setHarvestLevel("pickaxe", 1);
         blockAsphaltXCross.setHarvestLevel("pickaxe", 1);
-        blockAsphalt.setHarvestLevel("pickaxe", 1);
+        blockAsphaltCorner.setHarvestLevel("pickaxe", 1);
+        blockAsphaltArrow.setHarvestLevel("pickaxe", 1);
+        blockAsphaltWordExit.setHarvestLevel("pickaxe", 1);
+
         singleSlabAsphalt.setHarvestLevel("pickaxe", 1);
         doubleSlabAsphalt.setHarvestLevel("pickaxe", 1);
         singleSlabAsphaltLine.setHarvestLevel("pickaxe", 1);
@@ -212,6 +215,16 @@ public class RoadStuffBlocks
         doubleSlabAsphaltCorner.setHarvestLevel("pickaxe", 1);
         singleSlabAsphaltCornerDouble.setHarvestLevel("pickaxe", 1);
         doubleSlabAsphaltCornerDouble.setHarvestLevel("pickaxe", 1);
+
+        // Concrete Blocks
+        blockConcrete.setHarvestLevel("pickaxe", 1);
+        blockConcreteLine.setHarvestLevel("pickaxe", 1);
+        blockConcreteYCross.setHarvestLevel("pickaxe", 1);
+        blockConcreteXCross.setHarvestLevel("pickaxe", 1);
+        blockConcreteYCrossYellow.setHarvestLevel("pickaxe", 1);
+        blockConcreteXCrossYellow.setHarvestLevel("pickaxe", 1);
+        blockConcreteCorner.setHarvestLevel("pickaxe", 1);
+        blockConcreteArrow.setHarvestLevel("pickaxe", 1);
 
         singleSlabConcrete.setHarvestLevel("pickaxe", 1);
         doubleSlabConcrete.setHarvestLevel("pickaxe", 1);
@@ -222,21 +235,15 @@ public class RoadStuffBlocks
         singleSlabConcreteCornerDouble.setHarvestLevel("pickaxe", 1);
         doubleSlabConcreteCornerDouble.setHarvestLevel("pickaxe", 1);
 
-        blockAsphaltCorner.setHarvestLevel("pickaxe", 1);
-        blockAsphaltArrow.setHarvestLevel("pickaxe", 1);
-        blockCone.setHarvestLevel("pickaxe", 0);
-        blockConcrete.setHarvestLevel("pickaxe", 1);
-        blockConcreteLine.setHarvestLevel("pickaxe", 1);
-        blockConcreteYCross.setHarvestLevel("pickaxe", 1);
-        blockConcreteXCross.setHarvestLevel("pickaxe", 1);
-        blockConcreteYCrossYellow.setHarvestLevel("pickaxe", 1);
-        blockConcreteXCrossYellow.setHarvestLevel("pickaxe", 1);
-        blockConcreteCorner.setHarvestLevel("pickaxe", 1);
-        blockConcreteArrow.setHarvestLevel("pickaxe", 1);
+        // Ore Blocks
         blockBitumenOre.setHarvestLevel("pickaxe", 0);
         blockBitumenBlock.setHarvestLevel("pickaxe", 0);
-        blockAsphaltWordExit.setHarvestLevel("pickaxe", 1);
+
+        // Misc. Blocks
+        blockCone.setHarvestLevel("pickaxe", 0);
         blockTrafficSign.setHarvestLevel("pickaxe", 1);
+
+        // Tests
     }
 
     public static void registerBlocks()

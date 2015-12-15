@@ -83,13 +83,13 @@ public class BlockAsphaltWordExit extends Block
 
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
+        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltBase");
         this.asphaltEX = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltEX");
         this.asphaltIT = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltIT");
         this.asphaltST = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltST");
         this.asphaltOP = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltOP");
     }
-    
+
     public IIcon getIcon(int side, int metadata)
     {
         if(side == 1)
@@ -113,7 +113,7 @@ public class BlockAsphaltWordExit extends Block
         }
         return this.asphaltBase;
     }
-    
+
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
     {
         int meta = 0;

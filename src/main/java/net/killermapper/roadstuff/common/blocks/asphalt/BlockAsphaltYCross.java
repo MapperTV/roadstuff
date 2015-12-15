@@ -83,13 +83,13 @@ public class BlockAsphaltYCross extends Block
 
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.simpleWhiteYrightCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYrightCross");
-        this.simpleWhiteYleftCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYleftCross");
-        this.simpleWhiteYfullCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYfullCross");
-        this.simpleWhiteYCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSimpleWhiteYCross");
+        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltBase");
+        this.simpleWhiteYrightCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleWhiteYrightCross");
+        this.simpleWhiteYleftCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleWhiteYleftCross");
+        this.simpleWhiteYfullCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleWhiteYfullCross");
+        this.simpleWhiteYCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleWhiteYCross");
     }
-    
+
     public IIcon getIcon(int side, int metadata)
     {
         if(side == 1)
@@ -113,7 +113,7 @@ public class BlockAsphaltYCross extends Block
         }
         return this.asphaltBase;
     }
-    
+
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
     {
         int meta = 0;

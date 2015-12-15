@@ -64,8 +64,8 @@ public class BlockAsphalt extends Block
 
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.sewerManhole = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltSewerManhole");
+        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltBase");
+        this.sewerManhole = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSewerManhole");
     }
 
     public IIcon getIcon(int side, int metadata)

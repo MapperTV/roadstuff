@@ -14,7 +14,7 @@ import org.lwjgl.opengl.GL11;
 public class TESRTrafficLigth extends TileEntitySpecialRenderer {
 
 	public static ModelTrafficLigth MODEL = new ModelTrafficLigth();
-	public static final ResourceLocation TEXTURE = new ResourceLocation(RoadStuff.MODID, "textures/blocks/asphaltBase.png");
+	public static final ResourceLocation TEXTURE = new ResourceLocation(RoadStuff.MODID, "textures/blocks/asphalt/asphaltBase.png");
 	public static final ResourceLocation GREEN = new ResourceLocation(RoadStuff.MODID, "textures/colors/green.jpg");
 	public static final ResourceLocation ORANGE = new ResourceLocation(RoadStuff.MODID, "textures/colors/orange.jpg");
 	public static final ResourceLocation RED = new ResourceLocation(RoadStuff.MODID, "textures/colors/red.jpg");

@@ -83,13 +83,13 @@ public class BlockAsphaltArrow extends Block
 
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltBase");
-        this.whiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltWhiteArrow");
-        this.yellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltYellowArrow");
-        this.doubleWhiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleWhiteArrow");
-        this.doubleYellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphaltDoubleYellowArrow");
+        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltBase");
+        this.whiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltWhiteArrow");
+        this.yellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltYellowArrow");
+        this.doubleWhiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltDoubleWhiteArrow");
+        this.doubleYellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltDoubleYellowArrow");
     }
-    
+
     public IIcon getIcon(int side, int metadata)
     {
         if(side == 1)
@@ -113,7 +113,7 @@ public class BlockAsphaltArrow extends Block
         }
         return this.asphaltBase;
     }
-    
+
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)
     {
         int meta = 0;
