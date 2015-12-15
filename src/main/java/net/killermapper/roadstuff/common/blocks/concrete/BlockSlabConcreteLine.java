@@ -24,7 +24,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.blocks.asphalt;
+package net.killermapper.roadstuff.common.blocks.concrete;
 
 import java.util.List;
 import java.util.Random;
@@ -43,11 +43,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class BlockSlabAsphaltLine extends BlockSlab
+public class BlockSlabConcreteLine extends BlockSlab
 {
     public static final String[] StepTypes = new String[] {"simplewhiteline", "simpleyellowline", "doublewhiteline", "doubleyellowline"};
 
-    public BlockSlabAsphaltLine(boolean isdouble, Material material)
+    public BlockSlabConcreteLine(boolean isdouble, Material material)
     {
         super(isdouble, Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -61,7 +61,7 @@ public class BlockSlabAsphaltLine extends BlockSlab
     public IIcon getIcon(int side, int metadata)
     {
         int k = metadata & 7;
-        return k == 0 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 0) : k == 1 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 1) : k == 2 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 4) : k == 3 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 5) : k == 4 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 0) : k == 5 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 1) : k == 6 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 4) : k == 7 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 5) : RoadStuffBlocks.blockAsphalt.getIcon(side, 0);
+        return k == 0 ? RoadStuffBlocks.blockConcreteLine.getIcon(side, 0) : k == 1 ? RoadStuffBlocks.blockConcreteLine.getIcon(side, 1) : k == 2 ? RoadStuffBlocks.blockConcreteLine.getIcon(side, 4) : k == 3 ? RoadStuffBlocks.blockConcreteLine.getIcon(side, 5) : k == 4 ? RoadStuffBlocks.blockConcreteLine.getIcon(side, 0) : k == 5 ? RoadStuffBlocks.blockConcreteLine.getIcon(side, 1) : k == 6 ? RoadStuffBlocks.blockConcreteLine.getIcon(side, 4) : k == 7 ? RoadStuffBlocks.blockConcreteLine.getIcon(side, 5) : RoadStuffBlocks.blockConcrete.getIcon(side, 0);
     }
 
     @SideOnly(Side.CLIENT)
@@ -73,18 +73,18 @@ public class BlockSlabAsphaltLine extends BlockSlab
     @SideOnly(Side.CLIENT)
     private static boolean func_150003_a(Block block)
     {
-        return block == RoadStuffBlocks.singleSlabAsphaltLine;
+        return block == RoadStuffBlocks.singleSlabConcreteLine;
     }
 
     @SideOnly(Side.CLIENT)
     public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
     {
-        return func_150003_a(this) ? Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltLine) : Item.getItemFromBlock(RoadStuffBlocks.doubleSlabAsphaltLine);
+        return func_150003_a(this) ? Item.getItemFromBlock(RoadStuffBlocks.singleSlabConcreteLine) : Item.getItemFromBlock(RoadStuffBlocks.doubleSlabConcreteLine);
     }
 
     public Item getItemDropped(int metadata, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltLine);
+        return Item.getItemFromBlock(RoadStuffBlocks.singleSlabConcreteLine);
     }
 
     public int damageDropped(int metadata)
@@ -102,13 +102,13 @@ public class BlockSlabAsphaltLine extends BlockSlab
 
     protected ItemStack createStackedBlock(int metadata)
     {
-        return new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 2, metadata & 7);
+        return new ItemStack(RoadStuffBlocks.singleSlabConcreteLine, 2, metadata & 7);
     }
 
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
     {
-        if(item != Item.getItemFromBlock(RoadStuffBlocks.doubleSlabAsphaltLine))
+        if(item != Item.getItemFromBlock(RoadStuffBlocks.doubleSlabConcreteLine))
         {
             for(int i = 0; i < StepTypes.length; i++)
             {

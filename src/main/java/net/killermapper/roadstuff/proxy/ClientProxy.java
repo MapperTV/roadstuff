@@ -31,39 +31,38 @@ import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.killermapper.roadstuff.client.render.RenderAsphaltArrows;
 import net.killermapper.roadstuff.client.render.RenderAsphaltCorner;
 import net.killermapper.roadstuff.client.render.RenderAsphaltLines;
-import net.killermapper.roadstuff.client.render.RenderCone01;
-import net.killermapper.roadstuff.client.render.RenderTrafficSign;
-import net.killermapper.roadstuff.client.render.RenderSlabAsphaltLines;
+import net.killermapper.roadstuff.client.render.RenderCone;
+import net.killermapper.roadstuff.client.render.RenderSlabAsphaltCorner;
+import net.killermapper.roadstuff.client.render.RenderSlabAsphaltLine;
 import net.killermapper.roadstuff.client.render.RenderTrafficLigth;
+import net.killermapper.roadstuff.client.render.RenderTrafficSign;
 import net.killermapper.roadstuff.client.render.TESRTrafficLigth;
 import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
 
 public class ClientProxy extends CommonProxy
 {
 
-    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId,
-    renderSlabAsphaltLinesId, renderCone01Id,renderSignPostId, renderTrafficLigthId;
+    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderSlabAsphaltLineId, renderCone01Id, renderSignPostId, renderTrafficLigthId, renderSlabAsphaltCornerId;
 
     @Override
     public void registerRender()
     {
-
-        System.out.println("Client side method");
         renderCone01Id = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(renderCone01Id, new RenderCone01());
+        RenderingRegistry.registerBlockHandler(renderCone01Id, new RenderCone());
         renderAsphaltLinesId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderAsphaltLinesId, new RenderAsphaltLines());
         renderAsphaltCornerId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderAsphaltCornerId, new RenderAsphaltCorner());
         renderAsphaltArrowsId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderAsphaltArrowsId, new RenderAsphaltArrows());
-        renderSlabAsphaltLinesId = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(renderSlabAsphaltLinesId, new RenderSlabAsphaltLines());
+        renderSlabAsphaltLineId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(renderSlabAsphaltLineId, new RenderSlabAsphaltLine());
+        renderSlabAsphaltCornerId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(renderSlabAsphaltCornerId, new RenderSlabAsphaltCorner());
         renderTrafficLigthId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderTrafficLigthId, new RenderTrafficLigth());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrafficLigth.class, new TESRTrafficLigth());
         renderSignPostId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderSignPostId, new RenderTrafficSign());
     }
-
 }

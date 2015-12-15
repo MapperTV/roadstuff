@@ -35,7 +35,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 
-public class RenderCone01 implements ISimpleBlockRenderingHandler
+public class RenderCone implements ISimpleBlockRenderingHandler
 {
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)

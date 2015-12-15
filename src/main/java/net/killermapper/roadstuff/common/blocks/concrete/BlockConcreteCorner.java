@@ -87,7 +87,7 @@ public class BlockConcreteCorner extends Block
         this.concreteBase = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteBase");
         this.simpleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWC");
         this.simpleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYC");
-        this.doubleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDYC");
+        this.doubleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDWC");
         this.doubleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDYC");
     }
 

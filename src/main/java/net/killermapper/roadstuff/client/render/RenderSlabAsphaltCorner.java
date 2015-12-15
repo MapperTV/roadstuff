@@ -37,7 +37,7 @@ import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.world.IBlockAccess;
 
-public class RenderSlabAsphaltLines implements ISimpleBlockRenderingHandler
+public class RenderSlabAsphaltCorner implements ISimpleBlockRenderingHandler
 {
     @Override
     public void renderInventoryBlock(Block block, int metadata, int modelID, RenderBlocks renderer)
@@ -50,13 +50,21 @@ public class RenderSlabAsphaltLines implements ISimpleBlockRenderingHandler
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
     {
-        if(world.getBlockMetadata(x, y, z) >= 4 && world.getBlockMetadata(x, y, z) <= 7)
+        if(world.getBlockMetadata(x, y, z) == 0 || world.getBlockMetadata(x, y, z) == 1 || world.getBlockMetadata(x, y, z) == 8 || world.getBlockMetadata(x, y, z) == 9)
         {
             renderer.uvRotateTop = 1;
         }
-        if(world.getBlockMetadata(x, y, z) >= 11 && world.getBlockMetadata(x, y, z) <= 15)
+        if(world.getBlockMetadata(x, y, z) == 2 || world.getBlockMetadata(x, y, z) == 3 || world.getBlockMetadata(x, y, z) == 10 || world.getBlockMetadata(x, y, z) == 11)
         {
-            renderer.uvRotateTop = 1;
+            renderer.uvRotateTop = 3;
+        }
+        if(world.getBlockMetadata(x, y, z) == 4 || world.getBlockMetadata(x, y, z) == 5 || world.getBlockMetadata(x, y, z) == 12 || world.getBlockMetadata(x, y, z) == 13)
+        {
+            renderer.uvRotateTop = 2;
+        }
+        if(world.getBlockMetadata(x, y, z) == 6 || world.getBlockMetadata(x, y, z) == 7 || world.getBlockMetadata(x, y, z) == 14 || world.getBlockMetadata(x, y, z) == 15)
+        {
+            renderer.uvRotateTop = 0;
         }
         renderer.renderStandardBlock(block, x, y, z);
         // Must reset the rotation or it will mess up all rotating blocks around
@@ -67,7 +75,7 @@ public class RenderSlabAsphaltLines implements ISimpleBlockRenderingHandler
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
-        return ClientProxy.renderSlabAsphaltLinesId;
+        return ClientProxy.renderSlabAsphaltCornerId;
     }
 
     @Override
@@ -79,7 +87,7 @@ public class RenderSlabAsphaltLines implements ISimpleBlockRenderingHandler
     @Override
     public int getRenderId()
     {
-        return ClientProxy.renderAsphaltLinesId;
+        return ClientProxy.renderAsphaltCornerId;
     }
 
     // To render a ISBRH part in the inventory - Credits to MinecraftForgeFrance

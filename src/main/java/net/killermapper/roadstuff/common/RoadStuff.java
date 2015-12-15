@@ -73,7 +73,6 @@ public class RoadStuff
 
     @SidedProxy(clientSide = "net.killermapper.roadstuff.proxy.ClientProxy", serverSide = "net.killermapper.roadstuff.proxy.CommonProxy")
     public static CommonProxy proxy;
-    //public static SimpleNetworkWrapper channel;
 
     public static CreativeTabs RoadStuffCreativeTabs = new CreativeTabs("RoadStuff")
     {
@@ -125,9 +124,11 @@ public class RoadStuff
 
         RoadStuffRecipes.initRecipes();
 
-        /*NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-        channel = NetworkRegistry.INSTANCE.newSimpleChannel("RoadStuffPacketChannel");
-        channel.registerMessage(PacketTrafficChannel.class, PacketTrafficChannel.class, 0, Side.SERVER);*/
+        /*
+         * NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+         * channel = NetworkRegistry.INSTANCE.newSimpleChannel("RoadStuffPacketChannel");
+         * channel.registerMessage(PacketTrafficChannel.class, PacketTrafficChannel.class, 0, Side.SERVER);
+         */
     }
 
     @EventHandler

@@ -43,11 +43,11 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.World;
 
-public class BlockSlabAsphaltLine extends BlockSlab
+public class BlockSlabAsphaltCorner extends BlockSlab
 {
-    public static final String[] StepTypes = new String[] {"simplewhiteline", "simpleyellowline", "doublewhiteline", "doubleyellowline"};
+    public static final String[] StepTypes = new String[] {"simplewhitecorner", "simpleyellowcorner"};
 
-    public BlockSlabAsphaltLine(boolean isdouble, Material material)
+    public BlockSlabAsphaltCorner(boolean isdouble, Material material)
     {
         super(isdouble, Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
@@ -61,30 +61,30 @@ public class BlockSlabAsphaltLine extends BlockSlab
     public IIcon getIcon(int side, int metadata)
     {
         int k = metadata & 7;
-        return k == 0 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 0) : k == 1 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 1) : k == 2 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 4) : k == 3 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 5) : k == 4 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 0) : k == 5 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 1) : k == 6 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 4) : k == 7 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 5) : RoadStuffBlocks.blockAsphalt.getIcon(side, 0);
+        return k == 0 ? RoadStuffBlocks.blockAsphaltCorner.getIcon(side, 0) : k == 1 ? RoadStuffBlocks.blockAsphaltCorner.getIcon(side, 1) : k == 2 ? RoadStuffBlocks.blockAsphaltCorner.getIcon(side, 0) : k == 3 ? RoadStuffBlocks.blockAsphaltCorner.getIcon(side, 1) : k == 4 ? RoadStuffBlocks.blockAsphaltCorner.getIcon(side, 0) : k == 5 ? RoadStuffBlocks.blockAsphaltCorner.getIcon(side, 1) : k == 6 ? RoadStuffBlocks.blockAsphaltCorner.getIcon(side, 0) : k == 7 ? RoadStuffBlocks.blockAsphaltCorner.getIcon(side, 1) : RoadStuffBlocks.blockAsphalt.getIcon(side, 0);
     }
 
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
-        return ClientProxy.renderSlabAsphaltLineId;
+        return ClientProxy.renderSlabAsphaltCornerId;
     }
 
     @SideOnly(Side.CLIENT)
     private static boolean func_150003_a(Block block)
     {
-        return block == RoadStuffBlocks.singleSlabAsphaltLine;
+        return block == RoadStuffBlocks.singleSlabAsphaltCorner;
     }
 
     @SideOnly(Side.CLIENT)
     public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
     {
-        return func_150003_a(this) ? Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltLine) : Item.getItemFromBlock(RoadStuffBlocks.doubleSlabAsphaltLine);
+        return func_150003_a(this) ? Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltCorner) : Item.getItemFromBlock(RoadStuffBlocks.doubleSlabAsphaltCorner);
     }
 
     public Item getItemDropped(int metadata, Random rand, int fortune)
     {
-        return Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltLine);
+        return Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphaltCorner);
     }
 
     public int damageDropped(int metadata)
@@ -102,13 +102,13 @@ public class BlockSlabAsphaltLine extends BlockSlab
 
     protected ItemStack createStackedBlock(int metadata)
     {
-        return new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 2, metadata & 7);
+        return new ItemStack(RoadStuffBlocks.singleSlabAsphaltCorner, 2, metadata & 7);
     }
 
     @SideOnly(Side.CLIENT)
     public void getSubBlocks(Item item, CreativeTabs creativeTabs, List list)
     {
-        if(item != Item.getItemFromBlock(RoadStuffBlocks.doubleSlabAsphaltLine))
+        if(item != Item.getItemFromBlock(RoadStuffBlocks.doubleSlabAsphaltCorner))
         {
             for(int i = 0; i < StepTypes.length; i++)
             {

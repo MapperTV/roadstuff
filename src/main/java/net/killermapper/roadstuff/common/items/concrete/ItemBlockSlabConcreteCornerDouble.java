@@ -24,31 +24,32 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.items.asphalt;
+package net.killermapper.roadstuff.common.items.concrete;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
-import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphalt;
+import net.killermapper.roadstuff.common.blocks.concrete.BlockSlabConcreteCornerDouble;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
+import net.minecraft.util.MathHelper;
 import net.minecraft.world.World;
 
-public class ItemBlockSlabAsphaltBase01 extends ItemBlock
+public class ItemBlockSlabConcreteCornerDouble extends ItemBlock
 {
     private final boolean isFullBlock;
     private final Block theHalfSlab;
     private final Block doubleSlab;
 
-    public ItemBlockSlabAsphaltBase01(Block block)
+    public ItemBlockSlabConcreteCornerDouble(Block block)
     {
         super(block);
-        this.theHalfSlab = RoadStuffBlocks.singleSlabAsphalt;
-        this.doubleSlab = RoadStuffBlocks.doubleSlabAsphalt;
-        if(block == RoadStuffBlocks.doubleSlabAsphalt)
+        this.theHalfSlab = RoadStuffBlocks.singleSlabConcreteCornerDouble;
+        this.doubleSlab = RoadStuffBlocks.doubleSlabConcreteCornerDouble;
+        if(block == RoadStuffBlocks.doubleSlabConcreteCornerDouble)
         {
             this.isFullBlock = true;
         }
@@ -73,11 +74,48 @@ public class ItemBlockSlabAsphaltBase01 extends ItemBlock
 
     public String getUnlocalizedName(ItemStack stack)
     {
-        return ((BlockSlabAsphalt)theHalfSlab).func_150002_b(stack.getItemDamage());
+        return ((BlockSlabConcreteCornerDouble)theHalfSlab).func_150002_b(stack.getItemDamage());
     }
 
+    // Put the bloc
     public boolean onItemUse(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side, float par8, float par9, float par10)
     {
+        int direction = MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
+        if(direction == 0)
+        {
+            switch(stack.getItemDamage())
+            {
+                case 0:
+                    stack.setItemDamage(4);
+                    break;
+                case 1:
+                    stack.setItemDamage(5);
+                    break;
+            }
+        }
+        else if(direction == 1)
+        {
+            switch(stack.getItemDamage())
+            {
+                case 0:
+                    stack.setItemDamage(6);
+                    break;
+                case 1:
+                    stack.setItemDamage(7);
+            }
+        }
+        else if(direction == 3)
+        {
+            switch(stack.getItemDamage())
+            {
+                case 0:
+                    stack.setItemDamage(2);
+                    break;
+                case 1:
+                    stack.setItemDamage(3);
+                    break;
+            }
+        }
         if(this.isFullBlock)
         {
             return super.onItemUse(stack, player, world, x, y, z, side, par8, par9, par10);
@@ -113,6 +151,7 @@ public class ItemBlockSlabAsphaltBase01 extends ItemBlock
         }
     }
 
+    // Can put the bloc?
     @SideOnly(Side.CLIENT)
     public boolean func_150936_a(World world, int x, int y, int z, int side, EntityPlayer player, ItemStack stack)
     {
@@ -164,10 +203,12 @@ public class ItemBlockSlabAsphaltBase01 extends ItemBlock
             meta = world.getBlockMetadata(x, y, z);
             j2 = meta & 7;
             flag = (meta & 8) != 0;
+
             return id == this.theHalfSlab && j2 == stack.getItemDamage() ? true : super.func_150936_a(world, i1, j1, k1, side, player, stack);
         }
     }
 
+    // Build bloc from upper slab
     private boolean placeDoubleSlabFromTop(ItemStack stack, EntityPlayer player, World world, int x, int y, int z, int side)
     {
         if(side == 0)
