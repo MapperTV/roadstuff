@@ -56,15 +56,15 @@ import net.killermapper.roadstuff.common.blocks.concrete.BlockSlabConcreteLine;
 import net.killermapper.roadstuff.common.items.ItemBlockCone;
 import net.killermapper.roadstuff.common.items.ItemBlockTrafficLight;
 import net.killermapper.roadstuff.common.items.ItemBlockTrafficSign;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltArrows01;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltBase01;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltCorner01;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLines01;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLines02;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLines03;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLines04;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLines05;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltWord1;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltArrow;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphalt;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltCorner;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLine;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltYCross;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltYCrossYellow;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltXCrossYellow;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltXCross;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltWordExit;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockSlabAsphalt;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockSlabAsphaltCorner;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockSlabAsphaltCornerDouble;
@@ -249,15 +249,15 @@ public class RoadStuffBlocks
     public static void registerBlocks()
     {
         // Asphalt Blocks
-        GameRegistry.registerBlock(blockAsphaltLine, ItemBlockAsphaltLines01.class, "asphaltLine");
-        GameRegistry.registerBlock(blockAsphaltYCross, ItemBlockAsphaltLines02.class, "asphaltYCross");
-        GameRegistry.registerBlock(blockAsphaltYCrossYellow, ItemBlockAsphaltLines03.class, "asphaltYCrossYellow");
-        GameRegistry.registerBlock(blockAsphaltXCrossYellow, ItemBlockAsphaltLines04.class, "asphaltXCrossYellow");
-        GameRegistry.registerBlock(blockAsphaltXCross, ItemBlockAsphaltLines05.class, "asphaltXCross");
-        GameRegistry.registerBlock(blockAsphalt, ItemBlockAsphaltBase01.class, "asphaltBlock");
-        GameRegistry.registerBlock(blockAsphaltCorner, ItemBlockAsphaltCorner01.class, "asphaltCorner");
-        GameRegistry.registerBlock(blockAsphaltArrow, ItemBlockAsphaltArrows01.class, "asphaltArrow");
-        GameRegistry.registerBlock(blockAsphaltWordExit, ItemBlockAsphaltWord1.class, "asphaltWordExit");
+        GameRegistry.registerBlock(blockAsphaltLine, ItemBlockAsphaltLine.class, "asphaltLine");
+        GameRegistry.registerBlock(blockAsphaltYCross, ItemBlockAsphaltYCross.class, "asphaltYCross");
+        GameRegistry.registerBlock(blockAsphaltYCrossYellow, ItemBlockAsphaltYCrossYellow.class, "asphaltYCrossYellow");
+        GameRegistry.registerBlock(blockAsphaltXCrossYellow, ItemBlockAsphaltXCrossYellow.class, "asphaltXCrossYellow");
+        GameRegistry.registerBlock(blockAsphaltXCross, ItemBlockAsphaltXCross.class, "asphaltXCross");
+        GameRegistry.registerBlock(blockAsphalt, ItemBlockAsphalt.class, "asphaltBlock");
+        GameRegistry.registerBlock(blockAsphaltCorner, ItemBlockAsphaltCorner.class, "asphaltCorner");
+        GameRegistry.registerBlock(blockAsphaltArrow, ItemBlockAsphaltArrow.class, "asphaltArrow");
+        GameRegistry.registerBlock(blockAsphaltWordExit, ItemBlockAsphaltWordExit.class, "asphaltWordExit");
 
         GameRegistry.registerBlock(singleSlabAsphalt, ItemBlockSlabAsphalt.class, "singleSlabAsphalt");
         GameRegistry.registerBlock(doubleSlabAsphalt, ItemBlockSlabAsphalt.class, "doubleSlabAsphalt");

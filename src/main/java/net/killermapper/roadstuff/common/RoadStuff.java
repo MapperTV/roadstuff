@@ -79,7 +79,7 @@ public class RoadStuff
         @Override
         public Item getTabIconItem()
         {
-            return Item.getItemFromBlock(RoadStuffBlocks.blockAsphaltLine);
+            return Item.getItemFromBlock(RoadStuffBlocks.blockCone);
         }
 
         @SideOnly(Side.CLIENT)

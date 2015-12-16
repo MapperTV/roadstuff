@@ -34,10 +34,10 @@ import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemBlockAsphaltBase01 extends ItemBlock
+public class ItemBlockAsphalt extends ItemBlock
 {
 
-    public ItemBlockAsphaltBase01(Block block)
+    public ItemBlockAsphalt(Block block)
     {
         super(block);
         this.setMaxDamage(0);

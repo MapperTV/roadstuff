@@ -26,17 +26,20 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.items.asphalt;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltXCrossYellow;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltWordExit;
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemBlockAsphaltLines04 extends ItemBlock
+public class ItemBlockAsphaltWordExit extends ItemBlock
 {
-    public ItemBlockAsphaltLines04(Block block)
+    public ItemBlockAsphaltWordExit(Block block)
     {
         super(block);
         this.setMaxDamage(0);
@@ -57,11 +60,17 @@ public class ItemBlockAsphaltLines04 extends ItemBlock
     public String getUnlocalizedName(ItemStack stack)
     {
         int metadata = stack.getItemDamage();
-        if(metadata < 0 || metadata >= BlockAsphaltXCrossYellow.subBlock.length)
+        if(metadata < 0 || metadata >= BlockAsphaltWordExit.subBlock.length)
         {
             metadata = 0;
         }
-        return super.getUnlocalizedName() + "." + BlockAsphaltXCrossYellow.subBlock[metadata];
+        return super.getUnlocalizedName() + "." + BlockAsphaltWordExit.subBlock[metadata];
+    }
+    
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show)
+    {
+        if(stack.getItemDamage() == 3)
+        list.add("OpieOP CLOYSTER HAS OP DEFENSE OpieOP");
     }
 
 }

@@ -2,16 +2,31 @@
 itemGroup.RoadStuff=Road Stuff
 
 //Items
-item.bitumen.name=Bitumen
+item.bitumen.itemBitumen.name=Bitumen
+item.bitumen.itemLiquidBitumen.name=Liquid Bitumen
 item.paint.name=Paint
+item.ironPart.itemIronStick.name=Iron Stick
+item.ironPart.itemIronPlate.name=Iron Plate
 
 //Blocks
-tile.asphalt01.name=Asphalt
-tile.asphalt02.name=Asphalt with white line
-tile.asphalt03.asphalt01.name=Metadata Block 1
-tile.asphalt03.asphalt02.name=Metadata Block 2
-tile.asphalt03.asphalt03.name=Metadata Block 3
-tile.asphalt03.asphalt04.name=Metadata Block 4
+tile.concreteLine.concretesimplewhiteline.name=Concrete Block with Simple White Line
+tile.concreteLine.concretesimpleyellowline.name=Concrete Block with Simple Yellow Line
+tile.concreteLine.concretelargewhiteline.name=Concrete Block with Large White Line
+tile.concreteLine.concretelargeyellowline.name=Concrete Block with Large Yellow Line
+tile.concreteLine.concretedoublewhiteline.name=Concrete Block with Double White Line
+tile.concreteLine.concretedoubleyellowline.name=Concrete Block with Double Yellow Line
+
+tile.asphaltWord1.wordop.name=Asphalt Block with OP mark
+
+tile.cone.cone01.name=Traffic Cone
+tile.cone.cone02.name=Traffic Large Cone
+tile.cone.cone03.name=Traffic Pole
+
+tile.trafficSign.signpost.name=Traffic Sign Pole
+tile.trafficSign.sign.name=Traffic Sign
+
+tile.bitumenOre.name=Bitumen Ore
+tile.bitumenBlock.name=Bitumen Block
 
 //Debug
 tile.entitytest.number=Value : %d

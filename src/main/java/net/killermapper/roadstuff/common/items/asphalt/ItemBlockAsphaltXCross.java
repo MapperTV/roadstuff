@@ -28,15 +28,15 @@ package net.killermapper.roadstuff.common.items.asphalt;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltArrow;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltXCross;
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-public class ItemBlockAsphaltArrows01 extends ItemBlock
+public class ItemBlockAsphaltXCross extends ItemBlock
 {
-    public ItemBlockAsphaltArrows01(Block block)
+    public ItemBlockAsphaltXCross(Block block)
     {
         super(block);
         this.setMaxDamage(0);
@@ -57,11 +57,11 @@ public class ItemBlockAsphaltArrows01 extends ItemBlock
     public String getUnlocalizedName(ItemStack stack)
     {
         int metadata = stack.getItemDamage();
-        if(metadata < 0 || metadata >= BlockAsphaltArrow.subBlock.length)
+        if(metadata < 0 || metadata >= BlockAsphaltXCross.subBlock.length)
         {
             metadata = 0;
         }
-        return super.getUnlocalizedName() + "." + BlockAsphaltArrow.subBlock[metadata];
+        return super.getUnlocalizedName() + "." + BlockAsphaltXCross.subBlock[metadata];
     }
 
 }
