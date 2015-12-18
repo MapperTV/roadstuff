@@ -45,8 +45,8 @@ import net.minecraft.world.World;
 
 public class BlockConcreteArrow extends Block
 {
-    public static String[] subBlock = new String[] {"whitearrowc", "yellowarrowc", "doublewhitearrowc", "doubleyellowarrowc"};
-    private IIcon concreteBase, whiteArrowC, yellowArrowC, doubleWhiteArrowC, doubleYellowArrowC;
+    public static String[] subBlock = new String[] {"whitearrow", "yellowarrow", "doublewhitearrow", "doubleyellowarrow"};
+    private IIcon concreteBase, whiteArrow, yellowArrow, doubleWhiteArrow, doubleYellowArrow;
 
     public BlockConcreteArrow()
     {
@@ -84,10 +84,10 @@ public class BlockConcreteArrow extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.concreteBase = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteBase");
-        this.whiteArrowC = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteWhiteArrow");
-        this.yellowArrowC = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteYellowArrow");
-        this.doubleWhiteArrowC = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDoubleWhiteArrow");
-        this.doubleYellowArrowC = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDoubleYellowArrow");
+        this.whiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteWhiteArrow");
+        this.yellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteYellowArrow");
+        this.doubleWhiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDoubleWhiteArrow");
+        this.doubleYellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDoubleYellowArrow");
     }
     
     public IIcon getIcon(int side, int metadata)
@@ -96,19 +96,19 @@ public class BlockConcreteArrow extends Block
         {
             if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
             {
-                return this.whiteArrowC;
+                return this.whiteArrow;
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.yellowArrowC;
+                return this.yellowArrow;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.doubleWhiteArrowC;
+                return this.doubleWhiteArrow;
             }
             if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
             {
-                return this.doubleYellowArrowC;
+                return this.doubleYellowArrow;
             }
         }
         return this.concreteBase;

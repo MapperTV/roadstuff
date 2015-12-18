@@ -232,10 +232,10 @@ public class BlockTrafficSign extends Block
             if(tile instanceof TileEntityBlockTrafficSign)
             {
                 TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
-                player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));
-                player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
-                player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
-                System.out.println(world.loadedTileEntityList);
+                //player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));
+                //player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
+                //player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
+                //System.out.println(world.loadedTileEntityList);
             }
             return true;
         }

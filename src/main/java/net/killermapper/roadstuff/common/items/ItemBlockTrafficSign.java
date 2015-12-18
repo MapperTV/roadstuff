@@ -70,7 +70,8 @@ public class ItemBlockTrafficSign extends ItemBlock
     
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show)
     {
-        list.add("Right-click to configure it.");
+        list.add("Not available in survival yet, sorry!");
+        //list.add("Right-click to configure it.");
     }
 
 }

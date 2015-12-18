@@ -26,8 +26,6 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.init;
 
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
-import net.killermapper.roadstuff.common.items.RoadStuffItems;
 import net.minecraft.item.ItemStack;
 import net.minecraft.stats.Achievement;
 import net.minecraftforge.common.AchievementPage;

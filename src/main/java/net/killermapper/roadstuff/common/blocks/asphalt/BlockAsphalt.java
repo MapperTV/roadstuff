@@ -40,7 +40,7 @@ import net.minecraft.util.IIcon;
 public class BlockAsphalt extends Block
 {
 
-    public static String[] subBlockAsphaltBase01 = new String[] {"asphalt", "sewermanhole"};
+    public static String[] subBlockAsphaltBase01 = new String[] {"asphalt", "manhole"};
     private IIcon asphaltBase, sewerManhole;
 
     public BlockAsphalt()
@@ -65,7 +65,7 @@ public class BlockAsphalt extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltBase");
-        this.sewerManhole = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSewerManhole");
+        this.sewerManhole = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltManhole");
     }
 
     public IIcon getIcon(int side, int metadata)

@@ -24,10 +24,13 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.items;
+package net.killermapper.roadstuff.common.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.killermapper.roadstuff.common.RoadStuff;
+import net.killermapper.roadstuff.common.items.ItemBitumen;
+import net.killermapper.roadstuff.common.items.ItemBrush;
+import net.killermapper.roadstuff.common.items.ItemIronPart;
 import net.minecraft.item.Item;
 
 public class RoadStuffItems

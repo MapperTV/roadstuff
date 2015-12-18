@@ -24,10 +24,15 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-package net.killermapper.roadstuff.common.blocks;
+package net.killermapper.roadstuff.common.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 import net.killermapper.roadstuff.common.RoadStuff;
+import net.killermapper.roadstuff.common.blocks.BlockBase;
+import net.killermapper.roadstuff.common.blocks.BlockCone;
+import net.killermapper.roadstuff.common.blocks.BlockRoadstuffOre;
+import net.killermapper.roadstuff.common.blocks.BlockTrafficLigth;
+import net.killermapper.roadstuff.common.blocks.BlockTrafficSign;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphalt;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltArrow;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltCorner;
@@ -56,15 +61,15 @@ import net.killermapper.roadstuff.common.blocks.concrete.BlockSlabConcreteLine;
 import net.killermapper.roadstuff.common.items.ItemBlockCone;
 import net.killermapper.roadstuff.common.items.ItemBlockTrafficLight;
 import net.killermapper.roadstuff.common.items.ItemBlockTrafficSign;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltArrow;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphalt;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltArrow;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltCorner;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltLine;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltWordExit;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltXCross;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltXCrossYellow;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltYCross;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltYCrossYellow;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltXCrossYellow;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltXCross;
-import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltWordExit;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockSlabAsphalt;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockSlabAsphaltCorner;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockSlabAsphaltCornerDouble;
@@ -135,7 +140,6 @@ public class RoadStuffBlocks
     public static Block blockTrafficSign;
 
     // Test Blocks
-    public static Block blockEntityTest;
 
     public static void initBlocks()
     {
@@ -188,7 +192,6 @@ public class RoadStuffBlocks
         blockTrafficLight = new BlockTrafficLigth().setBlockName("trafficLight");
 
         // Test
-        blockEntityTest = new TestEntityBlock().setHardness(1.0F).setResistance(10.0F).setBlockName("EntityTest").setBlockTextureName(RoadStuff.MODID + ":blockTest").setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
 
         registerBlocks();
         setHarvestLevels();
@@ -297,6 +300,5 @@ public class RoadStuffBlocks
         GameRegistry.registerBlock(blockTrafficSign, ItemBlockTrafficSign.class, "trafficSign");
 
         // Test Blocks
-        GameRegistry.registerBlock(blockEntityTest, "entityTest");
     }
 }

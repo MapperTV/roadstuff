@@ -45,8 +45,8 @@ import net.minecraft.world.World;
 
 public class BlockAsphaltXCross extends Block
 {
-    public static String[] subBlock = new String[] {"simplewhitetcross", "simplewhitetcorner", "simplewhitetdoublecross", "simplewhitexcross"};
-    private IIcon asphaltBase, simplewhiteTCross, simplewhiteXCross, simplewhiteTDoubleCross, simplewhiteTCorner;
+    public static String[] subBlock = new String[] {"simplewhitexsidecross", "simplewhitexcornercross", "simplewhitexdoublecross", "simplewhitexcross"};
+    private IIcon asphaltBase, simpleWhiteXsideCross, simpleWhiteXcornerCross, simpleWhiteXdoubleCross, simpleWhiteXCross;
 
     public BlockAsphaltXCross()
     {
@@ -84,10 +84,10 @@ public class BlockAsphaltXCross extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltBase");
-        this.simplewhiteTCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleWhiteTCross");
-        this.simplewhiteXCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleWhiteXCross");
-        this.simplewhiteTDoubleCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleWhiteTDoubleCross");
-        this.simplewhiteTCorner = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleWhiteTCorner");
+        this.simpleWhiteXsideCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSWLXsideCross");
+        this.simpleWhiteXCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSWLXfullCross");
+        this.simpleWhiteXdoubleCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSWLXdoubleCross");
+        this.simpleWhiteXcornerCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSWLXcornerCross");
     }
 
     public IIcon getIcon(int side, int metadata)
@@ -96,19 +96,19 @@ public class BlockAsphaltXCross extends Block
         {
             if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
             {
-                return this.simplewhiteTCross;
+                return this.simpleWhiteXsideCross;
             }
             if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
             {
-                return this.simplewhiteTCorner;
+                return this.simpleWhiteXcornerCross;
             }
             if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
             {
-                return this.simplewhiteTDoubleCross;
+                return this.simpleWhiteXdoubleCross;
             }
             if(metadata == 3)
             {
-                return this.simplewhiteXCross;
+                return this.simpleWhiteXCross;
             }
         }
         return this.asphaltBase;

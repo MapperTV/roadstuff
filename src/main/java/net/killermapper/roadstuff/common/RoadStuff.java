@@ -41,18 +41,16 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.client.gui.RoadStuffGuiHandler;
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
-import net.killermapper.roadstuff.common.blocks.TileEntityTest;
 import net.killermapper.roadstuff.common.events.EventPlayer;
 import net.killermapper.roadstuff.common.init.Chisel;
 import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
+import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffItems;
 import net.killermapper.roadstuff.common.init.RoadStuffRecipes;
-import net.killermapper.roadstuff.common.items.RoadStuffItems;
-import net.killermapper.roadstuff.common.network.GuiHandler;
 import net.killermapper.roadstuff.common.network.PacketSignType;
-import net.killermapper.roadstuff.common.trafficLigth.PacketTrafficChannel;
 import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
 import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
+import net.killermapper.roadstuff.common.trafficLigth.PacketTrafficChannel;
 import net.killermapper.roadstuff.common.world.OreGeneration;
 import net.killermapper.roadstuff.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -112,7 +110,6 @@ public class RoadStuff
     public void init(FMLInitializationEvent event)
     {
         GameRegistry.registerTileEntity(TileEntityTrafficLigth.class, "roadstuff:tileTrafficLigth");
-        GameRegistry.registerTileEntity(TileEntityTest.class, RoadStuff.MODID + ":entityTest");
         GameRegistry.registerTileEntity(TileEntityBlockTrafficSign.class, RoadStuff.MODID + ":entityBlockSign");
 
         FMLCommonHandler.instance().bus().register(new EventPlayer());

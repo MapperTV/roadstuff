@@ -7,7 +7,7 @@ import net.minecraft.block.material.Material;
 public class BlockBase extends Block
 {
 
-    protected BlockBase(Material material)
+    public BlockBase(Material material)
     {
         super(material);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);

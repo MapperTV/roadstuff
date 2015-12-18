@@ -28,8 +28,8 @@ package net.killermapper.roadstuff.common.items.concrete;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockSlabConcreteLine;
+import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;

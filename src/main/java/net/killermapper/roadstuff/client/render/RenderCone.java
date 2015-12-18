@@ -153,7 +153,7 @@ public class RenderCone implements ISimpleBlockRenderingHandler
     @Override
     public int getRenderId()
     {
-        return ClientProxy.renderCone01Id;
+        return ClientProxy.renderConeId;
     }
 
     private void renderInInventory(Tessellator tessellator, RenderBlocks renderer, Block block, int metadata)

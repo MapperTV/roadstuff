@@ -26,9 +26,9 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.events;
 
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
 import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
-import net.killermapper.roadstuff.common.items.RoadStuffItems;
+import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffItems;
 import net.killermapper.roadstuff.common.trafficLigth.TrafficLigthParamatersRegister;
 import net.minecraft.item.Item;
 import cpw.mods.fml.common.eventhandler.SubscribeEvent;

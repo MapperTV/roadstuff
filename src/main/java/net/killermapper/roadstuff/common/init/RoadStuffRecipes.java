@@ -1,8 +1,6 @@
 package net.killermapper.roadstuff.common.init;
 
 import cpw.mods.fml.common.registry.GameRegistry;
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
-import net.killermapper.roadstuff.common.items.RoadStuffItems;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.oredict.OreDictionary;
@@ -129,28 +127,43 @@ public class RoadStuffRecipes
         GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 6, 2), new Object[] {"XXX", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltLine, 1, 4)});
         GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 6, 3), new Object[] {"XXX", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltLine, 1, 5)});
 
-        // Slabs rotated to 90° - Temporary way until I fix rotating slabs
-        // GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 4), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 0)});
-        // GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 5), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 1)});
-        // GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 6), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 2)});
-        // GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 7), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 3)});
+        GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabConcrete, 6, 0), new Object[] {"XXX", 'X', new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0)});
+        GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabConcrete, 6, 1), new Object[] {"XXX", 'X', new ItemStack(RoadStuffBlocks.blockConcrete, 1, 1)});
+        GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabConcreteLine, 6, 0), new Object[] {"XXX", 'X', new ItemStack(RoadStuffBlocks.blockConcreteLine, 1, 0)});
+        GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabConcreteLine, 6, 1), new Object[] {"XXX", 'X', new ItemStack(RoadStuffBlocks.blockConcreteLine, 1, 1)});
+        GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabConcreteLine, 6, 2), new Object[] {"XXX", 'X', new ItemStack(RoadStuffBlocks.blockConcreteLine, 1, 4)});
+        GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabConcreteLine, 6, 3), new Object[] {"XXX", 'X', new ItemStack(RoadStuffBlocks.blockConcreteLine, 1, 5)});
+        
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphaltCorner, 3, 0), new Object[] {"  X", " X ", "X  ", 'X', new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 0)}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphaltCorner, 3, 1), new Object[] {"  X", " X ", "X  ", 'X', new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 1)}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphaltCornerDouble, 3, 0), new Object[] {"  X", " X ", "X  ", 'X', new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 2)}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphaltCornerDouble, 3, 1), new Object[] {"  X", " X ", "X  ", 'X', new ItemStack(RoadStuffBlocks.singleSlabAsphaltLine, 1, 3)}));
+
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.singleSlabConcreteCorner, 3, 0), new Object[] {"  X", " X ", "X  ", 'X', new ItemStack(RoadStuffBlocks.singleSlabConcreteLine, 1, 0)}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.singleSlabConcreteCorner, 3, 1), new Object[] {"  X", " X ", "X  ", 'X', new ItemStack(RoadStuffBlocks.singleSlabConcreteLine, 1, 1)}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.singleSlabConcreteCornerDouble, 3, 0), new Object[] {"  X", " X ", "X  ", 'X', new ItemStack(RoadStuffBlocks.singleSlabConcreteLine, 1, 2)}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.singleSlabConcreteCornerDouble, 3, 1), new Object[] {"  X", " X ", "X  ", 'X', new ItemStack(RoadStuffBlocks.singleSlabConcreteLine, 1, 3)}));
 
         // Other crafts
+        GameRegistry.addRecipe(new ItemStack(RoadStuffItems.itemBitumen, 9, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockBitumenBlock, 1, 0)});
         GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockBitumenBlock, 1, 0), new Object[] {"XXX", "XXX", "XXX", 'X', new ItemStack(RoadStuffItems.itemBitumen, 1, 0)});
+
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.blockCone, 4, 0), new Object[] {" Z ", "ZYZ", "XXX", 'Z', "dyeOrange", 'Y', "dyeWhite", 'X', new ItemStack(RoadStuffItems.itemBitumen, 1, 1)}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.blockCone, 4, 1), new Object[] {"ZZZ", "YYY", "XXX", 'Z', "dyeOrange", 'Y', "dyeWhite", 'X', new ItemStack(RoadStuffItems.itemBitumen, 1, 1)}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.blockCone, 4, 2), new Object[] {" Z ", " Y ", "XXX", 'Z', "dyeOrange", 'Y', "dyeWhite", 'X', new ItemStack(RoadStuffItems.itemBitumen, 1, 1)}));
-        GameRegistry.addRecipe(new ItemStack(RoadStuffItems.itemBitumen, 9, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockBitumenBlock, 1, 0)});
+
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffItems.itemIronPart, 4, 0), new Object[] {"I", "I", 'I', "ingotIron"}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffItems.itemIronPart, 4, 1), new Object[] {"I", "I", "I", 'I', "ingotIron"}));
-        GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockTrafficSign, 1, 0), new Object[] {"S", "S", 'S', new ItemStack(RoadStuffItems.itemIronPart, 1, 0)});
-        GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockTrafficSign, 1, 1), new Object[] {"P", "S", 'P', new ItemStack(RoadStuffItems.itemIronPart, 1, 1), 'S', new ItemStack(RoadStuffItems.itemIronPart, 1, 0)});
+        // GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockTrafficSign, 1, 0), new Object[] {"S", "S", 'S', new ItemStack(RoadStuffItems.itemIronPart, 1, 0)});
+        // GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockTrafficSign, 1, 1), new Object[] {"P", "S", 'P', new ItemStack(RoadStuffItems.itemIronPart, 1, 1), 'S', new
+        // ItemStack(RoadStuffItems.itemIronPart, 1, 0)});
 
         // Furnace recipes
         GameRegistry.addSmelting(new ItemStack(RoadStuffItems.itemBitumen, 1, 0), new ItemStack(RoadStuffItems.itemBitumen, 1, 1), 0.35F);
         GameRegistry.addSmelting(new ItemStack(Blocks.gravel, 1), new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0), 0.35F);
         GameRegistry.addSmelting(new ItemStack(RoadStuffBlocks.blockBitumenOre, 1, 0), new ItemStack(RoadStuffItems.itemBitumen, 8, 0), 0.35F);
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.blockConcreteLine, 1, 0), new Object[] {"F F", 'F', "concrete"}));
+        
+        //GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.blockConcreteLine, 1, 0), new Object[] {"F F", 'F', "concrete"}));
 
     }
 
@@ -160,6 +173,8 @@ public class RoadStuffRecipes
         OreDictionary.registerOre("dustBitumen", new ItemStack(RoadStuffItems.itemBitumen, 0, 0));
         OreDictionary.registerOre("oreBitumen", new ItemStack(RoadStuffBlocks.blockBitumenOre));
         OreDictionary.registerOre("blockBitumen", new ItemStack(RoadStuffBlocks.blockBitumenBlock));
+        OreDictionary.registerOre("ironStick", new ItemStack(RoadStuffItems.itemIronPart, 0, 0));
+        OreDictionary.registerOre("ironPlate", new ItemStack(RoadStuffItems.itemIronPart, 0, 1));
     }
 
 }

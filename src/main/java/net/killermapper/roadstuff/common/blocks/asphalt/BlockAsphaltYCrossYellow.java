@@ -84,10 +84,10 @@ public class BlockAsphaltYCrossYellow extends Block
     public void registerBlockIcons(IIconRegister iconRegister)
     {
         this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltBase");
-        this.simpleyellowYrightCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleyellowYrightCross");
-        this.simpleyellowYleftCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleyellowYleftCross");
-        this.simpleyellowYfullCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleyellowYfullCross");
-        this.simpleyellowYCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSimpleyellowYCross");
+        this.simpleyellowYrightCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSYLYrightCross");
+        this.simpleyellowYleftCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSYLYleftCross");
+        this.simpleyellowYfullCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSYLYfullCross");
+        this.simpleyellowYCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSYLYCross");
     }
 
     public IIcon getIcon(int side, int metadata)

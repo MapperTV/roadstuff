@@ -29,7 +29,7 @@ package net.killermapper.roadstuff.common.world;
 import java.util.Random;
 
 import cpw.mods.fml.common.IWorldGenerator;
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;

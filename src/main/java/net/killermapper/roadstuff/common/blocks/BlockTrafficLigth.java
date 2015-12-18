@@ -18,7 +18,7 @@ public class BlockTrafficLigth extends Block implements ITileEntityProvider {
 	
 	private IIcon greenIcon;
 
-	protected BlockTrafficLigth() {
+	public BlockTrafficLigth() {
 		super(Material.rock);
 		this.setResistance(5.0F);
 		this.setHardness(3.0F);
@@ -50,7 +50,7 @@ public class BlockTrafficLigth extends Block implements ITileEntityProvider {
         }
     }
 	
-	@Override
+	@SideOnly(Side.CLIENT)
 	public int getRenderType()
 	{
 		return ClientProxy.renderTrafficLigthId;

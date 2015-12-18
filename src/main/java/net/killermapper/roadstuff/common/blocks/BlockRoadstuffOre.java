@@ -29,7 +29,8 @@ package net.killermapper.roadstuff.common.blocks;
 import java.util.Random;
 
 import net.killermapper.roadstuff.common.RoadStuff;
-import net.killermapper.roadstuff.common.items.RoadStuffItems;
+import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffItems;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.Item;
@@ -38,7 +39,7 @@ import net.minecraft.world.IBlockAccess;
 
 public class BlockRoadstuffOre extends Block
 {
-    protected BlockRoadstuffOre()
+    public BlockRoadstuffOre()
     {
         super(Material.rock);
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);

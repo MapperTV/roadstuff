@@ -8,23 +8,131 @@ item.paint.name=Paint
 item.ironPart.itemIronStick.name=Iron Stick
 item.ironPart.itemIronPlate.name=Iron Plate
 
-//Blocks
-tile.concreteLine.concretesimplewhiteline.name=Concrete Block with Simple White Line
-tile.concreteLine.concretesimpleyellowline.name=Concrete Block with Simple Yellow Line
-tile.concreteLine.concretelargewhiteline.name=Concrete Block with Large White Line
-tile.concreteLine.concretelargeyellowline.name=Concrete Block with Large Yellow Line
-tile.concreteLine.concretedoublewhiteline.name=Concrete Block with Double White Line
-tile.concreteLine.concretedoubleyellowline.name=Concrete Block with Double Yellow Line
+//Concrete Blocks
+tile.concreteBlock.base.name=Concrete Block
+tile.concreteBlock.manhole.name=Concrete Block with Manhole Trap
 
+tile.concreteLine.simplewhiteline.name=Concrete Block with Simple White Line
+tile.concreteLine.simpleyellowline.name=Concrete Block with Simple Yellow Line
+tile.concreteLine.largewhiteline.name=Concrete Block with Large White Line
+tile.concreteLine.largeyellowline.name=Concrete Block with Large Yellow Line
+tile.concreteLine.doublewhiteline.name=Concrete Block with Double White Line
+tile.concreteLine.doubleyellowline.name=Concrete Block with Double Yellow Line
+
+tile.concreteYCross.simplewhiteyrightcross.name=Concrete Block with Y White Line
+tile.concreteYCross.simplewhiteyleftcross.name=Concrete Block with Y White Line
+tile.concreteYCross.simplewhiteyfullcross.name=Concrete Block with Y White Line
+tile.concreteYCross.simplewhiteycross.name=Concrete Block with Y White Line
+
+tile.concreteXCross.simplewhitexsidecross.name=Concrete Block with White T Cross
+tile.concreteXCross.simplewhitexcornercross.name=Concrete Block with White 90° Angle
+tile.concreteXCross.simplewhitexdoublecross.name=Concrete Block with Double White T Cross
+tile.concreteXCross.simplewhitexcross.name=Concrete Block with X Cross White Line
+
+tile.concreteYCrossYellow.simpleyellowyrightcross.name=Concrete Block with Y Yellow Line
+tile.concreteYCrossYellow.simpleyellowyleftcross.name=Concrete Block with Y Yellow Line
+tile.concreteYCrossYellow.simpleyellowyfullcross.name=Concrete Block with Y Yellow Line
+tile.concreteYCrossYellow.simpleyellowycross.name=Concrete Block with Y Yellow Line
+
+tile.concreteXCrossYellow.simpleyellowxsidecross.name=Concrete Block with Yellow T Cross
+tile.concreteXCrossYellow.simpleyellowxcornercross.name=Concrete Block with Yellow 90° Angle
+tile.concreteXCrossYellow.simpleyellowxdoublecross.name=Concrete Block with Double Yellow T Cross
+tile.concreteXCrossYellow.simpleyellowxcross.name=Concrete Block with X Cross Yellow Line
+
+tile.concreteCorner.simplewhitecorner.name=Concrete Block with Simple White Corner
+tile.concreteCorner.doublewhitecorner.name=Concrete Block with Double White Corner
+tile.concreteCorner.simpleyellowcorner.name=Concrete Block with Simple Yellow Corner
+tile.concreteCorner.doubleyellowcorner.name=Concrete Block with Double Yellow Corner
+
+tile.concreteArrow.whitearrow.name=Concrete Block with White Arrow
+tile.concreteArrow.yellowarrow.name=Concrete Block with Yellow Arrow
+tile.concreteArrow.doublewhitearrow.name=Concrete Block with White Double Arrow
+tile.concreteArrow.doubleyellowarrow.name=Concrete Block with Yellow Double Arrow
+
+tile.slabConcrete.base.name=Concrete Slab
+tile.slabConcrete.manhole.name=Concrete Slab with Manhole Trap
+
+tile.slabConcreteLine.simplewhiteline.name=Concrete Slab with Simple White Line
+tile.slabConcreteLine.doublewhiteline.name=Concrete Slab with Double White Line
+tile.slabConcreteLine.simpleyellowline.name=Concrete Slab with Simple Yellow Line
+tile.slabConcreteLine.doubleyellowline.name=Concrete Slab with Double Yellow Line
+
+tile.slabConcreteCorner.simplewhitecorner.name=Concrete Slab with Simple White Corner
+tile.slabConcreteCornerDouble.doublewhitecorner.name=Concrete Slab with Double White Corner
+tile.slabConcreteCorner.simpleyellowcorner.name=Concrete Slab with Simple Yellow Corner
+tile.slabConcreteCornerDouble.doubleyellowcorner.name=Concrete Slab with Double Yellow Corner
+
+//Asphalt Blocks
+tile.asphaltBlock.asphalt.name=Asphalt Block
+tile.asphaltBlock.manhole.name=Asphalt Block with Manhole Trap
+
+tile.asphaltLine.simplewhiteline.name=Asphalt Block with Simple White Line
+tile.asphaltLine.simpleyellowline.name=Asphalt Block with Simple Yellow Line
+tile.asphaltLine.largewhiteline.name=Asphalt Block with Large White Line
+tile.asphaltLine.largeyellowline.name=Asphalt Block with Large Yellow Line
+tile.asphaltLine.doublewhiteline.name=Asphalt Block with Double White Line
+tile.asphaltLine.doubleyellowline.name=Asphalt Block with Double Yellow Line
+
+tile.asphaltYCross.simplewhiteyrightcross.name=Asphalt Block with Y White Line
+tile.asphaltYCross.simplewhiteyleftcross.name=Asphalt Block with Y White Line
+tile.asphaltYCross.simplewhiteyfullcross.name=Asphalt Block with Y White Line
+tile.asphaltYCross.simplewhiteycross.name=Asphalt Block with Y White Line
+
+tile.asphaltXCross.simplewhitexsidecross.name=Asphalt Block with White T Cross
+tile.asphaltXCross.simplewhitexcornercross.name=Asphalt Block with White 90° Angle
+tile.asphaltXCross.simplewhitexdoublecross.name=Asphalt Block with Double White T Cross
+tile.asphaltXCross.simplewhitexcross.name=Asphalt Block with X Cross White Line
+
+tile.asphaltYCrossYellow.simpleyellowyrightcross.name=Asphalt Block with Y Yellow Line
+tile.asphaltYCrossYellow.simpleyellowyleftcross.name=Asphalt Block with Y Yellow Line
+tile.asphaltYCrossYellow.simpleyellowyfullcross.name=Asphalt Block with Y Yellow Line
+tile.asphaltYCrossYellow.simpleyellowycross.name=Asphalt Block with Y Yellow Line
+
+tile.asphaltXCrossYellow.simpleyellowxsidecross.name=Asphalt Block with Yellow T Cross
+tile.asphaltXCrossYellow.simpleyellowxcornercross.name=Asphalt Block with Yellow 90° Angle
+tile.asphaltXCrossYellow.simpleyellowxdoublecross.name=Asphalt Block with Double Yellow T Cross
+tile.asphaltXCrossYellow.simpleyellowxcross.name=Asphalt Block with X Cross Yellow Line
+
+tile.asphaltCorner.simplewhitecorner.name=Asphalt Block with Simple White Corner
+tile.asphaltCorner.doublewhitecorner.name=Asphalt Block with Double White Corner
+tile.asphaltCorner.simpleyellowcorner.name=Asphalt Block with Simple Yellow Corner
+tile.asphaltCorner.doubleyellowcorner.name=Asphalt Block with Double Yellow Corner
+
+tile.asphaltArrow.whitearrow.name=Asphalt Block with White Arrow
+tile.asphaltArrow.yellowarrow.name=Asphalt Block with Yellow Arrow
+tile.asphaltArrow.doublewhitearrow.name=Asphalt Block with White Double Arrow
+tile.asphaltArrow.doubleyellowarrow.name=Asphalt Block with Yellow Double Arrow
+
+tile.slabAsphalt.base.name=Asphalt Slab
+tile.slabAsphalt.manhole.name=Asphalt Slab with Manhole Trap
+
+tile.slabAsphaltLine.simplewhiteline.name=Asphalt Slab with Simple White Line
+tile.slabAsphaltLine.doublewhiteline.name=Asphalt Slab with Double White Line
+tile.slabAsphaltLine.simpleyellowline.name=Asphalt Slab with Simple Yellow Line
+tile.slabAsphaltLine.doubleyellowline.name=Asphalt Slab with Double Yellow Line
+
+tile.slabAsphaltCorner.simplewhitecorner.name=Asphalt Slab with Simple White Corner
+tile.slabAsphaltCornerDouble.doublewhitecorner.name=Asphalt Slab with Double White Corner
+tile.slabAsphaltCorner.simpleyellowcorner.name=Asphalt Slab with Simple Yellow Corner
+tile.slabAsphaltCornerDouble.doubleyellowcorner.name=Asphalt Slab with Double Yellow Corner
+
+tile.asphaltWord1.wordex.name=Asphalt Block with EX mark
+tile.asphaltWord1.wordit.name=Asphalt Block with IT mark
+tile.asphaltWord1.wordst.name=Asphalt Block with ST mark
 tile.asphaltWord1.wordop.name=Asphalt Block with OP mark
 
+//Cones
 tile.cone.cone01.name=Traffic Cone
-tile.cone.cone02.name=Traffic Large Cone
+tile.cone.cone02.name=Large Traffic Cone
 tile.cone.cone03.name=Traffic Pole
 
+//Signs
 tile.trafficSign.signpost.name=Traffic Sign Pole
 tile.trafficSign.sign.name=Traffic Sign
 
+tile.trafficLight.name=Traffic Light (WIP)
+
+//Ores
 tile.bitumenOre.name=Bitumen Ore
 tile.bitumenBlock.name=Bitumen Block
 
@@ -47,7 +155,6 @@ achievement.roadstuff_craftcone=Not A Video Player
 achievement.roadstuff_craftcone.desc=Craft a Traffic Cone.
 
 //GUI
-tile.sign=Trafic Sign
 gui.trafficsign.done=Done
 gui.trafficsign.title=Sign Config
 gui.trafficsign.type=Type

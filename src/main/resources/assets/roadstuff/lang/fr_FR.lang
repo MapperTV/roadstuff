@@ -1,6 +1,161 @@
-item.bitumen.name=Bitume
-item.paint.name=Peinture
-tile.asphalt01.name=Asphalte
-tile.asphalt02.name=Asphalte avec ligne blanche
+//General
+itemGroup.RoadStuff=Road Stuff
 
-gui.trafficsign.done=Valider
+//Items
+item.bitumen.itemBitumen.name=Bitume
+item.bitumen.itemLiquidBitumen.name=Bitume Liquide
+item.paint.name=Pinceau
+item.ironPart.itemIronStick.name=Bâton de fer
+item.ironPart.itemIronPlate.name=Plaque de fer
+
+//Concrete Blocs
+tile.concreteBlock.base.name=Bloc de béton
+tile.concreteBlock.manhole.name=Bloc de béton avec Bouche d'Égoût
+
+tile.concreteLine.simplewhiteline.name=Bloc de béton avec Ligne Blanche Simple
+tile.concreteLine.simpleyellowline.name=Bloc de béton avec Ligne Jaune Simple
+tile.concreteLine.largewhiteline.name=Bloc de béton avec Ligne Blanche Large
+tile.concreteLine.largeyellowline.name=Bloc de béton avec Ligne Jaune Large
+tile.concreteLine.doublewhiteline.name=Bloc de béton avec Ligne Blanche Double
+tile.concreteLine.doubleyellowline.name=Bloc de béton avec Ligne Jaune Double
+
+tile.concreteYCross.simplewhiteyrightcross.name=Bloc de béton avec Ligne Blanche en Y
+tile.concreteYCross.simplewhiteyleftcross.name=Bloc de béton avec Ligne Blanche en Y
+tile.concreteYCross.simplewhiteyfullcross.name=Bloc de béton avec Ligne Blanche en Y
+tile.concreteYCross.simplewhiteycross.name=Bloc de béton avec Ligne Blanche en Y
+
+tile.concreteXCross.simplewhitexsidecross.name=Bloc de béton avec Croisement en T Blanc
+tile.concreteXCross.simplewhitexcornercross.name=Bloc de béton avec Angle à 90° Blanc
+tile.concreteXCross.simplewhitexdoublecross.name=Bloc de béton avec Double Croisement en T Blanc
+tile.concreteXCross.simplewhitexcross.name=Bloc de béton avec Croisement en X Blanc
+
+tile.concreteYCrossYellow.simpleyellowyrightcross.name=Bloc de béton avec Ligne Jaune en Y
+tile.concreteYCrossYellow.simpleyellowyleftcross.name=Bloc de béton avec Ligne Jaune en Y
+tile.concreteYCrossYellow.simpleyellowyfullcross.name=Bloc de béton avec Ligne Jaune en Y
+tile.concreteYCrossYellow.simpleyellowycross.name=Bloc de béton avec Ligne Jaune en Y
+
+tile.concreteXCrossYellow.simpleyellowxsidecross.name=Bloc de béton avec Croisement en T Jaune
+tile.concreteXCrossYellow.simpleyellowxcornercross.name=Bloc de béton avec Angle à 90° Jaune
+tile.concreteXCrossYellow.simpleyellowxdoublecross.name=Bloc de béton avec Double Croisement en T Jaune
+tile.concreteXCrossYellow.simpleyellowxcross.name=Bloc de béton avec Croisement en X Jaune
+
+tile.concreteCorner.simplewhitecorner.name=Bloc de béton avec Coin en Blanc Simple
+tile.concreteCorner.doublewhitecorner.name=Bloc de béton avec Coin en Blanc Double
+tile.concreteCorner.simpleyellowcorner.name=Bloc de béton avec Coin en Jaune Simple
+tile.concreteCorner.doubleyellowcorner.name=Bloc de béton avec Coin en Jaune Double
+
+tile.concreteArrow.whitearrow.name=Bloc de béton avec Flèche Blanche
+tile.concreteArrow.yellowarrow.name=Bloc de béton avec Flèche Jaune
+tile.concreteArrow.doublewhitearrow.name=Bloc de béton avec Double Flèche Blanche
+tile.concreteArrow.doubleyellowarrow.name=Bloc de béton avec Double Flèche Jaune
+
+tile.slabConcrete.base.name=Dalle de Béton
+tile.slabConcrete.manhole.name=Dalle de Béton avec Bouche d'Égoût
+
+tile.slabConcreteLine.simplewhiteline.name=Dalle de Béton avec Ligne Blanche Simple
+tile.slabConcreteLine.doublewhiteline.name=Dalle de Béton avec Ligne Blanche Double
+tile.slabConcreteLine.simpleyellowline.name=Dalle de Béton avec Ligne Jaune Simple
+tile.slabConcreteLine.doubleyellowline.name=Dalle de Béton avec Ligne Jaune Double
+
+tile.slabConcreteCorner.simplewhitecorner.name=Dalle de Béton avec Coin en Blanc Simple
+tile.slabConcreteCornerDouble.doublewhitecorner.name=Dalle de Béton avec Coin en Blanc Double
+tile.slabConcreteCorner.simpleyellowcorner.name=Dalle de Béton avec Coin en Jaune Simple
+tile.slabConcreteCornerDouble.doubleyellowcorner.name=Dalle de Béton avec Coin en Jaune Double
+
+//Bloc d'Asphaltes
+tile.asphaltBlock.asphalt.name=Bloc d'Asphalte
+tile.asphaltBlock.manhole.name=Bloc d'Asphalte avec Bouche d'Égoût
+
+tile.asphaltLine.simplewhiteline.name=Bloc d'Asphalte avec Ligne Blanche Simple
+tile.asphaltLine.simpleyellowline.name=Bloc d'Asphalte avec Ligne Jaune Simple
+tile.asphaltLine.largewhiteline.name=Bloc d'Asphalte avec Ligne Blanche Large
+tile.asphaltLine.largeyellowline.name=Bloc d'Asphalte avec Ligne Jaune Large
+tile.asphaltLine.doublewhiteline.name=Bloc d'Asphalte avec Ligne Blanche Double
+tile.asphaltLine.doubleyellowline.name=Bloc d'Asphalte avec Ligne Jaune Double
+
+tile.asphaltYCross.simplewhiteyrightcross.name=Bloc d'Asphalte avec Ligne Blanche en Y
+tile.asphaltYCross.simplewhiteyleftcross.name=Bloc d'Asphalte avec Ligne Blanche en Y
+tile.asphaltYCross.simplewhiteyfullcross.name=Bloc d'Asphalte avec Ligne Blanche en Y
+tile.asphaltYCross.simplewhiteycross.name=Bloc d'Asphalte avec Ligne Blanche en Y
+
+tile.asphaltXCross.simplewhitexsidecross.name=Bloc d'Asphalte avec Croisement en T Blanc
+tile.asphaltXCross.simplewhitexcornercross.name=Bloc d'Asphalte avec Angle à 90° Blanc
+tile.asphaltXCross.simplewhitexdoublecross.name=Bloc d'Asphalte avec Double Croisement en T Blanc
+tile.asphaltXCross.simplewhitexcross.name=Bloc d'Asphalte avec Croisement en X Blanc
+
+tile.asphaltYCrossYellow.simpleyellowyrightcross.name=Bloc d'Asphalte avec Ligne Jaune en Y
+tile.asphaltYCrossYellow.simpleyellowyleftcross.name=Bloc d'Asphalte avec Ligne Jaune en Y
+tile.asphaltYCrossYellow.simpleyellowyfullcross.name=Bloc d'Asphalte avec Ligne Jaune en Y
+tile.asphaltYCrossYellow.simpleyellowycross.name=Bloc d'Asphalte avec Ligne Jaune en Y
+
+tile.asphaltXCrossYellow.simpleyellowxsidecross.name=Bloc d'Asphalte avec Croisement en T Jaune
+tile.asphaltXCrossYellow.simpleyellowxcornercross.name=Bloc d'Asphalte avec Angle à 90° Jaune
+tile.asphaltXCrossYellow.simpleyellowxdoublecross.name=Bloc d'Asphalte avec Double Croisement en T Jaune
+tile.asphaltXCrossYellow.simpleyellowxcross.name=Bloc d'Asphalte avec Croisement en X Jaune
+
+tile.asphaltCorner.simplewhitecorner.name=Bloc d'Asphalte avec Coin en Blanc Simple
+tile.asphaltCorner.doublewhitecorner.name=Bloc d'Asphalte avec Coin en Blanc Double
+tile.asphaltCorner.simpleyellowcorner.name=Bloc d'Asphalte avec Coin en Jaune Simple
+tile.asphaltCorner.doubleyellowcorner.name=Bloc d'Asphalte avec Coin en Jaune Double
+
+tile.asphaltArrow.whitearrow.name=Bloc d'Asphalte avec Flèche Blanche
+tile.asphaltArrow.yellowarrow.name=Bloc d'Asphalte avec Flèche Jaune
+tile.asphaltArrow.doublewhitearrow.name=Bloc d'Asphalte avec Double Flèche Blanche
+tile.asphaltArrow.doubleyellowarrow.name=Bloc d'Asphalte avec Double Flèche Jaune
+
+tile.slabAsphalt.base.name=Dalle d'Asphalte
+tile.slabAsphalt.manhole.name=Dalle d'Asphalte avec Bouche d'Égoût
+
+tile.slabAsphaltLine.simplewhiteline.name=Dalle d'Asphalte avec Ligne Blanche Simple
+tile.slabAsphaltLine.doublewhiteline.name=Dalle d'Asphalte avec Ligne Blanche Double
+tile.slabAsphaltLine.simpleyellowline.name=Dalle d'Asphalte avec Ligne Jaune Simple
+tile.slabAsphaltLine.doubleyellowline.name=Dalle d'Asphalte avec Ligne Jaune Double
+
+tile.slabAsphaltCorner.simplewhitecorner.name=Dalle d'Asphalte avec Coin en Blanc Simple
+tile.slabAsphaltCornerDouble.doublewhitecorner.name=Dalle d'Asphalte avec Coin en Blanc Double
+tile.slabAsphaltCorner.simpleyellowcorner.name=Dalle d'Asphalte avec Coin en Jaune Simple
+tile.slabAsphaltCornerDouble.doubleyellowcorner.name=Dalle d'Asphalte avec Coin en Jaune Double
+
+tile.asphaltWord1.wordex.name=Bloc d'Asphalte avec Marquage EX
+tile.asphaltWord1.wordit.name=Bloc d'Asphalte avec Marquage IT
+tile.asphaltWord1.wordst.name=Bloc d'Asphalte avec Marquage ST
+tile.asphaltWord1.wordop.name=Bloc d'Asphalte avec Marquage OP
+
+//Cones
+tile.cone.cone01.name=Cône Routier
+tile.cone.cone02.name=Cône Routier Large
+tile.cone.cone03.name=Poteau Routier
+
+//Signs
+tile.trafficSign.signpost.name=Poteau de Panneau de Signalisation
+tile.trafficSign.sign.name=Panneau de Signalisation
+
+tile.trafficLight.name=Feu Tricolore (WIP)
+
+//Ores
+tile.bitumenOre.name=Minerai de Bitume
+tile.bitumenBlock.name=Bloc de Bitume
+
+//Debug
+tile.entitytest.number=Valeur : %d
+tile.signdirection.number=Direction : %d
+tile.signshape.number=Forme : %d
+tile.signtype.number=Type : %d
+
+//Achievements
+achievement.roadstuff_getbitumen=Mineur Routier
+achievement.roadstuff_getbitumen.desc=Récupérez du Bitume.
+achievement.roadstuff_smeltbitumen=HotRod
+achievement.roadstuff_smeltbitumen.desc=Faits fondre du Bitume dans un four.
+achievement.roadstuff_craftasphalt=En Route!
+achievement.roadstuff_craftasphalt.desc=Fabriquer des Blocs d'Asphalte.
+achievement.roadstuff_craftconcrete=Gravier Cuistot
+achievement.roadstuff_craftconcrete.desc=Fabriquer du Béton.
+achievement.roadstuff_craftcone=Ceci N'est Pas Un Lecteur Vidéo
+achievement.roadstuff_craftcone.desc=Fabriquer un Cône Routier.
+
+//GUI
+gui.trafficsign.done=OK
+gui.trafficsign.title=Configuration
+gui.trafficsign.type=Type
+gui.trafficsign.shape=Forme

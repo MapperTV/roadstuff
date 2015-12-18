@@ -42,13 +42,13 @@ import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
 public class ClientProxy extends CommonProxy
 {
 
-    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderSlabAsphaltLineId, renderCone01Id, renderSignPostId, renderTrafficLigthId, renderSlabAsphaltCornerId;
+    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderSlabAsphaltLineId, renderConeId, renderSignPostId, renderTrafficLigthId, renderSlabAsphaltCornerId;
 
     @Override
     public void registerRender()
     {
-        renderCone01Id = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(renderCone01Id, new RenderCone());
+        renderConeId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(renderConeId, new RenderCone());
         renderAsphaltLinesId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderAsphaltLinesId, new RenderAsphaltLines());
         renderAsphaltCornerId = RenderingRegistry.getNextAvailableRenderId();

@@ -32,7 +32,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.RoadStuff;
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
 import net.killermapper.roadstuff.proxy.ClientProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;

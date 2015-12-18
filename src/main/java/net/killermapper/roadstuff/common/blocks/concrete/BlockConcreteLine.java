@@ -46,7 +46,7 @@ import net.minecraft.world.World;
 public class BlockConcreteLine extends Block
 {
 
-    public static String[] subBlock = new String[] {"concretesimplewhiteline", "concretesimpleyellowline", "concretelargewhiteline", "concretelargeyellowline", "concretedoublewhiteline", "concretedoubleyellowline"};
+    public static String[] subBlock = new String[] {"simplewhiteline", "simpleyellowline", "largewhiteline", "largeyellowline", "doublewhiteline", "doubleyellowline"};
     private IIcon concreteBase, simpleWhiteLine, simpleYellowLine, largeWhiteLine, largeYellowLine, doubleWhiteLine, doubleYellowLine;
 
     public BlockConcreteLine()

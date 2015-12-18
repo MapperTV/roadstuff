@@ -119,7 +119,7 @@ public class BlockCone extends Block
     @SideOnly(Side.CLIENT)
     public int getRenderType()
     {
-        return ClientProxy.renderCone01Id;
+        return ClientProxy.renderConeId;
     }
 
     @SideOnly(Side.CLIENT)

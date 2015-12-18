@@ -32,7 +32,7 @@ import java.util.Random;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.RoadStuff;
-import net.killermapper.roadstuff.common.blocks.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
@@ -61,7 +61,7 @@ public class BlockSlabAsphalt extends BlockSlab
     public IIcon getIcon(int side, int metadata)
     {
         int k = metadata & 7;
-        return k == 0 ? RoadStuffBlocks.blockAsphalt.getBlockTextureFromSide(side) : k == 1 ? RoadStuffBlocks.blockAsphalt.getIcon(side, 1) : k == 2 ? Blocks.diamond_block.getBlockTextureFromSide(side) : k == 3 ? Blocks.gold_block.getBlockTextureFromSide(side) : Blocks.iron_block.getBlockTextureFromSide(side);
+        return k == 0 ? RoadStuffBlocks.blockAsphalt.getBlockTextureFromSide(side) : k == 1 ? RoadStuffBlocks.blockAsphalt.getIcon(side, 1) : RoadStuffBlocks.blockAsphalt.getBlockTextureFromSide(side);
     }
 
     @SideOnly(Side.CLIENT)

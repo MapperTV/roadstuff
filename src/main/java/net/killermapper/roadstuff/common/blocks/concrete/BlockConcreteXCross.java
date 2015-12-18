@@ -45,7 +45,7 @@ import net.minecraft.world.World;
 
 public class BlockConcreteXCross extends Block
 {
-    public static String[] subBlock = new String[] {"concretesimplewhitexsidecross", "concretesimplewhitexcornercross", "concretesimplewhitexdoublecross", "concretesimplewhitexcross"};
+    public static String[] subBlock = new String[] {"simplewhitexsidecross", "simplewhitexcornercross", "simplewhitexdoublecross", "simplewhitexcross"};
     private IIcon concreteBase, simpleWhiteXsideCross, simpleWhiteXcornerCross, simpleWhiteXdoubleCross, simpleWhiteXCross;
 
     public BlockConcreteXCross()
