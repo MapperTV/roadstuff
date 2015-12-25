@@ -28,15 +28,11 @@ package net.killermapper.roadstuff.common.items;
 
 import java.util.List;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.killermapper.roadstuff.common.blocks.BlockTrafficSign;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.IIcon;
 
 public class ItemBlockTrafficLight extends ItemBlock
 {
@@ -52,5 +48,11 @@ public class ItemBlockTrafficLight extends ItemBlock
         list.add(EnumChatFormatting.BOLD + "This is still heavily WIP!!!");
         list.add("It has no craft or any use.");
     }
+    
+    @Override
+	public int getMetadata(int metadata)
+	{
+		return metadata;
+	}
 
 }

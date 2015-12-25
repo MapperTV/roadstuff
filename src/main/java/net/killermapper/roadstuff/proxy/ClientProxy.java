@@ -37,6 +37,7 @@ import net.killermapper.roadstuff.client.render.RenderSlabAsphaltLine;
 import net.killermapper.roadstuff.client.render.RenderTrafficLigth;
 import net.killermapper.roadstuff.client.render.RenderTrafficSign;
 import net.killermapper.roadstuff.client.render.TESRTrafficLigth;
+import net.killermapper.roadstuff.common.tiles.TileEntityBoundingBlock;
 import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
 
 public class ClientProxy extends CommonProxy
@@ -62,6 +63,7 @@ public class ClientProxy extends CommonProxy
         renderTrafficLigthId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderTrafficLigthId, new RenderTrafficLigth());
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrafficLigth.class, new TESRTrafficLigth());
+        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBoundingBlock.class, new TESRTrafficLigth());
         renderSignPostId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderSignPostId, new RenderTrafficSign());
     }

@@ -12,7 +12,7 @@ public class TrafficLigthParamatersRegister {
 	static {
 		channels.put(0, new TrafficLigthParameters(1800));
 	}
-
+	
 	public static void setChannelParam(int channel, TrafficLigthParameters param)
 	{
 		if(param == null) return;
@@ -40,7 +40,7 @@ public class TrafficLigthParamatersRegister {
 		}
 		return -1;
 	}
-	
+
 	public static int getStateReversedFrom(int channel)
 	{
 		if(channels.containsKey(channel))
@@ -49,7 +49,7 @@ public class TrafficLigthParamatersRegister {
 		}
 		return -1;
 	}
-	
+
 	public static int getDelayFrom(int channel)
 	{
 		if(channels.containsKey(channel))
@@ -58,5 +58,4 @@ public class TrafficLigthParamatersRegister {
 		}
 		return -1;
 	}
-
 }

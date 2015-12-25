@@ -19,6 +19,7 @@ public class GuiTrafficLigth extends GuiScreen {
 	private GuiButton confirmButton;
 	private GuiCheckBox isReversed;
 	private GuiTextField chanDelay;
+	private GuiCheckBox isStarted;
 
 	public GuiTrafficLigth(TileEntityTrafficLigth tile)
 	{
@@ -60,6 +61,9 @@ public class GuiTrafficLigth extends GuiScreen {
 
 		this.isReversed = new GuiCheckBox(1, this.width / 10, this.height / 10 + 75, "Reverse", this.tile.isReversed());
 		this.buttonList.add(this.isReversed);
+		
+		this.isStarted = new GuiCheckBox(2, this.width / 10, this.height / 10 + 90, "On", this.tile.isStarted());
+		this.buttonList.add(this.isStarted);
 	}
 
 	@Override
@@ -74,9 +78,10 @@ public class GuiTrafficLigth extends GuiScreen {
 					try {
 						int id = Integer.parseInt(this.chanID.getText());
 						int delay = Integer.parseInt(this.chanDelay.getText());
-						RoadStuff.network.sendToServer(new PacketTrafficChannel(id, tile.xCoord, tile.yCoord, tile.zCoord, this.isReversed.isChecked(), delay));
+						RoadStuff.network.sendToServer(new PacketTrafficChannel(id, tile.xCoord, tile.yCoord, tile.zCoord, this.isReversed.isChecked(), delay, this.isStarted.isChecked()));
 						this.tile.setChannel(id);
 						this.tile.setReversed(this.isReversed.isChecked());
+						this.tile.setStarted(this.isStarted.isChecked());
 						this.mc.thePlayer.closeScreen();
 					} catch (NumberFormatException e) {
 						this.chanID.setText(String.valueOf(this.tile.getChannel()));
