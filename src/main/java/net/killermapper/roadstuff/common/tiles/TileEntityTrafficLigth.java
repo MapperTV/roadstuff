@@ -14,6 +14,7 @@ public class TileEntityTrafficLigth extends TileEntity implements IChannelProvid
 	private boolean isReversed = false;
 	private int state = 3;
 	private boolean isStarted = false;
+	private float direction = 0;
 
 	@Override
 	public void writeToNBT(NBTTagCompound compound)
@@ -23,6 +24,7 @@ public class TileEntityTrafficLigth extends TileEntity implements IChannelProvid
 		compound.setBoolean("reversed", this.isReversed);
 		compound.setInteger("state", this.state);
 		compound.setBoolean("started", this.isStarted);
+		compound.setFloat("direction", this.direction);
 	}
 
 	@Override
@@ -33,6 +35,7 @@ public class TileEntityTrafficLigth extends TileEntity implements IChannelProvid
 		this.isReversed = compound.getBoolean("reversed");
 		this.state = compound.getInteger("state");
 		this.isStarted = compound.getBoolean("started");
+		this.direction = compound.getFloat("direction");
 	}
 
 	@Override
@@ -92,6 +95,21 @@ public class TileEntityTrafficLigth extends TileEntity implements IChannelProvid
 	public void setStarted(boolean started)
 	{
 		this.isStarted = started;
+	}
+	
+	public float getDirection()
+	{
+		return this.direction;
+	}
+	
+	public void setDirection(float direction)
+	{
+		this.direction = direction;
+	}
+	
+	public boolean isStarted()
+	{
+		return this.isStarted;
 	}
 
 }

@@ -15,7 +15,7 @@ public class ModelTrafficLigth extends ModelBase
     public ModelTrafficLigth() {
         this.textureWidth = 64;
         this.textureHeight = 32;
-
+        
         this.top = new ModelRenderer(this, 0, 0);
         this.top.mirror = true;
         this.top.addBox(0F, -60F, -7F, 4, 32, 14);
@@ -57,15 +57,16 @@ public class ModelTrafficLigth extends ModelBase
         this.bottomLigth.setRotationPoint(0F, 10F, 0F);
         this.bottomLigth.setTextureSize(64, 32);
         setRotation(this.bottomLigth, 0F, 0F, 0F);
+        
     }
 
-    public void renderAll() {
-        this.top.render(0.0625F);
-        this.base.render(0.0625F);
-        this.rod.render(0.0625F);
-        this.topLigth.render(0.0625F);
-        this.middleLigth.render(0.0625F);
-        this.bottomLigth.render(0.0625F);
+    public void renderAll(float f) {
+        this.top.render(f);
+        this.base.render(f);
+        this.rod.render(f);
+        this.topLigth.render(f);
+        this.middleLigth.render(f);
+        this.bottomLigth.render(f);
     }
     
     public void renderStructure() {

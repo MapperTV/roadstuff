@@ -11,17 +11,18 @@ import cpw.mods.fml.common.network.simpleimpl.MessageContext;
 public class PacketTrafficChannel implements IMessage, IMessageHandler<PacketTrafficChannel, IMessage> {
 
 	private int channel, x, y, z, delay;
-	private boolean reversed;
+	private boolean reversed, started;
 	
 	public PacketTrafficChannel() {}
 	
-	public PacketTrafficChannel(int channel, int x, int y, int z, boolean reversed, int delay) {
+	public PacketTrafficChannel(int channel, int x, int y, int z, boolean reversed, int delay, boolean started) {
 			this.channel = channel;
 			this.x = x;
 			this.y = y;
 			this.z = z;
 			this.reversed = reversed;
 			this.delay = delay;
+			this.started = started;
 	}
 	
 	@Override
@@ -33,6 +34,7 @@ public class PacketTrafficChannel implements IMessage, IMessageHandler<PacketTra
 			TileEntityTrafficLigth tile = (TileEntityTrafficLigth)t;
 			tile.setChannel(message.channel);
 			tile.setReversed(message.reversed);
+			tile.setStarted(message.started);
 			TrafficLigthParamatersRegister.setChannelParam(message.channel, new TrafficLigthParameters(message.delay));
 			tile.markDirty();
 		}
@@ -47,6 +49,7 @@ public class PacketTrafficChannel implements IMessage, IMessageHandler<PacketTra
 		this.z = buf.readInt();
 		this.reversed = buf.readBoolean();
 		this.delay = buf.readInt();
+		this.started = buf.readBoolean();
 	}
 
 	@Override
@@ -57,6 +60,7 @@ public class PacketTrafficChannel implements IMessage, IMessageHandler<PacketTra
 		buf.writeInt(this.z);
 		buf.writeBoolean(this.reversed);
 		buf.writeInt(this.delay);
+		buf.writeBoolean(this.started);
 	}
 
 }
