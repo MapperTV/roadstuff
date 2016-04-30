@@ -1,6 +1,6 @@
 package net.killermapper.roadstuff.common.trafficLigth;
 
-import net.killermapper.roadstuff.common.init.Configuration;
+import net.killermapper.roadstuff.common.init.ConfigurationOld;
 
 
 public class TrafficLigthParameters {
@@ -45,7 +45,7 @@ public class TrafficLigthParameters {
 		{
 			return ORANGE;
 		}
-		else if(this.time <= this.delay / 3 + this.delay / 6 - Configuration.integer.get("traffic.delay"))
+		else if(this.time <= this.delay / 3 + this.delay / 6 - ConfigurationOld.integer.get("traffic.delay"))
 		{
 			return GREEN;
 		}
@@ -62,7 +62,7 @@ public class TrafficLigthParameters {
 
 	public int getState()
 	{
-		if(this.time <= this.delay / 3 + this.delay / 6 || this.time >= this.delay - Configuration.integer.get("traffic.delay"))
+		if(this.time <= this.delay / 3 + this.delay / 6 || this.time >= this.delay - ConfigurationOld.integer.get("traffic.delay"))
 		{
 			return RED;
 		}

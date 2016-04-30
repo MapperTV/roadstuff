@@ -30,6 +30,7 @@ import java.util.Random;
 
 import cpw.mods.fml.common.IWorldGenerator;
 import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffConfig;
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -67,7 +68,10 @@ public class OreGeneration implements IWorldGenerator
 
     private void generateSurface(World world, Random random, int x, int z)
     {
-        this.addOreSpawn(RoadStuffBlocks.blockBitumenOre, 0, Blocks.stone, world, random, x, z, 16, 16, 16, 10, 32, 80);
+        if(RoadStuffConfig.enableBitumen)
+        {
+            this.addOreSpawn(RoadStuffBlocks.blockBitumenOre, 0, Blocks.stone, world, random, x, z, 16, 16, 16, 10, 32, 80);
+        }
     }
 
     private void generateNether(World world, Random random, int x, int z)

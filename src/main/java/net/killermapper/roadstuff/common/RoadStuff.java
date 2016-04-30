@@ -1,9 +1,9 @@
 /*
-Road Stuff - A Minecraft MODification by KillerMapper - 2015
+Road Stuff - A Minecraft MODification by KillerMapper - 2015-2016
 
 The MIT License (MIT)
 
-Copyright (c) 2015 KillerMapper
+Copyright (c) 2015-2016 KillerMapper
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,13 +26,32 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common;
 
+import org.apache.logging.log4j.Logger;
+
+import cpw.mods.fml.client.event.ConfigChangedEvent;
+import cpw.mods.fml.common.FMLCommonHandler;
+import cpw.mods.fml.common.Loader;
+import cpw.mods.fml.common.Mod;
+import cpw.mods.fml.common.Mod.EventHandler;
+import cpw.mods.fml.common.Mod.Instance;
+import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLInitializationEvent;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
+import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import cpw.mods.fml.common.event.FMLServerStartingEvent;
+import cpw.mods.fml.common.eventhandler.SubscribeEvent;
+import cpw.mods.fml.common.network.NetworkRegistry;
+import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import cpw.mods.fml.common.registry.GameRegistry;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.client.gui.RoadStuffGuiHandler;
 import net.killermapper.roadstuff.common.command.CommandReloadConfig;
 import net.killermapper.roadstuff.common.events.EventPlayer;
 import net.killermapper.roadstuff.common.init.Chisel;
-import net.killermapper.roadstuff.common.init.ConfigurationLoader;
 import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
 import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffConfig;
 import net.killermapper.roadstuff.common.init.RoadStuffItems;
 import net.killermapper.roadstuff.common.init.RoadStuffRecipes;
 import net.killermapper.roadstuff.common.network.PacketSignType;
@@ -44,26 +63,9 @@ import net.killermapper.roadstuff.common.world.OreGeneration;
 import net.killermapper.roadstuff.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
+import net.minecraftforge.common.config.Configuration;
 
-import org.apache.logging.log4j.Logger;
-
-import cpw.mods.fml.common.FMLCommonHandler;
-import cpw.mods.fml.common.Loader;
-import cpw.mods.fml.common.Mod;
-import cpw.mods.fml.common.Mod.EventHandler;
-import cpw.mods.fml.common.Mod.Instance;
-import cpw.mods.fml.common.SidedProxy;
-import cpw.mods.fml.common.event.FMLInitializationEvent;
-import cpw.mods.fml.common.event.FMLPostInitializationEvent;
-import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import cpw.mods.fml.common.event.FMLServerStartingEvent;
-import cpw.mods.fml.common.network.NetworkRegistry;
-import cpw.mods.fml.common.network.simpleimpl.SimpleNetworkWrapper;
-import cpw.mods.fml.common.registry.GameRegistry;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-
-@Mod(modid = RoadStuff.MODID, name = "Road Stuff", version = "0.2.0")
+@Mod(modid = RoadStuff.MODID, name = "Road Stuff", version = "0.3.0", guiFactory = "net.killermapper.roadstuff.common.init.RoadStuffGuiFactory")
 
 public class RoadStuff
 {
@@ -73,6 +75,8 @@ public class RoadStuff
     public static final String MODID = "roadstuff";
 
     public static Logger logger;
+
+    public static Configuration config;
 
     public static SimpleNetworkWrapper network;
 
@@ -101,14 +105,17 @@ public class RoadStuff
     {
         logger = event.getModLog();
 
+        config = new Configuration(event.getSuggestedConfigurationFile());
+        RoadStuffConfig.syncConfig();
+        
         RoadStuffBlocks.initBlocks();
         RoadStuffItems.initItems();
         GameRegistry.registerWorldGenerator(oreGen, 0);
 
         RoadStuffAchievements.initAchievements();
 
-        ConfigurationLoader.load(event.getModConfigurationDirectory());
-
+        // ConfigurationLoader.load(event.getModConfigurationDirectory());
+        
         network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
         network.registerMessage(PacketSignType.Handler.class, PacketSignType.class, 0, Side.SERVER);
         network.registerMessage(PacketTrafficChannel.class, PacketTrafficChannel.class, 1, Side.SERVER);
@@ -116,6 +123,15 @@ public class RoadStuff
         if(Loader.isModLoaded("chisel"))
         {
             Chisel.sendIMC();
+        }
+    }
+    
+    @SubscribeEvent
+    public void onconfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
+    {
+        if(event.modID.equals(RoadStuff.MODID))
+        {
+            RoadStuffConfig.syncConfig();
         }
     }
 
