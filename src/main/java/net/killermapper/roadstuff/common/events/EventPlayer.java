@@ -54,9 +54,6 @@ public class EventPlayer
     {
         if(eventSmelted.smelting.getItem() == RoadStuffItems.itemBitumen) // Need to find how to get metadata here
             eventSmelted.player.triggerAchievement(RoadStuffAchievements.smeltBitumen);
-
-        if(eventSmelted.smelting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockConcrete)) // Need to find how to get metadata here
-            eventSmelted.player.triggerAchievement(RoadStuffAchievements.craftConcrete);
     }
 
     @SubscribeEvent
@@ -64,6 +61,9 @@ public class EventPlayer
     {
         if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockAsphalt) && eventCrafted.crafting.getItemDamage() == 0)
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftAsphalt);
+        
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockConcrete) && eventCrafted.crafting.getItemDamage() == 0)
+            eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftConcrete);
 
         if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockCone))
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftCone);

@@ -46,7 +46,7 @@ import net.minecraft.world.World;
 public class BlockConcreteXCrossYellow extends Block
 {
     public static String[] subBlock = new String[] {"simpleyellowxsidecross", "simpleyellowxdoublecross", "simpleyellowxcornercross", "simpleyellowxcross"};
-    private IIcon concreteBase, simpleYellowXsideCross, simpleYellowXdoubleCross, simpleYellowXcornerCross, simpleYellowXCross;
+    private IIcon concreteBase, simpleYellowXsideCross, simpleYellowXdoubleCross, simpleYellowXcornerCross, simpleYellowXCross, simpleYellowLine, doubleYellowLine;
 
     public BlockConcreteXCrossYellow()
     {
@@ -86,6 +86,8 @@ public class BlockConcreteXCrossYellow extends Block
         this.simpleYellowXdoubleCross = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYLXdoubleCross");
         this.simpleYellowXcornerCross = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYLXcornerCross");
         this.simpleYellowXCross = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYLXfullCross");
+        this.simpleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYL");
+        this.doubleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDYL");
     }
 
     public IIcon getIcon(int side, int metadata)
@@ -109,7 +111,37 @@ public class BlockConcreteXCrossYellow extends Block
                 return this.simpleYellowXCross;
             }
         }
-        return this.concreteBase;
+        if(metadata == 0 || metadata == 1 || metadata == 2 || metadata == 13)
+        {
+            if(side == 4)
+                return this.concreteBase;
+        }
+        if(metadata == 5 || metadata == 8 || metadata == 9 || metadata == 10)
+        {
+            if(side == 5)
+                return this.concreteBase;
+        }
+        if(metadata == 1 || metadata == 4 || metadata == 5 || metadata == 6)
+        {
+            if(side == 2)
+                return this.concreteBase;
+        }
+        if(metadata == 9 || metadata == 12 || metadata == 13 || metadata == 14)
+        {
+            if(side == 3)
+                return this.concreteBase;
+        }
+        if(metadata == 2 && side == 5)
+            return this.doubleYellowLine;
+        if(metadata == 6 && side == 3)
+            return this.doubleYellowLine;
+        if(metadata == 10 && side == 4)
+            return this.doubleYellowLine;
+        if(metadata == 14 && side == 2)
+            return this.doubleYellowLine;
+        if(side == 0)
+            return this.concreteBase;
+        return this.simpleYellowLine;
     }
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)

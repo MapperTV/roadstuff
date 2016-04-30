@@ -37,6 +37,7 @@ import net.killermapper.roadstuff.proxy.ClientProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -46,6 +47,7 @@ import net.minecraft.world.World;
 public class BlockSlabAsphaltLine extends BlockSlab
 {
     public static final String[] StepTypes = new String[] {"simplewhiteline", "simpleyellowline", "doublewhiteline", "doubleyellowline"};
+    private IIcon asphaltBase, simpleWhiteLine, simpleYellowLine, doubleWhiteLine, doubleYellowLine;
 
     public BlockSlabAsphaltLine(boolean isdouble, Material material)
     {
@@ -57,11 +59,86 @@ public class BlockSlabAsphaltLine extends BlockSlab
         }
     }
 
+    public void registerBlockIcons(IIconRegister iconRegister)
+    {
+        this.asphaltBase = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltBase");
+        this.simpleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSWL");
+        this.simpleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSYL");
+        this.doubleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltDWL");
+        this.doubleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltDYL");
+    }
+
+    /*
+     * @SideOnly(Side.CLIENT)
+     * public IIcon getIcon(int side, int metadata)
+     * {
+     * int k = metadata & 7;
+     * return k == 0 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 0) : k == 1 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 1) : k == 2 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 4) : k
+     * == 3 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 5) : k == 4 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 0) : k == 5 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 1) : k == 6 ?
+     * RoadStuffBlocks.blockAsphaltLine.getIcon(side, 4) : k == 7 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 5) : RoadStuffBlocks.blockAsphalt.getIcon(side, 0);
+     * }
+     */
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
     {
-        int k = metadata & 7;
-        return k == 0 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 0) : k == 1 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 1) : k == 2 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 4) : k == 3 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 5) : k == 4 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 0) : k == 5 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 1) : k == 6 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 4) : k == 7 ? RoadStuffBlocks.blockAsphaltLine.getIcon(side, 5) : RoadStuffBlocks.blockAsphalt.getIcon(side, 0);
+        if(side == 1)
+        {
+            if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13)
+            {
+                return this.simpleYellowLine;
+            }
+            if(metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
+            {
+                return this.doubleWhiteLine;
+            }
+            if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
+            {
+                return this.doubleYellowLine;
+            }
+        }
+        if(side == 2 || side == 3)
+        {
+            if(metadata == 0 | metadata == 8)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 1 | metadata == 9)
+            {
+                return this.simpleYellowLine;
+            }
+            if(metadata == 2 | metadata == 10)
+            {
+                return this.doubleWhiteLine;
+            }
+            if(metadata == 3 | metadata == 11)
+            {
+                return this.doubleYellowLine;
+            }
+        }
+        if(side == 4 || side == 5)
+        {
+            if(metadata == 4 | metadata == 12)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 5 | metadata == 13)
+            {
+                return this.simpleYellowLine;
+            }
+            if(metadata == 6 | metadata == 14)
+            {
+                return this.doubleWhiteLine;
+            }
+            if(metadata == 7 | metadata == 15)
+            {
+                return this.doubleYellowLine;
+            }
+        }
+        return this.asphaltBase;
     }
 
     @SideOnly(Side.CLIENT)

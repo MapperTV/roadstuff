@@ -26,11 +26,14 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.items.concrete;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockSlabConcreteLine;
 import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
@@ -257,6 +260,27 @@ public class ItemBlockSlabConcreteLine extends ItemBlock
         else
         {
             return false;
+        }
+    }
+
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show)
+    {
+        switch(stack.getItemDamage())
+        {
+            case 0:
+                list.add(I18n.format("desc.slabConcreteLine.0"));
+                break;
+            case 1:
+                list.add(I18n.format("desc.slabConcreteLine.1"));
+                break;
+            case 2:
+                list.add(I18n.format("desc.slabConcreteLine.2"));
+                break;
+            case 3:
+                list.add(I18n.format("desc.slabConcreteLine.3"));
+                break;
+            default:
+                break;
         }
     }
 }

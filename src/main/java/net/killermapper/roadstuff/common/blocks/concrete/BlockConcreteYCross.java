@@ -46,7 +46,7 @@ import net.minecraft.world.World;
 public class BlockConcreteYCross extends Block
 {
     public static String[] subBlock = new String[] {"simplewhiteyrightcross", "simplewhiteyleftcross", "simplewhiteyfullcross", "simplewhiteycross"};
-    private IIcon concreteBase, simpleWhiteYrightCross, simpleWhiteYleftCross, simpleWhiteYfullCross, simpleWhiteYCross;
+    private IIcon concreteBase, simpleWhiteYrightCross, simpleWhiteYleftCross, simpleWhiteYfullCross, simpleWhiteYCross, simpleWhiteLine;
 
     public BlockConcreteYCross()
     {
@@ -88,6 +88,7 @@ public class BlockConcreteYCross extends Block
         this.simpleWhiteYleftCross = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWLYleftCross");
         this.simpleWhiteYfullCross = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWLYfullCross");
         this.simpleWhiteYCross = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWLYCross");
+        this.simpleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWL");
     }
     
     public IIcon getIcon(int side, int metadata)
@@ -111,7 +112,29 @@ public class BlockConcreteYCross extends Block
                 return this.simpleWhiteYCross;
             }
         }
-        return this.concreteBase;
+        if(metadata == 0 || metadata == 9 || metadata == 15)
+        {
+            if(side == 4)
+                return this.concreteBase;            
+        }
+        if(metadata == 1 || metadata == 8 || metadata == 7)
+        {
+            if(side == 5)
+                return this.concreteBase;            
+        }
+        if(metadata == 3 || metadata == 4 || metadata == 13)
+        {
+            if(side == 2)
+                return this.concreteBase;            
+        }
+        if(metadata == 5 || metadata == 11 || metadata == 12)
+        {
+            if(side == 3)
+                return this.concreteBase;            
+        }
+        if(side == 0)
+            return this.concreteBase;
+        return this.simpleWhiteLine;
     }
     
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)

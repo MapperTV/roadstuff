@@ -46,7 +46,7 @@ import net.minecraft.world.World;
 public class BlockAsphaltXCross extends Block
 {
     public static String[] subBlock = new String[] {"simplewhitexsidecross", "simplewhitexcornercross", "simplewhitexdoublecross", "simplewhitexcross"};
-    private IIcon asphaltBase, simpleWhiteXsideCross, simpleWhiteXcornerCross, simpleWhiteXdoubleCross, simpleWhiteXCross;
+    private IIcon asphaltBase, simpleWhiteXsideCross, simpleWhiteXcornerCross, simpleWhiteXdoubleCross, simpleWhiteXCross, simpleWhiteLine, doubleWhiteLine;
 
     public BlockAsphaltXCross()
     {
@@ -88,6 +88,8 @@ public class BlockAsphaltXCross extends Block
         this.simpleWhiteXCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSWLXfullCross");
         this.simpleWhiteXdoubleCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSWLXdoubleCross");
         this.simpleWhiteXcornerCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSWLXcornerCross");
+        this.simpleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSWL");
+        this.doubleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltDWL");
     }
 
     public IIcon getIcon(int side, int metadata)
@@ -111,7 +113,37 @@ public class BlockAsphaltXCross extends Block
                 return this.simpleWhiteXCross;
             }
         }
-        return this.asphaltBase;
+        if(metadata == 0 || metadata == 1 || metadata == 2 || metadata == 13)
+        {
+            if(side == 4)
+                return this.asphaltBase;
+        }
+        if(metadata == 5 || metadata == 8 || metadata == 9 || metadata == 10)
+        {
+            if(side == 5)
+                return this.asphaltBase;
+        }
+        if(metadata == 1 || metadata == 4 || metadata == 5 || metadata == 6)
+        {
+            if(side == 2)
+                return this.asphaltBase;
+        }
+        if(metadata == 9 || metadata == 12 || metadata == 13 || metadata == 14)
+        {
+            if(side == 3)
+                return this.asphaltBase;
+        }
+        if(metadata == 2 && side == 5)
+            return this.doubleWhiteLine;
+        if(metadata == 6 && side == 3)
+            return this.doubleWhiteLine;
+        if(metadata == 10 && side == 4)
+            return this.doubleWhiteLine;
+        if(metadata == 14 && side == 2)
+            return this.doubleWhiteLine;
+        if(side == 0)
+            return this.asphaltBase;
+        return this.simpleWhiteLine;
     }
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)

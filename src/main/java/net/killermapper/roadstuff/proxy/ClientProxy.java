@@ -32,6 +32,7 @@ import net.killermapper.roadstuff.client.render.RenderAsphaltArrows;
 import net.killermapper.roadstuff.client.render.RenderAsphaltCorner;
 import net.killermapper.roadstuff.client.render.RenderAsphaltLines;
 import net.killermapper.roadstuff.client.render.RenderCone;
+import net.killermapper.roadstuff.client.render.RenderReflector;
 import net.killermapper.roadstuff.client.render.RenderSlabAsphaltCorner;
 import net.killermapper.roadstuff.client.render.RenderSlabAsphaltLine;
 import net.killermapper.roadstuff.client.render.RenderTrafficLigth;
@@ -43,7 +44,7 @@ import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
 public class ClientProxy extends CommonProxy
 {
 
-    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderSlabAsphaltLineId, renderConeId, renderSignPostId, renderTrafficLigthId, renderSlabAsphaltCornerId;
+    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderSlabAsphaltLineId, renderConeId, renderSignPostId, renderTrafficLigthId, renderSlabAsphaltCornerId, renderReflectorId;
 
     @Override
     public void registerRender()
@@ -66,5 +67,7 @@ public class ClientProxy extends CommonProxy
         ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBoundingBlock.class, new TESRTrafficLigth());
         renderSignPostId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderSignPostId, new RenderTrafficSign());
+        renderReflectorId = RenderingRegistry.getNextAvailableRenderId();
+        RenderingRegistry.registerBlockHandler(renderReflectorId, new RenderReflector());
     }
 }

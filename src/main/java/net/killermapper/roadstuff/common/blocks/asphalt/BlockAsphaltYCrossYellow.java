@@ -46,7 +46,7 @@ import net.minecraft.world.World;
 public class BlockAsphaltYCrossYellow extends Block
 {
     public static String[] subBlock = new String[] {"simpleyellowyrightcross", "simpleyellowyleftcross", "simpleyellowyfullcross", "simpleyellowycross"};
-    private IIcon asphaltBase, simpleyellowYrightCross, simpleyellowYleftCross, simpleyellowYfullCross, simpleyellowYCross;
+    private IIcon asphaltBase, simpleyellowYrightCross, simpleyellowYleftCross, simpleyellowYfullCross, simpleyellowYCross, simpleYellowLine;
 
     public BlockAsphaltYCrossYellow()
     {
@@ -88,6 +88,7 @@ public class BlockAsphaltYCrossYellow extends Block
         this.simpleyellowYleftCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSYLYleftCross");
         this.simpleyellowYfullCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSYLYfullCross");
         this.simpleyellowYCross = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSYLYCross");
+        this.simpleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":asphalt/asphaltSYL");
     }
 
     public IIcon getIcon(int side, int metadata)
@@ -111,7 +112,29 @@ public class BlockAsphaltYCrossYellow extends Block
                 return this.simpleyellowYCross;
             }
         }
-        return this.asphaltBase;
+        if(metadata == 0 || metadata == 9 || metadata == 15)
+        {
+            if(side == 4)
+                return this.asphaltBase;            
+        }
+        if(metadata == 1 || metadata == 8 || metadata == 7)
+        {
+            if(side == 5)
+                return this.asphaltBase;            
+        }
+        if(metadata == 3 || metadata == 4 || metadata == 13)
+        {
+            if(side == 2)
+                return this.asphaltBase;            
+        }
+        if(metadata == 5 || metadata == 11 || metadata == 12)
+        {
+            if(side == 3)
+                return this.asphaltBase;            
+        }
+        if(side == 0)
+            return this.asphaltBase;
+        return this.simpleYellowLine;
     }
 
     public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase living, ItemStack stack)

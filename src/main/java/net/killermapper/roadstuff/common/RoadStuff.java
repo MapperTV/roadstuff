@@ -63,90 +63,90 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-@Mod(modid = RoadStuff.MODID, name = "Road Stuff", version = "0.1")
+@Mod(modid = RoadStuff.MODID, name = "Road Stuff", version = "0.2.0")
 
 public class RoadStuff
 {
-	@Instance("roadstuff")
-	public static RoadStuff instance;
+    @Instance("roadstuff")
+    public static RoadStuff instance;
 
-	public static final String MODID = "roadstuff";
-	
-	public static Logger logger;
+    public static final String MODID = "roadstuff";
 
-	public static SimpleNetworkWrapper network;
+    public static Logger logger;
 
-	OreGeneration oreGen = new OreGeneration();
+    public static SimpleNetworkWrapper network;
 
-	@SidedProxy(clientSide = "net.killermapper.roadstuff.proxy.ClientProxy", serverSide = "net.killermapper.roadstuff.proxy.CommonProxy")
-	public static CommonProxy proxy;
+    OreGeneration oreGen = new OreGeneration();
 
-	public static CreativeTabs RoadStuffCreativeTabs = new CreativeTabs("RoadStuff")
-	{
-		@Override
-		public Item getTabIconItem()
-		{
-			return Item.getItemFromBlock(RoadStuffBlocks.blockCone);
-		}
+    @SidedProxy(clientSide = "net.killermapper.roadstuff.proxy.ClientProxy", serverSide = "net.killermapper.roadstuff.proxy.CommonProxy")
+    public static CommonProxy proxy;
 
-		@SideOnly(Side.CLIENT)
-		public int func_151243_f()
-		{
-			return 0;
-		}
-	};
+    public static CreativeTabs RoadStuffCreativeTabs = new CreativeTabs("RoadStuff")
+    {
+        @Override
+        public Item getTabIconItem()
+        {
+            return Item.getItemFromBlock(RoadStuffBlocks.blockCone);
+        }
 
-	@EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-	{
-		logger = event.getModLog();
-		
-		RoadStuffBlocks.initBlocks();
-		RoadStuffItems.initItems();
-		GameRegistry.registerWorldGenerator(oreGen, 0);
+        @SideOnly(Side.CLIENT)
+        public int func_151243_f()
+        {
+            return 0;
+        }
+    };
 
-		RoadStuffAchievements.initAchievements();
+    @EventHandler
+    public void preInit(FMLPreInitializationEvent event)
+    {
+        logger = event.getModLog();
 
-		ConfigurationLoader.load(event.getModConfigurationDirectory());
+        RoadStuffBlocks.initBlocks();
+        RoadStuffItems.initItems();
+        GameRegistry.registerWorldGenerator(oreGen, 0);
 
-		network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
-		network.registerMessage(PacketSignType.Handler.class, PacketSignType.class, 0, Side.SERVER);
-		network.registerMessage(PacketTrafficChannel.class, PacketTrafficChannel.class, 1, Side.SERVER);
+        RoadStuffAchievements.initAchievements();
 
-		if(Loader.isModLoaded("chisel"))
-		{
-			Chisel.sendIMC();
-		}
-	}
+        ConfigurationLoader.load(event.getModConfigurationDirectory());
 
-	@EventHandler
-	public void init(FMLInitializationEvent event)
-	{
-		GameRegistry.registerTileEntity(TileEntityTrafficLigth.class, RoadStuff.MODID + ":tileTrafficLigth");
-		GameRegistry.registerTileEntity(TileEntityBlockTrafficSign.class, RoadStuff.MODID + ":entityBlockSign");
-		GameRegistry.registerTileEntity(TileEntityBoundingBlock.class, RoadStuff.MODID + ":tileBoundingBlock");
+        network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
+        network.registerMessage(PacketSignType.Handler.class, PacketSignType.class, 0, Side.SERVER);
+        network.registerMessage(PacketTrafficChannel.class, PacketTrafficChannel.class, 1, Side.SERVER);
 
-		FMLCommonHandler.instance().bus().register(new EventPlayer());
-		// MinecraftForge.EVENT_BUS.register(new EventPlayer());
+        if(Loader.isModLoaded("chisel"))
+        {
+            Chisel.sendIMC();
+        }
+    }
 
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new RoadStuffGuiHandler());
+    @EventHandler
+    public void init(FMLInitializationEvent event)
+    {
+        GameRegistry.registerTileEntity(TileEntityTrafficLigth.class, RoadStuff.MODID + ":tileTrafficLigth");
+        GameRegistry.registerTileEntity(TileEntityBlockTrafficSign.class, RoadStuff.MODID + ":entityBlockSign");
+        GameRegistry.registerTileEntity(TileEntityBoundingBlock.class, RoadStuff.MODID + ":tileBoundingBlock");
 
-		proxy.registerRender();
+        FMLCommonHandler.instance().bus().register(new EventPlayer());
+        // MinecraftForge.EVENT_BUS.register(new EventPlayer());
 
-		RoadStuffRecipes.initRecipes();
+        NetworkRegistry.INSTANCE.registerGuiHandler(instance, new RoadStuffGuiHandler());
 
-	}
+        proxy.registerRender();
 
-	@EventHandler
-	public void PostInit(FMLPostInitializationEvent event)
-	{
+        RoadStuffRecipes.initRecipes();
 
-	}
+    }
 
-	@EventHandler
-	public void onServerStart(FMLServerStartingEvent event)
-	{
-		event.registerServerCommand(new CommandReloadConfig());
-	}
+    @EventHandler
+    public void PostInit(FMLPostInitializationEvent event)
+    {
+
+    }
+
+    @EventHandler
+    public void onServerStart(FMLServerStartingEvent event)
+    {
+        event.registerServerCommand(new CommandReloadConfig());
+    }
 
 }

@@ -37,6 +37,7 @@ import net.killermapper.roadstuff.proxy.ClientProxy;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
 import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -46,6 +47,7 @@ import net.minecraft.world.World;
 public class BlockSlabConcreteCorner extends BlockSlab
 {
     public static final String[] StepTypes = new String[] {"simplewhitecorner", "simpleyellowcorner"};
+    private IIcon concreteBase, simpleWhiteCorner, simpleYellowCorner, simpleWhiteLine, simpleYellowLine;
 
     public BlockSlabConcreteCorner(boolean isdouble, Material material)
     {
@@ -57,11 +59,74 @@ public class BlockSlabConcreteCorner extends BlockSlab
         }
     }
 
+    public void registerBlockIcons(IIconRegister iconRegister)
+    {
+        this.concreteBase = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteBase");
+        this.simpleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWC");
+        this.simpleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYC");
+        this.simpleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWL");
+        this.simpleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYL");
+    }
+
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int metadata)
     {
-        int k = metadata & 7;
-        return k == 0 ? RoadStuffBlocks.blockConcreteCorner.getIcon(side, 0) : k == 1 ? RoadStuffBlocks.blockConcreteCorner.getIcon(side, 1) : k == 2 ? RoadStuffBlocks.blockConcreteCorner.getIcon(side, 0) : k == 3 ? RoadStuffBlocks.blockConcreteCorner.getIcon(side, 1) : k == 4 ? RoadStuffBlocks.blockConcreteCorner.getIcon(side, 0) : k == 5 ? RoadStuffBlocks.blockConcreteCorner.getIcon(side, 1) : k == 6 ? RoadStuffBlocks.blockConcreteCorner.getIcon(side, 0) : k == 7 ? RoadStuffBlocks.blockConcreteCorner.getIcon(side, 1) : RoadStuffBlocks.blockConcrete.getIcon(side, 0);
+        if(side == 1)
+        {
+            if(metadata == 0 || metadata == 4 || metadata == 8 || metadata == 12 | metadata == 2 || metadata == 6 || metadata == 10 || metadata == 14)
+            {
+                return this.simpleWhiteCorner;
+            }
+            if(metadata == 1 || metadata == 5 || metadata == 9 || metadata == 13 | metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
+            {
+                return this.simpleYellowCorner;
+            }
+        }
+        if(side == 3 || side == 5)
+        {
+            if(metadata == 0 | metadata == 8)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 1 | metadata == 9)
+            {
+                return this.simpleYellowLine;
+            }
+        }
+        if(side == 3 || side == 4)
+        {
+            if(metadata == 2 | metadata == 10)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 3 | metadata == 11)
+            {
+                return this.simpleYellowLine;
+            }
+        }
+        if(side == 2 || side == 4)
+        {
+            if(metadata == 4 | metadata == 12)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 5 | metadata == 13)
+            {
+                return this.simpleYellowLine;
+            }
+        }
+        if(side == 5 || side == 2)
+        {
+            if(metadata == 6 | metadata == 14)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 7 | metadata == 15)
+            {
+                return this.simpleYellowLine;
+            }
+        }
+        return this.concreteBase;
     }
 
     @SideOnly(Side.CLIENT)

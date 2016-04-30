@@ -46,7 +46,7 @@ import net.minecraft.world.World;
 public class BlockConcreteArrow extends Block
 {
     public static String[] subBlock = new String[] {"whitearrow", "yellowarrow", "doublewhitearrow", "doubleyellowarrow"};
-    private IIcon concreteBase, whiteArrow, yellowArrow, doubleWhiteArrow, doubleYellowArrow;
+    private IIcon concreteBase, whiteArrow, yellowArrow, doubleWhiteArrow, doubleYellowArrow, simpleWhiteLine, simpleYellowLine;
 
     public BlockConcreteArrow()
     {
@@ -88,6 +88,8 @@ public class BlockConcreteArrow extends Block
         this.yellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteYellowArrow");
         this.doubleWhiteArrow = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDoubleWhiteArrow");
         this.doubleYellowArrow = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDoubleYellowArrow");
+        this.simpleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWL");
+        this.simpleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYL");
     }
     
     public IIcon getIcon(int side, int metadata)
@@ -109,6 +111,50 @@ public class BlockConcreteArrow extends Block
             if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
             {
                 return this.doubleYellowArrow;
+            }
+        }
+        if(side == 3)
+        {
+            if(metadata == 0 | metadata == 2)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 1 | metadata == 3)
+            {
+                return this.simpleYellowLine;
+            }
+        }
+        if(side == 4)
+        {
+            if(metadata == 4 | metadata == 6)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 5 | metadata == 7)
+            {
+                return this.simpleYellowLine;
+            }
+        }
+        if(side == 2)
+        {
+            if(metadata == 8 | metadata == 10)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 9 | metadata == 11)
+            {
+                return this.simpleYellowLine;
+            }
+        }
+        if(side == 2 || side == 5)
+        {
+            if(metadata == 12 | metadata == 14)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 13 | metadata == 15)
+            {
+                return this.simpleYellowLine;
             }
         }
         return this.concreteBase;

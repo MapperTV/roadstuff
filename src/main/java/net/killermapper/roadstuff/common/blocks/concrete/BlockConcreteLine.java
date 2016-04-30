@@ -126,6 +126,60 @@ public class BlockConcreteLine extends Block
                 return this.doubleYellowLine;
             }
         }
+        if(side == 3 || side == 2)
+        {
+            if(metadata == 0)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 1)
+            {
+                return this.simpleYellowLine;
+            }
+            if(metadata == 2)
+            {
+                return this.largeWhiteLine;
+            }
+            if(metadata == 3)
+            {
+                return this.largeYellowLine;
+            }
+            if(metadata == 4)
+            {
+                return this.doubleWhiteLine;
+            }
+            if(metadata == 5)
+            {
+                return this.doubleYellowLine;
+            }
+        }
+        if(side == 5 || side == 4)
+        {
+            if(metadata == 8)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 9)
+            {
+                return this.simpleYellowLine;
+            }
+            if(metadata == 10)
+            {
+                return this.largeWhiteLine;
+            }
+            if(metadata == 11)
+            {
+                return this.largeYellowLine;
+            }
+            if(metadata == 12)
+            {
+                return this.doubleWhiteLine;
+            }
+            if(metadata == 13)
+            {
+                return this.doubleYellowLine;
+            }
+        }
         return this.concreteBase;
     }
 

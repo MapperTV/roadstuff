@@ -29,6 +29,7 @@ package net.killermapper.roadstuff.common.items;
 import java.util.List;
 
 import net.killermapper.roadstuff.common.RoadStuff;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -48,9 +49,9 @@ public class ItemBrush extends Item
     {
         if(!world.isRemote)
         {
-            player.addChatMessage(new ChatComponentText("serveur : ID " + world.getBlock(x, y, z)));
-            player.addChatMessage(new ChatComponentText("serveur : side " + side));
-            player.addChatMessage(new ChatComponentText("serveur : metadata " + world.getBlockMetadata(x, y, z)));
+            player.addChatMessage(new ChatComponentText("[RoadStuff] ID " + world.getBlock(x, y, z)));
+            player.addChatMessage(new ChatComponentText("[RoadStuff] side " + side));
+            player.addChatMessage(new ChatComponentText("[RoadStuff] metadata " + world.getBlockMetadata(x, y, z)));
         }
         if(world.getBlock(x, y, z).rotateBlock(world, x, y, z, ForgeDirection.getOrientation(side)))
         {

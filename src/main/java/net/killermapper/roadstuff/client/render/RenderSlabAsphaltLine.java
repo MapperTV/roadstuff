@@ -50,11 +50,11 @@ public class RenderSlabAsphaltLine implements ISimpleBlockRenderingHandler
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
     {
-        if(world.getBlockMetadata(x, y, z) >= 4 && world.getBlockMetadata(x, y, z) <= 7)
+        if(world.getBlockMetadata(x, y, z) > 3 && world.getBlockMetadata(x, y, z) < 8)
         {
             renderer.uvRotateTop = 1;
         }
-        if(world.getBlockMetadata(x, y, z) >= 11 && world.getBlockMetadata(x, y, z) <= 15)
+        if(world.getBlockMetadata(x, y, z) > 11 && world.getBlockMetadata(x, y, z) < 16)
         {
             renderer.uvRotateTop = 1;
         }

@@ -54,7 +54,7 @@ public class BlockTrafficSign extends Block
     public static String[] subBlock = new String[] {"signpost", "sign"};
 
     // Sign textures: square - circle - triangle - diamond - misc.
-    private IIcon signSBase, signSNoParkTop, signSNoParkBottom, signSSpeedBase;
+    private IIcon signSBase, signSNoParkTop, signSNoParkBottom, signSSpeedBase, signSOneWayEU;
     private IIcon signCSpeed50;
     private IIcon signTBase;
     private IIcon signDBase;
@@ -93,6 +93,7 @@ public class BlockTrafficSign extends Block
         // Square signs
         this.signSNoParkTop = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signSNoParkTop");
         this.signSNoParkBottom = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signSNoParkBottom");
+        this.signSOneWayEU = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signSOneWayEU");
         // Circle signs
         this.signSSpeedBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signCBase");
         this.signCSpeed50 = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signCSpeed50");
@@ -137,6 +138,8 @@ public class BlockTrafficSign extends Block
                                     return this.signSNoParkBottom;
                                 case 3:
                                     return this.signSSpeedBase;
+                                case 4:
+                                    return this.signSOneWayEU;
                                 default:
                                     return this.signBase;
                             }

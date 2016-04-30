@@ -47,7 +47,7 @@ public class BlockConcreteCorner extends Block
 {
 
     public static String[] subBlock = new String[] {"simplewhitecorner", "simpleyellowcorner", "doublewhitecorner", "doubleyellowcorner"};
-    private IIcon concreteBase, simpleWhiteCorner, simpleYellowCorner, doubleWhiteCorner, doubleYellowCorner;
+    private IIcon concreteBase, simpleWhiteCorner, simpleYellowCorner, doubleWhiteCorner, doubleYellowCorner, simpleWhiteLine, simpleYellowLine, doubleWhiteLine, doubleYellowLine;
 
     public BlockConcreteCorner()
     {
@@ -89,6 +89,10 @@ public class BlockConcreteCorner extends Block
         this.simpleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYC");
         this.doubleWhiteCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDWC");
         this.doubleYellowCorner = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDYC");
+        this.simpleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSWL");
+        this.simpleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteSYL");
+        this.doubleWhiteLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDWL");
+        this.doubleYellowLine = iconRegister.registerIcon(RoadStuff.MODID + ":concrete/concreteDYL");
     }
 
     public IIcon getIcon(int side, int metadata)
@@ -110,6 +114,82 @@ public class BlockConcreteCorner extends Block
             if(metadata == 3 || metadata == 7 || metadata == 11 || metadata == 15)
             {
                 return this.doubleYellowCorner;
+            }
+        }
+        if(side == 3 || side == 5)
+        {
+            if(metadata == 0)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 1)
+            {
+                return this.simpleYellowLine;
+            }
+            if(metadata == 2)
+            {
+                return this.doubleWhiteLine;
+            }
+            if(metadata == 3)
+            {
+                return this.doubleYellowLine;
+            }
+        }
+        if(side == 3 || side == 4)
+        {
+            if(metadata == 4)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 5)
+            {
+                return this.simpleYellowLine;
+            }
+            if(metadata == 6)
+            {
+                return this.doubleWhiteLine;
+            }
+            if(metadata == 7)
+            {
+                return this.doubleYellowLine;
+            }
+        }
+        if(side == 2 || side == 4)
+        {
+            if(metadata == 8)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 9)
+            {
+                return this.simpleYellowLine;
+            }
+            if(metadata == 10)
+            {
+                return this.doubleWhiteLine;
+            }
+            if(metadata == 11)
+            {
+                return this.doubleYellowLine;
+            }
+        }
+        if(side == 2 || side == 5)
+        {
+            if(metadata == 12)
+            {
+                return this.simpleWhiteLine;
+            }
+            if(metadata == 13)
+            {
+                return this.simpleYellowLine;
+            }
+            if(metadata == 14)
+            {
+                return this.doubleWhiteLine;
+            }
+            if(metadata == 15)
+            {
+                return this.doubleYellowLine;
             }
         }
         return this.concreteBase;

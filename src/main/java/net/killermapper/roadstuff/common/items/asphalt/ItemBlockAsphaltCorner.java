@@ -26,10 +26,14 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.items.asphalt;
 
+import java.util.List;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltCorner;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
@@ -64,4 +68,24 @@ public class ItemBlockAsphaltCorner extends ItemBlock
         return super.getUnlocalizedName() + "." + BlockAsphaltCorner.subBlock[metadata];
     }
 
+    public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show)
+    {
+        switch(stack.getItemDamage())
+        {
+            case 0:
+                list.add(I18n.format("desc.asphaltCorner.0"));
+                break;
+            case 1:
+                list.add(I18n.format("desc.asphaltCorner.1"));
+                break;
+            case 2:
+                list.add(I18n.format("desc.asphaltCorner.2"));
+                break;
+            case 3:
+                list.add(I18n.format("desc.asphaltCorner.3"));
+                break;
+            default:
+                break;
+        }
+    }
 }

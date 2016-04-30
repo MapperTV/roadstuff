@@ -67,13 +67,13 @@ public class BlockSlabConcrete extends BlockSlab
     @SideOnly(Side.CLIENT)
     private static boolean func_150003_a(Block block)
     {
-        return block == RoadStuffBlocks.singleSlabConcreteLine;
+        return block == RoadStuffBlocks.singleSlabConcrete;
     }
 
     @SideOnly(Side.CLIENT)
     public Item getItem(World p_149694_1_, int p_149694_2_, int p_149694_3_, int p_149694_4_)
     {
-        return func_150003_a(this) ? Item.getItemFromBlock(RoadStuffBlocks.singleSlabConcreteLine) : Item.getItemFromBlock(RoadStuffBlocks.doubleSlabConcrete);
+        return func_150003_a(this) ? Item.getItemFromBlock(RoadStuffBlocks.singleSlabConcrete) : Item.getItemFromBlock(RoadStuffBlocks.doubleSlabConcrete);
     }
 
     public Item getItemDropped(int metadata, Random rand, int fortune)
@@ -83,7 +83,7 @@ public class BlockSlabConcrete extends BlockSlab
 
     protected ItemStack createStackedBlock(int metadata)
     {
-        return new ItemStack(RoadStuffBlocks.singleSlabConcreteLine, 2, metadata & 7);
+        return new ItemStack(RoadStuffBlocks.singleSlabConcrete, 2, metadata & 7);
     }
 
     @SideOnly(Side.CLIENT)

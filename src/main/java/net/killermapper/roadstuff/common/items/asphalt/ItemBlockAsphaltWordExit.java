@@ -32,9 +32,11 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltWordExit;
 import net.minecraft.block.Block;
+import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
 
 public class ItemBlockAsphaltWordExit extends ItemBlock
@@ -69,8 +71,24 @@ public class ItemBlockAsphaltWordExit extends ItemBlock
     
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show)
     {
-        if(stack.getItemDamage() == 3)
-        list.add("OpieOP CLOYSTER HAS OP DEFENSE OpieOP");
+        switch(stack.getItemDamage())
+        {
+            case 0:
+                list.add(I18n.format("desc.asphaltWordExit.0"));
+                break;
+            case 1:
+                list.add(I18n.format("desc.asphaltWordExit.1"));
+                break;
+            case 2:
+                list.add(I18n.format("desc.asphaltWordExit.2"));
+                break;
+            case 3:
+                list.add(I18n.format("desc.asphaltWordExit.3"));
+                break;
+            default:
+                break;
+        }
     }
+
 
 }
