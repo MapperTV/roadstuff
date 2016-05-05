@@ -119,12 +119,32 @@ public class BlockTrafficSign extends Block
     {
         if(world.getBlockMetadata(x, y, z) == 1)
         {
-            if(side == 3)
+            TileEntity tile = world.getTileEntity(x, y, z);
+            if(tile instanceof TileEntityBlockTrafficSign)
             {
-                TileEntity tile = world.getTileEntity(x, y, z);
-                if(tile instanceof TileEntityBlockTrafficSign)
+                TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
+                short signFace = 0;
+                switch(((TileEntityBlockTrafficSign)tile).getSignDirection())
                 {
-                    TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
+                    case 0:
+                        signFace = 3;
+                        break;
+                    case 1:
+                        signFace = 4;
+                        break;
+                    case 2:
+                        signFace = 2;
+                        break;
+                    case 3:
+                        signFace = 5;
+                        break;
+                    default:
+                        signFace = 3;
+                        break;
+                }
+
+                if(side == signFace)
+                {
                     short type = ((TileEntityBlockTrafficSign)tile).getSignType();
                     byte shape = ((TileEntityBlockTrafficSign)tile).getSignShape();
                     switch(shape)
@@ -173,7 +193,8 @@ public class BlockTrafficSign extends Block
                 }
             }
         }
-        return this.getIcon(side, world.getBlockMetadata(x, y, z));
+        //return this.getIcon(side, world.getBlockMetadata(x, y, z));
+        return this.signPost;
     }
 
     public boolean renderAsNormalBlock()
@@ -188,19 +209,95 @@ public class BlockTrafficSign extends Block
 
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
     {
-        this.minX = 0.3F;
-        this.minY = 0.0F;
-        this.minZ = 0.5F;
-        this.maxX = 0.7F;
-        this.maxY = 1F;
-        this.maxZ = 0.65F;
-
-        if(world.getBlockMetadata(x, y, z) == 1)
+        TileEntity tile = world.getTileEntity(x, y, z);
+        if(tile instanceof TileEntityBlockTrafficSign)
         {
-            this.minX = 0.0F;
-            this.maxX = 1F;
-            this.maxZ = 0.7F;
+            switch(((TileEntityBlockTrafficSign)tile).getSignDirection())
+            {
+                case 0:
+                    this.minX = 0.3F;
+                    this.minY = 0.0F;
+                    this.minZ = 0.5F;
+                    this.maxX = 0.7F;
+                    this.maxY = 1F;
+                    this.maxZ = 0.65F;
+
+                    if(world.getBlockMetadata(x, y, z) == 1)
+                    {
+                        this.minX = 0.0F;
+                        this.maxX = 1F;
+                        this.maxZ = 0.7F;
+                    }
+                    break;
+                case 1:
+                    this.minX = 0.35F;
+                    this.minY = 0.0F;
+                    this.minZ = 0.3F;
+                    this.maxX = 0.5F;
+                    this.maxY = 1F;
+                    this.maxZ = 0.7F;
+
+                    if(world.getBlockMetadata(x, y, z) == 1)
+                    {
+                        this.minZ = 0.0F;
+                        this.minX = 0.3F;
+                        this.maxZ = 1F;
+                    }
+                    break;
+                case 2:
+                    this.minX = 0.3F;
+                    this.minY = 0.0F;
+                    this.minZ = 0.3F;
+                    this.maxX = 0.7F;
+                    this.maxY = 1F;
+                    this.maxZ = 0.5F;
+
+                    if(world.getBlockMetadata(x, y, z) == 1)
+                    {
+                        this.minX = 0.0F;
+                        this.maxX = 1F;
+                        this.maxZ = 0.7F;
+                    }
+                    break;
+                case 3:
+                    this.minX = 0.5F;
+                    this.minY = 0.0F;
+                    this.minZ = 0.3F;
+                    this.maxX = 0.65F;
+                    this.maxY = 1F;
+                    this.maxZ = 0.7F;
+
+                    if(world.getBlockMetadata(x, y, z) == 1)
+                    {
+                        this.minX = 0.0F;
+                        this.maxX = 1F;
+                        this.maxZ = 0.7F;
+                    }
+                    break;
+                default:
+                    this.minX = 0.3F;
+                    this.minY = 0.0F;
+                    this.minZ = 0.5F;
+                    this.maxX = 0.7F;
+                    this.maxY = 1F;
+                    this.maxZ = 0.65F;
+
+                    if(world.getBlockMetadata(x, y, z) == 1)
+                    {
+                        this.minX = 0.0F;
+                        this.maxX = 1F;
+                        this.maxZ = 0.7F;
+                    }
+                    break;
+            }
         }
+
+    }
+
+    @SideOnly(Side.CLIENT)
+    public boolean shouldSideBeRendered(IBlockAccess blockAccess, int x, int y, int z, int side)
+    {
+        return true;
     }
 
     @Override
@@ -235,10 +332,10 @@ public class BlockTrafficSign extends Block
             if(tile instanceof TileEntityBlockTrafficSign)
             {
                 TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
-                //player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));
-                //player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
-                //player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
-                //System.out.println(world.loadedTileEntityList);
+                player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));
+                // player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
+                // player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
+                // System.out.println(world.loadedTileEntityList);
             }
             return true;
         }

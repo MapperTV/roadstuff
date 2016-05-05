@@ -1,9 +1,9 @@
 /*
-Road Stuff - A Minecraft MODification by KillerMapper - 2015
+Road Stuff - A Minecraft MODification by KillerMapper - 2015-2016
 
 The MIT License (MIT)
 
-Copyright (c) 2015 KillerMapper
+Copyright (c) 2015-2016 KillerMapper
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -44,32 +44,32 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
     {
         Tessellator tessellator = Tessellator.instance;
 
-        renderer.setRenderBounds(0.4375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
+        renderer.setRenderBounds(7 / 16F, 0.0F, 9 / 16F, 9 / 16F, 1F, 10 / 16F);
         this.renderInInventory(tessellator, renderer, block, metadata);
-        renderer.setRenderBounds(0.4375F, 0.0F, 0.5F, 0.46875F, 1F, 0.625F);
+        renderer.setRenderBounds(7 / 16F, 0.0F, 0.5F, 7.5 / 16F, 1F, 10 / 16F);
         this.renderInInventory(tessellator, renderer, block, metadata);
-        renderer.setRenderBounds(0.53125F, 0.0F, 0.5F, 0.5625F, 1F, 0.625F);
+        renderer.setRenderBounds(8.5 / 16F, 0.0F, 0.5F, 9 / 16F, 1F, 10 / 16F);
         this.renderInInventory(tessellator, renderer, block, metadata);
 
         if(metadata == 1)
         {
-            renderer.setRenderBounds(0.3125F, 0.0F, 0.625F, 0.6875F, 0.0625F, 0.6875F);
+            renderer.setRenderBounds(5 / 16F, 0.0F, 10 / 16F, 11 / 16F, 1 / 16F, 11 / 16F);
             this.renderInInventory(tessellator, renderer, block, metadata);
-            renderer.setRenderBounds(0.1875F, 0.0625F, 0.625F, 0.8125F, 0.125F, 0.6875F);
+            renderer.setRenderBounds(3 / 16F, 1 / 16F, 10 / 16F, 13 / 16F, 2 / 16F, 11 / 16F);
             this.renderInInventory(tessellator, renderer, block, metadata);
-            renderer.setRenderBounds(0.125F, 0.125F, 0.625F, 0.875F, 0.1875F, 0.6875F);
+            renderer.setRenderBounds(2 / 16F, 2 / 16F, 10 / 16F, 14 / 16F, 3 / 16F, 11 / 16F);
             this.renderInInventory(tessellator, renderer, block, metadata);
-            renderer.setRenderBounds(0.0625F, 0.1875F, 0.625F, 0.9375F, 0.3125F, 0.6875F);
+            renderer.setRenderBounds(1 / 16F, 3 / 16F, 10 / 16F, 15 / 16F, 5 / 16F, 11 / 16F);
             this.renderInInventory(tessellator, renderer, block, metadata);
-            renderer.setRenderBounds(0.0F, 0.3125F, 0.625F, 1F, 0.6875F, 0.6875F);
+            renderer.setRenderBounds(0.0F, 5 / 16F, 10 / 16F, 1F, 11 / 16F, 11 / 16F);
             this.renderInInventory(tessellator, renderer, block, metadata);
-            renderer.setRenderBounds(0.0625F, 0.6875F, 0.625F, 0.9375F, 0.8125F, 0.6875F);
+            renderer.setRenderBounds(1 / 16F, 11 / 16F, 10 / 16F, 15 / 16F, 13 / 16F, 11 / 16F);
             this.renderInInventory(tessellator, renderer, block, metadata);
-            renderer.setRenderBounds(0.125F, 0.8125F, 0.625F, 0.875F, 0.875F, 0.6875F);
+            renderer.setRenderBounds(2 / 16F, 13 / 16F, 10 / 16F, 14 / 16F, 14 / 16F, 11 / 16F);
             this.renderInInventory(tessellator, renderer, block, metadata);
-            renderer.setRenderBounds(0.1875F, 0.875F, 0.625F, 0.8125F, 0.9375F, 0.6875F);
+            renderer.setRenderBounds(3 / 16F, 14 / 16F, 10 / 16F, 13 / 16F, 15 / 16F, 11 / 16F);
             this.renderInInventory(tessellator, renderer, block, metadata);
-            renderer.setRenderBounds(0.3125F, 0.9375F, 0.625F, 0.6875F, 1F, 0.6875F);
+            renderer.setRenderBounds(5 / 16F, 15 / 16F, 10 / 16F, 11 / 16F, 1F, 11 / 16F);
             this.renderInInventory(tessellator, renderer, block, metadata);
         }
     }
@@ -83,89 +83,516 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
             TileEntityBlockTrafficSign tileSign = (TileEntityBlockTrafficSign)tile;
 
             GL11.glPushMatrix();
-            GL11.glRotatef(90F * tileSign.getSignDirection(), 0.0F, 1.0F, 0.0F);
 
-            renderer.setRenderBounds(0.4375F, 0.0F, 0.5625F, 0.5625F, 1F, 0.625F);
-            renderer.renderStandardBlock(block, x, y, z);
-            renderer.setRenderBounds(0.4375F, 0.0F, 0.5F, 0.46875F, 1F, 0.5625F);
-            renderer.renderStandardBlock(block, x, y, z);
-            renderer.setRenderBounds(0.53125F, 0.0F, 0.5F, 0.5625F, 1F, 0.5625F);
-            renderer.renderStandardBlock(block, x, y, z);
-
-            if(world.getBlockMetadata(x, y, z) != 0)
+            // Direction
+            switch(tileSign.getSignDirection())
             {
-                switch(tileSign.getSignShape())
-                {
-                    case 0:
-                        renderer.setRenderBounds(0.0F, 0.0F, 0.625F, 1F, 1F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        break;
-                    case 1:
-                        renderer.setRenderBounds(0.3125F, 0.0F, 0.625F, 0.6875F, 0.0625F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.1875F, 0.0625F, 0.625F, 0.8125F, 0.125F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.125F, 0.125F, 0.625F, 0.875F, 0.1875F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.0625F, 0.1875F, 0.625F, 0.9375F, 0.3125F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.0F, 0.3125F, 0.625F, 1F, 0.6875F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.0625F, 0.6875F, 0.625F, 0.9375F, 0.8125F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.125F, 0.8125F, 0.625F, 0.875F, 0.875F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.1875F, 0.875F, 0.625F, 0.8125F, 0.9375F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.3125F, 0.9375F, 0.625F, 0.6875F, 1F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        break;
-                    case 2:
-                        renderer.setRenderBounds(0.0F, 0.0F, 0.625F, 1F, 0.25F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.0625F, 0.25F, 0.625F, 0.9375F, 0.375F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.125F, 0.375F, 0.625F, 0.8875F, 0.5F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.1875F, 0.5F, 0.625F, 0.8225F, 0.625F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.25F, 0.625F, 0.625F, 0.75F, 0.75F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.3125F, 0.75F, 0.625F, 0.6875F, 0.875F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.375F, 0.875F, 0.625F, 0.625F, 1F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        break;
-                    case 3:
-                        renderer.setRenderBounds(0.375F, 0.0F, 0.625F, 0.625F, 0.0625F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.3125F, 0.0625F, 0.625F, 0.6875F, 0.125F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.25F, 0.125F, 0.625F, 0.75F, 0.1875F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.1875F, 0.1875F, 0.625F, 0.8125F, 0.25F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.125F, 0.25F, 0.625F, 0.875F, 0.3125F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.0625F, 0.3125F, 0.625F, 0.9375F, 0.375F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.0F, 0.375F, 0.625F, 1F, 0.625F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.0625F, 0.625F, 0.625F, 0.9375F, 0.6875F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.125F, 0.6875F, 0.625F, 0.875F, 0.75F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.1875F, 0.75F, 0.625F, 0.8125F, 0.8125F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.25F, 0.8125F, 0.625F, 0.75F, 0.875F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.3125F, 0.875F, 0.625F, 0.6875F, 0.9375F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        renderer.setRenderBounds(0.375F, 0.9375F, 0.625F, 0.625F, 1F, 0.6875F);
-                        renderer.renderStandardBlock(block, x, y, z);
-                        break;
-                }
+                case 0:
+
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 9 / 16F, 9 / 16F, 1F, 10 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 0.5F, 0.46875F, 1F, 9 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+                    renderer.setRenderBounds(0.53125F, 0.0F, 0.5F, 9 / 16F, 1F, 9 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+
+                    if(world.getBlockMetadata(x, y, z) != 0)
+                    {
+                        switch(tileSign.getSignShape())
+                        {
+                            case 0:
+                                renderer.setRenderBounds(0.0F, 0.0F, 10 / 16F, 1F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 1:
+                                renderer.setRenderBounds(5 / 16F, 0.0F, 10 / 16F, 11 / 16F, 1 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 1 / 16F, 10 / 16F, 13 / 16F, 2 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 2 / 16F, 10 / 16F, 14 / 16F, 3 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 3 / 16F, 10 / 16F, 15 / 16F, 5 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.0F, 5 / 16F, 10 / 16F, 1F, 11 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 11 / 16F, 10 / 16F, 15 / 16F, 13 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 13 / 16F, 10 / 16F, 14 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 14 / 16F, 10 / 16F, 13 / 16F, 15 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 15 / 16F, 10 / 16F, 11 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 2:
+                                renderer.setRenderBounds(1 / 16F, 0.0F, 10 / 16F, 15 / 16F, 2 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.0F, 1 / 16F, 10 / 16F, 1F, 0.25F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 0.25F, 10 / 16F, 15 / 16F, 6 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 6 / 16F, 10 / 16F, 0.8875F, 0.5F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 0.5F, 10 / 16F, 0.8225F, 10 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 10 / 16F, 10 / 16F, 12 / 16F, 12 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 12 / 16F, 10 / 16F, 11 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(6 / 16F, 14 / 16F, 10 / 16F, 10 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 3:
+                                renderer.setRenderBounds(6 / 16F, 0.0F, 10 / 16F, 10 / 16F, 1 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 1 / 16F, 10 / 16F, 11 / 16F, 2 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 2 / 16F, 10 / 16F, 12 / 16F, 3 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 3 / 16F, 10 / 16F, 13 / 16F, 0.25F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 0.25F, 10 / 16F, 14 / 16F, 5 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 5 / 16F, 10 / 16F, 15 / 16F, 6 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.0F, 6 / 16F, 10 / 16F, 1F, 10 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 10 / 16F, 10 / 16F, 15 / 16F, 11 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 11 / 16F, 10 / 16F, 14 / 16F, 12 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 12 / 16F, 10 / 16F, 13 / 16F, 13 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 13 / 16F, 10 / 16F, 12 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 14 / 16F, 10 / 16F, 11 / 16F, 15 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(6 / 16F, 15 / 16F, 10 / 16F, 10 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                        }
+                    }
+                    break;
+                case 1:
+
+                    renderer.setRenderBounds(6 / 16F, 0.0F, 7 / 16F, 7 / 16F, 1F, 9 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 7 / 16F, 0.5F, 1F, 0.48F);
+                    renderer.renderStandardBlock(block, x, y, z);
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 0.525F, 0.5F, 1F, 9 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+
+                    if(world.getBlockMetadata(x, y, z) != 0)
+                    {
+                        switch(tileSign.getSignShape())
+                        {
+                            case 0:
+                                renderer.setRenderBounds(5 / 16F, 0.0F, 0.0F, 6 / 16F, 1F, 1F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 1:
+                                renderer.setRenderBounds(5 / 16F, 0.0F, 5 / 16F, 6 / 16F, 1 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 1 / 16F, 3 / 16F, 6 / 16F, 2 / 16F, 13 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 2 / 16F, 2 / 16F, 6 / 16F, 3 / 16F, 14 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 3 / 16F, 1 / 16F, 6 / 16F, 5 / 16F, 15 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 5 / 16F, 0.0F, 6 / 16F, 11 / 16F, 16 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 11 / 16F, 1 / 16F, 6 / 16F, 13 / 16F, 15 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 13 / 16F, 2 / 16F, 6 / 16F, 14 / 16F, 14 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 14 / 16F, 3 / 16F, 6 / 16F, 15 / 16F, 13 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 15 / 16F, 5 / 16F, 6 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 2:
+                                renderer.setRenderBounds(5 / 16F, 0.0F, 1 / 16F, 6 / 16F, 1 / 16F, 15 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 1 / 16F, 0.0F, 6 / 16F, 4 / 16F, 1F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 4 / 16F, 1 / 16F, 6 / 16F, 6 / 16F, 15 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 6 / 16F, 2 / 16F, 6 / 16F, 8 / 16F, 14 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 8 / 16F, 3 / 16F, 6 / 16F, 10 / 16F, 13 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 10 / 16F, 4 / 16F, 6 / 16F, 12 / 16F, 12 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 12 / 16F, 5 / 16F, 6 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 14 / 16F, 6 / 16F, 6 / 16F, 1F, 10 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 3:
+                                renderer.setRenderBounds(6 / 16F, 0.0F, 10 / 16F, 10 / 16F, 1 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 1 / 16F, 10 / 16F, 11 / 16F, 2 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 2 / 16F, 10 / 16F, 12 / 16F, 3 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 3 / 16F, 10 / 16F, 13 / 16F, 0.25F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 0.25F, 10 / 16F, 14 / 16F, 5 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 5 / 16F, 10 / 16F, 15 / 16F, 6 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.0F, 6 / 16F, 10 / 16F, 1F, 10 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 10 / 16F, 10 / 16F, 15 / 16F, 11 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 11 / 16F, 10 / 16F, 14 / 16F, 12 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 12 / 16F, 10 / 16F, 13 / 16F, 13 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 13 / 16F, 10 / 16F, 12 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 14 / 16F, 10 / 16F, 11 / 16F, 15 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(6 / 16F, 15 / 16F, 10 / 16F, 10 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                        }
+                    }
+                    break;
+                case 2:
+
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 6 / 16F, 9 / 16F, 1F, 7 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 7 / 16F, 0.46875F, 1F, 8 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+                    renderer.setRenderBounds(0.53125F, 0.0F, 7 / 16F, 9 / 16F, 1F, 8 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+
+                    if(world.getBlockMetadata(x, y, z) != 0)
+                    {
+                        switch(tileSign.getSignShape())
+                        {
+                            case 0:
+                                renderer.setRenderBounds(0.0F, 0.0F, 5 / 16F, 1F, 1F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 1:
+                                renderer.setRenderBounds(5 / 16F, 0.0F, 5 / 16F, 11 / 16F, 1 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 1 / 16F, 5 / 16F, 13 / 16F, 2 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 2 / 16F, 5 / 16F, 14 / 16F, 3 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 3 / 16F, 5 / 16F, 15 / 16F, 5 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.0F, 5 / 16F, 5 / 16F, 1F, 11 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 11 / 16F, 5 / 16F, 15 / 16F, 13 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 13 / 16F, 5 / 16F, 14 / 16F, 14 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 14 / 16F, 5 / 16F, 13 / 16F, 15 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 15 / 16F, 5 / 16F, 11 / 16F, 1F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 2:
+                                renderer.setRenderBounds(1 / 16F, 0.0F, 5 / 16F, 15 / 16F, 1 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.0F, 1 / 16F, 5 / 16F, 1F, 4 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 4 / 16F, 5 / 16F, 15 / 16F, 6 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 6 / 16F, 5 / 16F, 14 / 16F, 8 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 8 / 16F, 5 / 16F, 13 / 16F, 10 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(4 / 16F, 10 / 16F, 5 / 16F, 12 / 16F, 12 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 12 / 16F, 5 / 16F, 11 / 16F, 14 / 16F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(6 / 16F, 14 / 16F, 5 / 16F, 10 / 16F, 1F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 3:
+                                renderer.setRenderBounds(6 / 16F, 0.0F, 10 / 16F, 10 / 16F, 1 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 1 / 16F, 10 / 16F, 11 / 16F, 2 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 2 / 16F, 10 / 16F, 12 / 16F, 3 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 3 / 16F, 10 / 16F, 13 / 16F, 0.25F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 0.25F, 10 / 16F, 14 / 16F, 5 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 5 / 16F, 10 / 16F, 15 / 16F, 6 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.0F, 6 / 16F, 10 / 16F, 1F, 10 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 10 / 16F, 10 / 16F, 15 / 16F, 11 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 11 / 16F, 10 / 16F, 14 / 16F, 12 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 12 / 16F, 10 / 16F, 13 / 16F, 13 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 13 / 16F, 10 / 16F, 12 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 14 / 16F, 10 / 16F, 11 / 16F, 15 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(6 / 16F, 15 / 16F, 10 / 16F, 10 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                        }
+                    }
+                    break;
+                case 3:
+
+                    renderer.setRenderBounds(9 / 16F, 0.0F, 0.5F, 10 / 16F, 1F, 10 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+                    renderer.setRenderBounds(8 / 16F, 0.0F, 0.5F, 9 / 16F, 1F, 0.5375F);
+                    renderer.renderStandardBlock(block, x, y, z);
+                    renderer.setRenderBounds(8 / 16F, 0.0F, 0.5875F, 9 / 16F, 1F, 10 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+
+                    if(world.getBlockMetadata(x, y, z) != 0)
+                    {
+                        switch(tileSign.getSignShape())
+                        {
+                            case 0:
+                                renderer.setRenderBounds(10 / 16F, 0.0F, 0.0F, 11 / 16F, 1F, 1F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 1:
+                                renderer.setRenderBounds(10 / 16F, 0.0F, 5 / 16F, 11 / 16F, 1 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 1 / 16F, 3 / 16F, 11 / 16F, 2 / 16F, 13 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 2 / 16F, 2 / 16F, 11 / 16F, 3 / 16F, 14 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 3 / 16F, 1 / 16F, 11 / 16F, 5 / 16F, 15 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 5 / 16F, 0.0F, 11 / 16F, 11 / 16F, 16 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 11 / 16F, 1 / 16F, 11 / 16F, 13 / 16F, 15 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 13 / 16F, 2 / 16F, 11 / 16F, 14 / 16F, 14 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 14 / 16F, 3 / 16F, 11 / 16F, 15 / 16F, 13 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 15 / 16F, 5 / 16F, 11 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 2:
+                                renderer.setRenderBounds(10 / 16F, 0.0F, 1 / 16F, 11 / 16F, 1 / 16F, 15 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 1 / 16F, 0.0F, 11 / 16F, 4 / 16F, 1F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 4 / 16F, 1 / 16F, 11 / 16F, 6 / 16F, 15 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 6 / 16F, 2 / 16F, 11 / 16F, 8 / 16F, 14 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 8 / 16F, 3 / 16F, 11 / 16F, 10 / 16F, 13 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 10 / 16F, 4 / 16F, 11 / 16F, 12 / 16F, 12 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 12 / 16F, 5 / 16F, 11 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(10 / 16F, 14 / 16F, 6 / 16F, 11 / 16F, 1F, 10 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 3:
+                                renderer.setRenderBounds(6 / 16F, 0.0F, 10 / 16F, 10 / 16F, 1 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 1 / 16F, 10 / 16F, 11 / 16F, 2 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 2 / 16F, 10 / 16F, 12 / 16F, 3 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 3 / 16F, 10 / 16F, 13 / 16F, 0.25F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 0.25F, 10 / 16F, 14 / 16F, 5 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 5 / 16F, 10 / 16F, 15 / 16F, 6 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.0F, 6 / 16F, 10 / 16F, 1F, 10 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 10 / 16F, 10 / 16F, 15 / 16F, 11 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 11 / 16F, 10 / 16F, 14 / 16F, 12 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 12 / 16F, 10 / 16F, 13 / 16F, 13 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 13 / 16F, 10 / 16F, 12 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 14 / 16F, 10 / 16F, 11 / 16F, 15 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(6 / 16F, 15 / 16F, 10 / 16F, 10 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                        }
+                    }
+                    break;
+                default:
+
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 9 / 16F, 9 / 16F, 1F, 10 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 0.5F, 0.46875F, 1F, 9 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+                    renderer.setRenderBounds(0.53125F, 0.0F, 0.5F, 9 / 16F, 1F, 9 / 16F);
+                    renderer.renderStandardBlock(block, x, y, z);
+
+                    if(world.getBlockMetadata(x, y, z) != 0)
+                    {
+                        switch(tileSign.getSignShape())
+                        {
+                            case 0:
+                                renderer.setRenderBounds(0.0F, 0.0F, 10 / 16F, 1F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 1:
+                                renderer.setRenderBounds(5 / 16F, 0.0F, 10 / 16F, 11 / 16F, 1 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 1 / 16F, 10 / 16F, 13 / 16F, 2 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 2 / 16F, 10 / 16F, 14 / 16F, 3 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 3 / 16F, 10 / 16F, 15 / 16F, 5 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.0F, 5 / 16F, 10 / 16F, 1F, 11 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 11 / 16F, 10 / 16F, 15 / 16F, 13 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 13 / 16F, 10 / 16F, 14 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 14 / 16F, 10 / 16F, 13 / 16F, 15 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 15 / 16F, 10 / 16F, 11 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 2:
+                                renderer.setRenderBounds(0.0F, 0.0F, 10 / 16F, 1F, 0.25F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 0.25F, 10 / 16F, 15 / 16F, 6 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 6 / 16F, 10 / 16F, 0.8875F, 0.5F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 0.5F, 10 / 16F, 0.8225F, 10 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 10 / 16F, 10 / 16F, 12 / 16F, 12 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 12 / 16F, 10 / 16F, 11 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(6 / 16F, 14 / 16F, 10 / 16F, 10 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 3:
+                                renderer.setRenderBounds(6 / 16F, 0.0F, 10 / 16F, 10 / 16F, 1 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 1 / 16F, 10 / 16F, 11 / 16F, 2 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 2 / 16F, 10 / 16F, 12 / 16F, 3 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 3 / 16F, 10 / 16F, 13 / 16F, 0.25F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 0.25F, 10 / 16F, 14 / 16F, 5 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 5 / 16F, 10 / 16F, 15 / 16F, 6 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.0F, 6 / 16F, 10 / 16F, 1F, 10 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(1 / 16F, 10 / 16F, 10 / 16F, 15 / 16F, 11 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(2 / 16F, 11 / 16F, 10 / 16F, 14 / 16F, 12 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(3 / 16F, 12 / 16F, 10 / 16F, 13 / 16F, 13 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(0.25F, 13 / 16F, 10 / 16F, 12 / 16F, 14 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(5 / 16F, 14 / 16F, 10 / 16F, 11 / 16F, 15 / 16F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                renderer.setRenderBounds(6 / 16F, 15 / 16F, 10 / 16F, 10 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                        }
+                    }
+                    break;
             }
+
+            /*
+             * if(world.getBlockMetadata(x, y, z) != 0)
+             * {
+             * switch(tileSign.getSignShape())
+             * {
+             * case 0:
+             * renderer.setRenderBounds(0.0F, 0.0F, 10 / 16F, 1F, 1F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * break;
+             * case 1:
+             * renderer.setRenderBounds(5 / 16F, 0.0F, 10 / 16F, 11 / 16F, 1 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(3 / 16F, 1 / 16F, 10 / 16F, 13 / 16F, 2 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(2 / 16F, 2 / 16F, 10 / 16F, 14 / 16F, 3 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(1 / 16F, 3 / 16F, 10 / 16F, 15 / 16F, 5 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(0.0F, 5 / 16F, 10 / 16F, 1F, 11 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(1 / 16F, 11 / 16F, 10 / 16F, 15 / 16F, 13 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(2 / 16F, 13 / 16F, 10 / 16F, 14 / 16F, 14 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(3 / 16F, 14 / 16F, 10 / 16F, 13 / 16F, 15 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(5 / 16F, 15 / 16F, 10 / 16F, 11 / 16F, 1F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * break;
+             * case 2:
+             * renderer.setRenderBounds(0.0F, 0.0F, 10 / 16F, 1F, 0.25F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(1 / 16F, 0.25F, 10 / 16F, 15 / 16F, 6 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(2 / 16F, 6 / 16F, 10 / 16F, 0.8875F, 0.5F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(3 / 16F, 0.5F, 10 / 16F, 0.8225F, 10 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(0.25F, 10 / 16F, 10 / 16F, 12 / 16F, 12 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(5 / 16F, 12 / 16F, 10 / 16F, 11 / 16F, 14 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(6 / 16F, 14 / 16F, 10 / 16F, 10 / 16F, 1F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * break;
+             * case 3:
+             * renderer.setRenderBounds(6 / 16F, 0.0F, 10 / 16F, 10 / 16F, 1 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(5 / 16F, 1 / 16F, 10 / 16F, 11 / 16F, 2 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(0.25F, 2 / 16F, 10 / 16F, 12 / 16F, 3 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(3 / 16F, 3 / 16F, 10 / 16F, 13 / 16F, 0.25F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(2 / 16F, 0.25F, 10 / 16F, 14 / 16F, 5 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(1 / 16F, 5 / 16F, 10 / 16F, 15 / 16F, 6 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(0.0F, 6 / 16F, 10 / 16F, 1F, 10 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(1 / 16F, 10 / 16F, 10 / 16F, 15 / 16F, 11 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(2 / 16F, 11 / 16F, 10 / 16F, 14 / 16F, 12 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(3 / 16F, 12 / 16F, 10 / 16F, 13 / 16F, 13 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(0.25F, 13 / 16F, 10 / 16F, 12 / 16F, 14 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(5 / 16F, 14 / 16F, 10 / 16F, 11 / 16F, 15 / 16F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * renderer.setRenderBounds(6 / 16F, 15 / 16F, 10 / 16F, 10 / 16F, 1F, 11 / 16F);
+             * renderer.renderStandardBlock(block, x, y, z);
+             * break;
+             * }
+             * }
+             */
             GL11.glPopMatrix();
         }
         return true;
