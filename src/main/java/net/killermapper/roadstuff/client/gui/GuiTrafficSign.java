@@ -34,11 +34,14 @@ import com.sun.imageio.plugins.common.I18N;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.RoadStuff;
+import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
 import net.killermapper.roadstuff.common.network.PacketSignType;
 import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.client.resources.I18n;
+import net.minecraft.util.IIcon;
 import net.minecraft.util.ResourceLocation;
 
 @SideOnly(Side.CLIENT)
@@ -47,7 +50,7 @@ public class GuiTrafficSign extends GuiScreen
     private static final ResourceLocation textures = new ResourceLocation(RoadStuff.MODID, "textures/gui/sign/signConfig.png");
     private GuiButton buttonTypePrevious, buttonTypeNext, buttonShapePrevious, buttonShapeNext, buttonQuit;
     private TileEntityBlockTrafficSign tileSign;
-    short currentSign = 0, maxSign = 4;
+    short currentType = 0, maxSign = 37;
     byte currentShape = 0;
 
     public GuiTrafficSign(TileEntityBlockTrafficSign tile)
@@ -59,6 +62,9 @@ public class GuiTrafficSign extends GuiScreen
     @Override
     public void initGui()
     {
+        currentType = tileSign.getSignType();
+        currentShape = tileSign.getSignShape();
+
         buttonList.clear();
         Keyboard.enableRepeatEvents(true);
         buttonList.add(buttonQuit = new GuiButton(0, width / 2 - 35, height / 2 + 30, 40, 20, I18n.format("gui.trafficsign.done")));
@@ -81,13 +87,22 @@ public class GuiTrafficSign extends GuiScreen
         GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         mc.getTextureManager().bindTexture(textures);
         if(currentShape == 0)
-            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentSign * 16, 0, 16, 16);
+            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentType * 16, 0, 16, 16);
         if(currentShape == 1)
-            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentSign * 16, 64, 16, 16);
+            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentType * 16, 64, 16, 16);
         if(currentShape == 2)
-            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentSign * 16, 128, 16, 16);
+            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentType * 16, 128, 16, 16);
         if(currentShape == 3)
-            drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentSign * 16, 192, 16, 16);
+        {
+            if(currentType < 11)
+                drawTexturedModalRect(width / 2 - 7, height / 2 + 8, currentType * 16, 192, 16, 16);
+            if(currentType > 10 && currentType < 22)
+                drawTexturedModalRect(width / 2 - 7, height / 2 + 8, (currentType - 11) * 16, 208, 16, 16);
+            if(currentType > 21 && currentType < 33)
+                drawTexturedModalRect(width / 2 - 7, height / 2 + 8, (currentType - 22) * 16, 224, 16, 16);
+            if(currentType > 32)
+                drawTexturedModalRect(width / 2 - 7, height / 2 + 8, (currentType - 33) * 16, 240, 16, 16);
+        }
         mc.getTextureManager().bindTexture(textures);
         drawTexturedModalRect(width / 2 - 7, height / 2 - 24, currentShape * 16 + 192, 128, 16, 16);
         super.drawScreen(mouseX, mouseY, partialTicks);
@@ -98,7 +113,7 @@ public class GuiTrafficSign extends GuiScreen
     {
         if(parButton.id == 0)
         {
-            RoadStuff.network.sendToServer(new PacketSignType(this.currentSign, this.currentShape, tileSign.xCoord, tileSign.yCoord, tileSign.zCoord));
+            RoadStuff.network.sendToServer(new PacketSignType(this.currentType, this.currentShape, tileSign.xCoord, tileSign.yCoord, tileSign.zCoord));
             mc.displayGuiScreen((GuiScreen)null);
         }
         else if(parButton.id == 1)
@@ -106,21 +121,21 @@ public class GuiTrafficSign extends GuiScreen
         else if(parButton.id == 2)
             currentShape++;
         else if(parButton.id == 3)
-            currentSign--;
+            currentType--;
         else if(parButton.id == 4)
-            currentSign++;
+            currentType++;
 
-        //Sign and shape bounds
-        if(currentSign < 0)
-            currentSign = maxSign;
-        else if(currentSign > maxSign)
-            currentSign = 0;
+        // Sign and shape bounds
+        if(currentType < 0)
+            currentType = maxSign;
+        else if(currentType > maxSign)
+            currentType = 0;
 
         if(currentShape < 0)
             currentShape = 3;
         else if(currentShape > 3)
             currentShape = 0;
-        System.out.println("Current selected sign: " + currentSign);
+        System.out.println("Current selected type: " + currentType);
         System.out.println("Current selected shape: " + currentShape);
     }
 

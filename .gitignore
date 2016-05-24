@@ -17,6 +17,7 @@
 
 # include sourcecode
 !src/
+src/main/resources/assets/roadstuff/textures/blocks/sign/RoadWorksMod.psd
 
 # include git important files
 !.gitmodules

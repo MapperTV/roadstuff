@@ -54,6 +54,9 @@ public class BlockTrafficSign extends Block
     public static String[] subBlock = new String[] {"signpost", "sign"};
 
     // Sign textures: square - circle - triangle - diamond - misc.
+
+    private IIcon signDiamond[] = new IIcon[38];
+
     private IIcon signSBase, signSNoParkTop, signSNoParkBottom, signSSpeedBase, signSOneWayEU;
     private IIcon signCSpeed50;
     private IIcon signTBase;
@@ -87,6 +90,11 @@ public class BlockTrafficSign extends Block
 
     public void registerBlockIcons(IIconRegister iconRegister)
     {
+        for(int i = 1; i < 38; i++)
+        {
+            this.signDiamond[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/diamond" + i);
+        }
+
         this.signPost = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signPost");
         this.signBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signBase");
         this.signError = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signError");
@@ -180,20 +188,18 @@ public class BlockTrafficSign extends Block
                                     return this.signBase;
                             }
                         case 3:
-                            switch(type)
+                            if(type == 0)
                             {
-                                case 1:
-                                    return this.signDBase;
-                                default:
-                                    return this.signBase;
+                                return this.signBase;
                             }
+                            return this.signDiamond[type];
                         default:
                             return this.signError;
                     }
                 }
             }
         }
-        //return this.getIcon(side, world.getBlockMetadata(x, y, z));
+        // return this.getIcon(side, world.getBlockMetadata(x, y, z));
         return this.signPost;
     }
 
@@ -333,8 +339,8 @@ public class BlockTrafficSign extends Block
             {
                 TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
                 player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));
-                // player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
-                // player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
+                player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
+                player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
                 // System.out.println(world.loadedTileEntityList);
             }
             return true;
