@@ -38,8 +38,10 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.IIcon;
 import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 public class BlockCone extends Block
 {
@@ -52,7 +54,7 @@ public class BlockCone extends Block
         this.setCreativeTab(RoadStuff.RoadStuffCreativeTabs);
         this.setStepSound(soundTypeMetal);
     }
-    
+
     public void setBlockBoundsBasedOnState(IBlockAccess world, int x, int y, int z)
     {
         if(world.getBlockMetadata(x, y, z) == 0)
@@ -82,6 +84,12 @@ public class BlockCone extends Block
             this.maxY = 0.875F;
             this.maxZ = 0.75F;
         }
+    }
+
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    {
+        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
     }
 
     public void registerBlockIcons(IIconRegister iiconRegister)
