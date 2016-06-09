@@ -56,6 +56,7 @@ public class TileEntityBlockTrafficSign extends TileEntity
         compound.setByte("Shape", this.signShape);
         compound.setShort("SignType", this.signType);
         System.out.println("Wrote to NBT the value " + this.signType);
+        markDirty();
     }
 
     public byte getSignDirection()

@@ -42,6 +42,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.AxisAlignedBB;
 import net.minecraft.util.ChatComponentTranslation;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.IIcon;
@@ -55,7 +56,7 @@ public class BlockTrafficSign extends Block
 
     // Sign textures: square - circle - triangle - diamond - misc.
 
-    private IIcon signDiamond[] = new IIcon[38];
+    private IIcon signDiamond[] = new IIcon[64];
 
     private IIcon signSBase, signSNoParkTop, signSNoParkBottom, signSSpeedBase, signSOneWayEU;
     private IIcon signCSpeed50;
@@ -90,7 +91,7 @@ public class BlockTrafficSign extends Block
 
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        for(int i = 1; i < 38; i++)
+        for(int i = 1; i < 64; i++)
         {
             this.signDiamond[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/diamond" + i);
         }
@@ -297,7 +298,12 @@ public class BlockTrafficSign extends Block
                     break;
             }
         }
+    }
 
+    public AxisAlignedBB getCollisionBoundingBoxFromPool(World p_149668_1_, int p_149668_2_, int p_149668_3_, int p_149668_4_)
+    {
+        this.setBlockBoundsBasedOnState(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
+        return super.getCollisionBoundingBoxFromPool(p_149668_1_, p_149668_2_, p_149668_3_, p_149668_4_);
     }
 
     @SideOnly(Side.CLIENT)
