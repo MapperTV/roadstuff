@@ -33,9 +33,11 @@ import com.sun.imageio.plugins.common.I18N;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.killermapper.roadstuff.common.Reference;
 import net.killermapper.roadstuff.common.RoadStuff;
 import net.killermapper.roadstuff.common.blocks.BlockTrafficSign;
 import net.killermapper.roadstuff.common.init.RoadStuffBlocks;
+import net.killermapper.roadstuff.common.init.RoadStuffConfig;
 import net.killermapper.roadstuff.common.network.PacketSignType;
 import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
 import net.minecraft.client.gui.GuiButton;
@@ -53,7 +55,13 @@ public class GuiTrafficSign extends GuiScreen
 
     private GuiButton buttonTypePrevious, buttonTypeNext, buttonShapePrevious, buttonShapeNext, buttonQuit, buttonReset;
     private TileEntityBlockTrafficSign tileSign;
-    short currentType = 0, maxSign = 63;
+
+    short currentType = 0;
+    short maxSignDiamond = Reference.maxSignDiamond - 1;
+    short maxSignSquare = Reference.maxSignSquare - 1;
+    short maxSignCircle = Reference.maxSignCircle - 1;
+    short maxSignTriangle = Reference.maxSignTriangle - 1;
+
     byte currentShape = 0;
 
     public GuiTrafficSign(TileEntityBlockTrafficSign tile)
@@ -90,46 +98,27 @@ public class GuiTrafficSign extends GuiScreen
         drawString(fontRendererObj, I18n.format("gui.trafficsign.type"), (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.type"))) / 2, height / 2 - 50, 16777215);
         drawString(fontRendererObj, I18n.format("gui.trafficsign.shape"), (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.shape"))) / 2, height / 2 - 100, 16777215);
 
-        //GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
-        //mc.getTextureManager().bindTexture(textures);
+        // GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
+        // mc.getTextureManager().bindTexture(textures);
         if(currentShape == 0)
         {
-            mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/diamond" + currentType + ".png"));
+            mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/square/square" + currentType + ".png"));
             func_152125_a(width / 2 - 48, height / 2 - 32, 0, 0, 1, 1, 100, 100, 1, 1);
         }
         if(currentShape == 1)
         {
-            mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/diamond" + currentType + ".png"));
+            mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/circle/circle" + currentType + ".png"));
             func_152125_a(width / 2 - 48, height / 2 - 32, 0, 0, 1, 1, 100, 100, 1, 1);
         }
         if(currentShape == 2)
         {
-            mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/diamond" + currentType + ".png"));
+            mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/triangle/triangle" + currentType + ".png"));
             func_152125_a(width / 2 - 48, height / 2 - 32, 0, 0, 1, 1, 100, 100, 1, 1);
         }
         if(currentShape == 3)
         {
-            {
-                mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/diamond" + currentType + ".png"));
-                func_152125_a(width / 2 - 48, height / 2 - 32, 0, 0, 1, 1, 100, 100, 1, 1);
-            }
-            
-            /*mc.getTextureManager().bindTexture(texturesDiamond);
-            // Matrix push to scale the sign icon
-            GL11.glPushMatrix();
-            GL11.glScalef(3f, 3f, 1f);
-
-            if(currentType < 8)
-                drawTexturedModalRect(width / 6 - 16, height / 6 - 12, currentType * 32, 0, 32, 32);
-            if(currentType >= 8 && currentType < 16)
-                drawTexturedModalRect(width / 6 - 16, height / 6 - 12, (currentType - 8) * 32, 32, 32, 32);
-            if(currentType >= 16 && currentType < 24)
-                drawTexturedModalRect(width / 6 - 16, height / 6 - 12, (currentType - 16) * 32, 64, 32, 32);
-            if(currentType >= 24 && currentType < 32)
-                drawTexturedModalRect(width / 6 - 16, height / 6 - 12, (currentType - 24) * 32, 96, 32, 32);
-            if(currentType >= 32 && currentType < 40)
-                drawTexturedModalRect(width / 6 - 16, height / 6 - 12, (currentType - 32) * 32, 128, 32, 32);
-            GL11.glPopMatrix();*/
+            mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/diamond/diamond" + currentType + ".png"));
+            func_152125_a(width / 2 - 48, height / 2 - 32, 0, 0, 1, 1, 100, 100, 1, 1);
         }
         mc.getTextureManager().bindTexture(textures);
         drawTexturedModalRect(width / 2 - 16, height / 2 - 88, currentShape * 32 + 128, 0, 32, 32);
@@ -156,18 +145,45 @@ public class GuiTrafficSign extends GuiScreen
             currentType = 0;
 
         // Sign and shape bounds
-        if(currentType < 0)
-            currentType = maxSign;
-        else if(currentType > maxSign)
-            currentType = 0;
+        switch(currentShape)
+        {
+            case 0:
+                if(currentType < 0)
+                    currentType = maxSignSquare;
+                else if(currentType > maxSignSquare)
+                    currentType = 0;
+                break;
+            case 1:
+                if(currentType < 0)
+                    currentType = maxSignCircle;
+                else if(currentType > maxSignCircle)
+                    currentType = 0;
+                break;
+            case 2:
+                if(currentType < 0)
+                    currentType = maxSignTriangle;
+                else if(currentType > maxSignTriangle)
+                    currentType = 0;
+                break;
+            case 3:
+                if(currentType < 0)
+                    currentType = maxSignDiamond;
+                else if(currentType > maxSignDiamond)
+                    currentType = 0;
+                break;
+        }
 
         if(currentShape < 0)
             currentShape = 3;
         else if(currentShape > 3)
             currentShape = 0;
 
-        System.out.println("Current selected type: " + currentType);
-        System.out.println("Current selected shape: " + currentShape);
+        if(RoadStuffConfig.enableDebug)
+        {
+            System.out.println("Current selected type: " + currentType);
+            System.out.println("Current selected shape: " + currentShape);
+            System.out.println("Signs: " + maxSignDiamond + " " + maxSignTriangle + " " + maxSignCircle + " " + maxSignSquare);
+        }
     }
 
     @Override

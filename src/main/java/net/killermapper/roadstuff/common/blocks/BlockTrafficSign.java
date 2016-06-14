@@ -30,7 +30,9 @@ import java.util.List;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
+import net.killermapper.roadstuff.common.Reference;
 import net.killermapper.roadstuff.common.RoadStuff;
+import net.killermapper.roadstuff.common.init.RoadStuffConfig;
 import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
 import net.killermapper.roadstuff.proxy.ClientProxy;
 import net.minecraft.block.Block;
@@ -56,12 +58,11 @@ public class BlockTrafficSign extends Block
 
     // Sign textures: square - circle - triangle - diamond - misc.
 
-    private IIcon signDiamond[] = new IIcon[64];
+    private IIcon signDiamond[] = new IIcon[Reference.maxSignDiamond];
+    private IIcon signSquare[] = new IIcon[Reference.maxSignSquare];
+    private IIcon signCircle[] = new IIcon[Reference.maxSignCircle];
+    private IIcon signTriangle[] = new IIcon[Reference.maxSignTriangle];
 
-    private IIcon signSBase, signSNoParkTop, signSNoParkBottom, signSSpeedBase, signSOneWayEU;
-    private IIcon signCSpeed50;
-    private IIcon signTBase;
-    private IIcon signDBase;
     private IIcon signPost, signBase, signError;
 
     public BlockTrafficSign()
@@ -91,26 +92,26 @@ public class BlockTrafficSign extends Block
 
     public void registerBlockIcons(IIconRegister iconRegister)
     {
-        for(int i = 1; i < 64; i++)
+        for(int i = 0; i < Reference.maxSignDiamond; i++)
         {
-            this.signDiamond[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/diamond" + i);
+            this.signDiamond[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/diamond/diamond" + i);
+        }
+        for(int i = 0; i < Reference.maxSignSquare; i++)
+        {
+            this.signSquare[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/square/square" + i);
+        }
+        for(int i = 0; i < Reference.maxSignCircle; i++)
+        {
+            this.signCircle[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/circle/circle" + i);
+        }
+        for(int i = 0; i < Reference.maxSignTriangle; i++)
+        {
+            this.signTriangle[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/triangle/triangle" + i);
         }
 
         this.signPost = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signPost");
         this.signBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signBase");
         this.signError = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signError");
-        // Square signs
-        this.signSNoParkTop = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signSNoParkTop");
-        this.signSNoParkBottom = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signSNoParkBottom");
-        this.signSOneWayEU = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signSOneWayEU");
-        // Circle signs
-        this.signSSpeedBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signCBase");
-        this.signCSpeed50 = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signCSpeed50");
-        // Triangle signs
-        this.signTBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signTBase");
-        // Diamond signs
-        this.signDBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signDBase");
-
     }
 
     public IIcon getIcon(int side, int metadata)
@@ -156,43 +157,19 @@ public class BlockTrafficSign extends Block
                 {
                     short type = ((TileEntityBlockTrafficSign)tile).getSignType();
                     byte shape = ((TileEntityBlockTrafficSign)tile).getSignShape();
+
+                    if(type == 0)
+                        return this.signBase;
+
                     switch(shape)
                     {
                         case 0:
-                            switch(type)
-                            {
-                                case 1:
-                                    return this.signSNoParkTop;
-                                case 2:
-                                    return this.signSNoParkBottom;
-                                case 3:
-                                    return this.signSSpeedBase;
-                                case 4:
-                                    return this.signSOneWayEU;
-                                default:
-                                    return this.signBase;
-                            }
+                            return this.signSquare[type];
                         case 1:
-                            switch(type)
-                            {
-                                case 1:
-                                    return this.signCSpeed50;
-                                default:
-                                    return this.signBase;
-                            }
+                            return this.signCircle[type];
                         case 2:
-                            switch(type)
-                            {
-                                case 1:
-                                    return this.signTBase;
-                                default:
-                                    return this.signBase;
-                            }
+                            return this.signTriangle[type];
                         case 3:
-                            if(type == 0)
-                            {
-                                return this.signBase;
-                            }
                             return this.signDiamond[type];
                         default:
                             return this.signError;
@@ -200,7 +177,6 @@ public class BlockTrafficSign extends Block
                 }
             }
         }
-        // return this.getIcon(side, world.getBlockMetadata(x, y, z));
         return this.signPost;
     }
 
@@ -337,16 +313,22 @@ public class BlockTrafficSign extends Block
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-        System.out.println(((TileEntityBlockTrafficSign)world.getTileEntity(x, y, z)).getSignType() + ", client is " + world.isRemote);
+        if(RoadStuffConfig.enableDebug)
+        {
+            System.out.println(((TileEntityBlockTrafficSign)world.getTileEntity(x, y, z)).getSignType() + ", client is " + world.isRemote);
+        }
         if(!world.isRemote)
         {
             TileEntity tile = world.getTileEntity(x, y, z);
             if(tile instanceof TileEntityBlockTrafficSign)
             {
                 TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
-                player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));
-                player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
-                player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
+                if(RoadStuffConfig.enableDebug)
+                {
+                    player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));
+                    player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
+                    player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
+                }
                 // System.out.println(world.loadedTileEntityList);
             }
             return true;

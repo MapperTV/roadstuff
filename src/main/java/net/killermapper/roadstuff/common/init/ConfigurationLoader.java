@@ -28,13 +28,13 @@ public class ConfigurationLoader
             {
                 config.createNewFile();
                 setDefaultParameters(config.getAbsoluteFile());
-                RoadStuff.logger.log(Level.INFO, "Created configuration file");
+                RoadStuff.logger.log(Level.INFO, "Created configuration file.");
             }
             read(config);
         }
         catch(IOException e)
         {
-            RoadStuff.logger.log(Level.ERROR, "Cannot create configuration file");
+            RoadStuff.logger.log(Level.ERROR, "Cannot create configuration file!");
         }
     }
 
@@ -46,7 +46,6 @@ public class ConfigurationLoader
             // BufferedOutputStream streamOut = new BufferedOutputStream(new FileOutputStream(file));
             FileWriter writer = new FileWriter(file);
             writer.write("#Road Stuff Configuration File\n\n");
-            // writer.write("\n");
             writer.write("#Will Road Stuff generate bitumen in the world?\n");
             writer.write("EnableBitumen=" + ConfigurationOld.enableBitumen.get("enable.bitumen") + "\n \n");
             writer.write("#WIP");

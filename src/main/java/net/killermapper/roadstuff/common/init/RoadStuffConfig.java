@@ -33,17 +33,23 @@ import net.killermapper.roadstuff.common.RoadStuff;
 
 public class RoadStuffConfig
 {
-    public static boolean enableBitumen;
-    public static final boolean GENBITUMEN_DEFAULT = true;
+    public static boolean enableBitumen, enableDebug;
+    public static final boolean GENBITUMEN_DEFAULT = true, DEBUGMODE_DEFAULT = false;
     public static final String GENBITUMEN_NAME = "Enables bitumen generation in the world";
+    public static final String DEBUGMODE_NAME = "Enables Debug Mode";
 
     public static void syncConfig()
     {
         FMLCommonHandler.instance().bus().register(RoadStuff.instance);
 
         final String BITUMENGEN = RoadStuff.config.CATEGORY_GENERAL + RoadStuff.config.CATEGORY_SPLITTER + "OreGeneration";
+        final String DEBUGMODE = RoadStuff.config.CATEGORY_GENERAL + RoadStuff.config.CATEGORY_SPLITTER + "Debug";
+        
         RoadStuff.config.addCustomCategoryComment(BITUMENGEN, "Enable Ore Generation in the world");
         enableBitumen = RoadStuff.config.get(BITUMENGEN, GENBITUMEN_NAME, GENBITUMEN_DEFAULT).getBoolean(GENBITUMEN_DEFAULT);
+        
+        RoadStuff.config.addCustomCategoryComment(DEBUGMODE, "Enable Debug Mode, only enable it if you know what you're doing.");
+        enableDebug = RoadStuff.config.get(DEBUGMODE, DEBUGMODE_NAME, DEBUGMODE_DEFAULT).getBoolean(DEBUGMODE_DEFAULT);
         if(RoadStuff.config.hasChanged())
         {
             RoadStuff.config.save();

@@ -26,6 +26,7 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.common.tiles;
 
+import net.killermapper.roadstuff.common.init.RoadStuffConfig;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
@@ -45,7 +46,10 @@ public class TileEntityBlockTrafficSign extends TileEntity
         this.signDirection = compound.getByte("Direction");
         this.signShape = compound.getByte("Shape");
         this.signType = compound.getShort("SignType");
-        System.out.println("Got from NBT the value: " + this.signType);
+        if(RoadStuffConfig.enableDebug)
+        {
+            System.out.println("Got from NBT the value: " + this.signType);
+        }
     }
 
     @Override
@@ -55,7 +59,10 @@ public class TileEntityBlockTrafficSign extends TileEntity
         compound.setByte("Direction", this.signDirection);
         compound.setByte("Shape", this.signShape);
         compound.setShort("SignType", this.signType);
-        System.out.println("Wrote to NBT the value " + this.signType);
+        if(RoadStuffConfig.enableDebug)
+        {
+            System.out.println("Wrote to NBT the value " + this.signType);
+        }
         markDirty();
     }
 
@@ -78,7 +85,10 @@ public class TileEntityBlockTrafficSign extends TileEntity
     public void setSignShape(byte signShape)
     {
         this.signShape = signShape;
-        System.out.println("Set signShape to: " + signShape);
+        if(RoadStuffConfig.enableDebug)
+        {
+            System.out.println("Set signShape to: " + signShape);
+        }
         this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
     }
 
@@ -90,7 +100,10 @@ public class TileEntityBlockTrafficSign extends TileEntity
     public void setSignType(short signType)
     {
         this.signType = signType;
-        System.out.println("Set signType to: " + signType);
+        if(RoadStuffConfig.enableDebug)
+        {
+            System.out.println("Set signType to: " + signType);
+        }
         this.worldObj.markBlockForUpdate(this.xCoord, this.yCoord, this.zCoord);
     }
 
