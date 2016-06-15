@@ -6,7 +6,7 @@ For Minecraft 1.7.10
 
 Road Stuff is a Minecraft MODification which adds road blocks and items related to roads.
 
-Current version: 0.3.0 alpha for 1.7.10: http://minecraft.curseforge.com/projects/road-stuff
+Current version: 0.4.0 alpha for 1.7.10: http://minecraft.curseforge.com/projects/road-stuff
 
 Currently including:
 - Asphalt road blocks
@@ -14,6 +14,7 @@ Currently including:
 - 6 different kinds of lines, including corners and some crossings + variants
 - Arrows
 - Traffic cones (3 variants)
+- Traffic Signs (to be completed)
 - Bitumen ore gen (can be disabled in config)
 - Achievements
 - Chisel support
