@@ -198,10 +198,10 @@ public class BlockTrafficSign extends Block
             switch(((TileEntityBlockTrafficSign)tile).getSignDirection())
             {
                 case 0:
-                    this.minX = 0.3F;
+                    this.minX = 0.4F;
                     this.minY = 0.0F;
                     this.minZ = 0.5F;
-                    this.maxX = 0.7F;
+                    this.maxX = 0.6F;
                     this.maxY = 1F;
                     this.maxZ = 0.65F;
 
@@ -215,10 +215,10 @@ public class BlockTrafficSign extends Block
                 case 1:
                     this.minX = 0.35F;
                     this.minY = 0.0F;
-                    this.minZ = 0.3F;
+                    this.minZ = 0.4F;
                     this.maxX = 0.5F;
                     this.maxY = 1F;
-                    this.maxZ = 0.7F;
+                    this.maxZ = 0.6F;
 
                     if(world.getBlockMetadata(x, y, z) == 1)
                     {
@@ -228,10 +228,10 @@ public class BlockTrafficSign extends Block
                     }
                     break;
                 case 2:
-                    this.minX = 0.3F;
+                    this.minX = 0.4F;
                     this.minY = 0.0F;
-                    this.minZ = 0.3F;
-                    this.maxX = 0.7F;
+                    this.minZ = 0.35F;
+                    this.maxX = 0.6F;
                     this.maxY = 1F;
                     this.maxZ = 0.5F;
 
@@ -239,22 +239,22 @@ public class BlockTrafficSign extends Block
                     {
                         this.minX = 0.0F;
                         this.maxX = 1F;
-                        this.maxZ = 0.7F;
+                        this.maxZ = 0.5F;
                     }
                     break;
                 case 3:
                     this.minX = 0.5F;
                     this.minY = 0.0F;
-                    this.minZ = 0.3F;
+                    this.minZ = 0.4F;
                     this.maxX = 0.65F;
                     this.maxY = 1F;
-                    this.maxZ = 0.7F;
+                    this.maxZ = 0.6F;
 
                     if(world.getBlockMetadata(x, y, z) == 1)
                     {
-                        this.minX = 0.0F;
-                        this.maxX = 1F;
-                        this.maxZ = 0.7F;
+                        this.minZ = 0.0F;
+                        this.maxX = 0.7F;
+                        this.maxZ = 1F;
                     }
                     break;
                 default:
@@ -313,31 +313,34 @@ public class BlockTrafficSign extends Block
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-        if(RoadStuffConfig.enableDebug)
+        if(world.getBlockMetadata(x, y, z) != 0)
         {
-            System.out.println(((TileEntityBlockTrafficSign)world.getTileEntity(x, y, z)).getSignType() + ", client is " + world.isRemote);
-        }
-        if(!world.isRemote)
-        {
-            TileEntity tile = world.getTileEntity(x, y, z);
-            if(tile instanceof TileEntityBlockTrafficSign)
+            if(RoadStuffConfig.enableDebug)
             {
-                TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
-                if(RoadStuffConfig.enableDebug)
-                {
-                    player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));
-                    player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
-                    player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
-                }
-                // System.out.println(world.loadedTileEntityList);
+                System.out.println(((TileEntityBlockTrafficSign)world.getTileEntity(x, y, z)).getSignType() + ", client is " + world.isRemote);
             }
-            return true;
+            if(!world.isRemote)
+            {
+                TileEntity tile = world.getTileEntity(x, y, z);
+                if(tile instanceof TileEntityBlockTrafficSign)
+                {
+                    TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
+                    if(RoadStuffConfig.enableDebug)
+                    {
+                        player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));
+                        player.addChatMessage(new ChatComponentTranslation("tile.signshape.number", tileEntity.getSignShape()));
+                        player.addChatMessage(new ChatComponentTranslation("tile.signtype.number", tileEntity.getSignType()));
+                    }
+                }
+                return true;
+            }
+            else
+            {
+                if(world.getBlockMetadata(x, y, z) != 0)
+                    player.openGui(RoadStuff.instance, 0, world, x, y, z);
+                return true;
+            }
         }
-        else
-        {
-            if(world.getBlockMetadata(x, y, z) != 0)
-                player.openGui(RoadStuff.instance, 0, world, x, y, z);
-            return true;
-        }
+        return false;
     }
 }

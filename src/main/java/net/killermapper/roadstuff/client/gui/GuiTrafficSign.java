@@ -3,7 +3,7 @@ Road Stuff - A Minecraft MODification by KillerMapper - 2015
 
 The MIT License (MIT)
 
-Copyright (c) 2015 KillerMapper
+Copyright (c) 2015 - 2016 KillerMapper
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -53,7 +53,7 @@ public class GuiTrafficSign extends GuiScreen
     private static final ResourceLocation textures = new ResourceLocation(RoadStuff.MODID, "textures/gui/sign/signConfig.png");
     private static final ResourceLocation texturesDiamond = new ResourceLocation(RoadStuff.MODID, "textures/gui/sign/signDiamond.png");
 
-    private GuiButton buttonTypePrevious, buttonTypeNext, buttonShapePrevious, buttonShapeNext, buttonQuit, buttonReset;
+    private GuiButton buttonTypePrevious, buttonTypeNext, buttonTypePrevious10, buttonTypeNext10, buttonShapePrevious, buttonShapeNext, buttonQuit, buttonReset;
     private TileEntityBlockTrafficSign tileSign;
 
     short currentType = 0;
@@ -81,9 +81,11 @@ public class GuiTrafficSign extends GuiScreen
         buttonList.add(buttonQuit = new GuiButton(0, width / 2 - 20, height / 2 + 68, 40, 20, I18n.format("gui.trafficsign.done")));
         buttonList.add(buttonShapePrevious = new GuiButton(1, width / 2 - 84, height / 2 - 82, 20, 20, "<"));
         buttonList.add(buttonShapeNext = new GuiButton(2, width / 2 + 64, height / 2 - 82, 20, 20, ">"));
-        buttonList.add(buttonTypePrevious = new GuiButton(3, width / 2 - 84, height / 2, 20, 20, "<"));
-        buttonList.add(buttonTypeNext = new GuiButton(4, width / 2 + 64, height / 2, 20, 20, ">"));
-        buttonList.add(buttonReset = new GuiButton(5, width / 2 + 100, height / 2 + 84, 40, 20, "Reset"));
+        buttonList.add(buttonTypePrevious10 = new GuiButton(3, width / 2 - 100, height / 2 , 20, 20, "<<"));
+        buttonList.add(buttonTypeNext10 = new GuiButton(4, width / 2 + 85, height / 2, 20, 20, ">>"));
+        buttonList.add(buttonTypePrevious = new GuiButton(5, width / 2 - 75, height / 2, 20, 20, "<"));
+        buttonList.add(buttonTypeNext = new GuiButton(6, width / 2 + 60, height / 2, 20, 20, ">"));
+        buttonList.add(buttonReset = new GuiButton(7, width / 2 + 100, height / 2 + 84, 40, 20, "Reset"));
     }
 
     @Override
@@ -93,10 +95,11 @@ public class GuiTrafficSign extends GuiScreen
 
         mc.getTextureManager().bindTexture(textures);
         drawTexturedModalRect(width / 2 - 9, height / 2 + 0, 0, 256, 32, 256);
+        drawTexturedModalRect(width / 2 -100, height / 2 + 84, 16, 0, 39, 21);
         GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
         drawString(fontRendererObj, I18n.format("gui.trafficsign.title"), (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.title"))) / 2, height / 2 - 114, 16777215);
-        drawString(fontRendererObj, I18n.format("gui.trafficsign.type"), (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.type"))) / 2, height / 2 - 50, 16777215);
-        drawString(fontRendererObj, I18n.format("gui.trafficsign.shape"), (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.shape"))) / 2, height / 2 - 100, 16777215);
+        drawString(fontRendererObj, I18n.format("gui.trafficsign.type") + " : " + currentType, (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.type")) - 16) / 2, height / 2 - 50, 16777215);
+        drawString(fontRendererObj, I18n.format("gui.trafficsign.shape") + " : " + currentShape, (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.shape")) - 16) / 2, height / 2 - 100, 16777215);
 
         // GL11.glColor4f(1.0F, 1.0F, 1.0F, 1.0F);
         // mc.getTextureManager().bindTexture(textures);
@@ -134,14 +137,24 @@ public class GuiTrafficSign extends GuiScreen
             mc.displayGuiScreen((GuiScreen)null);
         }
         else if(parButton.id == 1)
+        {
             currentShape--;
+            currentType = 0;
+        }
         else if(parButton.id == 2)
+        {
             currentShape++;
+            currentType = 0;
+        }
         else if(parButton.id == 3)
-            currentType--;
+            currentType -= 10;
         else if(parButton.id == 4)
-            currentType++;
+            currentType += 10;
         else if(parButton.id == 5)
+            currentType--;
+        else if(parButton.id == 6)
+            currentType++;
+        else if(parButton.id == 7)
             currentType = 0;
 
         // Sign and shape bounds

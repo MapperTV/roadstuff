@@ -67,11 +67,14 @@ public class ItemBlockTrafficSign extends ItemBlock
         }
         return super.getUnlocalizedName() + "." + BlockTrafficSign.subBlock[metadata];
     }
-    
+
     public void addInformation(ItemStack stack, EntityPlayer player, List list, boolean show)
     {
-        list.add("Not available in survival yet, sorry!");
-        //list.add("Right-click to configure it.");
+        int metadata = stack.getItemDamage();
+        if(metadata == 1)
+        {
+            list.add("Right-click to configure it.");
+        }
     }
 
 }

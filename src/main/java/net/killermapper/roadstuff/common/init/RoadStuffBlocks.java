@@ -150,7 +150,7 @@ public class RoadStuffBlocks
 
     // Misc. Blocks
     public static Block blockCone;
-    public static Block blockTrafficLight;
+    //public static Block blockTrafficLight;
     public static Block blockTrafficSign;
     public static Block blockReflector;
 
@@ -208,7 +208,7 @@ public class RoadStuffBlocks
         blockCone = new BlockCone().setBlockName("cone").setHardness(1.0F).setResistance(1.0F);
         blockTrafficSign = new BlockTrafficSign().setBlockName("trafficSign").setHardness(1.0F).setResistance(1.0F);
         blockBitumenBlock = new BlockBase(Material.rock).setBlockName("bitumenBlock").setBlockTextureName(RoadStuff.MODID + ":bitumenBlock");
-        blockTrafficLight = new BlockTrafficLigth().setBlockName("trafficLight");
+        //blockTrafficLight = new BlockTrafficLigth().setBlockName("trafficLight");
         blockReflector = new BlockReflector().setBlockName("reflector").setHardness(1.0F).setResistance(1.0F);
 
         // Test
@@ -325,7 +325,7 @@ public class RoadStuffBlocks
         // Misc. Blocks
         GameRegistry.registerBlock(blockCone, ItemBlockCone.class, "cone");
         GameRegistry.registerBlock(blockBitumenBlock, "bitumenBlock");
-        GameRegistry.registerBlock(blockTrafficLight, ItemBlockTrafficLight.class, "trafficLigth");
+        //GameRegistry.registerBlock(blockTrafficLight, ItemBlockTrafficLight.class, "trafficLigth");
         GameRegistry.registerBlock(blockTrafficSign, ItemBlockTrafficSign.class, "trafficSign");
         GameRegistry.registerBlock(blockReflector, ItemBlockReflector.class, "reflector");
 
