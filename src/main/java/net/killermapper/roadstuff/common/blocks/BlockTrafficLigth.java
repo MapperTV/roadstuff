@@ -50,7 +50,7 @@ public class BlockTrafficLigth extends Block implements ITileEntityProvider {
 		return true;
 	}
 
-	@Override
+	/*@Override
 	public void onBlockPlacedBy(World world, int x, int y, int z, EntityLivingBase player, ItemStack stack) 
 	{
 		int direction = MathHelper.floor_double((double)(player.rotationYaw * 4.0F / 360.0F) + 0.5D) & 3;
@@ -163,5 +163,5 @@ public class BlockTrafficLigth extends Block implements ITileEntityProvider {
 	public int damageDropped(int metadata)
 	{
 		return metadata == 0 ? 0 : null;
-	}
+	}*/
 }

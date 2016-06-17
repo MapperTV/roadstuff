@@ -204,7 +204,7 @@ public class RoadStuffRecipes
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.blockCone, 4, 2), new Object[] {" Z ", " Y ", "XXX", 'Z', "dyeOrange", 'Y', "dyeWhite", 'X', new ItemStack(RoadStuffItems.itemBitumen, 1, 1)}));
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffItems.itemIronPart, 4, 0), new Object[] {"I", "I", 'I', "ingotIron"}));
-        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffItems.itemIronPart, 4, 1), new Object[] {"I", "I", "I", 'I', "ingotIron"}));
+        GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffItems.itemIronPart, 2, 1), new Object[] {"I", "I", "I", 'I', "ingotIron"}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.blockTrafficSign, 1, 0), new Object[] {"S", "S", 'S', "stickIron"}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.blockTrafficSign, 1, 1), new Object[] {"P", "S", 'P', "plateIron", 'S', "stickIron"}));
         // ItemStack(RoadStuffItems.itemIronPart, 1, 0)});

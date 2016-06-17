@@ -62,6 +62,7 @@ public class BlockTrafficSign extends Block
     private IIcon signSquare[] = new IIcon[Reference.maxSignSquare];
     private IIcon signCircle[] = new IIcon[Reference.maxSignCircle];
     private IIcon signTriangle[] = new IIcon[Reference.maxSignTriangle];
+    private IIcon signRectangle[] = new IIcon[Reference.maxSignRectangle];
 
     private IIcon signPost, signBase, signError;
 
@@ -107,6 +108,10 @@ public class BlockTrafficSign extends Block
         for(int i = 0; i < Reference.maxSignTriangle; i++)
         {
             this.signTriangle[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/triangle/triangle" + i);
+        }
+        for(int i = 0; i < Reference.maxSignRectangle; i++)
+        {
+            this.signRectangle[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/rectangle/rectangle" + i);
         }
 
         this.signPost = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signPost");
@@ -171,6 +176,8 @@ public class BlockTrafficSign extends Block
                             return this.signTriangle[type];
                         case 3:
                             return this.signDiamond[type];
+                        case 4:
+                            return this.signRectangle[type];
                         default:
                             return this.signError;
                     }

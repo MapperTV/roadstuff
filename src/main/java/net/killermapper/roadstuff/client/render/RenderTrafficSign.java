@@ -174,6 +174,10 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
                                 renderer.setRenderBounds(7 / 16F, 15 / 16F, 10 / 16F, 9 / 16F, 1F, 11 / 16F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 break;
+                            case 4:
+                                renderer.setRenderBounds(2 / 16F, 0.0F, 10 / 16F, 14 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
                         }
                     }
                     break;
@@ -262,6 +266,10 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
                                 renderer.setRenderBounds(5 / 16F, 14 / 16F, 6 / 16F, 6 / 16F, 15 / 16F, 10 / 16F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 renderer.setRenderBounds(5 / 16F, 15 / 16F, 7 / 16F, 6 / 16F, 1F, 9 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 4:
+                                renderer.setRenderBounds(5 / 16F, 0.0F, 2 / 16F, 6 / 16F, 1F, 14 / 16F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 break;
                         }
@@ -354,6 +362,10 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
                                 renderer.setRenderBounds(7 / 16F, 15 / 16F, 5 / 16F, 9 / 16F, 1F, 6 / 16F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 break;
+                            case 4:
+                                renderer.setRenderBounds(2 / 16F, 0.0F, 5 / 16F, 14 / 16F, 1F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
                         }
                     }
                     break;
@@ -444,6 +456,10 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
                                 renderer.setRenderBounds(10 / 16F, 15 / 16F, 7 / 16F, 11 / 16F, 1F, 9 / 16F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 break;
+                            case 4:
+                                renderer.setRenderBounds(10 / 16F, 0.0F, 2 / 16F, 11 / 16F, 1F, 14 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
                         }
                     }
                     break;
@@ -526,6 +542,10 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
                                 renderer.setRenderBounds(5 / 16F, 14 / 16F, 10 / 16F, 11 / 16F, 15 / 16F, 11 / 16F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 renderer.setRenderBounds(6 / 16F, 15 / 16F, 10 / 16F, 10 / 16F, 1F, 11 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 4:
+                                renderer.setRenderBounds(3 / 16F, 0.0F, 10 / 16F, 12 / 16F, 1F, 11 / 16F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 break;
                         }

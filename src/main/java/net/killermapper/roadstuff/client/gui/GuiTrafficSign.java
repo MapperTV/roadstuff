@@ -50,8 +50,7 @@ import net.minecraft.util.ResourceLocation;
 @SideOnly(Side.CLIENT)
 public class GuiTrafficSign extends GuiScreen
 {
-    private static final ResourceLocation textures = new ResourceLocation(RoadStuff.MODID, "textures/gui/sign/signConfig.png");
-    private static final ResourceLocation texturesDiamond = new ResourceLocation(RoadStuff.MODID, "textures/gui/sign/signDiamond.png");
+    private static final ResourceLocation textures = new ResourceLocation(RoadStuff.MODID, "textures/gui/signConfig.png");
 
     private GuiButton buttonTypePrevious, buttonTypeNext, buttonTypePrevious10, buttonTypeNext10, buttonShapePrevious, buttonShapeNext, buttonQuit, buttonReset;
     private TileEntityBlockTrafficSign tileSign;
@@ -61,6 +60,7 @@ public class GuiTrafficSign extends GuiScreen
     short maxSignSquare = Reference.maxSignSquare - 1;
     short maxSignCircle = Reference.maxSignCircle - 1;
     short maxSignTriangle = Reference.maxSignTriangle - 1;
+    short maxSignRectangle = Reference.maxSignRectangle - 1;
 
     byte currentShape = 0;
 
@@ -123,8 +123,13 @@ public class GuiTrafficSign extends GuiScreen
             mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/diamond/diamond" + currentType + ".png"));
             func_152125_a(width / 2 - 48, height / 2 - 32, 0, 0, 1, 1, 100, 100, 1, 1);
         }
+        if(currentShape == 4)
+        {
+            mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/rectangle/rectangle" + currentType + ".png"));
+            func_152125_a(width / 2 - 48, height / 2 - 32, 0, 0, 1, 1, 100, 100, 1, 1);
+        }
         mc.getTextureManager().bindTexture(textures);
-        drawTexturedModalRect(width / 2 - 16, height / 2 - 88, currentShape * 32 + 128, 0, 32, 32);
+        drawTexturedModalRect(width / 2 - 16, height / 2 - 88, currentShape * 32 + 96, 0, 32, 32);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -184,11 +189,17 @@ public class GuiTrafficSign extends GuiScreen
                 else if(currentType > maxSignDiamond)
                     currentType = 0;
                 break;
+            case 4:
+                if(currentType < 0)
+                    currentType = maxSignRectangle;
+                else if(currentType > maxSignRectangle)
+                    currentType = 0;
+                break;
         }
 
         if(currentShape < 0)
-            currentShape = 3;
-        else if(currentShape > 3)
+            currentShape = 4;
+        else if(currentShape > 4)
             currentShape = 0;
 
         if(RoadStuffConfig.enableDebug)
