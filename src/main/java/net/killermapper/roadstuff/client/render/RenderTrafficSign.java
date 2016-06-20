@@ -85,15 +85,22 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
             GL11.glPushMatrix();
 
             // Direction
+            byte signTop = 16;
+
+            if(tileSign.getSignType() > 2 && tileSign.getSignType() < 7 && tileSign.getSignShape() == 5)
+            {
+                signTop = 8;
+            }
+
             switch(tileSign.getSignDirection())
             {
                 case 0:
 
-                    renderer.setRenderBounds(7 / 16F, 0.0F, 9 / 16F, 9 / 16F, 1F, 10 / 16F);
+                    renderer.setRenderBounds(7 / 16F, 0 / 16F, 9 / 16F, 9 / 16F, signTop / 16F, 10 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
-                    renderer.setRenderBounds(7 / 16F, 0.0F, 0.5F, 0.46875F, 1F, 9 / 16F);
+                    renderer.setRenderBounds(7 / 16F, 0 / 16F, 0.5F, 0.46875F, signTop / 16F, 9 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
-                    renderer.setRenderBounds(0.53125F, 0.0F, 0.5F, 9 / 16F, 1F, 9 / 16F);
+                    renderer.setRenderBounds(0.53125F, 0 / 16F, 0.5F, 9 / 16F, signTop / 16F, 9 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
 
                     if(world.getBlockMetadata(x, y, z) != 0)
@@ -178,16 +185,20 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
                                 renderer.setRenderBounds(2 / 16F, 0.0F, 10 / 16F, 14 / 16F, 1F, 11 / 16F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 break;
+                            case 5:
+                                renderer.setRenderBounds(0.0F, 0.0F, 10 / 16F, 1F, 1F, 10 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
                         }
                     }
                     break;
                 case 1:
 
-                    renderer.setRenderBounds(6 / 16F, 0.0F, 7 / 16F, 7 / 16F, 1F, 9 / 16F);
+                    renderer.setRenderBounds(6 / 16F, 0.0F, 7 / 16F, 7 / 16F, signTop / 16F, 9 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
-                    renderer.setRenderBounds(7 / 16F, 0.0F, 7 / 16F, 0.5F, 1F, 0.48F);
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 7 / 16F, 0.5F, signTop / 16F, 0.48F);
                     renderer.renderStandardBlock(block, x, y, z);
-                    renderer.setRenderBounds(7 / 16F, 0.0F, 0.525F, 0.5F, 1F, 9 / 16F);
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 0.525F, 0.5F, signTop / 16F, 9 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
 
                     if(world.getBlockMetadata(x, y, z) != 0)
@@ -272,16 +283,20 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
                                 renderer.setRenderBounds(5 / 16F, 0.0F, 2 / 16F, 6 / 16F, 1F, 14 / 16F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 break;
+                            case 5:
+                                renderer.setRenderBounds(6 / 16F, 0.0F, 0.0F, 6 / 16F, 1F, 1F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
                         }
                     }
                     break;
                 case 2:
 
-                    renderer.setRenderBounds(7 / 16F, 0.0F, 6 / 16F, 9 / 16F, 1F, 7 / 16F);
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 6 / 16F, 9 / 16F, signTop / 16F, 7 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
-                    renderer.setRenderBounds(7 / 16F, 0.0F, 7 / 16F, 0.46875F, 1F, 8 / 16F);
+                    renderer.setRenderBounds(7 / 16F, 0.0F, 7 / 16F, 0.46875F, signTop / 16F, 8 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
-                    renderer.setRenderBounds(0.53125F, 0.0F, 7 / 16F, 9 / 16F, 1F, 8 / 16F);
+                    renderer.setRenderBounds(0.53125F, 0.0F, 7 / 16F, 9 / 16F, signTop / 16F, 8 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
 
                     if(world.getBlockMetadata(x, y, z) != 0)
@@ -366,16 +381,20 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
                                 renderer.setRenderBounds(2 / 16F, 0.0F, 5 / 16F, 14 / 16F, 1F, 6 / 16F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 break;
+                            case 5:
+                                renderer.setRenderBounds(0.0F, 0.0F, 6 / 16F, 1F, 1F, 6 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
                         }
                     }
                     break;
                 case 3:
 
-                    renderer.setRenderBounds(9 / 16F, 0.0F, 7 / 16F, 10 / 16F, 1F, 9 / 16F);
+                    renderer.setRenderBounds(9 / 16F, 0.0F, 7 / 16F, 10 / 16F, signTop / 16F, 9 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
-                    renderer.setRenderBounds(8 / 16F, 0.0F, 7 / 16F, 9 / 16F, 1F, 7.5 / 16F);
+                    renderer.setRenderBounds(8 / 16F, 0.0F, 7 / 16F, 9 / 16F, signTop / 16F, 7.5 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
-                    renderer.setRenderBounds(8 / 16F, 0.0F, 8.5 / 16F, 9 / 16F, 1F, 9 / 16F);
+                    renderer.setRenderBounds(8 / 16F, 0.0F, 8.5 / 16F, 9 / 16F, signTop / 16F, 9 / 16F);
                     renderer.renderStandardBlock(block, x, y, z);
 
                     if(world.getBlockMetadata(x, y, z) != 0)
@@ -458,6 +477,10 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
                                 break;
                             case 4:
                                 renderer.setRenderBounds(10 / 16F, 0.0F, 2 / 16F, 11 / 16F, 1F, 14 / 16F);
+                                renderer.renderStandardBlock(block, x, y, z);
+                                break;
+                            case 5:
+                                renderer.setRenderBounds(10 / 16F, 0.0F, 0.0F, 10 / 16F, 1F, 1F);
                                 renderer.renderStandardBlock(block, x, y, z);
                                 break;
                         }

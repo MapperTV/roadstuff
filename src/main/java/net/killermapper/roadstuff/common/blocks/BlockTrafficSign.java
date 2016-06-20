@@ -56,13 +56,15 @@ public class BlockTrafficSign extends Block
 {
     public static String[] subBlock = new String[] {"signpost", "sign"};
 
-    // Sign textures: square - circle - triangle - diamond - misc.
+    // Sign textures: square - circle - triangle - diamond - rectangle - misc.
 
     private IIcon signDiamond[] = new IIcon[Reference.maxSignDiamond];
     private IIcon signSquare[] = new IIcon[Reference.maxSignSquare];
     private IIcon signCircle[] = new IIcon[Reference.maxSignCircle];
     private IIcon signTriangle[] = new IIcon[Reference.maxSignTriangle];
     private IIcon signRectangle[] = new IIcon[Reference.maxSignRectangle];
+    private IIcon signMisc[] = new IIcon[Reference.maxSignMisc];
+    private IIcon signMiscB[] = new IIcon[Reference.maxSignMiscB];
 
     private IIcon signPost, signBase, signError;
 
@@ -113,6 +115,14 @@ public class BlockTrafficSign extends Block
         {
             this.signRectangle[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/rectangle/rectangle" + i);
         }
+        for(int i = 0; i < Reference.maxSignMisc; i++)
+        {
+            this.signMisc[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/misc/misc" + i);
+        }
+        for(int i = 0; i < Reference.maxSignMiscB; i++)
+        {
+            this.signMiscB[i] = iconRegister.registerIcon(RoadStuff.MODID + ":sign/misc/misc" + i + "B");
+        }
 
         this.signPost = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signPost");
         this.signBase = iconRegister.registerIcon(RoadStuff.MODID + ":sign/signBase");
@@ -139,25 +149,51 @@ public class BlockTrafficSign extends Block
             {
                 TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
                 short signFace = 0;
+                short signBack = 0;
                 switch(((TileEntityBlockTrafficSign)tile).getSignDirection())
                 {
                     case 0:
                         signFace = 3;
+                        signBack = 2;
                         break;
                     case 1:
                         signFace = 4;
+                        signBack = 5;
                         break;
                     case 2:
                         signFace = 2;
+                        signBack = 3;
                         break;
                     case 3:
                         signFace = 5;
+                        signBack = 4;
                         break;
                     default:
                         signFace = 3;
+                        signBack = 2;
                         break;
                 }
 
+                if(side == signBack)
+                {
+                    short type = ((TileEntityBlockTrafficSign)tile).getSignType();
+                    byte shape = ((TileEntityBlockTrafficSign)tile).getSignShape();
+                    if(side == signBack)
+                    {
+                        if(type == 0)
+                            return this.signBase;
+
+                    }
+                    if(shape == 5)
+                    {
+                        if(type < 3)
+                            return this.signMiscB[type];
+                        if(type >= 3 && type <= 6)
+                            return this.signMiscB[3];
+                        if(type >= 7 && type <= 13)
+                            return this.signMiscB[4];
+                    }
+                }
                 if(side == signFace)
                 {
                     short type = ((TileEntityBlockTrafficSign)tile).getSignType();
@@ -178,6 +214,8 @@ public class BlockTrafficSign extends Block
                             return this.signDiamond[type];
                         case 4:
                             return this.signRectangle[type];
+                        case 5:
+                            return this.signMisc[type];
                         default:
                             return this.signError;
                     }
@@ -202,6 +240,10 @@ public class BlockTrafficSign extends Block
         TileEntity tile = world.getTileEntity(x, y, z);
         if(tile instanceof TileEntityBlockTrafficSign)
         {
+            byte signColTop = 16;
+            if(((TileEntityBlockTrafficSign)tile).getSignShape() == 5 && ((TileEntityBlockTrafficSign)tile).getSignType() > 2 && ((TileEntityBlockTrafficSign)tile).getSignType() < 7 )
+                signColTop = 8;
+            
             switch(((TileEntityBlockTrafficSign)tile).getSignDirection())
             {
                 case 0:
@@ -209,7 +251,7 @@ public class BlockTrafficSign extends Block
                     this.minY = 0.0F;
                     this.minZ = 0.5F;
                     this.maxX = 0.6F;
-                    this.maxY = 1F;
+                    this.maxY = signColTop / 16F;
                     this.maxZ = 0.65F;
 
                     if(world.getBlockMetadata(x, y, z) == 1)
@@ -224,7 +266,7 @@ public class BlockTrafficSign extends Block
                     this.minY = 0.0F;
                     this.minZ = 0.4F;
                     this.maxX = 0.5F;
-                    this.maxY = 1F;
+                    this.maxY = signColTop / 16F;
                     this.maxZ = 0.6F;
 
                     if(world.getBlockMetadata(x, y, z) == 1)
@@ -239,7 +281,7 @@ public class BlockTrafficSign extends Block
                     this.minY = 0.0F;
                     this.minZ = 0.35F;
                     this.maxX = 0.6F;
-                    this.maxY = 1F;
+                    this.maxY = signColTop / 16F;
                     this.maxZ = 0.5F;
 
                     if(world.getBlockMetadata(x, y, z) == 1)
@@ -254,7 +296,7 @@ public class BlockTrafficSign extends Block
                     this.minY = 0.0F;
                     this.minZ = 0.4F;
                     this.maxX = 0.65F;
-                    this.maxY = 1F;
+                    this.maxY = signColTop / 16F;
                     this.maxZ = 0.6F;
 
                     if(world.getBlockMetadata(x, y, z) == 1)

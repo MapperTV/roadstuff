@@ -29,7 +29,7 @@ repositories {
    }
 }
 
-version = "0.4.0"
+version = "0.6.0"
 group= "net.killermapper.roadstuff" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "RoadStuff-mc1.7.10"
 

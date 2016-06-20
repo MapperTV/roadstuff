@@ -61,6 +61,7 @@ public class GuiTrafficSign extends GuiScreen
     short maxSignCircle = Reference.maxSignCircle - 1;
     short maxSignTriangle = Reference.maxSignTriangle - 1;
     short maxSignRectangle = Reference.maxSignRectangle - 1;
+    short maxSignMisc = Reference.maxSignMisc - 1;
 
     byte currentShape = 0;
 
@@ -78,10 +79,10 @@ public class GuiTrafficSign extends GuiScreen
 
         buttonList.clear();
         Keyboard.enableRepeatEvents(true);
-        buttonList.add(buttonQuit = new GuiButton(0, width / 2 - 20, height / 2 + 68, 40, 20, I18n.format("gui.trafficsign.done")));
+        buttonList.add(buttonQuit = new GuiButton(0, width / 2 - 20, height / 2 + 80, 40, 20, I18n.format("gui.trafficsign.done")));
         buttonList.add(buttonShapePrevious = new GuiButton(1, width / 2 - 84, height / 2 - 82, 20, 20, "<"));
         buttonList.add(buttonShapeNext = new GuiButton(2, width / 2 + 64, height / 2 - 82, 20, 20, ">"));
-        buttonList.add(buttonTypePrevious10 = new GuiButton(3, width / 2 - 100, height / 2 , 20, 20, "<<"));
+        buttonList.add(buttonTypePrevious10 = new GuiButton(3, width / 2 - 100, height / 2, 20, 20, "<<"));
         buttonList.add(buttonTypeNext10 = new GuiButton(4, width / 2 + 85, height / 2, 20, 20, ">>"));
         buttonList.add(buttonTypePrevious = new GuiButton(5, width / 2 - 75, height / 2, 20, 20, "<"));
         buttonList.add(buttonTypeNext = new GuiButton(6, width / 2 + 60, height / 2, 20, 20, ">"));
@@ -95,7 +96,7 @@ public class GuiTrafficSign extends GuiScreen
 
         mc.getTextureManager().bindTexture(textures);
         drawTexturedModalRect(width / 2 - 9, height / 2 + 0, 0, 256, 32, 256);
-        drawTexturedModalRect(width / 2 -100, height / 2 + 84, 16, 0, 39, 21);
+        drawTexturedModalRect(width / 2 - 100, height / 2 + 84, 16, 0, 39, 21);
         GL11.glColor4f(0.0F, 0.0F, 0.0F, 1.0F);
         drawString(fontRendererObj, I18n.format("gui.trafficsign.title"), (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.title"))) / 2, height / 2 - 114, 16777215);
         drawString(fontRendererObj, I18n.format("gui.trafficsign.type") + " : " + currentType, (width - fontRendererObj.getStringWidth(I18n.format("gui.trafficsign.type")) - 16) / 2, height / 2 - 50, 16777215);
@@ -128,8 +129,13 @@ public class GuiTrafficSign extends GuiScreen
             mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/rectangle/rectangle" + currentType + ".png"));
             func_152125_a(width / 2 - 48, height / 2 - 32, 0, 0, 1, 1, 100, 100, 1, 1);
         }
+        if(currentShape == 5)
+        {
+            mc.renderEngine.bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/blocks/sign/misc/misc" + currentType + ".png"));
+            func_152125_a(width / 2 - 48, height / 2 - 32, 0, 0, 1, 1, 100, 100, 1, 1);
+        }
         mc.getTextureManager().bindTexture(textures);
-        drawTexturedModalRect(width / 2 - 16, height / 2 - 88, currentShape * 32 + 96, 0, 32, 32);
+        drawTexturedModalRect(width / 2 - 16, height / 2 - 88, currentShape * 32 + 64, 0, 32, 32);
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -195,18 +201,24 @@ public class GuiTrafficSign extends GuiScreen
                 else if(currentType > maxSignRectangle)
                     currentType = 0;
                 break;
+            case 5:
+                if(currentType < 0)
+                    currentType = maxSignMisc;
+                else if(currentType > maxSignMisc)
+                    currentType = 0;
+                break;
         }
 
         if(currentShape < 0)
-            currentShape = 4;
-        else if(currentShape > 4)
+            currentShape = 5;
+        else if(currentShape > 5)
             currentShape = 0;
 
         if(RoadStuffConfig.enableDebug)
         {
             System.out.println("Current selected type: " + currentType);
             System.out.println("Current selected shape: " + currentShape);
-            System.out.println("Signs: " + maxSignDiamond + " " + maxSignTriangle + " " + maxSignCircle + " " + maxSignSquare);
+            System.out.println("Signs: " + maxSignDiamond + " " + maxSignTriangle + " " + maxSignCircle + " " + maxSignSquare + " " + maxSignRectangle + " " + maxSignMisc);
         }
     }
 

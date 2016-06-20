@@ -9,7 +9,7 @@
   "updateUrl": "",
   "authorList": ["KillerMapper"],
   "credits": "MinecraftForgeFrance, BrokenSwing, everyone who worked on Forge",
-  "logoFile": "/assets/roadstuff/logo.png",
+  "logoFile": "assets/roadstuff/textures/gui/logo.png",
   "screenshots": [],
   "dependencies": []
 }
