@@ -76,7 +76,7 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
-    {
+    {     
         TileEntity tile = world.getTileEntity(x, y, z);
         if(tile instanceof TileEntityBlockTrafficSign)
         {
