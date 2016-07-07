@@ -61,12 +61,20 @@ public class EventPlayer
     {
         if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockAsphalt) && eventCrafted.crafting.getItemDamage() == 0)
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftAsphalt);
-        
         if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockConcrete) && eventCrafted.crafting.getItemDamage() == 0)
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftConcrete);
-
         if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockCone))
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftCone);
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockAsphaltLine))
+            eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftAsphaltLine);
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockAsphaltCorner))
+            eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftAsphaltCorner);
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockConcreteLine))
+            eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftConcreteLine);
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockConcreteCorner))
+            eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftConcreteCorner);
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockTrafficSign) && eventCrafted.crafting.getItemDamage() == 1)
+            eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftSign);
     }
 
     @SubscribeEvent

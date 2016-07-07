@@ -87,7 +87,7 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
             // Direction
             byte signTop = 16;
 
-            if(tileSign.getSignType() > 2 && tileSign.getSignType() < 7 && tileSign.getSignShape() == 5)
+            if(tileSign.getSignType() > 3 && tileSign.getSignType() < 9 && tileSign.getSignShape() == 5)
             {
                 signTop = 8;
             }

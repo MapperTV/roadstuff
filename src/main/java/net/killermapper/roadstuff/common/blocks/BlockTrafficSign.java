@@ -188,10 +188,16 @@ public class BlockTrafficSign extends Block
                     {
                         if(type < 3)
                             return this.signMiscB[type];
-                        if(type >= 3 && type <= 6)
+                        if(type == 3)
+                            return this.signMiscB[2];
+                        if(type >= 4 && type <= 8)
                             return this.signMiscB[3];
-                        if(type >= 7 && type <= 13)
+                        if(type >= 9 && type <= 15)
                             return this.signMiscB[4];
+                        if(type >= 16 && type <= 18)
+                            return this.signMiscB[5];
+                        if(type == 19)
+                            return this.signMiscB[6];
                     }
                 }
                 if(side == signFace)
@@ -241,7 +247,7 @@ public class BlockTrafficSign extends Block
         if(tile instanceof TileEntityBlockTrafficSign)
         {
             byte signColTop = 16;
-            if(((TileEntityBlockTrafficSign)tile).getSignShape() == 5 && ((TileEntityBlockTrafficSign)tile).getSignType() > 2 && ((TileEntityBlockTrafficSign)tile).getSignType() < 7 )
+            if(((TileEntityBlockTrafficSign)tile).getSignShape() == 5 && ((TileEntityBlockTrafficSign)tile).getSignType() > 3 && ((TileEntityBlockTrafficSign)tile).getSignType() < 9 )
                 signColTop = 8;
             
             switch(((TileEntityBlockTrafficSign)tile).getSignDirection())
