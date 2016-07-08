@@ -32,6 +32,7 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.common.Reference;
 import net.killermapper.roadstuff.common.RoadStuff;
+import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
 import net.killermapper.roadstuff.common.init.RoadStuffConfig;
 import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
 import net.killermapper.roadstuff.proxy.ClientProxy;
@@ -368,7 +369,7 @@ public class BlockTrafficSign extends Block
 
     public boolean onBlockActivated(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ)
     {
-        if(world.getBlockMetadata(x, y, z) != 0)
+        if(world.getBlockMetadata(x, y, z) == 1)
         {
             if(RoadStuffConfig.enableDebug)
             {
@@ -380,6 +381,7 @@ public class BlockTrafficSign extends Block
                 if(tile instanceof TileEntityBlockTrafficSign)
                 {
                     TileEntityBlockTrafficSign tileEntity = (TileEntityBlockTrafficSign)tile;
+                    player.triggerAchievement(RoadStuffAchievements.configSign);
                     if(RoadStuffConfig.enableDebug)
                     {
                         player.addChatMessage(new ChatComponentTranslation("tile.signdirection.number", tileEntity.getSignDirection()));

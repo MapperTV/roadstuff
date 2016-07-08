@@ -65,7 +65,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 
-@Mod(modid = RoadStuff.MODID, name = "Road Stuff", version = "0.6.0", guiFactory = "net.killermapper.roadstuff.common.init.RoadStuffGuiFactory")
+@Mod(modid = RoadStuff.MODID, name = "Road Stuff", version = "1.0.0", guiFactory = "net.killermapper.roadstuff.common.init.RoadStuffGuiFactory")
 
 public class RoadStuff
 {
@@ -107,7 +107,7 @@ public class RoadStuff
 
         config = new Configuration(event.getSuggestedConfigurationFile());
         RoadStuffConfig.syncConfig();
-        
+
         RoadStuffBlocks.initBlocks();
         RoadStuffItems.initItems();
         GameRegistry.registerWorldGenerator(oreGen, 0);
@@ -115,7 +115,7 @@ public class RoadStuff
         RoadStuffAchievements.initAchievements();
 
         // ConfigurationLoader.load(event.getModConfigurationDirectory());
-        
+
         network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
         network.registerMessage(PacketSignType.Handler.class, PacketSignType.class, 0, Side.SERVER);
         network.registerMessage(PacketTrafficChannel.class, PacketTrafficChannel.class, 1, Side.SERVER);
@@ -125,7 +125,7 @@ public class RoadStuff
             Chisel.sendIMC();
         }
     }
-    
+
     @SubscribeEvent
     public void onconfigChanged(ConfigChangedEvent.OnConfigChangedEvent event)
     {
@@ -143,7 +143,6 @@ public class RoadStuff
         GameRegistry.registerTileEntity(TileEntityBoundingBlock.class, RoadStuff.MODID + ":tileBoundingBlock");
 
         FMLCommonHandler.instance().bus().register(new EventPlayer());
-        // MinecraftForge.EVENT_BUS.register(new EventPlayer());
 
         NetworkRegistry.INSTANCE.registerGuiHandler(instance, new RoadStuffGuiHandler());
 

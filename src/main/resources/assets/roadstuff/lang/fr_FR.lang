@@ -4,7 +4,7 @@ itemGroup.RoadStuff=Road Stuff
 //Items
 item.bitumen.itemBitumen.name=Bitume
 item.bitumen.itemLiquidBitumen.name=Bitume Liquide
-item.paint.name=Pinceau
+item.paint.name=Pinceau de débug
 item.ironPart.itemIronStick.name=Bâton de fer
 item.ironPart.itemIronPlate.name=Plaque de fer
 
@@ -149,16 +149,36 @@ tile.signshape.number=Forme : %d
 tile.signtype.number=Type : %d
 
 //Achievements
-achievement.roadstuff_getbitumen=Mineur Routier
-achievement.roadstuff_getbitumen.desc=Récupérez du Bitume.
+achievement.roadstuff_getbitumen=Mineur routier
+achievement.roadstuff_getbitumen.desc=Récupérez du bitume
 achievement.roadstuff_smeltbitumen=HotRod
-achievement.roadstuff_smeltbitumen.desc=Faits fondre du Bitume dans un four.
-achievement.roadstuff_craftasphalt=Road Trip
-achievement.roadstuff_craftasphalt.desc=Fabriquer des Blocs d'Asphalte.
-achievement.roadstuff_craftconcrete=Dur Comme du Béton
-achievement.roadstuff_craftconcrete.desc=Fabriquer du Béton.
-achievement.roadstuff_craftcone=Ceci N'est Pas Un Lecteur Vidéo
-achievement.roadstuff_craftcone.desc=Fabriquer un Cône Routier.
+achievement.roadstuff_smeltbitumen.desc=Faire fondre du bitume dans un four
+achievement.roadstuff_craftasphalt=Road trip
+achievement.roadstuff_craftasphalt.desc=Fabriquer des blocs d'asphalte
+achievement.roadstuff_craftconcrete=Dur comme du béton
+achievement.roadstuff_craftconcrete.desc=Fabriquer du béton
+achievement.roadstuff_craftcone=Ceci n'est pas un lecteur vidéo
+achievement.roadstuff_craftcone.desc=Fabriquer un cône routier
+achievement.roadstuff_craftasphaltline=Tracer son chemin
+achievement.roadstuff_craftasphaltline.desc=Fabriquer un bloc d'asphalte avec une ligne
+achievement.roadstuff_craftconcreteline=Tracer le béton
+achievement.roadstuff_craftconcreteline.desc=Fabriquer un bloc de béton avec une ligne
+achievement.roadstuff_craftasphaltcorner=Danger ! Virages !
+achievement.roadstuff_craftasphaltcorner.desc=Fabriquer un bloc d'asphalte avec une ligne à 45°
+achievement.roadstuff_craftconcretecorner=Danger ! Virages en béton !
+achievement.roadstuff_craftconcretecorner.desc=Fabriquer un bloc de béton avec une ligne à 45°
+achievement.roadstuff_craftasphaltslab=Vive les pentes !
+achievement.roadstuff_craftasphaltslab.desc=Fabriquer des dalles d'asphalte
+achievement.roadstuff_craftconcreteslab=Vive les pentes en béton !
+achievement.roadstuff_craftconcreteslab.desc=Fabriquer des dalles de béton
+achievement.roadstuff_craftsign=Signalement
+achievement.roadstuff_craftsign.desc=Fabriquer un panneau de signalisation
+achievement.roadstuff_configsign=Sécurité routière
+achievement.roadstuff_configsign.desc=Éditer un panneau de signalisation
+achievement.roadstuff_craftreflector=Montrer le chemin
+achievement.roadstuff_craftreflector.desc=Fabriquer des réflecteurs
+achievement.roadstuff_craftilluminatedreflector=Suivez la lumière
+achievement.roadstuff_craftilluminatedreflector.desc=Fabriquer des réflecteurs lumineux
 
 //GUI
 gui.trafficsign.done=OK

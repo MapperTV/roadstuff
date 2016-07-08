@@ -43,6 +43,10 @@ public class RoadStuffAchievements
     public static Achievement craftConcreteCorner;
     public static Achievement craftSign;
     public static Achievement configSign;
+    public static Achievement craftReflector;
+    public static Achievement craftIlluminatedReflector;
+    public static Achievement craftAsphaltSlab;
+    public static Achievement craftConcreteSlab;
 
     public static AchievementPage page;
 
@@ -55,20 +59,26 @@ public class RoadStuffAchievements
 
     public static void loadAchievements()
     {
-        getBitumen = new Achievement("achievement.roadstuff_getbitumen", "roadstuff_getbitumen", 0, -1, new ItemStack(RoadStuffItems.itemBitumen, 1, 0), null);
-        smeltBitumen = new Achievement("achievement.roadstuff_smeltbitumen", "roadstuff_smeltbitumen", 2, -1, new ItemStack(RoadStuffItems.itemBitumen, 1, 1), getBitumen);
-        craftAsphalt = new Achievement("achievement.roadstuff_craftasphalt", "roadstuff_craftasphalt", 4, -1, new ItemStack(RoadStuffBlocks.blockAsphalt, 1, 0), smeltBitumen);
-        craftAsphaltLine = new Achievement("achievement.roadstuff_craftasphaltline", "roadstuff_craftasphaltline", 6, -1, new ItemStack(RoadStuffBlocks.blockAsphaltLine, 1, 0), craftAsphalt);
-        craftAsphaltCorner = new Achievement("achievement.roadstuff_craftasphaltcorner", "roadstuff_craftasphaltcorner", 8, -1, new ItemStack(RoadStuffBlocks.blockAsphaltCorner, 1, 0), craftAsphaltLine);
+        getBitumen = new Achievement("achievement.roadstuff_getbitumen", "roadstuff_getbitumen", 0, 0, new ItemStack(RoadStuffItems.itemBitumen, 1, 0), null);
+        smeltBitumen = new Achievement("achievement.roadstuff_smeltbitumen", "roadstuff_smeltbitumen", 2, 0, new ItemStack(RoadStuffItems.itemBitumen, 1, 1), getBitumen);
+        craftAsphalt = new Achievement("achievement.roadstuff_craftasphalt", "roadstuff_craftasphalt", 4, 0, new ItemStack(RoadStuffBlocks.blockAsphalt, 1, 0), smeltBitumen);
+        craftAsphaltLine = new Achievement("achievement.roadstuff_craftasphaltline", "roadstuff_craftasphaltline", 6, 0, new ItemStack(RoadStuffBlocks.blockAsphaltLine, 1, 0), craftAsphalt);
+        craftAsphaltCorner = new Achievement("achievement.roadstuff_craftasphaltcorner", "roadstuff_craftasphaltcorner", 8, 0, new ItemStack(RoadStuffBlocks.blockAsphaltCorner, 1, 0), craftAsphaltLine);
+        craftAsphaltSlab = new Achievement("achievement.roadstuff_craftasphaltslab", "roadstuff_craftasphaltslab", 5, -1, new ItemStack(RoadStuffBlocks.singleSlabAsphalt, 1, 0), craftAsphalt);
         
-        craftConcrete = new Achievement("achievement.roadstuff_craftconcrete", "roadstuff_craftconcrete", 0, 1, new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0), null);
-        craftConcreteLine = new Achievement("achievement.roadstuff_craftcornerline", "roadstuff_craftcornerline", 2, 1, new ItemStack(RoadStuffBlocks.blockConcreteLine, 1, 0), craftConcrete);
-        craftConcreteCorner = new Achievement("achievement.roadstuff_craftcornercorner", "roadstuff_craftcornercorner", 4, 1, new ItemStack(RoadStuffBlocks.blockConcreteCorner, 1, 0), craftConcreteLine);
+        craftConcrete = new Achievement("achievement.roadstuff_craftconcrete", "roadstuff_craftconcrete", 4, 2, new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0), null);
+        craftConcreteLine = new Achievement("achievement.roadstuff_craftconcreteline", "roadstuff_craftconcreteline", 6, 2, new ItemStack(RoadStuffBlocks.blockConcreteLine, 1, 0), craftConcrete);
+        craftConcreteCorner = new Achievement("achievement.roadstuff_craftconcretecorner", "roadstuff_craftconcretecorner", 8, 2, new ItemStack(RoadStuffBlocks.blockConcreteCorner, 1, 0), craftConcreteLine);
+        craftConcreteSlab = new Achievement("achievement.roadstuff_craftconcreteslab", "roadstuff_craftconcreteslab", 5, 3, new ItemStack(RoadStuffBlocks.singleSlabConcrete, 1, 0), craftConcrete);
         
-        craftCone = new Achievement("achievement.roadstuff_craftcone", "roadstuff_craftcone", 4, -3, new ItemStack(RoadStuffBlocks.blockCone, 1, 0), smeltBitumen);
-        craftSign = new Achievement("achievement.roadstuff_craftsign", "roadstuff_craftsign", 6, -3, new ItemStack(RoadStuffBlocks.blockTrafficSign, 1, 1), craftCone);
+        craftCone = new Achievement("achievement.roadstuff_craftcone", "roadstuff_craftcone", 2, -4, new ItemStack(RoadStuffBlocks.blockCone, 1, 0), smeltBitumen);
+        craftSign = new Achievement("achievement.roadstuff_craftsign", "roadstuff_craftsign", 4, -4, new ItemStack(RoadStuffBlocks.blockTrafficSign, 1, 1), craftCone);
+        configSign = new Achievement("achievement.roadstuff_configsign", "roadstuff_configsign", 6, -4, new ItemStack(RoadStuffBlocks.blockTrafficSign, 1, 1), craftSign);
         
-        page = new AchievementPage("Road Stuff", getBitumen, smeltBitumen, craftAsphalt, craftConcrete, craftCone, craftAsphaltLine, craftAsphaltCorner, craftConcreteLine, craftConcreteCorner, craftSign);
+        craftReflector = new Achievement("achievement.roadstuff_craftreflector", "roadstuff_craftreflector", 0, -4, new ItemStack(RoadStuffBlocks.blockReflector, 1, 0), craftCone);
+        craftIlluminatedReflector = new Achievement("achievement.roadstuff_craftilluminatedreflector", "roadstuff_craftilluminatedreflector", 0, -6, new ItemStack(RoadStuffBlocks.blockReflector, 1, 3), craftReflector);
+        
+        page = new AchievementPage("Road Stuff", getBitumen, smeltBitumen, craftAsphalt, craftConcrete, craftCone, craftAsphaltLine, craftAsphaltCorner, craftConcreteLine, craftConcreteCorner, craftSign, configSign, craftReflector, craftIlluminatedReflector, craftAsphaltSlab, craftConcreteSlab);
     }
 
     public static void registerPage()
@@ -87,5 +97,11 @@ public class RoadStuffAchievements
         craftAsphaltCorner.registerStat();
         craftConcreteLine.registerStat();
         craftConcreteCorner.registerStat();
+        craftSign.registerStat();
+        configSign.registerStat();
+        craftReflector.registerStat();
+        craftIlluminatedReflector.registerStat();
+        craftAsphaltSlab.registerStat();
+        craftConcreteSlab.registerStat();
     }
 }

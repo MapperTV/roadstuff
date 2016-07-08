@@ -4,7 +4,7 @@ itemGroup.RoadStuff=Road Stuff
 //Items
 item.bitumen.itemBitumen.name=Bitumen
 item.bitumen.itemLiquidBitumen.name=Liquid Bitumen
-item.paint.name=Paint
+item.paint.name=Debug Brush
 item.ironPart.itemIronStick.name=Iron Stick
 item.ironPart.itemIronPlate.name=Iron Plate
 
@@ -169,15 +169,35 @@ tile.signtype.number=Type : %d
 
 //Achievements
 achievement.roadstuff_getbitumen=Road Miner
-achievement.roadstuff_getbitumen.desc=Gather some bitumen in the world.
+achievement.roadstuff_getbitumen.desc=Gather some bitumen in the world
 achievement.roadstuff_smeltbitumen=HotRod
-achievement.roadstuff_smeltbitumen.desc=Make liquid bitumen in a furnace.
+achievement.roadstuff_smeltbitumen.desc=Make liquid bitumen in a furnace
 achievement.roadstuff_craftasphalt=Road Trip
-achievement.roadstuff_craftasphalt.desc=Craft some Asphalt Blocks. 
+achievement.roadstuff_craftasphalt.desc=Craft some asphalt blocks
 achievement.roadstuff_craftconcrete=Harder Than Clay
-achievement.roadstuff_craftconcrete.desc=Craft some Concrete Blocks.
+achievement.roadstuff_craftconcrete.desc=Craft some concrete blocks
 achievement.roadstuff_craftcone=Not A Video Player
-achievement.roadstuff_craftcone.desc=Craft a Traffic Cone.
+achievement.roadstuff_craftcone.desc=Craft a traffic cone
+achievement.roadstuff_craftasphaltline=Draw The Line
+achievement.roadstuff_craftasphaltline.desc=Craft some asphalt blocks with line
+achievement.roadstuff_craftconcreteline=Draw The Line (Concrete)
+achievement.roadstuff_craftconcreteline.desc=Craft some concrete blocks with line
+achievement.roadstuff_craftasphaltcorner=Warning! Curves!
+achievement.roadstuff_craftasphaltcorner.desc=Craft some asphalt blocks with corner line
+achievement.roadstuff_craftconcretecorner=Warning! Curves! (Concrete)
+achievement.roadstuff_craftconcretecorner.desc=Craft some Concrete blocks with corner line
+achievement.roadstuff_craftasphaltslab=Make Some Slopes!
+achievement.roadstuff_craftasphaltslab.desc=Craft some asphalt slabs
+achievement.roadstuff_craftconcreteslab=Make Some Slopes! (Concrete)
+achievement.roadstuff_craftconcreteslab.desc=Craft some concrete slabs
+achievement.roadstuff_craftsign=Wanna Show Something?
+achievement.roadstuff_craftsign.desc=Craft a traffic sign
+achievement.roadstuff_configsign=Road Security
+achievement.roadstuff_configsign.desc=Edit a traffic sign
+achievement.roadstuff_craftreflector=Show The Path
+achievement.roadstuff_craftreflector.desc=Craft some reflectors
+achievement.roadstuff_craftilluminatedreflector=Follow The Light
+achievement.roadstuff_craftilluminatedreflector.desc=Make some illuminated reflectors 
 
 //GUI
 gui.trafficsign.done=Done

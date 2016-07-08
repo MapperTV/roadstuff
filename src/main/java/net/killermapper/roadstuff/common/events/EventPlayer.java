@@ -75,6 +75,14 @@ public class EventPlayer
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftConcreteCorner);
         if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockTrafficSign) && eventCrafted.crafting.getItemDamage() == 1)
             eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftSign);
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockReflector) && eventCrafted.crafting.getItemDamage() < 2)
+            eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftReflector);
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.blockReflector) && eventCrafted.crafting.getItemDamage() > 1)
+            eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftIlluminatedReflector);
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.singleSlabAsphalt) && eventCrafted.crafting.getItemDamage() == 0)
+            eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftAsphaltSlab);
+        if(eventCrafted.crafting.getItem() == Item.getItemFromBlock(RoadStuffBlocks.singleSlabConcrete) && eventCrafted.crafting.getItemDamage() == 0)
+            eventCrafted.player.triggerAchievement(RoadStuffAchievements.craftConcreteSlab);
     }
 
     @SubscribeEvent
