@@ -26,12 +26,16 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.client.render;
 
+import java.awt.Color;
+
 import org.lwjgl.opengl.GL11;
 
 import cpw.mods.fml.client.registry.ISimpleBlockRenderingHandler;
 import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
 import net.killermapper.roadstuff.proxy.ClientProxy;
 import net.minecraft.block.Block;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.renderer.RenderBlocks;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.tileentity.TileEntity;
@@ -76,7 +80,7 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
 
     @Override
     public boolean renderWorldBlock(IBlockAccess world, int x, int y, int z, Block block, int modelId, RenderBlocks renderer)
-    {     
+    {
         TileEntity tile = world.getTileEntity(x, y, z);
         if(tile instanceof TileEntityBlockTrafficSign)
         {
@@ -87,7 +91,7 @@ public class RenderTrafficSign implements ISimpleBlockRenderingHandler
             // Direction
             byte signTop = 16;
 
-            if(tileSign.getSignType() > 3 && tileSign.getSignType() < 9 && tileSign.getSignShape() == 5)
+            if(tileSign.getSignType() > 32 && tileSign.getSignType() < 41 && tileSign.getSignShape() == 5)
             {
                 signTop = 8;
             }

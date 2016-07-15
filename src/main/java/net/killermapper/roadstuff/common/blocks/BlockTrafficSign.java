@@ -187,18 +187,22 @@ public class BlockTrafficSign extends Block
                     }
                     if(shape == 5)
                     {
-                        if(type < 3)
-                            return this.signMiscB[type];
-                        if(type == 3)
+                        if(type < 5)
+                            return this.signMiscB[1];
+                        if(type >= 5 && type <= 8)
                             return this.signMiscB[2];
-                        if(type >= 4 && type <= 8)
+                        if(type >= 9 && type <= 32)
                             return this.signMiscB[3];
-                        if(type >= 9 && type <= 15)
+                        if(type >= 33 && type <= 40)
                             return this.signMiscB[4];
-                        if(type >= 16 && type <= 18)
+                        if(type >= 41 && type <= 45)
                             return this.signMiscB[5];
-                        if(type == 19)
+                        if(type >= 46 && type <= 47)
                             return this.signMiscB[6];
+                        if(type >= 48 && type <= 50)
+                            return this.signMiscB[7];
+                        if(type > 50)
+                            return this.signMiscB[8];
                     }
                 }
                 if(side == signFace)
@@ -248,7 +252,7 @@ public class BlockTrafficSign extends Block
         if(tile instanceof TileEntityBlockTrafficSign)
         {
             byte signColTop = 16;
-            if(((TileEntityBlockTrafficSign)tile).getSignShape() == 5 && ((TileEntityBlockTrafficSign)tile).getSignType() > 3 && ((TileEntityBlockTrafficSign)tile).getSignType() < 9 )
+            if(((TileEntityBlockTrafficSign)tile).getSignShape() == 5 && ((TileEntityBlockTrafficSign)tile).getSignType() > 32 && ((TileEntityBlockTrafficSign)tile).getSignType() < 41 )
                 signColTop = 8;
             
             switch(((TileEntityBlockTrafficSign)tile).getSignDirection())
