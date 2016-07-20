@@ -17,7 +17,11 @@
 
 # include sourcecode
 !src/
+
+# exclude old files for now
 src/main/resources/assets/roadstuff/RoadWorksMod.psd
+src/main/resources/assets/roadstuff/textures/blocks/asphaltold/
+src/main/resources/assets/roadstuff/textures/blocks/concreteold/
 
 # include git important files
 !.gitmodules

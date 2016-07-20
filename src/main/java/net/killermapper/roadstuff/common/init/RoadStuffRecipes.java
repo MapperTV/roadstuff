@@ -35,6 +35,7 @@ public class RoadStuffRecipes
             GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockAsphalt, 1, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltCorner2, 1, i)});
             GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockAsphalt, 1, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltCorner3, 1, i)});
             GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockAsphalt, 1, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltArrow, 1, i)});
+            GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockAsphalt, 1, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltArrow2, 1, i)});
 
             GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockConcreteCorner, 1, i)});
             GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockConcreteCorner2, 1, i)});
@@ -44,6 +45,7 @@ public class RoadStuffRecipes
             GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockConcreteYCross, 1, i)});
             GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockConcreteYCrossYellow, 1, i)});
             GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockConcreteArrow, 1, i)});
+            GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.blockConcrete, 1, 0), new Object[] {"X", 'X', new ItemStack(RoadStuffBlocks.blockConcreteArrow2, 1, i)});
         }
 
         // Slabs to blocks
@@ -169,6 +171,16 @@ public class RoadStuffRecipes
 
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.blockConcreteArrow, 4, 1), new Object[] {" X ", "XXX", 'X', new ItemStack(RoadStuffBlocks.blockConcreteLine, 1, 1)}));
         GameRegistry.addRecipe(new ShapedOreRecipe(new ItemStack(RoadStuffBlocks.blockConcreteArrow, 4, 3), new Object[] {"Y Y", " X ", " X ", 'X', new ItemStack(RoadStuffBlocks.blockConcreteLine, 1, 1), 'Y', new ItemStack(RoadStuffBlocks.blockConcreteArrow, 1, 1)}));
+
+        GameRegistry.addShapedRecipe(new ItemStack(RoadStuffBlocks.blockAsphaltArrow2, 3, 0), new Object[] {" X", "XX", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltArrow, 1, 0)});
+        GameRegistry.addShapedRecipe(new ItemStack(RoadStuffBlocks.blockAsphaltArrow2, 3, 1), new Object[] {"XX", " X", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltArrow, 1, 0)});
+        GameRegistry.addShapedRecipe(new ItemStack(RoadStuffBlocks.blockAsphaltArrow2, 3, 2), new Object[] {" X", "XX", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltArrow, 1, 1)});
+        GameRegistry.addShapedRecipe(new ItemStack(RoadStuffBlocks.blockAsphaltArrow2, 3, 3), new Object[] {"XX", " X", 'X', new ItemStack(RoadStuffBlocks.blockAsphaltArrow, 1, 1)});
+
+        GameRegistry.addShapedRecipe(new ItemStack(RoadStuffBlocks.blockConcreteArrow2, 3, 0), new Object[] {" X", "XX", 'X', new ItemStack(RoadStuffBlocks.blockConcreteArrow, 1, 0)});
+        GameRegistry.addShapedRecipe(new ItemStack(RoadStuffBlocks.blockConcreteArrow2, 3, 1), new Object[] {"XX", " X", 'X', new ItemStack(RoadStuffBlocks.blockConcreteArrow, 1, 0)});
+        GameRegistry.addShapedRecipe(new ItemStack(RoadStuffBlocks.blockConcreteArrow2, 3, 2), new Object[] {" X", "XX", 'X', new ItemStack(RoadStuffBlocks.blockConcreteArrow, 1, 1)});
+        GameRegistry.addShapedRecipe(new ItemStack(RoadStuffBlocks.blockConcreteArrow2, 3, 3), new Object[] {"XX", " X", 'X', new ItemStack(RoadStuffBlocks.blockConcreteArrow, 1, 1)});
 
         // Slabs
         GameRegistry.addRecipe(new ItemStack(RoadStuffBlocks.singleSlabAsphalt, 4, 0), new Object[] {"XX", 'X', new ItemStack(RoadStuffBlocks.blockAsphalt, 1, 0)});

@@ -46,7 +46,6 @@ import cpw.mods.fml.common.registry.GameRegistry;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import net.killermapper.roadstuff.client.gui.RoadStuffGuiHandler;
-import net.killermapper.roadstuff.common.command.CommandReloadConfig;
 import net.killermapper.roadstuff.common.events.EventPlayer;
 import net.killermapper.roadstuff.common.init.Chisel;
 import net.killermapper.roadstuff.common.init.RoadStuffAchievements;
@@ -56,9 +55,6 @@ import net.killermapper.roadstuff.common.init.RoadStuffItems;
 import net.killermapper.roadstuff.common.init.RoadStuffRecipes;
 import net.killermapper.roadstuff.common.network.PacketSignType;
 import net.killermapper.roadstuff.common.tiles.TileEntityBlockTrafficSign;
-import net.killermapper.roadstuff.common.tiles.TileEntityBoundingBlock;
-import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
-import net.killermapper.roadstuff.common.trafficLigth.PacketTrafficChannel;
 import net.killermapper.roadstuff.common.world.OreGeneration;
 import net.killermapper.roadstuff.proxy.CommonProxy;
 import net.minecraft.creativetab.CreativeTabs;
@@ -114,11 +110,8 @@ public class RoadStuff
 
         RoadStuffAchievements.initAchievements();
 
-        // ConfigurationLoader.load(event.getModConfigurationDirectory());
-
         network = NetworkRegistry.INSTANCE.newSimpleChannel(MODID);
         network.registerMessage(PacketSignType.Handler.class, PacketSignType.class, 0, Side.SERVER);
-        network.registerMessage(PacketTrafficChannel.class, PacketTrafficChannel.class, 1, Side.SERVER);
 
         if(Loader.isModLoaded("chisel"))
         {
@@ -138,9 +131,7 @@ public class RoadStuff
     @EventHandler
     public void init(FMLInitializationEvent event)
     {
-        GameRegistry.registerTileEntity(TileEntityTrafficLigth.class, RoadStuff.MODID + ":tileTrafficLigth");
         GameRegistry.registerTileEntity(TileEntityBlockTrafficSign.class, RoadStuff.MODID + ":entityBlockSign");
-        GameRegistry.registerTileEntity(TileEntityBoundingBlock.class, RoadStuff.MODID + ":tileBoundingBlock");
 
         FMLCommonHandler.instance().bus().register(new EventPlayer());
 
@@ -161,7 +152,7 @@ public class RoadStuff
     @EventHandler
     public void onServerStart(FMLServerStartingEvent event)
     {
-        event.registerServerCommand(new CommandReloadConfig());
+
     }
 
 }

@@ -32,10 +32,10 @@ import net.killermapper.roadstuff.common.blocks.BlockBase;
 import net.killermapper.roadstuff.common.blocks.BlockCone;
 import net.killermapper.roadstuff.common.blocks.BlockReflector;
 import net.killermapper.roadstuff.common.blocks.BlockRoadstuffOre;
-import net.killermapper.roadstuff.common.blocks.BlockTrafficLigth;
 import net.killermapper.roadstuff.common.blocks.BlockTrafficSign;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphalt;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltArrow;
+import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltArrow2;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltCorner;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltCorner2;
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockAsphaltCorner3;
@@ -51,6 +51,7 @@ import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphaltCornerDo
 import net.killermapper.roadstuff.common.blocks.asphalt.BlockSlabAsphaltLine;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcrete;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteArrow;
+import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteArrow2;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteCorner;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteCorner2;
 import net.killermapper.roadstuff.common.blocks.concrete.BlockConcreteCorner3;
@@ -65,10 +66,10 @@ import net.killermapper.roadstuff.common.blocks.concrete.BlockSlabConcreteCorner
 import net.killermapper.roadstuff.common.blocks.concrete.BlockSlabConcreteLine;
 import net.killermapper.roadstuff.common.items.ItemBlockCone;
 import net.killermapper.roadstuff.common.items.ItemBlockReflector;
-import net.killermapper.roadstuff.common.items.ItemBlockTrafficLight;
 import net.killermapper.roadstuff.common.items.ItemBlockTrafficSign;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphalt;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltArrow;
+import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltArrow2;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltCorner;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltCorner2;
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockAsphaltCorner3;
@@ -84,6 +85,7 @@ import net.killermapper.roadstuff.common.items.asphalt.ItemBlockSlabAsphaltCorne
 import net.killermapper.roadstuff.common.items.asphalt.ItemBlockSlabAsphaltLine;
 import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcrete;
 import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcreteArrow;
+import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcreteArrow2;
 import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcreteCorner;
 import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcreteCorner2;
 import net.killermapper.roadstuff.common.items.concrete.ItemBlockConcreteCorner3;
@@ -108,6 +110,7 @@ public class RoadStuffBlocks
     public static Block blockAsphaltCorner2;
     public static Block blockAsphaltCorner3;
     public static Block blockAsphaltArrow;
+    public static Block blockAsphaltArrow2;
     public static Block blockAsphaltYCross;
     public static Block blockAsphaltYCrossYellow;
     public static Block blockAsphaltXCrossYellow;
@@ -134,6 +137,7 @@ public class RoadStuffBlocks
     public static Block blockConcreteYCrossYellow;
     public static Block blockConcreteXCrossYellow;
     public static Block blockConcreteArrow;
+    public static Block blockConcreteArrow2;
 
     public static Block singleSlabConcrete;
     public static Block doubleSlabConcrete;
@@ -150,7 +154,6 @@ public class RoadStuffBlocks
 
     // Misc. Blocks
     public static Block blockCone;
-    //public static Block blockTrafficLight;
     public static Block blockTrafficSign;
     public static Block blockReflector;
 
@@ -170,6 +173,7 @@ public class RoadStuffBlocks
         blockAsphaltCorner2 = new BlockAsphaltCorner2().setBlockName("asphaltCorner2").setHardness(1.0F).setResistance(5.0F);
         blockAsphaltCorner3 = new BlockAsphaltCorner3().setBlockName("asphaltCorner3").setHardness(1.0F).setResistance(5.0F);
         blockAsphaltArrow = new BlockAsphaltArrow().setBlockName("asphaltArrow").setHardness(1.0F).setResistance(5.0F);
+        blockAsphaltArrow2 = new BlockAsphaltArrow2().setBlockName("asphaltArrow2").setHardness(1.0F).setResistance(5.0F);
 
         singleSlabAsphalt = new BlockSlabAsphalt(false, null).setBlockName("slabAsphalt").setHardness(1.0F).setResistance(5.0F);
         doubleSlabAsphalt = new BlockSlabAsphalt(true, null).setBlockName("slabAsphalt").setHardness(1.0F).setResistance(5.0F);
@@ -191,6 +195,7 @@ public class RoadStuffBlocks
         blockConcreteCorner2 = new BlockConcreteCorner2().setBlockName("concreteCorner2").setHardness(1.0F).setResistance(5.0F);
         blockConcreteCorner3 = new BlockConcreteCorner3().setBlockName("concreteCorner3").setHardness(1.0F).setResistance(5.0F);
         blockConcreteArrow = new BlockConcreteArrow().setBlockName("concreteArrow").setHardness(1.0F).setResistance(5.0F);
+        blockConcreteArrow2 = new BlockConcreteArrow2().setBlockName("concreteArrow2").setHardness(1.0F).setResistance(5.0F);
 
         singleSlabConcrete = new BlockSlabConcrete(false, null).setBlockName("slabConcrete").setHardness(1.0F).setResistance(5.0F);
         doubleSlabConcrete = new BlockSlabConcrete(true, null).setBlockName("slabConcrete").setHardness(1.0F).setResistance(5.0F);
@@ -208,7 +213,6 @@ public class RoadStuffBlocks
         blockCone = new BlockCone().setBlockName("cone").setHardness(1.0F).setResistance(1.0F);
         blockTrafficSign = new BlockTrafficSign().setBlockName("trafficSign").setHardness(1.0F).setResistance(1.0F);
         blockBitumenBlock = new BlockBase(Material.rock).setBlockName("bitumenBlock").setBlockTextureName(RoadStuff.MODID + ":bitumenBlock");
-        //blockTrafficLight = new BlockTrafficLigth().setBlockName("trafficLight");
         blockReflector = new BlockReflector().setBlockName("reflector").setHardness(1.0F).setResistance(1.0F);
 
         // Test
@@ -230,6 +234,7 @@ public class RoadStuffBlocks
         blockAsphaltCorner2.setHarvestLevel("pickaxe", 1);
         blockAsphaltCorner3.setHarvestLevel("pickaxe", 1);
         blockAsphaltArrow.setHarvestLevel("pickaxe", 1);
+        blockAsphaltArrow2.setHarvestLevel("pickaxe", 1);
         blockAsphaltWordExit.setHarvestLevel("pickaxe", 1);
 
         singleSlabAsphalt.setHarvestLevel("pickaxe", 1);
@@ -252,6 +257,7 @@ public class RoadStuffBlocks
         blockConcreteCorner2.setHarvestLevel("pickaxe", 1);
         blockConcreteCorner3.setHarvestLevel("pickaxe", 1);
         blockConcreteArrow.setHarvestLevel("pickaxe", 1);
+        blockConcreteArrow2.setHarvestLevel("pickaxe", 1);
 
         singleSlabConcrete.setHarvestLevel("pickaxe", 1);
         doubleSlabConcrete.setHarvestLevel("pickaxe", 1);
@@ -270,8 +276,6 @@ public class RoadStuffBlocks
         blockCone.setHarvestLevel("pickaxe", 0);
         blockTrafficSign.setHarvestLevel("pickaxe", 1);
         blockReflector.setHarvestLevel("pickaxe", 0);
-
-        // Tests
     }
 
     public static void registerBlocks()
@@ -287,6 +291,7 @@ public class RoadStuffBlocks
         GameRegistry.registerBlock(blockAsphaltCorner2, ItemBlockAsphaltCorner2.class, "asphaltCorner2");
         GameRegistry.registerBlock(blockAsphaltCorner3, ItemBlockAsphaltCorner3.class, "asphaltCorner3");
         GameRegistry.registerBlock(blockAsphaltArrow, ItemBlockAsphaltArrow.class, "asphaltArrow");
+        GameRegistry.registerBlock(blockAsphaltArrow2, ItemBlockAsphaltArrow2.class, "asphaltArrow2");
         GameRegistry.registerBlock(blockAsphaltWordExit, ItemBlockAsphaltWordExit.class, "asphaltWordExit");
 
         GameRegistry.registerBlock(singleSlabAsphalt, ItemBlockSlabAsphalt.class, "singleSlabAsphalt");
@@ -309,6 +314,7 @@ public class RoadStuffBlocks
         GameRegistry.registerBlock(blockConcreteCorner2, ItemBlockConcreteCorner2.class, "concreteCorner2");
         GameRegistry.registerBlock(blockConcreteCorner3, ItemBlockConcreteCorner3.class, "concreteCorner3");
         GameRegistry.registerBlock(blockConcreteArrow, ItemBlockConcreteArrow.class, "concreteArrow");
+        GameRegistry.registerBlock(blockConcreteArrow2, ItemBlockConcreteArrow2.class, "concreteArrow2");
 
         GameRegistry.registerBlock(singleSlabConcrete, ItemBlockSlabConcrete.class, "singleSlabConcrete");
         GameRegistry.registerBlock(doubleSlabConcrete, ItemBlockSlabConcrete.class, "doubleSlabConcrete");
@@ -325,10 +331,8 @@ public class RoadStuffBlocks
         // Misc. Blocks
         GameRegistry.registerBlock(blockCone, ItemBlockCone.class, "cone");
         GameRegistry.registerBlock(blockBitumenBlock, "bitumenBlock");
-        //GameRegistry.registerBlock(blockTrafficLight, ItemBlockTrafficLight.class, "trafficLigth");
         GameRegistry.registerBlock(blockTrafficSign, ItemBlockTrafficSign.class, "trafficSign");
         GameRegistry.registerBlock(blockReflector, ItemBlockReflector.class, "reflector");
 
-        // Test Blocks
     }
 }

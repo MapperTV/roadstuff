@@ -26,7 +26,6 @@ SOFTWARE.
 
 package net.killermapper.roadstuff.proxy;
 
-import cpw.mods.fml.client.registry.ClientRegistry;
 import cpw.mods.fml.client.registry.RenderingRegistry;
 import net.killermapper.roadstuff.client.render.RenderAsphaltArrows;
 import net.killermapper.roadstuff.client.render.RenderAsphaltCorner;
@@ -35,16 +34,12 @@ import net.killermapper.roadstuff.client.render.RenderCone;
 import net.killermapper.roadstuff.client.render.RenderReflector;
 import net.killermapper.roadstuff.client.render.RenderSlabAsphaltCorner;
 import net.killermapper.roadstuff.client.render.RenderSlabAsphaltLine;
-import net.killermapper.roadstuff.client.render.RenderTrafficLigth;
 import net.killermapper.roadstuff.client.render.RenderTrafficSign;
-import net.killermapper.roadstuff.client.render.TESRTrafficLigth;
-import net.killermapper.roadstuff.common.tiles.TileEntityBoundingBlock;
-import net.killermapper.roadstuff.common.tiles.TileEntityTrafficLigth;
 
 public class ClientProxy extends CommonProxy
 {
 
-    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderSlabAsphaltLineId, renderConeId, renderSignPostId, renderTrafficLigthId, renderSlabAsphaltCornerId, renderReflectorId;
+    public static int renderAsphaltLinesId, renderAsphaltCornerId, renderAsphaltArrowsId, renderSlabAsphaltLineId, renderConeId, renderSignPostId, renderSlabAsphaltCornerId, renderReflectorId;
 
     @Override
     public void registerRender()
@@ -61,10 +56,6 @@ public class ClientProxy extends CommonProxy
         RenderingRegistry.registerBlockHandler(renderSlabAsphaltLineId, new RenderSlabAsphaltLine());
         renderSlabAsphaltCornerId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderSlabAsphaltCornerId, new RenderSlabAsphaltCorner());
-        renderTrafficLigthId = RenderingRegistry.getNextAvailableRenderId();
-        RenderingRegistry.registerBlockHandler(renderTrafficLigthId, new RenderTrafficLigth());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityTrafficLigth.class, new TESRTrafficLigth());
-        ClientRegistry.bindTileEntitySpecialRenderer(TileEntityBoundingBlock.class, new TESRTrafficLigth());
         renderSignPostId = RenderingRegistry.getNextAvailableRenderId();
         RenderingRegistry.registerBlockHandler(renderSignPostId, new RenderTrafficSign());
         renderReflectorId = RenderingRegistry.getNextAvailableRenderId();

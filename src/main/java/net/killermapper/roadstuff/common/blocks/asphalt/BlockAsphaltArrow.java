@@ -146,7 +146,7 @@ public class BlockAsphaltArrow extends Block
                 return this.simpleYellowLine;
             }
         }
-        if(side == 2 || side == 5)
+        if(side == 5)
         {
             if(metadata == 12 | metadata == 14)
             {
