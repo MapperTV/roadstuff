@@ -11,4 +11,5 @@ public class Reference
     public static final short maxSignRectangle = 85;
     public static final short maxSignMisc = 76;
     public static final short maxSignMiscB = 9;
+    public static final String version = "1.0.1";
 }

@@ -61,7 +61,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraftforge.common.config.Configuration;
 
-@Mod(modid = RoadStuff.MODID, name = "Road Stuff", version = "1.0.0", guiFactory = "net.killermapper.roadstuff.common.init.RoadStuffGuiFactory")
+@Mod(modid = RoadStuff.MODID, name = "Road Stuff", version = Reference.version, guiFactory = "net.killermapper.roadstuff.common.init.RoadStuffGuiFactory")
 
 public class RoadStuff
 {
