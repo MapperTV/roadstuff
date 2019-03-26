@@ -1,0 +1,30 @@
+modLoader="javafml" #mandatory
+loaderVersion="[25,)" #mandatory (24 is current forge version)
+issueTrackerURL="http://my.issue.tracker/" #optional
+
+[[mods]] #mandatory
+modId="roadstuff" #mandatory
+version="${file.jarVersion}" #mandatory
+displayName="Road Stuff 2" #mandatory
+displayURL="http://mapper.tv/roadstuff/" #optional
+logoFile="roadstuff.png" #optional
+credits="Thanks to everyone working on Forge and MinecraftForgeFrance." #optional
+authors="Mapper" #optional
+# The description text for the mod (multi line!) (#mandatory)
+description='''
+Road Stuff 2 for Minecraft / Forge 1.13.2
+'''
+
+[[dependencies.roadstuff]]
+    modId="forge" #mandatory
+    mandatory=true #mandatory
+    versionRange="[25,)" #mandatory
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.roadstuff]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.13.2]"
+    ordering="NONE"
+    side="BOTH"
