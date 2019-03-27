@@ -1,0 +1,8 @@
+{
+	# Blocks #
+    
+    "block.roadstuff.asphalt_block": "Asphalt",
+    
+    # Creative Tabs (Item Groups) #
+    "itemGroup.roadstuff_group": "Road Stuff 2"
+}
