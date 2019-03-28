@@ -9,12 +9,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.ObjectHolder;
+import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.item.ModItemGroups;
 
 @EventBusSubscriber(bus = Bus.MOD)
 public class ModBlocks
 {
-    @ObjectHolder("roadstuff:asphalt_block")
+    @ObjectHolder(RoadStuff.MODID + ":asphalt_block")
     public static Block ASPHALT_BLOCK;
 
     @SubscribeEvent

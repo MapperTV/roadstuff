@@ -3,6 +3,10 @@
     
     "block.roadstuff.asphalt_block": "Asphalt",
     
+    # Items #
+    
+    "item.roadstuff.raw_bitumen": "Raw Bitumen",
+    
     # Creative Tabs (Item Groups) #
     "itemGroup.roadstuff_group": "Road Stuff 2"
 }
