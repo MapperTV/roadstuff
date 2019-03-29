@@ -3,16 +3,22 @@ package tv.mapper.roadstuff;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import net.minecraftforge.fml.DistExecutor;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import tv.mapper.roadstuff.proxy.ClientProxy;
+import tv.mapper.roadstuff.proxy.IProxy;
+import tv.mapper.roadstuff.proxy.ServerProxy;
 
 @Mod(RoadStuff.MODID)
 public class RoadStuff
 {
     public static final String MODID = "roadstuff";
+
+    public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
 
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -26,6 +32,7 @@ public class RoadStuff
     private void setup(final FMLCommonSetupEvent event)
     {
         LOGGER.info("RoadStuff setup");
+        proxy.setup(event);
     }
 
     private void clientSetup(final FMLClientSetupEvent event)
