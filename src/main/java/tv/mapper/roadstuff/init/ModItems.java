@@ -6,6 +6,7 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 import tv.mapper.roadstuff.RoadStuff;
+import tv.mapper.roadstuff.item.ItemBrush;
 import tv.mapper.roadstuff.item.ModItemGroups;
 
 @Mod.EventBusSubscriber(modid = RoadStuff.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -20,6 +21,6 @@ public class ModItems
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new Item(new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName("raw_bitumen"));
-        event.getRegistry().register(new Item(new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName("paint_brush"));
+        event.getRegistry().register(new ItemBrush(new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName("paint_brush"));
     }
 }
