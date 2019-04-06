@@ -7,13 +7,13 @@ import tv.mapper.roadstuff.RoadStuff;
 
 public class GuiBrush extends GuiScreen
 {
-    private static final int WIDTH = 256;
-    private static final int HEIGHT = 256;
+    private static final int WIDTH = 206;
+    private static final int HEIGHT = 102;
 
     private int guiLeft;
     private int guiTop;
 
-    private static final ResourceLocation background = new ResourceLocation(RoadStuff.MODID, "textures/gui/test.png");
+    private static final ResourceLocation brush_gui = new ResourceLocation(RoadStuff.MODID, "textures/gui/brush.png");
 
     @Override
     public boolean doesGuiPauseGame()
@@ -25,7 +25,7 @@ public class GuiBrush extends GuiScreen
     public void initGui()
     {
         super.initGui();
-        guiLeft = this.width / 2 - HEIGHT / 2;
+        guiLeft = this.width / 2 - WIDTH / 2;
         guiTop = this.height / 2 - HEIGHT / 2;
     }
 
@@ -33,8 +33,15 @@ public class GuiBrush extends GuiScreen
     public void render(int mouseX, int mouseY, float partialTicks)
     {
         super.render(mouseX, mouseY, partialTicks);
-        mc.getTextureManager().bindTexture(background);
+        drawWorldBackground(0);
+        mc.getTextureManager().bindTexture(brush_gui);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
+
+        for(int i = 0; i < 7; i++)
+        {
+            mc.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + i + ".png"));
+            drawScaledCustomSizeModalRect(guiLeft + 16 * i + 16 + i * 2, guiTop + 16, 0, 0, 1, 1, 16, 16, 1, 1);
+        }
     }
 
     public boolean keyPressed(int p_keyPressed_1_, int p_keyPressed_2_, int p_keyPressed_3_)

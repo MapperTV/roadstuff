@@ -22,7 +22,7 @@ public class ItemBrush extends Item
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         ItemStack stack = player.getHeldItem(hand);
-        if(world.isRemote)
+        if(world.isRemote && player.isSneaking())
         {
             Minecraft.getInstance().displayGuiScreen(new GuiBrush());
         }
