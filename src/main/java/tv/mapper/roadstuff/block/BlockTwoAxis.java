@@ -7,12 +7,9 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.MathHelper;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class BlockTwoAxis extends Block
+public class BlockTwoAxis extends BlockLine
 {
     public static final BooleanProperty ROTATION = BooleanProperty.create("rotation");
 
@@ -37,11 +34,4 @@ public class BlockTwoAxis extends Block
         else
             return state;
     }
-
-    @OnlyIn(Dist.CLIENT)
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
-    }
-
 }
