@@ -20,7 +20,7 @@ public class ModBlocks
 {
     @ObjectHolder(RoadStuff.MODID + ":asphalt_block")
     public static Block ASPHALT_BLOCK;
-    
+
     @ObjectHolder(RoadStuff.MODID + ":asphalt_simple_white_line")
     public static Block ASPHALT_SIMPLE_WHITE_LINE_BLOCK;
     @ObjectHolder(RoadStuff.MODID + ":asphalt_double_white_line")
@@ -35,6 +35,12 @@ public class ModBlocks
     public static Block ASPHALT_T_WHITE_LINE_BLOCK;
     @ObjectHolder(RoadStuff.MODID + ":asphalt_corner_white_line")
     public static Block ASPHALT_CORNER_WHITE_LINE_BLOCK;
+    @ObjectHolder(RoadStuff.MODID + ":asphalt_end_double_white_line")
+    public static Block ASPHALT_END_DOUBLE_WHITE_LINE_BLOCK;
+    @ObjectHolder(RoadStuff.MODID + ":asphalt_diagonal_white_line")
+    public static Block ASPHALT_DIAGONAL_WHITE_LINE_BLOCK;
+    @ObjectHolder(RoadStuff.MODID + ":asphalt_large_diagonal_white_line")
+    public static Block ASPHALT_LARGE_DIAGONAL_WHITE_LINE_BLOCK;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
@@ -47,8 +53,11 @@ public class ModBlocks
         event.getRegistry().register(new BlockLine(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_x_white_line"));
         event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_t_white_line"));
         event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_corner_white_line"));
+        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_end_double_white_line"));
+        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_diagonal_white_line"));
+        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_large_diagonal_white_line"));
     }
-    
+
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
@@ -60,5 +69,9 @@ public class ModBlocks
         event.getRegistry().register(new ItemBlock(ASPHALT_X_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_X_WHITE_LINE_BLOCK.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ASPHALT_T_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_T_WHITE_LINE_BLOCK.getRegistryName()));
         event.getRegistry().register(new ItemBlock(ASPHALT_CORNER_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_CORNER_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ASPHALT_END_DOUBLE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_END_DOUBLE_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ASPHALT_DIAGONAL_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DIAGONAL_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new ItemBlock(ASPHALT_LARGE_DIAGONAL_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_LARGE_DIAGONAL_WHITE_LINE_BLOCK.getRegistryName()));
+
     }
 }

@@ -10,6 +10,8 @@ public class GuiBrush extends GuiScreen
     private static final int WIDTH = 206;
     private static final int HEIGHT = 102;
 
+    private static final int MAX_CHOICE = 10;
+
     private int guiLeft;
     private int guiTop;
 
@@ -37,10 +39,18 @@ public class GuiBrush extends GuiScreen
         mc.getTextureManager().bindTexture(brush_gui);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
 
-        for(int i = 0; i < 7; i++)
+        int j = 0;
+        int row = 0;
+        for(int i = 0; i < MAX_CHOICE; i++)
         {
             mc.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + i + ".png"));
-            drawScaledCustomSizeModalRect(guiLeft + 16 * i + 16 + i * 2, guiTop + 16, 0, 0, 1, 1, 16, 16, 1, 1);
+            drawScaledCustomSizeModalRect(guiLeft + 16 * j + 16 + j * 2, guiTop + 16 + row, 0, 0, 1, 1, 16, 16, 1, 1);
+            j++;
+            if(j >= 8)
+            {
+                j = 0;
+                row += 18;
+            }
         }
     }
 
