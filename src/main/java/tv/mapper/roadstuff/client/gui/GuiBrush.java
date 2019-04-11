@@ -37,7 +37,7 @@ public class GuiBrush extends GuiScreen
     public void render(int mouseX, int mouseY, float partialTicks)
     {
         super.render(mouseX, mouseY, partialTicks);
-        
+
         drawWorldBackground(0);
         mc.getTextureManager().bindTexture(brush_gui);
         drawTexturedModalRect(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
@@ -56,10 +56,15 @@ public class GuiBrush extends GuiScreen
             }
         }
 
-        // ToDo: draw square above slots
-        Color myColour = new Color(255, 255, 255, 128);
-        drawRect(mouseX - 8, mouseY - 8, mouseX + 8, mouseY + 8, myColour.getRGB());
-        this.fontRenderer.drawStringWithShadow(mouseX + "," + mouseY, 200.0F, 200.0F, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
+        // Draws hoover square above slots
+        if(mouseX > guiLeft + 14 && mouseX < guiLeft + 159 && mouseY > guiTop + 14 && mouseY < guiTop + 87)
+        {
+            int posX = Math.toIntExact(Math.round((mouseX - guiLeft - 15) / 18) * 18) + guiLeft + 16;
+            int posY = Math.toIntExact(Math.round((mouseY - guiTop - 15) / 18) * 18) + guiTop + 16;
+            drawRect(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
+        }
+
+        this.fontRenderer.drawStringWithShadow(mouseX + "," + mouseY, this.width / 2 - 20.0F, this.height / 6 - 20.0F, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
     }
 
     public void tick()
