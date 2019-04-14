@@ -6,6 +6,8 @@ import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.util.ResourceLocation;
 import tv.mapper.roadstuff.RoadStuff;
+import tv.mapper.roadstuff.network.BrushPacket;
+import tv.mapper.roadstuff.network.RSNetwork;
 
 public class GuiBrush extends GuiScreen
 {
@@ -14,8 +16,14 @@ public class GuiBrush extends GuiScreen
 
     private static final int MAX_CHOICE = 10;
 
+    private int pattern = 0;
+    private int paint = 0;
+
     private int guiLeft;
     private int guiTop;
+
+    private int posX;
+    private int posY;
 
     private static final ResourceLocation brush_gui = new ResourceLocation(RoadStuff.MODID, "textures/gui/brush.png");
 
@@ -56,35 +64,43 @@ public class GuiBrush extends GuiScreen
             }
         }
 
-        // Draws hoover square above slots
+        // Draws hover square above slots
         if(mouseX > guiLeft + 14 && mouseX < guiLeft + 159 && mouseY > guiTop + 14 && mouseY < guiTop + 87)
         {
-            int posX = Math.toIntExact(Math.round((mouseX - guiLeft - 15) / 18) * 18) + guiLeft + 16;
-            int posY = Math.toIntExact(Math.round((mouseY - guiTop - 15) / 18) * 18) + guiTop + 16;
+            posX = Math.toIntExact(Math.round((mouseX - guiLeft - 15) / 18) * 18) + guiLeft + 16;
+            posY = Math.toIntExact(Math.round((mouseY - guiTop - 15) / 18) * 18) + guiTop + 16;
+            this.fontRenderer.drawStringWithShadow("posX: " + posX + ", posY: " + posY, 8, 56, new Color(255, 0, 0).getRGB());
             drawRect(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
         }
 
-        this.fontRenderer.drawStringWithShadow(mouseX + "," + mouseY, this.width / 2 - 20.0F, this.height / 6 - 20.0F, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
+        this.fontRenderer.drawStringWithShadow("DEBUG MODE", 8, 8, new Color(255, 0, 0).getRGB());
+        this.fontRenderer.drawStringWithShadow("mouseX: " + mouseX + ", mouseY: " + mouseY, 8, 40, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
+        this.fontRenderer.drawStringWithShadow("pattern: " + pattern, 8, 24, new Color(255, 0, 0).getRGB());
+
     }
 
-    public void tick()
+    public boolean mouseClicked(double mouseX, double mouseY, int button)
     {
+        if(button == 0 && mouseX > guiLeft + 14 && mouseX < guiLeft + 159 && mouseY > guiTop + 14 && mouseY < guiTop + 87)
+        {
+            pattern = (posX - guiLeft - 15) / 18 + ((posY - guiTop - 15) / 18) * 8;
+            return true;
+        }
 
+        return false;
     }
 
     public boolean keyPressed(int p_keyPressed_1_, int p_keyPressed_2_, int p_keyPressed_3_)
     {
-        if(super.keyPressed(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_))
+        if(this.allowCloseWithEscape() && p_keyPressed_1_ == 256 || this.mc.gameSettings.keyBindInventory.isActiveAndMatches(InputMappings.getInputByCode(p_keyPressed_1_, p_keyPressed_2_)))
         {
+            RSNetwork.ROADSTUFF_CHANNEL.sendToServer(new BrushPacket(pattern, paint));
+            this.close();
             return true;
         }
         else
         {
-            if(p_keyPressed_1_ == 256 || this.mc.gameSettings.keyBindInventory.isActiveAndMatches(InputMappings.getInputByCode(p_keyPressed_1_, p_keyPressed_2_)))
-            {
-                this.mc.player.closeScreen();
-            }
-            return true;
+            return super.keyPressed(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_);
         }
     }
 }

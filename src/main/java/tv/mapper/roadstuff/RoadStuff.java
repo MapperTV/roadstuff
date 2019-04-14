@@ -9,6 +9,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import tv.mapper.roadstuff.network.RSNetwork;
 import tv.mapper.roadstuff.proxy.ClientProxy;
 import tv.mapper.roadstuff.proxy.IProxy;
 import tv.mapper.roadstuff.proxy.ServerProxy;
@@ -33,6 +34,7 @@ public class RoadStuff
     {
         LOGGER.info("RoadStuff setup");
         proxy.setup(event);
+        RSNetwork.registerNetworkPackets();
     }
 
     private void clientSetup(final FMLClientSetupEvent event)
