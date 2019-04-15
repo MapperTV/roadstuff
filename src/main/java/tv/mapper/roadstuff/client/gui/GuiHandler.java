@@ -1,8 +1,10 @@
 package tv.mapper.roadstuff.client.gui;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
+import tv.mapper.roadstuff.item.ItemBrush;
 
 public class GuiHandler implements IGuiHandler
 {
@@ -19,7 +21,12 @@ public class GuiHandler implements IGuiHandler
     {
         if(ID == GUI_BRUSH)
         {
-            return new GuiBrush();
+            ItemStack item = player.getHeldItemMainhand();
+            if(item.getItem() instanceof ItemBrush)
+            {
+                return new GuiBrush(item.getTag().getInt("pattern"), item.getTag().getInt("paint"));
+            }
+            return new GuiBrush(0, 0);
         }
         else
         {

@@ -34,12 +34,12 @@ public class ItemBrush extends Item
         {
             stack.setTag(new NBTTagCompound());
             stack.getTag().setInt("pattern", 0);
-            stack.getTag().setInt("paint", 100);
+            stack.getTag().setInt("paint", 0);
         }
 
         if(world.isRemote && player.isSneaking())
         {
-           ItemBrushClient.displayBrushGui();
+           ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"));
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }

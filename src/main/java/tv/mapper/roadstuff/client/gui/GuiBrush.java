@@ -27,6 +27,12 @@ public class GuiBrush extends GuiScreen
 
     private static final ResourceLocation brush_gui = new ResourceLocation(RoadStuff.MODID, "textures/gui/brush.png");
 
+    public GuiBrush(int pattern, int paint)
+    {
+        this.pattern = pattern;
+        this.paint = paint;
+    }
+
     @Override
     public boolean doesGuiPauseGame()
     {
@@ -75,7 +81,7 @@ public class GuiBrush extends GuiScreen
 
         this.fontRenderer.drawStringWithShadow("DEBUG MODE", 8, 8, new Color(255, 0, 0).getRGB());
         this.fontRenderer.drawStringWithShadow("mouseX: " + mouseX + ", mouseY: " + mouseY, 8, 40, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
-        this.fontRenderer.drawStringWithShadow("pattern: " + pattern, 8, 24, new Color(255, 0, 0).getRGB());
+        this.fontRenderer.drawStringWithShadow("pattern: " + pattern + ", paint: " + paint, 8, 24, new Color(255, 0, 0).getRGB());
 
     }
 
