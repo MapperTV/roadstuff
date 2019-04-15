@@ -39,7 +39,7 @@ public class ItemBrush extends Item
 
         if(world.isRemote && player.isSneaking())
         {
-            Minecraft.getInstance().displayGuiScreen(new GuiBrush());
+           ItemBrushClient.displayBrushGui();
         }
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
