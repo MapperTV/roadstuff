@@ -21,6 +21,6 @@ public class ModItems
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event) {
         event.getRegistry().register(new Item(new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName("raw_bitumen"));
-        event.getRegistry().register(new ItemBrush(new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName("paint_brush"));
+        event.getRegistry().register(new ItemBrush(new Item.Properties().group(ModItemGroups.ROADSTUFF).maxStackSize(1)).setRegistryName("paint_brush"));
     }
 }

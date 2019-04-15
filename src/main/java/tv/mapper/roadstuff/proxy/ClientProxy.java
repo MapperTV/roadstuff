@@ -20,7 +20,6 @@ public class ClientProxy implements IProxy
             if(event.getGui() == null && (current instanceof GuiBrush))
             {
                 ignoreNextGuiClose = false;
-                // We don't want our gui to be closed for a new 'null' guil
                 event.setCanceled(true);
             }
         }

@@ -21,6 +21,8 @@ public class GuiBrush extends GuiScreen
 
     private int guiLeft;
     private int guiTop;
+    private int selectX;
+    private int selectY;
 
     private int posX;
     private int posY;
@@ -45,6 +47,16 @@ public class GuiBrush extends GuiScreen
         super.initGui();
         guiLeft = this.width / 2 - WIDTH / 2;
         guiTop = this.height / 2 - HEIGHT / 2;
+        
+        int pattern_temp = pattern;
+        if(pattern > 7 && pattern < 16)
+            pattern_temp = pattern - 8;
+        else if(pattern > 15 && pattern < 24)
+            pattern_temp = pattern - 16;
+        else if(pattern > 23 && pattern < 32)
+            pattern_temp = pattern - 24;
+        selectX = guiLeft + 13 + pattern_temp * 18;
+        selectY = guiTop + 13 + (pattern / 8) * 18;
     }
 
     @Override
@@ -78,6 +90,9 @@ public class GuiBrush extends GuiScreen
             this.fontRenderer.drawStringWithShadow("posX: " + posX + ", posY: " + posY, 8, 56, new Color(255, 0, 0).getRGB());
             drawRect(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
         }
+        
+        mc.getTextureManager().bindTexture(brush_gui);
+        drawTexturedModalRect(selectX, selectY, 0, 102, 22, 22);
 
         this.fontRenderer.drawStringWithShadow("DEBUG MODE", 8, 8, new Color(255, 0, 0).getRGB());
         this.fontRenderer.drawStringWithShadow("mouseX: " + mouseX + ", mouseY: " + mouseY, 8, 40, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
@@ -90,6 +105,8 @@ public class GuiBrush extends GuiScreen
         if(button == 0 && mouseX > guiLeft + 14 && mouseX < guiLeft + 159 && mouseY > guiTop + 14 && mouseY < guiTop + 87)
         {
             pattern = (posX - guiLeft - 15) / 18 + ((posY - guiTop - 15) / 18) * 8;
+            selectX = posX - 3;
+            selectY = posY - 3;
             return true;
         }
 
