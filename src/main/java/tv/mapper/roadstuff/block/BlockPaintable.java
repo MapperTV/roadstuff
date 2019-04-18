@@ -5,10 +5,10 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
-public class BlockLine extends Block
+public class BlockPaintable extends Block implements IPaintable
 {
 
-    public BlockLine(Properties properties)
+    public BlockPaintable(Properties properties)
     {
         super(properties);
     }

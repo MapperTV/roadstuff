@@ -10,7 +10,7 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.EnumFacing;
 
-public class BlockFourAxis extends BlockLine
+public class BlockFourAxis extends BlockPaintable implements IPaintable
 {
     public static final DirectionProperty DIRECTION = BlockHorizontal.HORIZONTAL_FACING;
 

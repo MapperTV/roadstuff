@@ -9,7 +9,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.MathHelper;
 
-public class BlockTwoAxis extends BlockLine
+public class BlockTwoAxis extends BlockPaintable implements IPaintable
 {
     public static final BooleanProperty ROTATION = BooleanProperty.create("rotation");
 

@@ -11,7 +11,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.ObjectHolder;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.BlockFourAxis;
-import tv.mapper.roadstuff.block.BlockLine;
+import tv.mapper.roadstuff.block.BlockPaintable;
 import tv.mapper.roadstuff.block.BlockTwoAxis;
 import tv.mapper.roadstuff.item.ModItemGroups;
 
@@ -45,12 +45,12 @@ public class ModBlocks
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
-        event.getRegistry().register(new BlockLine(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_block"));
+        event.getRegistry().register(new BlockPaintable(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_block"));
         event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_simple_white_line"));
         event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_double_white_line"));
         event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_dashed_white_line"));
         event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_large_white_line"));
-        event.getRegistry().register(new BlockLine(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_x_white_line"));
+        event.getRegistry().register(new BlockPaintable(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_x_white_line"));
         event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_t_white_line"));
         event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_corner_white_line"));
         event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_end_double_white_line"));
