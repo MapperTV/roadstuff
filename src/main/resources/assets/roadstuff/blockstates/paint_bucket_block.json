@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+        { "model": "roadstuff:block/paint_bucket_block" },
+        { "model": "roadstuff:block/paint_bucket_block", "y": 90 },
+        { "model": "roadstuff:block/paint_bucket_block", "y": 180 },
+        { "model": "roadstuff:block/paint_bucket_block", "y": 270 }
+        ]
+    }
+}

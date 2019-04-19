@@ -19,10 +19,13 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
+import tv.mapper.roadstuff.block.BlockPaintBucket;
 import tv.mapper.roadstuff.block.IPaintable;
 
 public class ItemBrush extends Item
 {
+    private static final int MAX_PAINT = 8;
+
     public ItemBrush(Properties properties)
     {
         super(properties);
@@ -32,18 +35,8 @@ public class ItemBrush extends Item
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         ItemStack stack = player.getHeldItem(hand);
-        NBTTagCompound nbt;
-
-        if(stack.hasTag())
-        {
-            nbt = stack.getTag();
-        }
-        else
-        {
-            nbt = new NBTTagCompound();
-            nbt.setInt("paint", 8);
-            nbt.setInt("pattern", 0);
-        }
+        
+        NBTTagCompound nbt = checkNBT(stack);
         stack.setTag(nbt);
 
         if(world.isRemote && player.isSneaking())
@@ -54,41 +47,39 @@ public class ItemBrush extends Item
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
     }
 
-    @SuppressWarnings("deprecation")
     public EnumActionResult onItemUse(ItemUseContext context)
     {
         World world = context.getWorld();
         BlockPos blockpos = context.getPos();
         EntityPlayer entityplayer = context.getPlayer();
-        ItemStack itemstack = context.getItem();
+        ItemStack stack = context.getItem();
 
-        NBTTagCompound nbt;
+        NBTTagCompound nbt = checkNBT(stack);
 
-        if(itemstack.hasTag())
+        IBlockState state = world.getBlockState(blockpos);
+        if(state != null && nbt.hasKey("paint"))
         {
-            nbt = itemstack.getTag();
-        }
-        else
-        {
-            nbt = new NBTTagCompound();
-            nbt.setInt("paint", 8);
-            nbt.setInt("pattern", 0);
-        }
-
-        if(nbt.hasKey("paint") && nbt.getInt("paint") > 0)
-
-            if(context.getFace() == EnumFacing.UP && world.getBlockState(blockpos.up()).isAir())
+            if(nbt.getInt("paint") > 0 && context.getFace() == EnumFacing.UP && state.getBlock() instanceof IPaintable)
             {
-                IBlockState state = world.getBlockState(blockpos);
-                if(state != null && state.getBlock() instanceof IPaintable)
-                {
-                    nbt.setInt("paint", nbt.getInt("paint") - 1);
-                    world.playSound(entityplayer, blockpos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, .8F, 1.0F);
 
-                    itemstack.setTag(nbt);
-                    return EnumActionResult.SUCCESS;
-                }
+                nbt.setInt("paint", nbt.getInt("paint") - 1);
+                world.playSound(entityplayer, blockpos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, .8F, 1.0F);
+
+                stack.setTag(nbt);
+                return EnumActionResult.SUCCESS;
+
             }
+            else if(nbt.getInt("paint") < MAX_PAINT && state.getBlock() instanceof BlockPaintBucket)
+            {
+
+                nbt.setInt("paint", MAX_PAINT);
+                world.playSound(entityplayer, blockpos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
+
+                stack.setTag(nbt);
+                return EnumActionResult.SUCCESS;
+            }
+        }
+
         return EnumActionResult.PASS;
     }
 
@@ -100,5 +91,22 @@ public class ItemBrush extends Item
         {
             list.add(new TextComponentString("Pattern: " + stack.getTag().getInt("pattern") + ", paint: " + stack.getTag().getInt("paint")));
         }
+    }
+
+    private NBTTagCompound checkNBT(ItemStack stack)
+    {
+        NBTTagCompound nbt;
+
+        if(stack.hasTag())
+        {
+            nbt = stack.getTag();
+        }
+        else
+        {
+            nbt = new NBTTagCompound();
+            nbt.setInt("paint", MAX_PAINT);
+            nbt.setInt("pattern", 0);
+        }
+        return nbt;
     }
 }

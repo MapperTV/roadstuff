@@ -1,0 +1,7 @@
+{
+    "parent": "roadstuff:block/paint_bucket",
+    "textures": {
+        "paint_bucket": "roadstuff:block/white_paint_bucket",
+        "particle": "roadstuff:block/white_paint_bucket"
+    }
+}
