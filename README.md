@@ -1,12 +1,10 @@
 ![Logo](http://killermapper.net/roadstuffmod/RoadStuffLogo.png)
 # Road Stuff 2
-A Minecraft MODification by KillerMapper
+A Minecraft modification by Mapper
 For Minecraft 1.13.2
 
 
-Road Stuff 2 is a Minecraft MODification which adds road blocks and items related to roads.
+Road Stuff 2 is a Minecraft modification which adds road blocks and items related to roads.
 
-Current version: 2.0.0.0 for 1.13.2: http://minecraft.curseforge.com/projects/road-stuff
-
-Currently including:
-Nothing yet, barely started from scratch
+Current version: no ETA yet for 1.13.2+:
+CurseForge page: http://minecraft.curseforge.com/projects/road-stuff (1.7.10 version can still be found here)
