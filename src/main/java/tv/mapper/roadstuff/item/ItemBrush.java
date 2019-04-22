@@ -24,7 +24,7 @@ import tv.mapper.roadstuff.block.IPaintable;
 
 public class ItemBrush extends Item
 {
-    private static final int MAX_PAINT = 8;
+    private static final int MAX_PAINT = 16;
 
     public ItemBrush(Properties properties)
     {
