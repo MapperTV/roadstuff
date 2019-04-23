@@ -5,8 +5,11 @@ import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.init.SoundEvents;
 import net.minecraft.item.BlockItemUseContext;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemDye;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.state.EnumProperty;
@@ -16,6 +19,7 @@ import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.world.IBlockReader;
@@ -81,11 +85,27 @@ public class BlockPaintBucket extends Block
     public boolean onBlockActivated(IBlockState state, World world, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         ItemStack item = player.getHeldItem(hand);
-
-        if(!world.isRemote && item.getItem() instanceof ItemBrush)
+        
+        if(!world.isRemote && item.getItem() instanceof ItemBrush && state.get(PAINT) > 0)
         {
-            System.out.println("Player clicked on bucket with brush!");
-            return true;
+            if(item.getTag().getInt("paint") < 16)
+            {
+                System.out.println("Player clicked on bucket with brush!");
+                world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1), 1);
+                return true;
+            }
+        }
+        if(!world.isRemote && item.getItem() instanceof ItemDye)
+        {
+            ItemDye dye = (ItemDye)item.getItem();
+            if(dye.getDyeColor() == EnumDyeColor.WHITE && state.get(PAINT) < 8)
+            {
+                System.out.println("Player clicked on bucket with white dye!");
+                world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
+                world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE), 1);
+                player.getHeldItem(hand).shrink(1);
+                return true;
+            }
         }
         return false;
     }
