@@ -22,6 +22,8 @@ import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import tv.mapper.roadstuff.item.ItemBrush;
@@ -90,7 +92,7 @@ public class BlockPaintBucket extends Block
         {
             if(item.getTag().getInt("paint") < 16)
             {
-                System.out.println("Player clicked on bucket with brush!");
+                System.out.println("Player clicked on bucket with brush! Paint: " + item.getTag().getInt("paint"));
                 world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1), 1);
                 return true;
             }
@@ -98,11 +100,36 @@ public class BlockPaintBucket extends Block
         if(!world.isRemote && item.getItem() instanceof ItemDye)
         {
             ItemDye dye = (ItemDye)item.getItem();
+            
+            if(dye.getDyeColor() == EnumDyeColor.WHITE && state.get(COLOR) == EnumPaintColor.YELLOW)
+            {
+                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "The bucket is already filled with yellow paint!"), false);
+                return false;
+            }
+            if(dye.getDyeColor() == EnumDyeColor.YELLOW && state.get(COLOR) == EnumPaintColor.WHITE)
+            {
+                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "The bucket is already filled with white paint!"), false);
+                return false;
+            }
+            if(state.get(PAINT) >= 8)
+            {
+                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "The bucket is full!"), false);
+                return false;
+            }
+            
             if(dye.getDyeColor() == EnumDyeColor.WHITE && state.get(PAINT) < 8)
             {
                 System.out.println("Player clicked on bucket with white dye!");
                 world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
                 world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE), 1);
+                player.getHeldItem(hand).shrink(1);
+                return true;
+            }
+            else if(dye.getDyeColor() == EnumDyeColor.YELLOW && state.get(PAINT) < 8)
+            {
+                System.out.println("Player clicked on bucket with yellow dye!");
+                world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
+                world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.YELLOW), 1);
                 player.getHeldItem(hand).shrink(1);
                 return true;
             }

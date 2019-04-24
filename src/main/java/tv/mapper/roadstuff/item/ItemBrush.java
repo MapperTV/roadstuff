@@ -35,7 +35,7 @@ public class ItemBrush extends Item
     public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
     {
         ItemStack stack = player.getHeldItem(hand);
-        
+
         NBTTagCompound nbt = checkNBT(stack);
         stack.setTag(nbt);
 
@@ -61,23 +61,17 @@ public class ItemBrush extends Item
         {
             if(nbt.getInt("paint") > 0 && context.getFace() == EnumFacing.UP && state.getBlock() instanceof IPaintable)
             {
-
                 nbt.setInt("paint", nbt.getInt("paint") - 1);
                 world.playSound(entityplayer, blockpos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, .8F, 1.0F);
-
-                stack.setTag(nbt);
-                return EnumActionResult.SUCCESS;
-
             }
             else if(nbt.getInt("paint") < MAX_PAINT && state.getBlock() instanceof BlockPaintBucket)
             {
-
                 nbt.setInt("paint", MAX_PAINT);
                 world.playSound(entityplayer, blockpos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
-
-                stack.setTag(nbt);
-                return EnumActionResult.SUCCESS;
             }
+
+            stack.setTag(nbt);
+            return EnumActionResult.SUCCESS;
         }
 
         return EnumActionResult.PASS;
