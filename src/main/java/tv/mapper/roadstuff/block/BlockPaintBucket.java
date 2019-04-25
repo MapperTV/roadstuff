@@ -88,12 +88,24 @@ public class BlockPaintBucket extends Block
     {
         ItemStack item = player.getHeldItem(hand);
         
-        if(!world.isRemote && item.getItem() instanceof ItemBrush && state.get(PAINT) > 0)
+        if(!world.isRemote && item.getItem() instanceof ItemBrush)
         {
-            if(item.getTag().getInt("paint") < 16)
+            int paint = state.get(PAINT);
+            
+            if(paint <= 0)
+            {
+                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is empty!"), false);
+                return false;
+            }
+                
+            if(item.getTag().getInt("paint") < 16 && paint > 0)
             {
                 System.out.println("Player clicked on bucket with brush! Paint: " + item.getTag().getInt("paint"));
-                world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1), 1);
+                
+                if(paint == 1)
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1).with(COLOR, EnumPaintColor.NONE), 1);
+                else
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1), 1);
                 return true;
             }
         }
@@ -103,34 +115,35 @@ public class BlockPaintBucket extends Block
             
             if(dye.getDyeColor() == EnumDyeColor.WHITE && state.get(COLOR) == EnumPaintColor.YELLOW)
             {
-                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "The bucket is already filled with yellow paint!"), false);
+                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is already filled with yellow paint!"), false);
                 return false;
             }
             if(dye.getDyeColor() == EnumDyeColor.YELLOW && state.get(COLOR) == EnumPaintColor.WHITE)
             {
-                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "The bucket is already filled with white paint!"), false);
+                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is already filled with white paint!"), false);
                 return false;
             }
             if(state.get(PAINT) >= 8)
             {
-                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "The bucket is full!"), false);
+                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is full!"), false);
                 return false;
             }
             
-            if(dye.getDyeColor() == EnumDyeColor.WHITE && state.get(PAINT) < 8)
+            if(state.get(PAINT) < 8)
             {
-                System.out.println("Player clicked on bucket with white dye!");
+                if(dye.getDyeColor() == EnumDyeColor.WHITE)
+                {
+                    System.out.println("Player clicked on bucket with white dye!");
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE), 1);
+                }
+                else if(dye.getDyeColor() == EnumDyeColor.YELLOW)
+                {
+                    System.out.println("Player clicked on bucket with yellow dye!");
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.YELLOW), 1);
+                }
                 world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
-                world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE), 1);
-                player.getHeldItem(hand).shrink(1);
-                return true;
-            }
-            else if(dye.getDyeColor() == EnumDyeColor.YELLOW && state.get(PAINT) < 8)
-            {
-                System.out.println("Player clicked on bucket with yellow dye!");
-                world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
-                world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.YELLOW), 1);
-                player.getHeldItem(hand).shrink(1);
+                if(!player.isCreative())
+                    player.getHeldItem(hand).shrink(1);
                 return true;
             }
         }
