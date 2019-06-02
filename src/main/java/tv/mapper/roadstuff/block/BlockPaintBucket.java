@@ -103,9 +103,12 @@ public class BlockPaintBucket extends Block
                 System.out.println("Player clicked on bucket with brush! Paint: " + item.getTag().getInt("paint"));
                 
                 if(paint == 1)
-                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1).with(COLOR, EnumPaintColor.NONE), 1);
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1).with(COLOR, EnumPaintColor.NONE));
                 else
-                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1), 1);
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1));
+                
+                world.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
+                item.getTag().setInt("paint", 16);
                 return true;
             }
         }
@@ -134,12 +137,12 @@ public class BlockPaintBucket extends Block
                 if(dye.getDyeColor() == EnumDyeColor.WHITE)
                 {
                     System.out.println("Player clicked on bucket with white dye!");
-                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE), 1);
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE));
                 }
                 else if(dye.getDyeColor() == EnumDyeColor.YELLOW)
                 {
                     System.out.println("Player clicked on bucket with yellow dye!");
-                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.YELLOW), 1);
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.YELLOW));
                 }
                 world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
                 if(!player.isCreative())

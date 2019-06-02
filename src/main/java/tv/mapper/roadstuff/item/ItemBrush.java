@@ -19,7 +19,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
-import tv.mapper.roadstuff.block.BlockPaintBucket;
 import tv.mapper.roadstuff.block.IPaintable;
 
 public class ItemBrush extends Item
@@ -63,11 +62,6 @@ public class ItemBrush extends Item
             {
                 nbt.setInt("paint", nbt.getInt("paint") - 1);
                 world.playSound(entityplayer, blockpos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, .8F, 1.0F);
-            }
-            else if(nbt.getInt("paint") < MAX_PAINT && state.getBlock() instanceof BlockPaintBucket)
-            {
-                nbt.setInt("paint", MAX_PAINT);
-                world.playSound(entityplayer, blockpos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
             }
 
             stack.setTag(nbt);
