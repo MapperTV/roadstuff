@@ -5,8 +5,8 @@ import tv.mapper.roadstuff.client.gui.GuiBrush;
 
 public class ItemBrushClient
 {
-    public static void displayBrushGui(int pattern, int paint)
+    public static void displayBrushGui(int pattern, int paint, String color)
     {
-        Minecraft.getInstance().displayGuiScreen(new GuiBrush(pattern, paint));
+        Minecraft.getInstance().displayGuiScreen(new GuiBrush(pattern, paint, color));
     }
 }

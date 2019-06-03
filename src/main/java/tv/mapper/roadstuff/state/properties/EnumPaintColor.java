@@ -27,5 +27,13 @@ public enum EnumPaintColor implements IStringSerializable
         return this.id;
     }
     
-    
+    public static EnumPaintColor getColorByID(int id)
+    {
+        for(EnumPaintColor color : values())
+        {
+            if(color.getId() == id)
+                return color;
+        }
+        return null;
+    }
 }

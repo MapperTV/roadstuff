@@ -18,6 +18,7 @@ public class GuiBrush extends GuiScreen
 
     private int pattern = 0;
     private int paint = 0;
+    private String color = "";
 
     private int guiLeft;
     private int guiTop;
@@ -29,10 +30,11 @@ public class GuiBrush extends GuiScreen
 
     private static final ResourceLocation brush_gui = new ResourceLocation(RoadStuff.MODID, "textures/gui/brush.png");
 
-    public GuiBrush(int pattern, int paint)
+    public GuiBrush(int pattern, int paint, String color)
     {
         this.pattern = pattern;
         this.paint = paint;
+        this.color = color;
     }
 
     @Override
@@ -47,7 +49,7 @@ public class GuiBrush extends GuiScreen
         super.initGui();
         guiLeft = this.width / 2 - WIDTH / 2;
         guiTop = this.height / 2 - HEIGHT / 2;
-        
+
         int pattern_temp = pattern;
         if(pattern > 7 && pattern < 16)
             pattern_temp = pattern - 8;
@@ -90,13 +92,13 @@ public class GuiBrush extends GuiScreen
             this.fontRenderer.drawStringWithShadow("posX: " + posX + ", posY: " + posY, 8, 56, new Color(255, 0, 0).getRGB());
             drawRect(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
         }
-        
+
         mc.getTextureManager().bindTexture(brush_gui);
         drawTexturedModalRect(selectX, selectY, 0, 102, 22, 22);
 
         this.fontRenderer.drawStringWithShadow("DEBUG MODE", 8, 8, new Color(255, 0, 0).getRGB());
         this.fontRenderer.drawStringWithShadow("mouseX: " + mouseX + ", mouseY: " + mouseY, 8, 40, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
-        this.fontRenderer.drawStringWithShadow("pattern: " + pattern + ", paint: " + paint, 8, 24, new Color(255, 0, 0).getRGB());
+        this.fontRenderer.drawStringWithShadow("pattern: " + pattern + ", paint: " + paint + ", color: " + color, 8, 24, new Color(255, 0, 0).getRGB());
 
     }
 

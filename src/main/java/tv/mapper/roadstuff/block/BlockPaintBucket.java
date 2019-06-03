@@ -87,35 +87,37 @@ public class BlockPaintBucket extends Block
     public boolean onBlockActivated(IBlockState state, World world, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
     {
         ItemStack item = player.getHeldItem(hand);
-        
+
         if(!world.isRemote && item.getItem() instanceof ItemBrush)
         {
             int paint = state.get(PAINT);
-            
+
             if(paint <= 0)
             {
                 player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is empty!"), false);
                 return false;
             }
-                
-            if(item.getTag().getInt("paint") < 16 && paint > 0)
+
+            if(item.getTag().getInt("paint") < ItemBrush.MAX_PAINT && paint > 0)
             {
                 System.out.println("Player clicked on bucket with brush! Paint: " + item.getTag().getInt("paint"));
-                
+
                 if(paint == 1)
+
                     world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1).with(COLOR, EnumPaintColor.NONE));
                 else
                     world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1));
-                
+
                 world.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
-                item.getTag().setInt("paint", 16);
+                item.getTag().setInt("paint", ItemBrush.MAX_PAINT);
+                item.getTag().setInt("color", state.get(COLOR).getId());
                 return true;
             }
         }
         if(!world.isRemote && item.getItem() instanceof ItemDye)
         {
             ItemDye dye = (ItemDye)item.getItem();
-            
+
             if(dye.getDyeColor() == EnumDyeColor.WHITE && state.get(COLOR) == EnumPaintColor.YELLOW)
             {
                 player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is already filled with yellow paint!"), false);
@@ -131,7 +133,7 @@ public class BlockPaintBucket extends Block
                 player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is full!"), false);
                 return false;
             }
-            
+
             if(state.get(PAINT) < 8)
             {
                 if(dye.getDyeColor() == EnumDyeColor.WHITE)

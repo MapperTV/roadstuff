@@ -20,10 +20,11 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import tv.mapper.roadstuff.block.IPaintable;
+import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
 public class ItemBrush extends Item
 {
-    private static final int MAX_PAINT = 16;
+    public static final int MAX_PAINT = 16;
 
     public ItemBrush(Properties properties)
     {
@@ -40,7 +41,7 @@ public class ItemBrush extends Item
 
         if(world.isRemote && player.isSneaking())
         {
-            ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"));
+            ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), EnumPaintColor.getColorByID(stack.getTag().getInt("color")).getName());
         }
 
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
@@ -61,6 +62,10 @@ public class ItemBrush extends Item
             if(nbt.getInt("paint") > 0 && context.getFace() == EnumFacing.UP && state.getBlock() instanceof IPaintable)
             {
                 nbt.setInt("paint", nbt.getInt("paint") - 1);
+                if(nbt.getInt("paint") == 0)
+                {
+                    nbt.setInt("color", 0);
+                }
                 world.playSound(entityplayer, blockpos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, .8F, 1.0F);
             }
 
@@ -77,7 +82,7 @@ public class ItemBrush extends Item
         super.addInformation(stack, player, list, flag);
         if(stack.hasTag())
         {
-            list.add(new TextComponentString("Pattern: " + stack.getTag().getInt("pattern") + ", paint: " + stack.getTag().getInt("paint")));
+            list.add(new TextComponentString("Pattern: " + stack.getTag().getInt("pattern") + ", paint: " + stack.getTag().getInt("paint") + ", color: " + stack.getTag().getInt("color")));
         }
     }
 
@@ -92,8 +97,9 @@ public class ItemBrush extends Item
         else
         {
             nbt = new NBTTagCompound();
-            nbt.setInt("paint", MAX_PAINT);
+            nbt.setInt("paint", 0);
             nbt.setInt("pattern", 0);
+            nbt.setInt("color", EnumPaintColor.NONE.getId());
         }
         return nbt;
     }
