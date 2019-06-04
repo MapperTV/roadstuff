@@ -88,67 +88,82 @@ public class BlockPaintBucket extends Block
     {
         ItemStack item = player.getHeldItem(hand);
 
-        if(!world.isRemote && item.getItem() instanceof ItemBrush)
+        if(item.getItem() instanceof ItemBrush)
         {
             int paint = state.get(PAINT);
 
-            if(paint <= 0)
+            if(!world.isRemote && paint <= 0)
             {
-                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is empty!"), false);
+                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is empty!"), true);
                 return false;
             }
 
             if(item.getTag().getInt("paint") < ItemBrush.MAX_PAINT && paint > 0)
             {
-                System.out.println("Player clicked on bucket with brush! Paint: " + item.getTag().getInt("paint"));
+                if(!world.isRemote)
+                {
+                    System.out.println("Player clicked on bucket with brush! Paint: " + item.getTag().getInt("paint"));
 
-                if(paint == 1)
+                    if(paint == 1)
 
-                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1).with(COLOR, EnumPaintColor.NONE));
+                        world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1).with(COLOR, EnumPaintColor.NONE));
+                    else
+                        world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1));
+
+                    item.getTag().setInt("paint", ItemBrush.MAX_PAINT);
+                    item.getTag().setInt("color", state.get(COLOR).getId());
+                }
                 else
-                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1));
-
-                world.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
-                item.getTag().setInt("paint", ItemBrush.MAX_PAINT);
-                item.getTag().setInt("color", state.get(COLOR).getId());
+                {
+                    world.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
+                }
                 return true;
             }
         }
-        if(!world.isRemote && item.getItem() instanceof ItemDye)
+        if(item.getItem() instanceof ItemDye)
         {
             ItemDye dye = (ItemDye)item.getItem();
 
             if(dye.getDyeColor() == EnumDyeColor.WHITE && state.get(COLOR) == EnumPaintColor.YELLOW)
             {
-                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is already filled with yellow paint!"), false);
+                if(!world.isRemote)
+                    player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is already filled with yellow paint!"), true);
                 return false;
             }
             if(dye.getDyeColor() == EnumDyeColor.YELLOW && state.get(COLOR) == EnumPaintColor.WHITE)
             {
-                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is already filled with white paint!"), false);
+                if(!world.isRemote)
+                    player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is already filled with white paint!"), true);
                 return false;
             }
             if(state.get(PAINT) >= 8)
             {
-                player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is full!"), false);
+                if(!world.isRemote)
+                    player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "This bucket is full!"), true);
                 return false;
             }
 
             if(state.get(PAINT) < 8)
             {
-                if(dye.getDyeColor() == EnumDyeColor.WHITE)
+                if(!world.isRemote)
                 {
-                    System.out.println("Player clicked on bucket with white dye!");
-                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE));
+                    if(dye.getDyeColor() == EnumDyeColor.WHITE)
+                    {
+                        System.out.println("Player clicked on bucket with white dye!");
+                        world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE));
+                    }
+                    else if(dye.getDyeColor() == EnumDyeColor.YELLOW)
+                    {
+                        System.out.println("Player clicked on bucket with yellow dye!");
+                        world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.YELLOW));
+                    }
+                    if(!player.isCreative())
+                        player.getHeldItem(hand).shrink(1);
                 }
-                else if(dye.getDyeColor() == EnumDyeColor.YELLOW)
+                else
                 {
-                    System.out.println("Player clicked on bucket with yellow dye!");
-                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.YELLOW));
+                    world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
                 }
-                world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
-                if(!player.isCreative())
-                    player.getHeldItem(hand).shrink(1);
                 return true;
             }
         }
