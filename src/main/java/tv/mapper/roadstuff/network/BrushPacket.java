@@ -3,7 +3,6 @@ package tv.mapper.roadstuff.network;
 import java.util.function.Supplier;
 
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import tv.mapper.roadstuff.item.ItemBrush;
@@ -24,7 +23,7 @@ public class BrushPacket
         buffer.writeInt(packet.pattern);
         buffer.writeInt(packet.paint);
     }
-    
+
     public static BrushPacket decode(PacketBuffer buffer)
     {
         int pattern = buffer.readInt();
@@ -32,14 +31,15 @@ public class BrushPacket
         BrushPacket instance = new BrushPacket(pattern, paint);
         return instance;
     }
-    
+
     public static void handle(BrushPacket packet, Supplier<NetworkEvent.Context> context)
     {
         context.get().setPacketHandled(true);
         EntityPlayerMP sender = context.get().getSender();
-        ItemStack item = sender.getHeldItemMainhand();
-        
-        if(item.getItem() instanceof ItemBrush)
+
+        if(sender.getHeldItemMainhand().getItem() instanceof ItemBrush)
             sender.getHeldItemMainhand().getTag().setInt("pattern", packet.pattern);
+        else if(sender.getHeldItemOffhand().getItem() instanceof ItemBrush)
+            sender.getHeldItemOffhand().getTag().setInt("pattern", packet.pattern);
     }
 }
