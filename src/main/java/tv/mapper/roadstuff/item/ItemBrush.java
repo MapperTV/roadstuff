@@ -187,7 +187,7 @@ public class ItemBrush extends Item
         }
     }
 
-    private NBTTagCompound checkNBT(ItemStack stack)
+    public static NBTTagCompound checkNBT(ItemStack stack)
     {
         NBTTagCompound nbt;
 
