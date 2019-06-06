@@ -2,6 +2,7 @@ package tv.mapper.roadstuff.item;
 
 import java.util.List;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,8 +19,12 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
-import tv.mapper.roadstuff.block.IPaintable;
+import tv.mapper.roadstuff.block.BlockFourAxis;
+import tv.mapper.roadstuff.block.BlockPaintable;
+import tv.mapper.roadstuff.block.BlockTwoAxis;
+import tv.mapper.roadstuff.init.ModBlocks;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
 public class ItemBrush extends Item
@@ -50,23 +55,119 @@ public class ItemBrush extends Item
     public EnumActionResult onItemUse(ItemUseContext context)
     {
         World world = context.getWorld();
-        BlockPos blockpos = context.getPos();
-        EntityPlayer entityplayer = context.getPlayer();
+        BlockPos pos = context.getPos();
+        EntityPlayer player = context.getPlayer();
         ItemStack stack = context.getItem();
-
+        IBlockState state = world.getBlockState(pos);
         NBTTagCompound nbt = checkNBT(stack);
 
-        IBlockState state = world.getBlockState(blockpos);
+        int pattern = nbt.getInt("pattern");
+
+        Block newBlock = null;
+        boolean playSound = true;
+
         if(state != null && nbt.hasKey("paint"))
         {
-            if(nbt.getInt("paint") > 0 && context.getFace() == EnumFacing.UP && state.getBlock() instanceof IPaintable)
+            if(context.getFace() == EnumFacing.UP && state.getBlock() instanceof BlockPaintable)
             {
-                nbt.setInt("paint", nbt.getInt("paint") - 1);
-                if(nbt.getInt("paint") == 0)
+                switch(pattern)
                 {
-                    nbt.setInt("color", 0);
+                    case 0:
+                        newBlock = ModBlocks.ASPHALT_BLOCK;
+                        break;
+                    case 1:
+                        newBlock = ModBlocks.ASPHALT_SIMPLE_WHITE_LINE_BLOCK;
+                        break;
+                    case 2:
+                        newBlock = ModBlocks.ASPHALT_DOUBLE_WHITE_LINE_BLOCK;
+                        break;
+                    case 3:
+                        newBlock = ModBlocks.ASPHALT_DASHED_WHITE_LINE_BLOCK;
+                        break;
+                    case 4:
+                        newBlock = ModBlocks.ASPHALT_LARGE_WHITE_LINE_BLOCK;
+                        break;
+                    case 5:
+                        newBlock = ModBlocks.ASPHALT_X_WHITE_LINE_BLOCK;
+                        break;
+                    case 6:
+                        newBlock = ModBlocks.ASPHALT_T_WHITE_LINE_BLOCK;
+                        break;
+                    case 7:
+                        newBlock = ModBlocks.ASPHALT_CORNER_WHITE_LINE_BLOCK;
+                        break;
+                    case 8:
+                        newBlock = ModBlocks.ASPHALT_END_DOUBLE_WHITE_LINE_BLOCK;
+                        break;
+                    case 9:
+                        newBlock = ModBlocks.ASPHALT_DIAGONAL_WHITE_LINE_BLOCK;
+                        break;
+                    case 10:
+                        newBlock = ModBlocks.ASPHALT_LARGE_DIAGONAL_WHITE_LINE_BLOCK;
+                        break;
+                    default:
+                        newBlock = ModBlocks.ASPHALT_BLOCK;
+                        break;
                 }
-                world.playSound(entityplayer, blockpos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, .8F, 1.0F);
+
+                if(pattern == 0)
+                {
+                    if(!world.isRemote)
+                        world.setBlockState(pos, newBlock.getDefaultState());
+                    playSound = false;
+                }
+                else if(state.getBlock() == newBlock)
+                {
+
+                    if(newBlock instanceof BlockTwoAxis && !world.isRemote)
+                    {
+                        player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "Same block detected; rotating..."), true);
+                        if(state.get(BlockTwoAxis.ROTATION))
+                            world.setBlockState(pos, newBlock.getDefaultState().with(BlockTwoAxis.ROTATION, Boolean.valueOf(false)));
+                        else
+                            world.setBlockState(pos, newBlock.getDefaultState().with(BlockTwoAxis.ROTATION, Boolean.valueOf(true)));
+                    }
+                    else if(newBlock instanceof BlockFourAxis && !world.isRemote)
+                    {
+                        player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "Same block detected; rotating 90°..."), true);
+                        switch(state.get(BlockFourAxis.DIRECTION))
+                        {
+                            case NORTH:
+                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.EAST));
+                                break;
+                            case EAST:
+                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.SOUTH));
+                                break;
+                            case SOUTH:
+                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.WEST));
+                                break;
+                            case WEST:
+                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.NORTH));
+                                break;
+                            default:
+                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.NORTH));
+                                break;
+                        }
+                    }
+                    else
+                    {
+                        playSound = false;
+                    }
+                }
+                else
+                {
+                    if(nbt.getInt("paint") > 0 && !world.isRemote)
+                    {
+                        world.setBlockState(pos, newBlock.getDefaultState());
+                        nbt.setInt("paint", nbt.getInt("paint") - 1);
+                    }
+                }
+
+                if(!world.isRemote && nbt.getInt("paint") == 0)
+                    nbt.setInt("color", 0);
+
+                if(playSound && nbt.getInt("paint") > 0)
+                    world.playSound(player, pos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, .8F, 1.0F);
             }
 
             stack.setTag(nbt);

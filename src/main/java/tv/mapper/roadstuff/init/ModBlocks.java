@@ -50,17 +50,17 @@ public class ModBlocks
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
-        event.getRegistry().register(new BlockPaintable(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_block"));
-        event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_simple_white_line"));
-        event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_double_white_line"));
-        event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_dashed_white_line"));
-        event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_large_white_line"));
-        event.getRegistry().register(new BlockPaintable(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_x_white_line"));
-        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_t_white_line"));
-        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_corner_white_line"));
-        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_end_double_white_line"));
-        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_diagonal_white_line"));
-        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("asphalt_large_diagonal_white_line"));
+        event.getRegistry().register(new BlockPaintable(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_block"));
+        event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_simple_white_line"));
+        event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_double_white_line"));
+        event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_dashed_white_line"));
+        event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_large_white_line"));
+        event.getRegistry().register(new BlockPaintable(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_x_white_line"));
+        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_t_white_line"));
+        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_corner_white_line"));
+        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_end_double_white_line"));
+        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_diagonal_white_line"));
+        event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_large_diagonal_white_line"));
 
         event.getRegistry().register(new BlockPaintBucket(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("paint_bucket_block"));
     }

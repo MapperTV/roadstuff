@@ -9,13 +9,13 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.math.MathHelper;
 
-public class BlockTwoAxis extends BlockPaintable implements IPaintable
+public class BlockTwoAxis extends BlockPaintable
 {
     public static final BooleanProperty ROTATION = BooleanProperty.create("rotation");
 
-    public BlockTwoAxis(Properties properties)
+    public BlockTwoAxis(Properties properties, int materialType)
     {
-        super(properties);
+        super(properties, materialType);
         this.setDefaultState(this.getDefaultState().with(ROTATION, Boolean.valueOf(false)));
     }
 
@@ -27,7 +27,7 @@ public class BlockTwoAxis extends BlockPaintable implements IPaintable
     @Nullable
     public IBlockState getStateForPlacement(BlockItemUseContext context)
     {
-        IBlockState state = this.getDefaultState().with(ROTATION, false);
+        IBlockState state = this.getDefaultState().with(ROTATION, Boolean.valueOf(false));
         int direction = MathHelper.floor((double)(context.getPlacementYaw() * 4.0F / 360.0F) + 2.5D) & 3;
         if(direction == 1 || direction == 3)
             return state.with(ROTATION, true);

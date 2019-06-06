@@ -10,13 +10,13 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.EnumFacing;
 
-public class BlockFourAxis extends BlockPaintable implements IPaintable
+public class BlockFourAxis extends BlockPaintable
 {
     public static final DirectionProperty DIRECTION = BlockHorizontal.HORIZONTAL_FACING;
 
-    public BlockFourAxis(Properties properties)
+    public BlockFourAxis(Properties properties, int materialType)
     {
-        super(properties);
+        super(properties, materialType);
         this.setDefaultState(this.getDefaultState().with(DIRECTION, EnumFacing.NORTH));
     }
 
