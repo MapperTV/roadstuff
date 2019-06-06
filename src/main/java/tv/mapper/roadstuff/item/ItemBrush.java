@@ -19,7 +19,6 @@ import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import tv.mapper.roadstuff.block.BlockFourAxis;
 import tv.mapper.roadstuff.block.BlockPaintable;
@@ -121,7 +120,6 @@ public class ItemBrush extends Item
 
                     if(newBlock instanceof BlockTwoAxis && !world.isRemote)
                     {
-                        player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "Same block detected; rotating..."), true);
                         if(state.get(BlockTwoAxis.ROTATION))
                             world.setBlockState(pos, newBlock.getDefaultState().with(BlockTwoAxis.ROTATION, Boolean.valueOf(false)));
                         else
@@ -129,23 +127,37 @@ public class ItemBrush extends Item
                     }
                     else if(newBlock instanceof BlockFourAxis && !world.isRemote)
                     {
-                        player.sendStatusMessage(new TextComponentString(TextFormatting.WHITE + "Same block detected; rotating 90°..."), true);
                         switch(state.get(BlockFourAxis.DIRECTION))
                         {
                             case NORTH:
-                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.EAST));
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.EAST));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.WEST));
                                 break;
                             case EAST:
-                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.SOUTH));
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.SOUTH));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.NORTH));
                                 break;
                             case SOUTH:
-                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.WEST));
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.WEST));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.EAST));
                                 break;
                             case WEST:
-                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.NORTH));
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.NORTH));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.SOUTH));
                                 break;
                             default:
-                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.NORTH));
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.EAST));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.WEST));
                                 break;
                         }
                     }
