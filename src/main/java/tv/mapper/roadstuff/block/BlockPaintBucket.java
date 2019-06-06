@@ -98,6 +98,9 @@ public class BlockPaintBucket extends Block
                 return false;
             }
 
+            if(!item.hasTag())
+                item.setTag(ItemBrush.checkNBT(item));
+
             if(item.getTag().getInt("paint") < ItemBrush.MAX_PAINT && paint > 0)
             {
                 if(!world.isRemote)
