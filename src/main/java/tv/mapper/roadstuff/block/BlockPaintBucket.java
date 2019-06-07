@@ -38,7 +38,7 @@ public class BlockPaintBucket extends Block
     public BlockPaintBucket(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.NONE));
+        this.setDefaultState(this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE));
     }
 
     public boolean isSolid(IBlockState state)
@@ -81,7 +81,7 @@ public class BlockPaintBucket extends Block
         {
             return this.getDefaultState().with(PAINT, stack.getTag().getInt("paint")).with(COLOR, EnumPaintColor.values()[stack.getTag().getInt("color")]);
         }
-        return this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.NONE);
+        return this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE);
     }
 
     public boolean onBlockActivated(IBlockState state, World world, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ)
@@ -105,13 +105,7 @@ public class BlockPaintBucket extends Block
             {
                 if(!world.isRemote)
                 {
-                    System.out.println("Player clicked on bucket with brush! Paint: " + item.getTag().getInt("paint"));
-
-                    if(paint == 1)
-
-                        world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1).with(COLOR, EnumPaintColor.NONE));
-                    else
-                        world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1));
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1));
 
                     item.getTag().setInt("paint", ItemBrush.MAX_PAINT);
                     item.getTag().setInt("color", state.get(COLOR).getId());
