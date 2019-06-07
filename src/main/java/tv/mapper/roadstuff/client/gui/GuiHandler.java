@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
 import tv.mapper.roadstuff.item.ItemBrush;
+import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
 public class GuiHandler implements IGuiHandler
 {
@@ -24,9 +25,9 @@ public class GuiHandler implements IGuiHandler
             ItemStack item = player.getHeldItemMainhand();
             if(item.getItem() instanceof ItemBrush)
             {
-                return new GuiBrush(item.getTag().getInt("pattern"), item.getTag().getInt("paint"), item.getTag().getInt("color"));
+                return new GuiBrush(item.getTag().getInt("pattern"), item.getTag().getInt("paint"), EnumPaintColor.getColorByID(item.getTag().getInt("color")).getName());
             }
-            return new GuiBrush(0, 0, 0);
+            return new GuiBrush(0, 0, EnumPaintColor.getColorByID(0).getName());
         }
         else
         {
