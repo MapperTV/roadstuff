@@ -45,7 +45,7 @@ public class ItemBrush extends Item
 
         if(world.isRemote && player.isSneaking())
         {
-            ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), EnumPaintColor.getColorByID(stack.getTag().getInt("color")).getName());
+            ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"));
         }
 
         return new ActionResult<>(EnumActionResult.SUCCESS, stack);
@@ -61,9 +61,17 @@ public class ItemBrush extends Item
         NBTTagCompound nbt = checkNBT(stack);
 
         int pattern = nbt.getInt("pattern");
+        int color = nbt.getInt("color");
 
         Block newBlock = null;
         boolean playSound = false;
+
+        if(player.isSneaking())
+        {
+            if(world.isRemote)
+                ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"));
+            return EnumActionResult.SUCCESS;
+        }
 
         if(state != null && nbt.hasKey("paint"))
         {
@@ -75,38 +83,115 @@ public class ItemBrush extends Item
                         newBlock = ModBlocks.ASPHALT_BLOCK;
                         break;
                     case 1:
-                        newBlock = ModBlocks.ASPHALT_SIMPLE_WHITE_LINE_BLOCK;
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_YELLOW_LINE_BLOCK;
                         break;
                     case 2:
-                        newBlock = ModBlocks.ASPHALT_DOUBLE_WHITE_LINE_BLOCK;
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_DOUBLE_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_DOUBLE_YELLOW_LINE_BLOCK;
                         break;
                     case 3:
-                        newBlock = ModBlocks.ASPHALT_DASHED_WHITE_LINE_BLOCK;
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_DASHED_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_DASHED_YELLOW_LINE_BLOCK;
                         break;
                     case 4:
-                        newBlock = ModBlocks.ASPHALT_LARGE_WHITE_LINE_BLOCK;
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_LARGE_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_LARGE_YELLOW_LINE_BLOCK;
                         break;
                     case 5:
-                        newBlock = ModBlocks.ASPHALT_X_WHITE_LINE_BLOCK;
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_X_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_X_YELLOW_LINE_BLOCK;
                         break;
                     case 6:
-                        newBlock = ModBlocks.ASPHALT_T_WHITE_LINE_BLOCK;
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_T_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_T_YELLOW_LINE_BLOCK;
                         break;
                     case 7:
-                        newBlock = ModBlocks.ASPHALT_CORNER_WHITE_LINE_BLOCK;
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_CORNER_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_CORNER_YELLOW_LINE_BLOCK;
                         break;
                     case 8:
-                        newBlock = ModBlocks.ASPHALT_END_DOUBLE_WHITE_LINE_BLOCK;
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_END_DOUBLE_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_END_DOUBLE_YELLOW_LINE_BLOCK;
                         break;
                     case 9:
-                        newBlock = ModBlocks.ASPHALT_DIAGONAL_WHITE_LINE_BLOCK;
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_DIAGONAL_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_DIAGONAL_YELLOW_LINE_BLOCK;
                         break;
                     case 10:
-                        newBlock = ModBlocks.ASPHALT_LARGE_DIAGONAL_WHITE_LINE_BLOCK;
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_LARGE_DIAGONAL_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_LARGE_DIAGONAL_YELLOW_LINE_BLOCK;
+                        break;
+                    case 11:
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_DOUBLE_DIAGONAL_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_DOUBLE_DIAGONAL_YELLOW_LINE_BLOCK;
+                        break;
+                    case 12:
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_LEFT_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_LEFT_YELLOW_LINE_BLOCK;
+                        break;
+                    case 13:
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_RIGHT_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_RIGHT_YELLOW_LINE_BLOCK;
+                        break;
+                    case 14:
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_LEFT_RIGHT_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_LEFT_RIGHT_YELLOW_LINE_BLOCK;
+                        break;
+                    case 15:
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_SEPARATOR_WHITE_LINE_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_SEPARATOR_YELLOW_LINE_BLOCK;
+                        break;
+                    case 16:
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_WHITE_ARROW_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_YELLOW_ARROW_BLOCK;
+                        break;
+                    case 17:
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_WHITE_LEFT_ARROW_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_YELLOW_LEFT_ARROW_BLOCK;
+                        break;
+                    case 18:
+                        if(color == 0)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_WHITE_RIGHT_ARROW_BLOCK;
+                        else if(color == 1)
+                            newBlock = ModBlocks.ASPHALT_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK;
                         break;
                     default:
-                        newBlock = ModBlocks.ASPHALT_BLOCK;
-                        break;
+                        return EnumActionResult.PASS;
                 }
 
                 if(pattern == 0 && !world.isRemote)
@@ -168,12 +253,10 @@ public class ItemBrush extends Item
                             world.setBlockState(pos, newBlock.getDefaultState());
                             nbt.setInt("paint", nbt.getInt("paint") - 1);
                         }
-                        playSound = true;
+                        if(pattern != 0)
+                            playSound = true;
                     }
                 }
-
-                if(!world.isRemote && nbt.getInt("paint") == 0)
-                    nbt.setInt("color", 0);
 
                 if(playSound)
                     world.playSound(player, pos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, .8F, 1.0F);
@@ -209,7 +292,7 @@ public class ItemBrush extends Item
             nbt = new NBTTagCompound();
             nbt.setInt("paint", 0);
             nbt.setInt("pattern", 0);
-            nbt.setInt("color", EnumPaintColor.NONE.getId());
+            nbt.setInt("color", EnumPaintColor.WHITE.getId());
         }
         return nbt;
     }

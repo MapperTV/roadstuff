@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "rotation=false": { "model": "roadstuff:block/asphalt_large_yellow_line" },
+        "rotation=true": { "model": "roadstuff:block/asphalt_large_yellow_line", "y": 90 }
+    }
+}

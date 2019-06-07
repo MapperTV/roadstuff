@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "roadstuff:block/asphalt_simple_yellow_right_arrow" },
+        "facing=east": { "model": "roadstuff:block/asphalt_simple_yellow_right_arrow", "y": 90 },
+        "facing=south": { "model": "roadstuff:block/asphalt_simple_yellow_right_arrow", "y": 180 },
+        "facing=west": { "model": "roadstuff:block/asphalt_simple_yellow_right_arrow", "y": 270 }
+    }
+}

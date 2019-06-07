@@ -4,9 +4,8 @@ import net.minecraft.util.IStringSerializable;
 
 public enum EnumPaintColor implements IStringSerializable
 {
-    NONE(0, "none"),
-    WHITE(1, "white"),
-    YELLOW(2, "yellow");
+    WHITE(0, "white"),
+    YELLOW(1, "yellow");
 
     private final int id;
     private final String name;

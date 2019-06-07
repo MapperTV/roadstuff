@@ -14,11 +14,11 @@ public class GuiBrush extends GuiScreen
     private static final int WIDTH = 206;
     private static final int HEIGHT = 102;
 
-    private static final int MAX_CHOICE = 10;
+    private static final int MAX_CHOICE = 19;
 
-    private int pattern = 0;
-    private int paint = 0;
-    private String color = "";
+    private int pattern;
+    private int paint;
+    private int color;
 
     private int guiLeft;
     private int guiTop;
@@ -30,7 +30,7 @@ public class GuiBrush extends GuiScreen
 
     private static final ResourceLocation brush_gui = new ResourceLocation(RoadStuff.MODID, "textures/gui/brush.png");
 
-    public GuiBrush(int pattern, int paint, String color)
+    public GuiBrush(int pattern, int paint, int color)
     {
         this.pattern = pattern;
         this.paint = paint;
@@ -74,8 +74,11 @@ public class GuiBrush extends GuiScreen
         int row = 0;
         for(int i = 0; i < MAX_CHOICE; i++)
         {
-            mc.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + i + ".png"));
-            drawScaledCustomSizeModalRect(guiLeft + 16 * j + 16 + j * 2, guiTop + 16 + row, 0, 0, 1, 1, 16, 16, 1, 1);
+            if(i != 0)
+            {
+                mc.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + (i - 1) + ".png"));
+                drawScaledCustomSizeModalRect(guiLeft + 16 * j + 16 + j * 2, guiTop + 16 + row, 0, 0, 1, 1, 16, 16, 1, 1);
+            }
             j++;
             if(j >= 8)
             {
