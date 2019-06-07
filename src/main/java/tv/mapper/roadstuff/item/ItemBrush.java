@@ -63,7 +63,7 @@ public class ItemBrush extends Item
         int pattern = nbt.getInt("pattern");
 
         Block newBlock = null;
-        boolean playSound = true;
+        boolean playSound = false;
 
         if(state != null && nbt.hasKey("paint"))
         {
@@ -109,15 +109,12 @@ public class ItemBrush extends Item
                         break;
                 }
 
-                if(pattern == 0)
+                if(pattern == 0 && !world.isRemote)
                 {
-                    if(!world.isRemote)
-                        world.setBlockState(pos, newBlock.getDefaultState());
-                    playSound = false;
+                    world.setBlockState(pos, newBlock.getDefaultState());
                 }
                 else if(state.getBlock() == newBlock)
                 {
-
                     if(newBlock instanceof BlockTwoAxis && !world.isRemote)
                     {
                         if(state.get(BlockTwoAxis.ROTATION))
@@ -161,24 +158,24 @@ public class ItemBrush extends Item
                                 break;
                         }
                     }
-                    else
-                    {
-                        playSound = false;
-                    }
                 }
                 else
                 {
-                    if(nbt.getInt("paint") > 0 && !world.isRemote)
+                    if(nbt.getInt("paint") > 0)
                     {
-                        world.setBlockState(pos, newBlock.getDefaultState());
-                        nbt.setInt("paint", nbt.getInt("paint") - 1);
+                        if(!world.isRemote)
+                        {
+                            world.setBlockState(pos, newBlock.getDefaultState());
+                            nbt.setInt("paint", nbt.getInt("paint") - 1);
+                        }
+                        playSound = true;
                     }
                 }
 
                 if(!world.isRemote && nbt.getInt("paint") == 0)
                     nbt.setInt("color", 0);
 
-                if(playSound && nbt.getInt("paint") > 0)
+                if(playSound)
                     world.playSound(player, pos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, .8F, 1.0F);
             }
 
