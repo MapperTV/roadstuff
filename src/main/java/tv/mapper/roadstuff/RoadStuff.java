@@ -40,7 +40,6 @@ public class RoadStuff
     private void clientSetup(final FMLClientSetupEvent event)
     {
         LOGGER.info("RoadStuff client setup");
-        //ModColorHandler.registerColorHandlers();
     }
 
     private void serverSetup(final FMLDedicatedServerSetupEvent event)
