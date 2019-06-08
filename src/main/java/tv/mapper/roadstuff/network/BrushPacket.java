@@ -2,7 +2,7 @@ package tv.mapper.roadstuff.network;
 
 import java.util.function.Supplier;
 
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
 import tv.mapper.roadstuff.item.ItemBrush;
@@ -35,11 +35,11 @@ public class BrushPacket
     public static void handle(BrushPacket packet, Supplier<NetworkEvent.Context> context)
     {
         context.get().setPacketHandled(true);
-        EntityPlayerMP sender = context.get().getSender();
+        ServerPlayerEntity sender = context.get().getSender();
 
         if(sender.getHeldItemMainhand().getItem() instanceof ItemBrush)
-            sender.getHeldItemMainhand().getTag().setInt("pattern", packet.pattern);
+            sender.getHeldItemMainhand().getTag().putInt("pattern", packet.pattern);
         else if(sender.getHeldItemOffhand().getItem() instanceof ItemBrush)
-            sender.getHeldItemOffhand().getTag().setInt("pattern", packet.pattern);
+            sender.getHeldItemOffhand().getTag().putInt("pattern", packet.pattern);
     }
 }

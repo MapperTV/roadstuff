@@ -1,11 +1,11 @@
 package tv.mapper.roadstuff.util;
 
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
 import net.minecraft.client.renderer.color.IItemColor;
 import net.minecraft.client.renderer.color.ItemColors;
-import net.minecraft.item.ItemBlock;
+import net.minecraft.item.BlockItem;
 import net.minecraftforge.client.event.ColorHandlerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -53,8 +53,8 @@ public class ModColorHandler
 
         final IItemColor itemBlockColorHandler = (stack, tintIndex) ->
         {
-            final IBlockState state = ((ItemBlock)stack.getItem()).getBlock().getDefaultState();
-            return blockColors.getColor(state, null, null, tintIndex);
+            final BlockState state = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
+            return blockColors.func_216860_a(state, null, null, tintIndex);
         };
 
         itemColors.register(itemBlockColorHandler, ModBlocks.ASPHALT_SIMPLE_YELLOW_LINE_BLOCK);

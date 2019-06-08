@@ -2,15 +2,19 @@ package tv.mapper.roadstuff.client.gui;
 
 import java.awt.Color;
 
-import net.minecraft.client.gui.GuiScreen;
+import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.StringTextComponent;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.network.BrushPacket;
 import tv.mapper.roadstuff.network.RSNetwork;
 
-public class GuiBrush extends GuiScreen
+public class GuiBrush extends Screen
 {
+    public static final ITextComponent title = new StringTextComponent("");
+    
     private static final int WIDTH = 206;
     private static final int HEIGHT = 102;
 
@@ -32,21 +36,22 @@ public class GuiBrush extends GuiScreen
 
     public GuiBrush(int pattern, int paint, int color)
     {
+        super(title);
         this.pattern = pattern;
         this.paint = paint;
         this.color = color;
     }
 
     @Override
-    public boolean doesGuiPauseGame()
+    public boolean isPauseScreen()
     {
         return false;
     }
 
     @Override
-    public void initGui()
+    public void init()
     {
-        super.initGui();
+        super.init();
         guiLeft = this.width / 2 - WIDTH / 2;
         guiTop = this.height / 2 - HEIGHT / 2;
 
@@ -66,9 +71,9 @@ public class GuiBrush extends GuiScreen
     {
         super.render(mouseX, mouseY, partialTicks);
 
-        drawWorldBackground(0);
-        mc.getTextureManager().bindTexture(brush_gui);
-        drawTexturedModalRect(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
+        renderBackground(0);
+        minecraft.getTextureManager().bindTexture(brush_gui);
+        blit(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
 
         int j = 0;
         int row = 0;
@@ -76,8 +81,8 @@ public class GuiBrush extends GuiScreen
         {
             if(i != 0)
             {
-                mc.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + (i - 1) + ".png"));
-                drawScaledCustomSizeModalRect(guiLeft + 16 * j + 16 + j * 2, guiTop + 16 + row, 0, 0, 1, 1, 16, 16, 1, 1);
+                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + (i - 1) + ".png"));
+                blit(guiLeft + 16 * j + 16 + j * 2, guiTop + 16 + row, 0, 0, 16, 16, 16, 16);
             }
             j++;
             if(j >= 8)
@@ -92,16 +97,16 @@ public class GuiBrush extends GuiScreen
         {
             posX = Math.toIntExact(Math.round((mouseX - guiLeft - 15) / 18) * 18) + guiLeft + 16;
             posY = Math.toIntExact(Math.round((mouseY - guiTop - 15) / 18) * 18) + guiTop + 16;
-            this.fontRenderer.drawStringWithShadow("posX: " + posX + ", posY: " + posY, 8, 56, new Color(255, 0, 0).getRGB());
-            drawRect(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
+            this.font.drawStringWithShadow("posX: " + posX + ", posY: " + posY, 8, 56, new Color(255, 0, 0).getRGB());
+            fill(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
         }
 
-        mc.getTextureManager().bindTexture(brush_gui);
-        drawTexturedModalRect(selectX, selectY, 0, 102, 22, 22);
+        minecraft.getTextureManager().bindTexture(brush_gui);
+        blit(selectX, selectY, 0, 102, 22, 22);
 
-        this.fontRenderer.drawStringWithShadow("DEBUG MODE", 8, 8, new Color(255, 0, 0).getRGB());
-        this.fontRenderer.drawStringWithShadow("mouseX: " + mouseX + ", mouseY: " + mouseY, 8, 40, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
-        this.fontRenderer.drawStringWithShadow("pattern: " + pattern + ", paint: " + paint + ", color: " + color, 8, 24, new Color(255, 0, 0).getRGB());
+        this.font.drawStringWithShadow("DEBUG MODE", 8, 8, new Color(255, 0, 0).getRGB());
+        this.font.drawStringWithShadow("mouseX: " + mouseX + ", mouseY: " + mouseY, 8, 40, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
+        this.font.drawStringWithShadow("pattern: " + pattern + ", paint: " + paint + ", color: " + color, 8, 24, new Color(255, 0, 0).getRGB());
 
     }
 
@@ -120,10 +125,10 @@ public class GuiBrush extends GuiScreen
 
     public boolean keyPressed(int p_keyPressed_1_, int p_keyPressed_2_, int p_keyPressed_3_)
     {
-        if(this.allowCloseWithEscape() && p_keyPressed_1_ == 256 || this.mc.gameSettings.keyBindInventory.isActiveAndMatches(InputMappings.getInputByCode(p_keyPressed_1_, p_keyPressed_2_)))
+        if(this.shouldCloseOnEsc() && p_keyPressed_1_ == 256 || this.minecraft.gameSettings.keyBindInventory.isActiveAndMatches(InputMappings.getInputByCode(p_keyPressed_1_, p_keyPressed_2_)))
         {
             RSNetwork.ROADSTUFF_CHANNEL.sendToServer(new BrushPacket(pattern, paint));
-            this.close();
+            this.onClose();
             return true;
         }
         else

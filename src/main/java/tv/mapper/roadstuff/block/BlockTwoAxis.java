@@ -3,7 +3,7 @@ package tv.mapper.roadstuff.block;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
@@ -19,15 +19,15 @@ public class BlockTwoAxis extends BlockPaintable
         this.setDefaultState(this.getDefaultState().with(ROTATION, Boolean.valueOf(false)));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, IBlockState> builder)
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         builder.add(ROTATION);
     }
 
     @Nullable
-    public IBlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockItemUseContext context)
     {
-        IBlockState state = this.getDefaultState().with(ROTATION, Boolean.valueOf(false));
+        BlockState state = this.getDefaultState().with(ROTATION, Boolean.valueOf(false));
         int direction = MathHelper.floor((double)(context.getPlacementYaw() * 4.0F / 360.0F) + 2.5D) & 3;
         if(direction == 1 || direction == 3)
             return state.with(ROTATION, true);

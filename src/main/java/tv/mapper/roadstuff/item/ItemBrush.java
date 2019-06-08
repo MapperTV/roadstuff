@@ -3,22 +3,22 @@ package tv.mapper.roadstuff.item;
 import java.util.List;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.init.SoundEvents;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumFacing;
-import net.minecraft.util.EnumHand;
+import net.minecraft.util.ActionResultType;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
+import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 import tv.mapper.roadstuff.block.BlockFourAxis;
 import tv.mapper.roadstuff.block.BlockPaintable;
@@ -36,11 +36,11 @@ public class ItemBrush extends Item
     }
 
     @Override
-    public ActionResult<ItemStack> onItemRightClick(World world, EntityPlayer player, EnumHand hand)
+    public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand)
     {
         ItemStack stack = player.getHeldItem(hand);
 
-        NBTTagCompound nbt = checkNBT(stack);
+        CompoundNBT nbt = checkNBT(stack);
         stack.setTag(nbt);
 
         if(world.isRemote && player.isSneaking())
@@ -48,17 +48,18 @@ public class ItemBrush extends Item
             ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"));
         }
 
-        return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+        return new ActionResult<>(ActionResultType.SUCCESS, stack);
     }
 
-    public EnumActionResult onItemUse(ItemUseContext context)
+    public ActionResultType onItemUse(ItemUseContext context)
     {
         World world = context.getWorld();
         BlockPos pos = context.getPos();
-        EntityPlayer player = context.getPlayer();
+        PlayerEntity player = context.getPlayer();
         ItemStack stack = context.getItem();
-        IBlockState state = world.getBlockState(pos);
-        NBTTagCompound nbt = checkNBT(stack);
+        BlockState state = world.getBlockState(pos);
+        CompoundNBT nbt = checkNBT(stack);
+        stack.setTag(nbt);
 
         int pattern = nbt.getInt("pattern");
         int color = nbt.getInt("color");
@@ -70,12 +71,12 @@ public class ItemBrush extends Item
         {
             if(world.isRemote)
                 ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"));
-            return EnumActionResult.SUCCESS;
+            return ActionResultType.SUCCESS;
         }
 
-        if(state != null && nbt.hasKey("paint"))
+        if(state != null && nbt.contains("paint"))
         {
-            if(context.getFace() == EnumFacing.UP && state.getBlock() instanceof BlockPaintable)
+            if(context.getFace() == Direction.UP && state.getBlock() instanceof BlockPaintable)
             {
                 switch(pattern)
                 {
@@ -191,7 +192,7 @@ public class ItemBrush extends Item
                             newBlock = ModBlocks.ASPHALT_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK;
                         break;
                     default:
-                        return EnumActionResult.PASS;
+                        return ActionResultType.PASS;
                 }
 
                 if(pattern == 0 && !world.isRemote)
@@ -213,33 +214,33 @@ public class ItemBrush extends Item
                         {
                             case NORTH:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.EAST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.EAST));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.WEST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.WEST));
                                 break;
                             case EAST:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.SOUTH));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.SOUTH));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.NORTH));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.NORTH));
                                 break;
                             case SOUTH:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.WEST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.WEST));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.EAST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.EAST));
                                 break;
                             case WEST:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.NORTH));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.NORTH));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.SOUTH));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.SOUTH));
                                 break;
                             default:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.EAST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.EAST));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, EnumFacing.WEST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.WEST));
                                 break;
                         }
                     }
@@ -251,7 +252,7 @@ public class ItemBrush extends Item
                         if(!world.isRemote)
                         {
                             world.setBlockState(pos, newBlock.getDefaultState());
-                            nbt.setInt("paint", nbt.getInt("paint") - 1);
+                            nbt.putInt("paint", nbt.getInt("paint") - 1);
                         }
                         if(pattern != 0)
                             playSound = true;
@@ -263,10 +264,10 @@ public class ItemBrush extends Item
             }
 
             stack.setTag(nbt);
-            return EnumActionResult.SUCCESS;
+            return ActionResultType.SUCCESS;
         }
 
-        return EnumActionResult.PASS;
+        return ActionResultType.PASS;
     }
 
     @Override
@@ -275,13 +276,13 @@ public class ItemBrush extends Item
         super.addInformation(stack, player, list, flag);
         if(stack.hasTag())
         {
-            list.add(new TextComponentString("Pattern: " + stack.getTag().getInt("pattern") + ", paint: " + stack.getTag().getInt("paint") + ", color: " + stack.getTag().getInt("color")));
+            list.add(new StringTextComponent("Pattern: " + stack.getTag().getInt("pattern") + ", paint: " + stack.getTag().getInt("paint") + ", color: " + stack.getTag().getInt("color")));
         }
     }
 
-    public static NBTTagCompound checkNBT(ItemStack stack)
+    public static CompoundNBT checkNBT(ItemStack stack)
     {
-        NBTTagCompound nbt;
+        CompoundNBT nbt;
 
         if(stack.hasTag())
         {
@@ -289,10 +290,10 @@ public class ItemBrush extends Item
         }
         else
         {
-            nbt = new NBTTagCompound();
-            nbt.setInt("paint", 0);
-            nbt.setInt("pattern", 0);
-            nbt.setInt("color", EnumPaintColor.WHITE.getId());
+            nbt = new CompoundNBT();
+            nbt.putInt("paint", 0);
+            nbt.putInt("pattern", 0);
+            nbt.putInt("color", EnumPaintColor.WHITE.getId());
         }
         return nbt;
     }

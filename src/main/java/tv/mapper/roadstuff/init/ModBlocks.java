@@ -2,8 +2,8 @@ package tv.mapper.roadstuff.init;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemBlock;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -149,45 +149,45 @@ public class ModBlocks
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
-        event.getRegistry().register(new ItemBlock(ASPHALT_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_BLOCK.getRegistryName()));
         
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_DOUBLE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DOUBLE_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_DASHED_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DASHED_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_LARGE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_LARGE_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_X_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_X_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_T_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_T_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_CORNER_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_CORNER_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_END_DOUBLE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_END_DOUBLE_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_DIAGONAL_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DIAGONAL_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_LARGE_DIAGONAL_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_LARGE_DIAGONAL_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_DOUBLE_DIAGONAL_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DOUBLE_DIAGONAL_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_LEFT_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_LEFT_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_RIGHT_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_RIGHT_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_LEFT_RIGHT_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_LEFT_RIGHT_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_SEPARATOR_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_SEPARATOR_WHITE_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_WHITE_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_WHITE_ARROW_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_WHITE_LEFT_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_WHITE_LEFT_ARROW_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_WHITE_RIGHT_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_WHITE_RIGHT_ARROW_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_DOUBLE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DOUBLE_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_DASHED_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DASHED_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_LARGE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_LARGE_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_X_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_X_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_T_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_T_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_CORNER_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_CORNER_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_END_DOUBLE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_END_DOUBLE_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_DIAGONAL_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DIAGONAL_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_LARGE_DIAGONAL_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_LARGE_DIAGONAL_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_DOUBLE_DIAGONAL_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DOUBLE_DIAGONAL_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_LEFT_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_LEFT_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_RIGHT_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_RIGHT_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_LEFT_RIGHT_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_LEFT_RIGHT_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_SEPARATOR_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_SEPARATOR_WHITE_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_WHITE_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_WHITE_ARROW_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_WHITE_LEFT_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_WHITE_LEFT_ARROW_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_WHITE_RIGHT_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_WHITE_RIGHT_ARROW_BLOCK.getRegistryName()));
 
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_DOUBLE_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DOUBLE_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_DASHED_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DASHED_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_LARGE_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_LARGE_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_X_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_X_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_T_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_T_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_CORNER_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_CORNER_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_END_DOUBLE_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_END_DOUBLE_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_DIAGONAL_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DIAGONAL_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_LARGE_DIAGONAL_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_LARGE_DIAGONAL_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_DOUBLE_DIAGONAL_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DOUBLE_DIAGONAL_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_LEFT_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_LEFT_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_RIGHT_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_RIGHT_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_LEFT_RIGHT_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_LEFT_RIGHT_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_SEPARATOR_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_SEPARATOR_YELLOW_LINE_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_YELLOW_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_ARROW_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_YELLOW_LEFT_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_LEFT_ARROW_BLOCK.getRegistryName()));
-        event.getRegistry().register(new ItemBlock(ASPHALT_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_DOUBLE_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DOUBLE_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_DASHED_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DASHED_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_LARGE_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_LARGE_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_X_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_X_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_T_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_T_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_CORNER_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_CORNER_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_END_DOUBLE_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_END_DOUBLE_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_DIAGONAL_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DIAGONAL_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_LARGE_DIAGONAL_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_LARGE_DIAGONAL_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_DOUBLE_DIAGONAL_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DOUBLE_DIAGONAL_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_LEFT_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_LEFT_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_RIGHT_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_RIGHT_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_LEFT_RIGHT_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_LEFT_RIGHT_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_SEPARATOR_YELLOW_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_SEPARATOR_YELLOW_LINE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_YELLOW_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_ARROW_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_YELLOW_LEFT_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_LEFT_ARROW_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK.getRegistryName()));
         
         event.getRegistry().register(new ItemBlockPaintBucket(PAINT_BUCKET_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF).maxStackSize(1)).setRegistryName(PAINT_BUCKET_BLOCK.getRegistryName()));
 

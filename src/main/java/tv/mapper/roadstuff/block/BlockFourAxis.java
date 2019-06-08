@@ -3,30 +3,30 @@ package tv.mapper.roadstuff.block;
 import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockHorizontal;
-import net.minecraft.block.state.IBlockState;
+import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Direction;
 
 public class BlockFourAxis extends BlockPaintable
 {
-    public static final DirectionProperty DIRECTION = BlockHorizontal.HORIZONTAL_FACING;
+    public static final DirectionProperty DIRECTION = HorizontalBlock.HORIZONTAL_FACING;
 
     public BlockFourAxis(Properties properties, int materialType)
     {
         super(properties, materialType);
-        this.setDefaultState(this.getDefaultState().with(DIRECTION, EnumFacing.NORTH));
+        this.setDefaultState(this.getDefaultState().with(DIRECTION, Direction.NORTH));
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, IBlockState> builder)
+    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
         builder.add(DIRECTION);
     }
 
     @Nullable
-    public IBlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockItemUseContext context)
     {
         return this.getDefaultState().with(DIRECTION, context.getPlacementHorizontalFacing().getOpposite());
     }
