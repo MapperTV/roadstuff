@@ -54,7 +54,7 @@ public class ModColorHandler
         final IItemColor itemBlockColorHandler = (stack, tintIndex) ->
         {
             final BlockState state = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
-            return blockColors.func_216860_a(state, null, null, tintIndex);
+            return blockColors.getColor(state, null, null, tintIndex);
         };
 
         itemColors.register(itemBlockColorHandler, ModBlocks.ASPHALT_SIMPLE_YELLOW_LINE_BLOCK);
