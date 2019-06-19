@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.DyeColor;
@@ -16,7 +17,6 @@ import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Hand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -160,16 +160,24 @@ public class BlockPaintBucket extends Block
         return false;
     }
 
-    // @Override
-    public void getDrops(BlockState state, NonNullList<ItemStack> drops, World world, BlockPos pos, int fortune)
+    @Override
+    public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player)
     {
-        @SuppressWarnings("deprecation")
-        ItemStack stack = new ItemStack(Item.getItemFromBlock(this));
-        CompoundNBT nbt = new CompoundNBT();
-        nbt.putInt("paint", state.getBlockState().get(PAINT));
-        nbt.putInt("color", state.getBlockState().get(COLOR).ordinal());
+        if(!world.isRemote)
+        {
+            @SuppressWarnings("deprecation")
+            ItemStack stack = new ItemStack(Item.getItemFromBlock(this));
+            CompoundNBT nbt = new CompoundNBT();
+            nbt.putInt("paint", state.getBlockState().get(PAINT));
+            nbt.putInt("color", state.getBlockState().get(COLOR).ordinal());
+            
+            stack.setTag(nbt);
 
-        stack.setTag(nbt);
-        drops.add(stack);
+            ItemEntity itementity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, stack);
+            itementity.setDefaultPickupDelay();
+            world.addEntity(itementity);
+        }
+        
+        super.onBlockHarvested(world, pos, state, player);
     }
 }

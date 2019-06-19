@@ -143,7 +143,7 @@ public class ModBlocks
         event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_simple_yellow_left_arrow"));
         event.getRegistry().register(new BlockFourAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_simple_yellow_right_arrow"));
 
-        event.getRegistry().register(new BlockPaintBucket(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F)).setRegistryName("paint_bucket_block"));
+        event.getRegistry().register(new BlockPaintBucket(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F)).setRegistryName("paint_bucket_block"));
     }
 
     @SubscribeEvent
