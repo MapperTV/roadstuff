@@ -1,12 +1,17 @@
 {
-	# Blocks #
+    "_comment1": "BLOCKS",
     
     "block.roadstuff.asphalt_block": "Asphalt",
     
-    # Items #
+    "block.roadstuff.paint_bucket_block": "Paint Bucket",
+    
+    "_comment2": "ITEMS",
     
     "item.roadstuff.raw_bitumen": "Raw Bitumen",
     
-    # Creative Tabs (Item Groups) #
+    "item.roadstuff.paint_brush": "Paint Brush",
+    
+    "_comment3": "Creative Tabs (Item Groups)",
+    
     "itemGroup.roadstuff_group": "Road Stuff 2"
 }

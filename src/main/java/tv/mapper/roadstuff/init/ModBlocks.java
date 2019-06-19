@@ -103,8 +103,10 @@ public class ModBlocks
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
-        event.getRegistry().register(new BlockPaintable(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_block"));
+        System.out.println("◘◘◘◘ BLOCKS ◘◘◘◘");
         
+        event.getRegistry().register(new BlockPaintable(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_block"));
+
         event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_simple_white_line"));
         event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_double_white_line"));
         event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_dashed_white_line"));
@@ -150,7 +152,7 @@ public class ModBlocks
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
         event.getRegistry().register(new BlockItem(ASPHALT_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_BLOCK.getRegistryName()));
-        
+
         event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_WHITE_LINE_BLOCK.getRegistryName()));
         event.getRegistry().register(new BlockItem(ASPHALT_DOUBLE_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DOUBLE_WHITE_LINE_BLOCK.getRegistryName()));
         event.getRegistry().register(new BlockItem(ASPHALT_DASHED_WHITE_LINE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_DASHED_WHITE_LINE_BLOCK.getRegistryName()));
@@ -188,7 +190,7 @@ public class ModBlocks
         event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_YELLOW_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_ARROW_BLOCK.getRegistryName()));
         event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_YELLOW_LEFT_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_LEFT_ARROW_BLOCK.getRegistryName()));
         event.getRegistry().register(new BlockItem(ASPHALT_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK.getRegistryName()));
-        
+
         event.getRegistry().register(new ItemBlockPaintBucket(PAINT_BUCKET_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF).maxStackSize(1)).setRegistryName(PAINT_BUCKET_BLOCK.getRegistryName()));
 
     }
