@@ -1,10 +1,22 @@
 {
     "variants": {
-        "": [
-        { "model": "roadstuff:block/paint_bucket_block" },
-        { "model": "roadstuff:block/paint_bucket_block", "y": 90 },
-        { "model": "roadstuff:block/paint_bucket_block", "y": 180 },
-        { "model": "roadstuff:block/paint_bucket_block", "y": 270 }
-        ]
+        "color=white,paint=0":  { "model": "roadstuff:block/paint_bucket/paint_bucket" },
+        "color=white,paint=1":  { "model": "roadstuff:block/paint_bucket/paint_bucket_white_1" },
+        "color=white,paint=2":  { "model": "roadstuff:block/paint_bucket/paint_bucket_white_2" },
+        "color=white,paint=3":  { "model": "roadstuff:block/paint_bucket/paint_bucket_white_3" },
+        "color=white,paint=4":  { "model": "roadstuff:block/paint_bucket/paint_bucket_white_4" },
+        "color=white,paint=5":  { "model": "roadstuff:block/paint_bucket/paint_bucket_white_5" },
+        "color=white,paint=6":  { "model": "roadstuff:block/paint_bucket/paint_bucket_white_6" },
+        "color=white,paint=7":  { "model": "roadstuff:block/paint_bucket/paint_bucket_white_7" },
+        "color=white,paint=8":  { "model": "roadstuff:block/paint_bucket/paint_bucket_white_8" },
+        "color=yellow,paint=0":  { "model": "roadstuff:block/paint_bucket/paint_bucket" },
+        "color=yellow,paint=1":  { "model": "roadstuff:block/paint_bucket/paint_bucket_yellow_1" },
+        "color=yellow,paint=2":  { "model": "roadstuff:block/paint_bucket/paint_bucket_yellow_2" },
+        "color=yellow,paint=3":  { "model": "roadstuff:block/paint_bucket/paint_bucket_yellow_3" },
+        "color=yellow,paint=4":  { "model": "roadstuff:block/paint_bucket/paint_bucket_yellow_4" },
+        "color=yellow,paint=5":  { "model": "roadstuff:block/paint_bucket/paint_bucket_yellow_5" },
+        "color=yellow,paint=6":  { "model": "roadstuff:block/paint_bucket/paint_bucket_yellow_6" },
+        "color=yellow,paint=7":  { "model": "roadstuff:block/paint_bucket/paint_bucket_yellow_7" },
+        "color=yellow,paint=8":  { "model": "roadstuff:block/paint_bucket/paint_bucket_yellow_8" }
     }
 }

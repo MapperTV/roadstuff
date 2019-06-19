@@ -90,9 +90,10 @@ public class BlockPaintBucket extends Block
         {
             int paint = state.get(PAINT);
 
-            if(!world.isRemote && paint <= 0)
+            if(paint <= 0)
             {
-                player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "This bucket is empty!"), true);
+                if(!world.isRemote)
+                    player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "This bucket is empty!"), true);
                 return false;
             }
 

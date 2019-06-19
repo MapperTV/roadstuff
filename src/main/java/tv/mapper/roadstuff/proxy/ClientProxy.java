@@ -16,7 +16,7 @@ public class ClientProxy implements IProxy
     {
         if(ignoreNextGuiClose)
         {
-            Screen current = Minecraft.getInstance().field_71462_r;
+            Screen current = Minecraft.getInstance().currentScreen;
             if(event.getGui() == null && (current instanceof GuiBrush))
             {
                 ignoreNextGuiClose = false;
