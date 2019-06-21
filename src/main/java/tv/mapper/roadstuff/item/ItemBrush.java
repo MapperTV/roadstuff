@@ -18,6 +18,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
@@ -263,7 +264,20 @@ public class ItemBrush extends Item
                     {
                         if(!world.isRemote)
                         {
-                            world.setBlockState(pos, newBlock.getDefaultState());
+                            if(newBlock instanceof BlockTwoAxis)
+                            {
+                                int direction = MathHelper.floor((double)(context.getPlacementYaw() * 4.0F / 360.0F) + 2.5D) & 3;
+                                if(direction == 1 || direction == 3)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockTwoAxis.ROTATION, true));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockTwoAxis.ROTATION, false));
+                            }
+                            else if(newBlock instanceof BlockFourAxis)
+                            {
+                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, context.getPlacementHorizontalFacing().getOpposite()));
+                            }
+                            else
+                                world.setBlockState(pos, newBlock.getDefaultState());
                             nbt.putInt("paint", nbt.getInt("paint") - 1);
                         }
                         if(pattern != 0)

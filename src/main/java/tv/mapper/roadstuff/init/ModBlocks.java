@@ -103,8 +103,6 @@ public class ModBlocks
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
-        System.out.println("◘◘◘◘ BLOCKS ◘◘◘◘");
-        
         event.getRegistry().register(new BlockPaintable(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_block"));
 
         event.getRegistry().register(new BlockTwoAxis(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0).setRegistryName("asphalt_simple_white_line"));
