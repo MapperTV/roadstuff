@@ -8,7 +8,7 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class BlockPaintable extends Block
 {
     private int materialType = 0;
-    
+
     public BlockPaintable(Properties properties, int materialType)
     {
         super(properties);
@@ -20,7 +20,7 @@ public class BlockPaintable extends Block
     {
         return BlockRenderLayer.CUTOUT;
     }
-    
+
     public int getMaterialType()
     {
         return this.materialType;

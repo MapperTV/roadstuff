@@ -46,6 +46,25 @@ public class ModColorHandler
         blockColors.register(lineColorHandler, ModBlocks.ASPHALT_SIMPLE_YELLOW_ARROW_BLOCK);
         blockColors.register(lineColorHandler, ModBlocks.ASPHALT_SIMPLE_YELLOW_LEFT_ARROW_BLOCK);
         blockColors.register(lineColorHandler, ModBlocks.ASPHALT_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK);
+        
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_DOUBLE_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_SIMPLE_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_DASHED_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_LARGE_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_X_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_T_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_CORNER_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_END_DOUBLE_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_DIAGONAL_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_LARGE_DIAGONAL_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_DOUBLE_DIAGONAL_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_SIMPLE_LEFT_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_SIMPLE_RIGHT_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_SIMPLE_LEFT_RIGHT_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_SIMPLE_SEPARATOR_YELLOW_LINE_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_SIMPLE_YELLOW_ARROW_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_SIMPLE_YELLOW_LEFT_ARROW_BLOCK);
+        blockColors.register(lineColorHandler, ModBlocks.CONCRETE_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK);
     }
 
     @SubscribeEvent
@@ -79,5 +98,24 @@ public class ModColorHandler
         itemColors.register(itemBlockColorHandler, ModBlocks.ASPHALT_SIMPLE_YELLOW_ARROW_BLOCK);
         itemColors.register(itemBlockColorHandler, ModBlocks.ASPHALT_SIMPLE_YELLOW_LEFT_ARROW_BLOCK);
         itemColors.register(itemBlockColorHandler, ModBlocks.ASPHALT_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK);
+        
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_SIMPLE_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_DOUBLE_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_DASHED_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_LARGE_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_X_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_T_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_CORNER_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_END_DOUBLE_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_DIAGONAL_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_LARGE_DIAGONAL_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_DOUBLE_DIAGONAL_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_SIMPLE_LEFT_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_SIMPLE_RIGHT_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_SIMPLE_LEFT_RIGHT_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_SIMPLE_SEPARATOR_YELLOW_LINE_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_SIMPLE_YELLOW_ARROW_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_SIMPLE_YELLOW_LEFT_ARROW_BLOCK);
+        itemColors.register(itemBlockColorHandler, ModBlocks.CONCRETE_SIMPLE_YELLOW_RIGHT_ARROW_BLOCK);
     }
 }

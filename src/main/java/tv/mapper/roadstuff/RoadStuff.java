@@ -13,13 +13,16 @@ import tv.mapper.roadstuff.network.RSNetwork;
 import tv.mapper.roadstuff.proxy.ClientProxy;
 import tv.mapper.roadstuff.proxy.IProxy;
 import tv.mapper.roadstuff.proxy.ServerProxy;
+import tv.mapper.roadstuff.util.AsphaltPaintMap;
+import tv.mapper.roadstuff.util.ConcretePaintMap;
 
 @Mod(RoadStuff.MODID)
 public class RoadStuff
 {
     public static final String MODID = "roadstuff";
-
     public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
+    public static AsphaltPaintMap asphaltMap;
+    public static ConcretePaintMap concreteMap;
 
     public static final Logger LOGGER = LogManager.getLogger();
 
@@ -35,15 +38,17 @@ public class RoadStuff
         LOGGER.info("RoadStuff setup");
         proxy.setup(event);
         RSNetwork.registerNetworkPackets();
+        asphaltMap = new AsphaltPaintMap();
+        concreteMap = new ConcretePaintMap();
     }
 
     private void clientSetup(final FMLClientSetupEvent event)
     {
-        LOGGER.info("RoadStuff client setup");
+        // LOGGER.info("RoadStuff client setup");
     }
 
     private void serverSetup(final FMLDedicatedServerSetupEvent event)
     {
-        LOGGER.info("RoadStuff server setup");
+        // LOGGER.info("RoadStuff server setup");
     }
 }

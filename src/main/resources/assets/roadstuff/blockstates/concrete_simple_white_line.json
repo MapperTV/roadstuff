@@ -1,0 +1,6 @@
+{
+    "variants": {
+        "rotation=false": { "model": "roadstuff:block/concrete_simple_white_line" },
+        "rotation=true": { "model": "roadstuff:block/concrete_simple_white_line", "y": 90 }
+    }
+}
