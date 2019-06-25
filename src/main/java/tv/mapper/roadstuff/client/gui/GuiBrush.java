@@ -10,15 +10,16 @@ import net.minecraft.util.text.StringTextComponent;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.network.BrushPacket;
 import tv.mapper.roadstuff.network.RSNetwork;
+import tv.mapper.roadstuff.util.ModConstants;
 
 public class GuiBrush extends Screen
 {
     public static final ITextComponent title = new StringTextComponent("");
     
-    private static final int WIDTH = 206;
-    private static final int HEIGHT = 102;
+    private static final int WIDTH = 174;
+    private static final int HEIGHT = 228;
 
-    private static final int MAX_CHOICE = 19;
+    private static final int MAX_CHOICE = ModConstants.PATTERNS;
 
     private int pattern;
     private int paint;
@@ -79,11 +80,11 @@ public class GuiBrush extends Screen
         int row = 0;
         for(int i = 0; i < MAX_CHOICE; i++)
         {
-            if(i != 0)
-            {
-                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + (i - 1) + ".png"));
+//            if(i != 0)
+//            {
+                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + i + ".png"));
                 blit(guiLeft + 16 * j + 16 + j * 2, guiTop + 16 + row, 0, 0, 16, 16, 16, 16);
-            }
+//            }
             j++;
             if(j >= 8)
             {
@@ -93,7 +94,7 @@ public class GuiBrush extends Screen
         }
 
         // Draws hover square above slots
-        if(mouseX > guiLeft + 14 && mouseX < guiLeft + 159 && mouseY > guiTop + 14 && mouseY < guiTop + 87)
+        if(mouseX > guiLeft + 14 && mouseX < guiLeft + 159 && mouseY > guiTop + 14 && mouseY < guiTop + 212)
         {
             posX = Math.toIntExact(Math.round((mouseX - guiLeft - 15) / 18) * 18) + guiLeft + 16;
             posY = Math.toIntExact(Math.round((mouseY - guiTop - 15) / 18) * 18) + guiTop + 16;
@@ -102,7 +103,7 @@ public class GuiBrush extends Screen
         }
 
         minecraft.getTextureManager().bindTexture(brush_gui);
-        blit(selectX, selectY, 0, 102, 22, 22);
+        blit(selectX, selectY, 256-22, 256-22, 22, 22);
 
         this.font.drawStringWithShadow("DEBUG MODE", 8, 8, new Color(255, 0, 0).getRGB());
         this.font.drawStringWithShadow("mouseX: " + mouseX + ", mouseY: " + mouseY, 8, 40, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
@@ -112,7 +113,7 @@ public class GuiBrush extends Screen
 
     public boolean mouseClicked(double mouseX, double mouseY, int button)
     {
-        if(button == 0 && mouseX > guiLeft + 14 && mouseX < guiLeft + 159 && mouseY > guiTop + 14 && mouseY < guiTop + 87)
+        if(button == 0 && mouseX > guiLeft + 14 && mouseX < guiLeft + 159 && mouseY > guiTop + 14 && mouseY < guiTop + 212)
         {
             pattern = (posX - guiLeft - 15) / 18 + ((posY - guiTop - 15) / 18) * 8;
             selectX = posX - 3;

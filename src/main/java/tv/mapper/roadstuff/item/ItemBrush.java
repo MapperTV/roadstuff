@@ -18,15 +18,13 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.BlockFourAxis;
-import tv.mapper.roadstuff.block.BlockPaintable;
-import tv.mapper.roadstuff.block.BlockTwoAxis;
+import tv.mapper.roadstuff.block.RotatablePaintBlock;
+import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
 public class ItemBrush extends Item
@@ -83,7 +81,7 @@ public class ItemBrush extends Item
 
         if(player.isSneaking())
         {
-            if(!world.isRemote && state.getBlock() instanceof BlockPaintable)
+            if(!world.isRemote && state.getBlock() instanceof PaintableBlock)
             {
                 player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "Clicked on paintable block!"), true);
             }
@@ -94,9 +92,9 @@ public class ItemBrush extends Item
 
         if(state != null && nbt.contains("paint"))
         {
-            if(context.getFace() == Direction.UP && state.getBlock() instanceof BlockPaintable)
+            if(context.getFace() == Direction.UP && state.getBlock() instanceof PaintableBlock)
             {
-                switch(((BlockPaintable)state.getBlock()).getMaterialType())
+                switch(((PaintableBlock)state.getBlock()).getMaterialType())
                 {
                     case 0:
                         newBlock = RoadStuff.asphaltMap.getBlockFor(color, pattern);
@@ -113,46 +111,39 @@ public class ItemBrush extends Item
                 }
                 else if(state.getBlock() == newBlock)
                 {
-                    if(newBlock instanceof BlockTwoAxis && !world.isRemote)
+                    if(newBlock instanceof RotatablePaintBlock && !world.isRemote)
                     {
-                        if(state.get(BlockTwoAxis.ROTATION))
-                            world.setBlockState(pos, newBlock.getDefaultState().with(BlockTwoAxis.ROTATION, Boolean.valueOf(false)));
-                        else
-                            world.setBlockState(pos, newBlock.getDefaultState().with(BlockTwoAxis.ROTATION, Boolean.valueOf(true)));
-                    }
-                    else if(newBlock instanceof BlockFourAxis && !world.isRemote)
-                    {
-                        switch(state.get(BlockFourAxis.DIRECTION))
+                        switch(state.get(RotatablePaintBlock.DIRECTION))
                         {
                             case NORTH:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.EAST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.EAST));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.WEST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.WEST));
                                 break;
                             case EAST:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.SOUTH));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.SOUTH));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.NORTH));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.NORTH));
                                 break;
                             case SOUTH:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.WEST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.WEST));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.EAST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.EAST));
                                 break;
                             case WEST:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.NORTH));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.NORTH));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.SOUTH));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.SOUTH));
                                 break;
                             default:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.EAST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.EAST));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, Direction.WEST));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.WEST));
                                 break;
                         }
                     }
@@ -163,17 +154,9 @@ public class ItemBrush extends Item
                     {
                         if(!world.isRemote)
                         {
-                            if(newBlock instanceof BlockTwoAxis)
+                            if(newBlock instanceof RotatablePaintBlock)
                             {
-                                int direction = MathHelper.floor((double)(context.getPlacementYaw() * 4.0F / 360.0F) + 2.5D) & 3;
-                                if(direction == 1 || direction == 3)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockTwoAxis.ROTATION, true));
-                                else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(BlockTwoAxis.ROTATION, false));
-                            }
-                            else if(newBlock instanceof BlockFourAxis)
-                            {
-                                world.setBlockState(pos, newBlock.getDefaultState().with(BlockFourAxis.DIRECTION, context.getPlacementHorizontalFacing().getOpposite()));
+                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, context.getPlacementHorizontalFacing().getOpposite()));
                             }
                             else
                                 world.setBlockState(pos, newBlock.getDefaultState());
