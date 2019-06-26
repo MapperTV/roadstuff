@@ -40,15 +40,15 @@ public class ModBlocks
     {
         IForgeRegistry<Block> registry = event.getRegistry();
         
-        event.getRegistry().register(new PaintableBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F), 0).setRegistryName("asphalt_block"));
-        event.getRegistry().register(new PaintableBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F), 1).setRegistryName("concrete_block"));
+        event.getRegistry().register(new PaintableBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F, 6.0F), 0).setRegistryName("asphalt_block"));
+        event.getRegistry().register(new PaintableBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F, 6.0F), 1).setRegistryName("concrete_block"));
         
         for(int i = 1; i < ModConstants.PATTERNS; i++)
         {
-            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0), "asphalt_white_line_" + i + "_block", registry);
-            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 0), "asphalt_yellow_line_" + i + "_block", registry);
-            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 1), "concrete_white_line_" + i + "_block", registry);
-            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.5F, 6.0F), 1), "concrete_yellow_line_" + i + "_block", registry);
+            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 0), "asphalt_white_line_" + i + "_block", registry);
+            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 0), "asphalt_yellow_line_" + i + "_block", registry);
+            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_white_line_" + i + "_block", registry);
+            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_yellow_line_" + i + "_block", registry);
         }
 
         event.getRegistry().register(new PaintBucketBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F)).setRegistryName("paint_bucket_block"));

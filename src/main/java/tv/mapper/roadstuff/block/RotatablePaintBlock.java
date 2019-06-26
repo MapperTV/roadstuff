@@ -28,6 +28,6 @@ public class RotatablePaintBlock extends PaintableBlock
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
-        return this.getDefaultState().with(DIRECTION, context.getPlacementHorizontalFacing().getOpposite());
+        return this.getDefaultState().with(DIRECTION, context.getPlacementHorizontalFacing());
     }
 }

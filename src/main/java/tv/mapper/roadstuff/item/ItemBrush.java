@@ -156,7 +156,7 @@ public class ItemBrush extends Item
                         {
                             if(newBlock instanceof RotatablePaintBlock)
                             {
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, context.getPlacementHorizontalFacing().getOpposite()));
+                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, context.getPlacementHorizontalFacing()));
                             }
                             else
                                 world.setBlockState(pos, newBlock.getDefaultState());
