@@ -5,6 +5,7 @@ import java.util.Set;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.event.RegistryEvent;
@@ -26,6 +27,11 @@ public class ModBlocks
 {
     public static Set<Block> MOD_BLOCKS = new LinkedHashSet<>();
     public static Set<Item> MOD_ITEMS = new LinkedHashSet<>();
+    
+    @ObjectHolder(RoadStuff.MODID + ":bitumen_block")
+    public static Block BITUMEN_BLOCK;
+    @ObjectHolder(RoadStuff.MODID + ":bitumen_ore")
+    public static Block BITUMEN_ORE;
     
     @ObjectHolder(RoadStuff.MODID + ":asphalt_block")
     public static Block ASPHALT_BLOCK;
@@ -51,7 +57,9 @@ public class ModBlocks
             registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_yellow_line_" + i + "_block", registry);
         }
 
-        event.getRegistry().register(new PaintBucketBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F)).setRegistryName("paint_bucket_block"));
+        event.getRegistry().register(new PaintBucketBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F, 3.0F)).setRegistryName("paint_bucket_block"));
+        event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F)).setRegistryName("bitumen_block"));
+        event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F)).setRegistryName("bitumen_ore"));
 
     }
 
@@ -76,7 +84,8 @@ public class ModBlocks
         }
 
         event.getRegistry().register(new ItemBlockPaintBucket(PAINT_BUCKET_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF).maxStackSize(1)).setRegistryName(PAINT_BUCKET_BLOCK.getRegistryName()));
-
+        event.getRegistry().register(new BlockItem(BITUMEN_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BITUMEN_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(BITUMEN_ORE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BITUMEN_ORE.getRegistryName()));
     }
     
     private static void registerItem(Item item, String name, IForgeRegistry<Item> registry)

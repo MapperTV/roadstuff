@@ -1,0 +1,10 @@
+{
+    "variants": {
+        "": [
+        { "model": "roadstuff:block/bitumen_block" },
+        { "model": "roadstuff:block/bitumen_block", "y": 90 },
+        { "model": "roadstuff:block/bitumen_block", "y": 180 },
+        { "model": "roadstuff:block/bitumen_block", "y": 270 }
+        ]
+    }
+}

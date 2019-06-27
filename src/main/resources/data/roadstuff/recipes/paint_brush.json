@@ -1,0 +1,19 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        " W",
+        "S "
+    ],
+    "key": {
+        "W": {
+            "tag": "minecraft:wool"
+        },
+        "S": {
+            "item": "minecraft:stick"
+        }
+    },
+    "result": {
+        "item": "roadstuff:paint_brush",
+        "count": 1
+    }
+}
