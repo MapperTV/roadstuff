@@ -33,31 +33,31 @@ public class ModBlocks
     @ObjectHolder(RoadStuff.MODID + ":bitumen_ore")
     public static Block BITUMEN_ORE;
     
-    @ObjectHolder(RoadStuff.MODID + ":asphalt_block")
-    public static Block ASPHALT_BLOCK;
-    @ObjectHolder(RoadStuff.MODID + ":concrete_block")
-    public static Block CONCRETE_BLOCK;
+    @ObjectHolder(RoadStuff.MODID + ":asphalt")
+    public static Block ASPHALT;
+    @ObjectHolder(RoadStuff.MODID + ":concrete")
+    public static Block CONCRETE;
     
-    @ObjectHolder(RoadStuff.MODID + ":paint_bucket_block")
-    public static Block PAINT_BUCKET_BLOCK;
+    @ObjectHolder(RoadStuff.MODID + ":paint_bucket")
+    public static Block PAINT_BUCKET;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
         IForgeRegistry<Block> registry = event.getRegistry();
         
-        event.getRegistry().register(new PaintableBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F, 6.0F), 0).setRegistryName("asphalt_block"));
-        event.getRegistry().register(new PaintableBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F, 6.0F), 1).setRegistryName("concrete_block"));
+        event.getRegistry().register(new PaintableBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F, 6.0F), 0).setRegistryName("asphalt"));
+        event.getRegistry().register(new PaintableBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(1.0F, 6.0F), 1).setRegistryName("concrete"));
         
         for(int i = 1; i < ModConstants.PATTERNS; i++)
         {
-            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 0), "asphalt_white_line_" + i + "_block", registry);
-            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 0), "asphalt_yellow_line_" + i + "_block", registry);
-            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_white_line_" + i + "_block", registry);
-            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_yellow_line_" + i + "_block", registry);
+            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 0), "asphalt_white_line_" + i, registry);
+            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 0), "asphalt_yellow_line_" + i, registry);
+            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_white_line_" + i, registry);
+            registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_yellow_line_" + i, registry);
         }
 
-        event.getRegistry().register(new PaintBucketBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F, 3.0F)).setRegistryName("paint_bucket_block"));
+        event.getRegistry().register(new PaintBucketBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F, 3.0F)).setRegistryName("paint_bucket"));
         event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F)).setRegistryName("bitumen_block"));
         event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F)).setRegistryName("bitumen_ore"));
 
@@ -75,15 +75,15 @@ public class ModBlocks
     {
         IForgeRegistry<Item> registry = event.getRegistry();
         
-        event.getRegistry().register(new BlockItem(ASPHALT_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_BLOCK.getRegistryName()));
-        event.getRegistry().register(new BlockItem(CONCRETE_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(CONCRETE_BLOCK.getRegistryName()));
+        event.getRegistry().register(new BlockItem(ASPHALT, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT.getRegistryName()));
+        event.getRegistry().register(new BlockItem(CONCRETE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(CONCRETE.getRegistryName()));
         
         for(Block block : MOD_BLOCKS)
         {
             registerItem(new BlockItem(block, new Item.Properties().group(ModItemGroups.ROADSTUFF)), block.getRegistryName().toString(), registry);
         }
 
-        event.getRegistry().register(new ItemBlockPaintBucket(PAINT_BUCKET_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF).maxStackSize(1)).setRegistryName(PAINT_BUCKET_BLOCK.getRegistryName()));
+        event.getRegistry().register(new ItemBlockPaintBucket(PAINT_BUCKET, new Item.Properties().group(ModItemGroups.ROADSTUFF).maxStackSize(1)).setRegistryName(PAINT_BUCKET.getRegistryName()));
         event.getRegistry().register(new BlockItem(BITUMEN_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BITUMEN_BLOCK.getRegistryName()));
         event.getRegistry().register(new BlockItem(BITUMEN_ORE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BITUMEN_ORE.getRegistryName()));
     }

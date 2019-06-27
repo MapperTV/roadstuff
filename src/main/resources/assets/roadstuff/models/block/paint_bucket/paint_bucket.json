@@ -1,7 +1,7 @@
 {
 	"textures": {
-        "paint_bucket": "roadstuff:block/paint_bucket",
-        "particle": "roadstuff:block/paint_bucket"
+        "paint_bucket": "roadstuff:block/paint_bucket/paint_bucket",
+        "particle": "roadstuff:block/paint_bucket/paint_bucket"
     },
     "elements": [
 		{

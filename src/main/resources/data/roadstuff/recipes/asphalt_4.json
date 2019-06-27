@@ -1,0 +1,22 @@
+{
+    "type": "crafting_shaped",
+    "pattern": [
+        "OG",
+        "#O"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:sand"
+        },
+        "O": {
+            "item": "roadstuff:raw_bitumen"
+        },
+        "G": {
+            "item": "minecraft:gravel"
+        }
+    },
+    "result": {
+        "item": "roadstuff:asphalt",
+        "count": 4
+    }
+}

@@ -1,7 +1,7 @@
 {
     "parent": "roadstuff:block/paint_bucket/paint_bucket_3",
     "textures": {
-        "paint_bucket": "roadstuff:block/paint_bucket_yellow",
-        "particle": "roadstuff:block/paint_bucket_yellow"
+        "paint_bucket": "roadstuff:block/paint_bucket/paint_bucket_yellow",
+        "particle": "roadstuff:block/paint_bucket/paint_bucket_yellow"
     }
 }

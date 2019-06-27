@@ -11,7 +11,7 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<Block>
     public ConcretePaintMap()
     {
         super();
-        register(0, 0, ModBlocks.CONCRETE_BLOCK);
+        register(0, 0, ModBlocks.CONCRETE);
 
         int index = 1;
         for(Block blockWhite : ModBlocks.MOD_BLOCKS)
@@ -26,7 +26,7 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<Block>
             }
         }
 
-        register(1, 0, ModBlocks.CONCRETE_BLOCK);
+        register(1, 0, ModBlocks.CONCRETE);
 
         index = 1;
         for(Block blockYellow : ModBlocks.MOD_BLOCKS)
