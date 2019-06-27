@@ -20,11 +20,10 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.RotatablePaintBlock;
 import tv.mapper.roadstuff.block.PaintableBlock;
+import tv.mapper.roadstuff.block.RotatablePaintBlock;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
 public class ItemBrush extends Item
@@ -81,11 +80,12 @@ public class ItemBrush extends Item
 
         if(player.isSneaking())
         {
-            if(!world.isRemote && state.getBlock() instanceof PaintableBlock)
-            {
-                player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "Clicked on paintable block!"), true);
-            }
-            else if(world.isRemote)
+            // if(!world.isRemote && state.getBlock() instanceof PaintableBlock)
+            // {
+            // player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "Clicked on paintable block!"), true);
+            // }
+            // else
+            if(world.isRemote)
                 ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"));
             return ActionResultType.SUCCESS;
         }
@@ -156,7 +156,10 @@ public class ItemBrush extends Item
                         {
                             if(newBlock instanceof RotatablePaintBlock)
                             {
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, context.getPlacementHorizontalFacing()));
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, context.getPlacementHorizontalFacing()));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, context.getPlacementHorizontalFacing().getOpposite()));
                             }
                             else
                                 world.setBlockState(pos, newBlock.getDefaultState());

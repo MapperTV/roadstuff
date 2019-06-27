@@ -15,9 +15,9 @@ import tv.mapper.roadstuff.util.ModConstants;
 public class GuiBrush extends Screen
 {
     public static final ITextComponent title = new StringTextComponent("");
-    
-    private static final int WIDTH = 174;
-    private static final int HEIGHT = 228;
+
+    private static final int WIDTH = 250;
+    private static final int HEIGHT = 221;
 
     private static final int MAX_CHOICE = ModConstants.PATTERNS;
 
@@ -57,14 +57,28 @@ public class GuiBrush extends Screen
         guiTop = this.height / 2 - HEIGHT / 2;
 
         int pattern_temp = pattern;
-        if(pattern > 7 && pattern < 16)
-            pattern_temp = pattern - 8;
-        else if(pattern > 15 && pattern < 24)
-            pattern_temp = pattern - 16;
-        else if(pattern > 23 && pattern < 32)
-            pattern_temp = pattern - 24;
-        selectX = guiLeft + 13 + pattern_temp * 18;
-        selectY = guiTop + 13 + (pattern / 8) * 18;
+        if(pattern > 12 && pattern < 26)
+            pattern_temp = pattern - 13;
+        else if(pattern > 25 && pattern < 39)
+            pattern_temp = pattern - 26;
+        else if(pattern > 38 && pattern < 52)
+            pattern_temp = pattern - 39;
+        else if(pattern > 51 && pattern < 65)
+            pattern_temp = pattern - 52;
+        else if(pattern > 64 && pattern < 78)
+            pattern_temp = pattern - 65;
+        else if(pattern > 77 && pattern < 91)
+            pattern_temp = pattern - 78;
+        else if(pattern > 90 && pattern < 104)
+            pattern_temp = pattern - 91;
+        else if(pattern > 103 && pattern < 117)
+            pattern_temp = pattern - 104;
+        else if(pattern > 116 && pattern < 130)
+            pattern_temp = pattern - 117;
+        else if(pattern > 129 && pattern < 143)
+            pattern_temp = pattern - 130;
+        selectX = guiLeft + 6 + pattern_temp * 18;
+        selectY = guiTop + 13 + (pattern / 13) * 18;
     }
 
     @Override
@@ -80,13 +94,11 @@ public class GuiBrush extends Screen
         int row = 0;
         for(int i = 0; i < MAX_CHOICE; i++)
         {
-//            if(i != 0)
-//            {
-                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + i + ".png"));
-                blit(guiLeft + 16 * j + 16 + j * 2, guiTop + 16 + row, 0, 0, 16, 16, 16, 16);
-//            }
+            minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + i + ".png"));
+            blit(guiLeft + 16 * j + 9 + j * 2, guiTop + 16 + row, 0, 0, 16, 16, 16, 16);
+
             j++;
-            if(j >= 8)
+            if(j >= 13)
             {
                 j = 0;
                 row += 18;
@@ -94,16 +106,16 @@ public class GuiBrush extends Screen
         }
 
         // Draws hover square above slots
-        if(mouseX > guiLeft + 14 && mouseX < guiLeft + 159 && mouseY > guiTop + 14 && mouseY < guiTop + 212)
+        if(mouseX > guiLeft + 7 && mouseX < guiLeft + 241 && mouseY > guiTop + 14 && mouseY < guiTop + 212)
         {
-            posX = Math.toIntExact(Math.round((mouseX - guiLeft - 15) / 18) * 18) + guiLeft + 16;
+            posX = Math.toIntExact(Math.round((mouseX - guiLeft - 9) / 18) * 18) + guiLeft + 9;
             posY = Math.toIntExact(Math.round((mouseY - guiTop - 15) / 18) * 18) + guiTop + 16;
             this.font.drawStringWithShadow("posX: " + posX + ", posY: " + posY, 8, 56, new Color(255, 0, 0).getRGB());
             fill(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
         }
 
         minecraft.getTextureManager().bindTexture(brush_gui);
-        blit(selectX, selectY, 256-22, 256-22, 22, 22);
+        blit(selectX, selectY, 256 - 22, 256 - 22, 22, 22);
 
         this.font.drawStringWithShadow("DEBUG MODE", 8, 8, new Color(255, 0, 0).getRGB());
         this.font.drawStringWithShadow("mouseX: " + mouseX + ", mouseY: " + mouseY, 8, 40, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
@@ -113,9 +125,9 @@ public class GuiBrush extends Screen
 
     public boolean mouseClicked(double mouseX, double mouseY, int button)
     {
-        if(button == 0 && mouseX > guiLeft + 14 && mouseX < guiLeft + 159 && mouseY > guiTop + 14 && mouseY < guiTop + 212)
+        if(button == 0 && mouseX > guiLeft + 7 && mouseX < guiLeft + 241 && mouseY > guiTop + 14 && mouseY < guiTop + 212)
         {
-            pattern = (posX - guiLeft - 15) / 18 + ((posY - guiTop - 15) / 18) * 8;
+            pattern = (posX - guiLeft - 9) / 18 + ((posY - guiTop - 9) / 18) * 13;
             selectX = posX - 3;
             selectY = posY - 3;
             return true;
