@@ -163,7 +163,7 @@ public class PaintBucketBlock extends Block
     @Override
     public void onBlockHarvested(World world, BlockPos pos, BlockState state, PlayerEntity player)
     {
-        if(!world.isRemote)
+        if(!world.isRemote && !player.isCreative())
         {
             @SuppressWarnings("deprecation")
             ItemStack stack = new ItemStack(Item.getItemFromBlock(this));

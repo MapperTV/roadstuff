@@ -28,7 +28,7 @@ import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
 public class ItemBrush extends Item
 {
-    public static final int MAX_PAINT = 16;
+    public static final int MAX_PAINT = 128;
 
     public ItemBrush(Properties properties)
     {
