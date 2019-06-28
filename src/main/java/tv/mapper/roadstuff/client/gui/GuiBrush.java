@@ -19,7 +19,8 @@ public class GuiBrush extends Screen
     private static final int WIDTH = 250;
     private static final int HEIGHT = 221;
 
-    private static final int MAX_CHOICE = ModConstants.PATTERNS;
+    String warning = "WARNING: Mod in alpha test, to not use on your main save!";
+    String warning2 = "Blocks may change in the future, breaking saves. Always backup!";
 
     private int pattern;
     private int paint;
@@ -92,7 +93,7 @@ public class GuiBrush extends Screen
 
         int j = 0;
         int row = 0;
-        for(int i = 0; i < MAX_CHOICE; i++)
+        for(int i = 0; i < ModConstants.PATTERNS; i++)
         {
             minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + i + ".png"));
             blit(guiLeft + 16 * j + 9 + j * 2, guiTop + 16 + row, 0, 0, 16, 16, 16, 16);
@@ -110,16 +111,19 @@ public class GuiBrush extends Screen
         {
             posX = Math.toIntExact(Math.round((mouseX - guiLeft - 9) / 18) * 18) + guiLeft + 9;
             posY = Math.toIntExact(Math.round((mouseY - guiTop - 15) / 18) * 18) + guiTop + 16;
-            this.font.drawStringWithShadow("posX: " + posX + ", posY: " + posY, 8, 56, new Color(255, 0, 0).getRGB());
+            this.font.drawStringWithShadow("posX: " + posX, 8, 80, new Color(255, 0, 0).getRGB());
+            this.font.drawStringWithShadow("PosY: " + posY, 8, 96, new Color(255, 0, 0).getRGB());
             fill(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
         }
 
         minecraft.getTextureManager().bindTexture(brush_gui);
         blit(selectX, selectY, 256 - 22, 256 - 22, 22, 22);
 
-        this.font.drawStringWithShadow("DEBUG MODE", 8, 8, new Color(255, 0, 0).getRGB());
-        this.font.drawStringWithShadow("mouseX: " + mouseX + ", mouseY: " + mouseY, 8, 40, new Color(255, 0, 0).getRGB()); // Draws mouse pointer coordinates. Only used to debug
-        this.font.drawStringWithShadow("pattern: " + pattern + ", paint: " + paint + ", color: " + color, 8, 24, new Color(255, 0, 0).getRGB());
+        this.font.drawStringWithShadow(warning, this.width /2 - (warning.length() * 5) / 2, this.height / 96, new Color(255, 0, 0).getRGB());
+        this.font.drawStringWithShadow(warning2, this.width /2 - (warning2.length() * 5) / 2, this.height - this.height / 26, new Color(255, 0, 0).getRGB());
+        this.font.drawStringWithShadow("Pattern: " + pattern, 8, 24, new Color(255, 255, 255).getRGB());
+        this.font.drawStringWithShadow("Paint: " + paint, 8, 40, new Color(255, 255, 255).getRGB());
+        this.font.drawStringWithShadow("Color: " + color, 8, 56, new Color(255, 255, 255).getRGB());
 
     }
 
