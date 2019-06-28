@@ -1,17 +1,17 @@
 modLoader="javafml" #mandatory
 loaderVersion="[27,)"
 #issueTrackerURL="http://my.issue.tracker/" #optional
+logoFile="roadstuff_logo.png" #optional
 [[mods]] #mandatory
 modId="roadstuff" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Road Stuff 2" #mandatory
 displayURL="http://mapper.tv/roadstuff/" #optional
-logoFile="roadstuff_logo.png" #optional
 credits="Thanks to everyone working on Forge and MinecraftForgeFrance." #optional
 authors="Mapper" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Road Stuff 2 for Minecraft / Forge 1.14+
+Road Stuff 2 for Minecraft / Forge 1.14+ - WARNING: This is a very alpha version, do not use on your main save: blocks may change in the future, resulting into broken saves!
 '''
 
 [[dependencies.roadstuff]]
