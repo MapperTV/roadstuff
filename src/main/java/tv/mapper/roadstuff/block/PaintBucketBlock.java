@@ -5,18 +5,25 @@ import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.HorizontalBlock;
+import net.minecraft.block.IBucketPickupHandler;
+import net.minecraft.block.ILiquidContainer;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
+import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
@@ -29,25 +36,29 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.IBlockReader;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 import tv.mapper.roadstuff.item.ItemBrush;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
-public class PaintBucketBlock extends Block
+public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILiquidContainer
 {
     private static final int MAX_PAINT = 8;
 
     public static final IntegerProperty PAINT = IntegerProperty.create("paint", 0, MAX_PAINT);
     public static final EnumProperty<EnumPaintColor> COLOR = EnumProperty.create("color", EnumPaintColor.class);
     public static final DirectionProperty DIRECTION = HorizontalBlock.HORIZONTAL_FACING;
-    private static final VoxelShape BUCKET = Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 10.0D, 12.0D);
+    public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
+    private static final VoxelShape PAINT_BUCKET = Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 10.0D, 12.0D);
 
     public PaintBucketBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE).with(DIRECTION, Direction.NORTH));
+        this.setDefaultState(this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE).with(DIRECTION, Direction.NORTH).with(WATERLOGGED, Boolean.valueOf(false)));
     }
 
+    @Override
     public boolean isSolid(BlockState state)
     {
         return false;
@@ -60,17 +71,17 @@ public class PaintBucketBlock extends Block
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
-        return BUCKET;
+        return PAINT_BUCKET;
     }
 
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
-        return BUCKET;
+        return PAINT_BUCKET;
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
-        builder.add(PAINT).add(COLOR).add(DIRECTION);
+        builder.add(PAINT, COLOR, DIRECTION, WATERLOGGED);
     }
 
     @Nullable
@@ -88,6 +99,12 @@ public class PaintBucketBlock extends Block
 
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result)
     {
+        if(state.get(WATERLOGGED))
+        {
+            player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "You can't interact with a bucket under water!"), true);
+            return false;
+        }
+
         ItemStack item = player.getHeldItem(hand);
 
         if(item.getItem() instanceof ItemBrush)
@@ -157,7 +174,7 @@ public class PaintBucketBlock extends Block
                         player.getHeldItem(hand).shrink(1);
                 }
                 else
-                    world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
+                    world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 0.9F);
                 return true;
             }
         }
@@ -174,14 +191,76 @@ public class PaintBucketBlock extends Block
             CompoundNBT nbt = new CompoundNBT();
             nbt.putInt("paint", state.getBlockState().get(PAINT));
             nbt.putInt("color", state.getBlockState().get(COLOR).ordinal());
-            
+
             stack.setTag(nbt);
 
             ItemEntity itementity = new ItemEntity(world, (double)pos.getX() + 0.5, (double)pos.getY() + 0.5, (double)pos.getZ() + 0.5, stack);
             itementity.setDefaultPickupDelay();
             world.addEntity(itementity);
         }
-        
+
         super.onBlockHarvested(world, pos, state, player);
+    }
+
+    public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
+    {
+        BlockPos blockpos = pos.down();
+        BlockState blockstate = worldIn.getBlockState(blockpos);
+        if(blockstate.getBlock() instanceof PaintBucketBlock || !blockstate.isSolid())
+            return false;
+        return true;
+    }
+
+    @SuppressWarnings("deprecation")
+    public BlockState updatePostPlacement(BlockState stateIn, Direction facing, BlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos)
+    {
+        if(stateIn.get(WATERLOGGED))
+        {
+            worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
+        }
+
+        return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+    }
+
+    public Fluid pickupFluid(IWorld worldIn, BlockPos pos, BlockState state)
+    {
+        if(state.get(WATERLOGGED))
+        {
+            worldIn.setBlockState(pos, state.with(WATERLOGGED, Boolean.valueOf(false)), 3);
+            return Fluids.WATER;
+        }
+        else
+        {
+            return Fluids.EMPTY;
+        }
+    }
+
+    @SuppressWarnings("deprecation")
+    public IFluidState getFluidState(BlockState state)
+    {
+        return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+    }
+
+    public boolean canContainFluid(IBlockReader worldIn, BlockPos pos, BlockState state, Fluid fluidIn)
+    {
+        return !state.get(WATERLOGGED) && fluidIn == Fluids.WATER;
+    }
+
+    public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn)
+    {
+        if(!state.get(WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER)
+        {
+            if(!worldIn.isRemote())
+            {
+                worldIn.setBlockState(pos, state.with(WATERLOGGED, Boolean.valueOf(true)), 3);
+                worldIn.getPendingFluidTicks().scheduleTick(pos, fluidStateIn.getFluid(), fluidStateIn.getFluid().getTickRate(worldIn));
+            }
+
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }
