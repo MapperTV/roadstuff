@@ -33,8 +33,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -101,7 +100,7 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
     {
         if(state.get(WATERLOGGED))
         {
-            player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "You can't interact with a bucket under water!"), true);
+            player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.underwater"), true);
             return false;
         }
 
@@ -114,7 +113,7 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
             if(paint <= 0)
             {
                 if(!world.isRemote)
-                    player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "This bucket is empty!"), true);
+                    player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.empty"), true);
                 return false;
             }
 
@@ -144,13 +143,13 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
                 if(dye.getDyeColor() == DyeColor.WHITE && state.get(COLOR) == EnumPaintColor.YELLOW)
                 {
                     if(!world.isRemote)
-                        player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "This bucket is already filled with yellow paint!"), true);
+                        player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.yellow"), true);
                     return false;
                 }
                 else if(dye.getDyeColor() == DyeColor.YELLOW && state.get(COLOR) == EnumPaintColor.WHITE)
                 {
                     if(!world.isRemote)
-                        player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "This bucket is already filled with white paint!"), true);
+                        player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.white"), true);
                     return false;
                 }
             }
@@ -158,7 +157,7 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
             if(state.get(PAINT) >= MAX_PAINT)
             {
                 if(!world.isRemote)
-                    player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "This bucket is full!"), true);
+                    player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.full"), true);
                 return false;
             }
 

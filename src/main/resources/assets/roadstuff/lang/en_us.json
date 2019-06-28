@@ -593,5 +593,13 @@
     
     "_comment3": "Creative Tabs (Item Groups)",
     
-    "itemGroup.roadstuff_group": "Road Stuff 2"
+    "itemGroup.roadstuff_group": "Road Stuff 2",
+    
+    "_comment4": "Messages",
+    
+    "roadstuff.message.bucket.empty": "This bucket is empty!",
+    "roadstuff.message.bucket.yellow": "This bucket is already filled with yellow paint!",
+    "roadstuff.message.bucket.white": "This bucket is already filled with white paint!",
+    "roadstuff.message.bucket.full": "This bucket is full!",
+    "roadstuff.message.bucket.underwater": "You can't interact with a bucket under water!"
 }

@@ -593,5 +593,13 @@
     
     "_comment3": "Creative Tabs (Item Groups)",
     
-    "itemGroup.roadstuff_group": "Road Stuff 2"
+    "itemGroup.roadstuff_group": "Road Stuff 2",
+    
+    "_comment4": "Messages",
+    
+    "roadstuff.message.bucket.empty": "Ce pot est vide !",
+    "roadstuff.message.bucket.yellow": "Ce pot est déjà rempli de peinture jaune !",
+    "roadstuff.message.bucket.white": "Ce pot est déjà rempli de peinture blanche !",
+    "roadstuff.message.bucket.full": "Ce pot est plein !",
+    "roadstuff.message.bucket.underwater": "Vous ne pouvez pas interagir avec un pot sous l'eau !"
 }
