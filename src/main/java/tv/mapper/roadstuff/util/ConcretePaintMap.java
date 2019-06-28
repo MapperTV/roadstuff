@@ -57,4 +57,27 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<Block>
             id += ModConstants.PATTERNS;
         return this.get(id + pattern);
     }
+    
+    public int[] getParamsFor(Block blockIn)
+    {
+        int i = 0;
+        int color = 0, pattern = 0;
+        Block block;
+        while(i < this.size())
+        {
+            block = this.get(i);
+            if(block == blockIn)
+            {
+                if(i >= ModConstants.PATTERNS)
+                {
+                    color = 1;
+                    pattern = i - ModConstants.PATTERNS;
+                }
+                else
+                    pattern = i;
+            }
+            i++;
+        }
+        return new int[] {color, pattern};
+    }
 }

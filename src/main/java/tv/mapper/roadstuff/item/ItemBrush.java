@@ -20,10 +20,12 @@ import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraft.world.World;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.block.RotatablePaintBlock;
+import tv.mapper.roadstuff.init.ModBlocks;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
 public class ItemBrush extends Item
@@ -56,6 +58,7 @@ public class ItemBrush extends Item
 
         if(world.isRemote && player.isSneaking())
         {
+            RoadStuff.LOGGER.debug("Test");
             ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"));
         }
 
@@ -76,17 +79,28 @@ public class ItemBrush extends Item
         int color = nbt.getInt("color");
 
         Block newBlock = null;
-        boolean playSound = false;
+        byte playSound = 0;
 
         if(player.isSneaking())
         {
-            // if(!world.isRemote && state.getBlock() instanceof PaintableBlock)
-            // {
-            // player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "Clicked on paintable block!"), true);
-            // }
-            // else
-            if(world.isRemote)
-                ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"));
+            if(state.getBlock() instanceof PaintableBlock && (state.getBlock() != ModBlocks.ASPHALT && state.getBlock() != ModBlocks.CONCRETE))
+            {
+                if(!world.isRemote)
+                {
+                    int[] params = {0, 0};
+                    if(((PaintableBlock)state.getBlock()).getMaterialType() == 0)
+                        params = RoadStuff.asphaltMap.getParamsFor(state.getBlock());
+                    else if(((PaintableBlock)state.getBlock()).getMaterialType() == 1)
+                        params = RoadStuff.concreteMap.getParamsFor(state.getBlock());
+                    nbt.putInt("pattern", params[1]);
+                    player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "Copied pattern " + params[1] + " into brush"), true);
+                }
+            }
+            else
+            {
+                if(world.isRemote)
+                    ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"));
+            }
             return ActionResultType.SUCCESS;
         }
 
@@ -105,9 +119,11 @@ public class ItemBrush extends Item
                     default:
                         return ActionResultType.PASS;
                 }
-                if(pattern == 0 && !world.isRemote)
+                if(pattern == 0)
                 {
-                    world.setBlockState(pos, newBlock.getDefaultState());
+                    if(!world.isRemote)
+                        world.setBlockState(pos, newBlock.getDefaultState());
+                    playSound = 2;
                 }
                 else if(state.getBlock() == newBlock)
                 {
@@ -166,18 +182,25 @@ public class ItemBrush extends Item
                             nbt.putInt("paint", nbt.getInt("paint") - 1);
                         }
                         if(pattern != 0)
-                            playSound = true;
+                            playSound = 1;
                     }
                 }
 
-                if(playSound)
-                    world.playSound(player, pos, SoundEvents.BLOCK_SLIME_BLOCK_FALL, SoundCategory.BLOCKS, .8F, 1.0F);
+                switch(playSound)
+                {
+                    case 1:
+                        world.playSound(player, pos, SoundEvents.BLOCK_SLIME_BLOCK_PLACE, SoundCategory.BLOCKS, .8F, 2.0F);
+                        break;
+                    case 2:
+                        world.playSound(player, pos, SoundEvents.BLOCK_COMPOSTER_FILL, SoundCategory.BLOCKS, 1.0F, 1.5F);
+                        break;
+                    default:
+                }
             }
 
             stack.setTag(nbt);
             return ActionResultType.SUCCESS;
         }
-
         return ActionResultType.PASS;
     }
 
