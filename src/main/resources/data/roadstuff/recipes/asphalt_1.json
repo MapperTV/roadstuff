@@ -6,7 +6,7 @@
     ],
     "key": {
         "#": {
-            "item": "minecraft:sand"
+            "tag": "minecraft:sand"
         },
         "O": {
             "item": "roadstuff:raw_bitumen"

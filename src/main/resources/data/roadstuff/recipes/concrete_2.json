@@ -6,7 +6,7 @@
     ],
     "key": {
         "S": {
-            "item": "minecraft:sand"
+            "tag": "minecraft:sand"
         },
         "G": {
             "item": "minecraft:gravel"
