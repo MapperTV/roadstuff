@@ -4,6 +4,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.HorizontalBlock;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
@@ -12,10 +13,12 @@ import net.minecraft.item.DyeItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
@@ -36,12 +39,13 @@ public class PaintBucketBlock extends Block
 
     public static final IntegerProperty PAINT = IntegerProperty.create("paint", 0, MAX_PAINT);
     public static final EnumProperty<EnumPaintColor> COLOR = EnumProperty.create("color", EnumPaintColor.class);
+    public static final DirectionProperty DIRECTION = HorizontalBlock.HORIZONTAL_FACING;
     private static final VoxelShape BUCKET = Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 10.0D, 12.0D);
 
     public PaintBucketBlock(Properties properties)
     {
         super(properties);
-        this.setDefaultState(this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE));
+        this.setDefaultState(this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE).with(DIRECTION, Direction.NORTH));
     }
 
     public boolean isSolid(BlockState state)
@@ -66,7 +70,7 @@ public class PaintBucketBlock extends Block
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
     {
-        builder.add(PAINT).add(COLOR);
+        builder.add(PAINT).add(COLOR).add(DIRECTION);
     }
 
     @Nullable
@@ -77,9 +81,9 @@ public class PaintBucketBlock extends Block
         CompoundNBT tagCompound = stack.getTag();
         if(tagCompound != null)
         {
-            return this.getDefaultState().with(PAINT, stack.getTag().getInt("paint")).with(COLOR, EnumPaintColor.values()[stack.getTag().getInt("color")]);
+            return this.getDefaultState().with(PAINT, stack.getTag().getInt("paint")).with(COLOR, EnumPaintColor.values()[stack.getTag().getInt("color")]).with(DIRECTION, context.getPlacementHorizontalFacing());
         }
-        return this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE);
+        return this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE).with(DIRECTION, context.getPlacementHorizontalFacing());
     }
 
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result)
