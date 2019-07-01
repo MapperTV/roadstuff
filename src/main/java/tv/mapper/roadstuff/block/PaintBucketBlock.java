@@ -128,13 +128,12 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
 
                     item.getTag().putInt("paint", ItemBrush.MAX_PAINT);
                     item.getTag().putInt("color", state.get(COLOR).getId());
+                    world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
                 }
-                else
-                    world.playSound(player, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
                 return true;
             }
         }
-        if(item.getItem() instanceof DyeItem)
+        if(item.getItem() instanceof DyeItem && !world.isRemote)
         {
             DyeItem dye = (DyeItem)item.getItem();
 
@@ -142,38 +141,32 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
             {
                 if(dye.getDyeColor() == DyeColor.WHITE && state.get(COLOR) == EnumPaintColor.YELLOW)
                 {
-                    if(!world.isRemote)
-                        player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.yellow"), true);
+                    player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.yellow"), true);
                     return false;
                 }
                 else if(dye.getDyeColor() == DyeColor.YELLOW && state.get(COLOR) == EnumPaintColor.WHITE)
                 {
-                    if(!world.isRemote)
-                        player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.white"), true);
+                    player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.white"), true);
                     return false;
                 }
             }
 
             if(state.get(PAINT) >= MAX_PAINT)
             {
-                if(!world.isRemote)
-                    player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.full"), true);
+                player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.full"), true);
                 return false;
             }
 
             if(state.get(PAINT) < MAX_PAINT)
             {
-                if(!world.isRemote)
-                {
-                    if(dye.getDyeColor() == DyeColor.WHITE)
-                        world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE));
-                    else if(dye.getDyeColor() == DyeColor.YELLOW)
-                        world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.YELLOW));
-                    if(!player.isCreative())
-                        player.getHeldItem(hand).shrink(1);
-                }
-                else
-                    world.playSound(player, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 0.9F);
+
+                if(dye.getDyeColor() == DyeColor.WHITE)
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE));
+                else if(dye.getDyeColor() == DyeColor.YELLOW)
+                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.YELLOW));
+                if(!player.isCreative())
+                    player.getHeldItem(hand).shrink(1);
+                world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 0.9F);
                 return true;
             }
         }
