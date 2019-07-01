@@ -6,6 +6,7 @@ import net.minecraft.util.Direction;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
+import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.init.ModItems;
 import tv.mapper.roadstuff.item.ItemBrush;
@@ -19,6 +20,8 @@ public class EventHandler
         PlayerEntity player = event.getEntityPlayer();
         ItemStack heldItem = ItemStack.EMPTY;
 
+        long timer = System.currentTimeMillis();
+
         if(player.getHeldItemMainhand().getItem() == ModItems.PAINT_BRUSH)
             heldItem = player.getHeldItemMainhand();
         else if(player.getHeldItemOffhand().getItem() == ModItems.PAINT_BRUSH)
@@ -29,10 +32,15 @@ public class EventHandler
             if(event.getFace() == Direction.UP && event.getWorld().getBlockState(event.getPos()).getBlock() instanceof PaintableBlock)
             {
                 event.setCanceled(true);
-                if(player.isSneaking())
-                    ItemBrush.removeLine(event.getWorld(), event.getPos(), player);
-                else
-                    ItemBrush.paintLine(event.getFace(), event.getWorld().getBlockState(event.getPos()), event.getWorld(), event.getPos(), player, heldItem);
+                System.out.println(timer - RoadStuff.clickInterval);
+                if(timer - RoadStuff.clickInterval > ModConstants.CLICK_DELAY)
+                {
+                    if(player.isSneaking())
+                        ItemBrush.removeLine(event.getWorld(), event.getPos(), player);
+                    else
+                        ItemBrush.paintLine(event.getFace(), event.getWorld().getBlockState(event.getPos()), event.getWorld(), event.getPos(), player, heldItem);
+                    RoadStuff.clickInterval = timer;
+                }
             }
         }
     }

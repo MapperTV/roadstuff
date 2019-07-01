@@ -24,8 +24,11 @@ public class RoadStuff
 {
     public static final String MODID = "roadstuff";
     public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
+    
     public static AsphaltPaintMap asphaltMap;
     public static ConcretePaintMap concreteMap;
+    
+    public static long clickInterval = System.currentTimeMillis();
 
     public static final Logger LOGGER = LogManager.getLogger();
 
