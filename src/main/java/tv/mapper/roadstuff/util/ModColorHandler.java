@@ -22,7 +22,7 @@ public class ModColorHandler
             return 16762880;
         };
 
-        for(Block block : ModBlocks.MOD_BLOCKS)
+        for(Block block : ModBlocks.MOD_PAINTABLEBLOCKS)
         {
             if(block.getRegistryName().toString().contains("yellow_line"))
                 blockColors.register(yellowColor, block);

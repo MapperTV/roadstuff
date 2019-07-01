@@ -2,9 +2,10 @@ package tv.mapper.roadstuff.util;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import net.minecraft.block.Block;
+import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.init.ModBlocks;
 
-public class ConcretePaintMap extends Int2ObjectArrayMap<Block>
+public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
 {
     private static final long serialVersionUID = -2560468416060236377L;
 
@@ -14,7 +15,7 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<Block>
         register(0, 0, ModBlocks.CONCRETE);
 
         int index = 1;
-        for(Block blockWhite : ModBlocks.MOD_BLOCKS)
+        for(PaintableBlock blockWhite : ModBlocks.MOD_PAINTABLEBLOCKS)
         {
             if(blockWhite.getRegistryName().toString().contains("concrete_"))
             {
@@ -29,7 +30,7 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<Block>
         register(1, 0, ModBlocks.CONCRETE);
 
         index = 1;
-        for(Block blockYellow : ModBlocks.MOD_BLOCKS)
+        for(PaintableBlock blockYellow : ModBlocks.MOD_PAINTABLEBLOCKS)
         {
             if(blockYellow.getRegistryName().toString().contains("concrete_"))
             {
@@ -42,7 +43,7 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<Block>
         }
     }
 
-    public void register(int color, int pattern, Block block)
+    public void register(int color, int pattern, PaintableBlock block)
     {
         int id = 0;
         if(color == 1)
@@ -50,15 +51,15 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<Block>
         this.put(id + pattern, block);
     }
 
-    public Block getBlockFor(int color, int pattern)
+    public PaintableBlock getBlockFor(int color, int pattern)
     {
         int id = 0;
         if(color == 1)
             id += ModConstants.PATTERNS;
         return this.get(id + pattern);
     }
-    
-    public int[] getParamsFor(Block blockIn)
+
+    public int[] getParamsFor(PaintableBlock blockIn)
     {
         int i = 0;
         int color = 0, pattern = 0;
