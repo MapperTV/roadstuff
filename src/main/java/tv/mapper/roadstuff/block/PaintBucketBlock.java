@@ -38,7 +38,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import tv.mapper.roadstuff.item.ItemBrush;
+import tv.mapper.roadstuff.item.BrushItem;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
 public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILiquidContainer
@@ -106,7 +106,7 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
 
         ItemStack item = player.getHeldItem(hand);
 
-        if(item.getItem() instanceof ItemBrush)
+        if(item.getItem() instanceof BrushItem)
         {
             int paint = state.get(PAINT);
 
@@ -118,15 +118,15 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
             }
 
             if(!item.hasTag())
-                item.setTag(ItemBrush.checkNBT(item));
+                item.setTag(BrushItem.checkNBT(item));
 
-            if((item.getTag().getInt("paint") < ItemBrush.MAX_PAINT && paint > 0) || (item.getTag().getInt("paint") == ItemBrush.MAX_PAINT && item.getTag().getInt("color") != state.get(COLOR).getId()))
+            if((item.getTag().getInt("paint") < BrushItem.MAX_PAINT && paint > 0) || (item.getTag().getInt("paint") == BrushItem.MAX_PAINT && item.getTag().getInt("color") != state.get(COLOR).getId()))
             {
                 if(!world.isRemote)
                 {
                     world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1));
 
-                    item.getTag().putInt("paint", ItemBrush.MAX_PAINT);
+                    item.getTag().putInt("paint", BrushItem.MAX_PAINT);
                     item.getTag().putInt("color", state.get(COLOR).getId());
                     world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
                 }

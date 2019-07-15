@@ -601,5 +601,7 @@
     "roadstuff.message.bucket.yellow": "Ce pot est déjà rempli de peinture jaune !",
     "roadstuff.message.bucket.white": "Ce pot est déjà rempli de peinture blanche !",
     "roadstuff.message.bucket.full": "Ce pot est plein !",
-    "roadstuff.message.bucket.underwater": "Vous ne pouvez pas interagir avec un pot sous l'eau !"
+    "roadstuff.message.bucket.underwater": "Vous ne pouvez pas interagir avec un pot sous l'eau !",
+    
+    "roadstuff.gui.paintbrush.title": "Configuration du pinceau"
 }

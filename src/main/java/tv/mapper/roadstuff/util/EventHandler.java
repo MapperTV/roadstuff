@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.init.ModItems;
-import tv.mapper.roadstuff.item.ItemBrush;
+import tv.mapper.roadstuff.item.BrushItem;
 
 @EventBusSubscriber
 public class EventHandler
@@ -36,9 +36,9 @@ public class EventHandler
                 if(timer - RoadStuff.clickInterval > ModConstants.CLICK_DELAY)
                 {
                     if(player.isSneaking())
-                        ItemBrush.removeLine(event.getWorld(), event.getPos(), player);
+                        BrushItem.removeLine(event.getWorld(), event.getPos(), player);
                     else
-                        ItemBrush.paintLine(event.getFace(), event.getWorld().getBlockState(event.getPos()), event.getWorld(), event.getPos(), player, heldItem);
+                        BrushItem.paintLine(event.getFace(), event.getWorld().getBlockState(event.getPos()), event.getWorld(), event.getPos(), player, heldItem);
                     RoadStuff.clickInterval = timer;
                 }
             }

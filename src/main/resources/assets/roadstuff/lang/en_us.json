@@ -601,5 +601,7 @@
     "roadstuff.message.bucket.yellow": "This bucket is already filled with yellow paint!",
     "roadstuff.message.bucket.white": "This bucket is already filled with white paint!",
     "roadstuff.message.bucket.full": "This bucket is full!",
-    "roadstuff.message.bucket.underwater": "You can't interact with a bucket under water!"
+    "roadstuff.message.bucket.underwater": "You can't interact with a bucket under water!",
+    
+    "roadstuff.gui.paintbrush.title": "Paintbrush Configuration"
 }

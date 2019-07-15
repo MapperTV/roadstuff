@@ -5,30 +5,34 @@ import java.util.function.Supplier;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.network.PacketBuffer;
 import net.minecraftforge.fml.network.NetworkEvent;
-import tv.mapper.roadstuff.item.ItemBrush;
+import tv.mapper.roadstuff.item.BrushItem;
 
 public class BrushPacket
 {
     private int pattern;
     private int paint;
+    private float scroll;
 
-    public BrushPacket(int pattern, int paint)
+    public BrushPacket(int pattern, int paint, float scroll)
     {
         this.pattern = pattern;
         this.paint = paint;
+        this.scroll = scroll;
     }
 
     public static void encode(BrushPacket packet, PacketBuffer buffer)
     {
         buffer.writeInt(packet.pattern);
         buffer.writeInt(packet.paint);
+        buffer.writeFloat(packet.scroll);
     }
 
     public static BrushPacket decode(PacketBuffer buffer)
     {
         int pattern = buffer.readInt();
         int paint = buffer.readInt();
-        BrushPacket instance = new BrushPacket(pattern, paint);
+        float scroll = buffer.readFloat();
+        BrushPacket instance = new BrushPacket(pattern, paint, scroll);
         return instance;
     }
 
@@ -37,9 +41,15 @@ public class BrushPacket
         context.get().setPacketHandled(true);
         ServerPlayerEntity sender = context.get().getSender();
 
-        if(sender.getHeldItemMainhand().getItem() instanceof ItemBrush)
+        if(sender.getHeldItemMainhand().getItem() instanceof BrushItem)
+        {
             sender.getHeldItemMainhand().getTag().putInt("pattern", packet.pattern);
-        else if(sender.getHeldItemOffhand().getItem() instanceof ItemBrush)
+            sender.getHeldItemMainhand().getTag().putFloat("scroll", packet.scroll);
+        }
+        else if(sender.getHeldItemOffhand().getItem() instanceof BrushItem)
+        {
             sender.getHeldItemOffhand().getTag().putInt("pattern", packet.pattern);
+            sender.getHeldItemOffhand().getTag().putFloat("scroll", packet.scroll);
+        }
     }
 }

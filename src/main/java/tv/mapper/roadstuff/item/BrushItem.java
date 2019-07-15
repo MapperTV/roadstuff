@@ -28,11 +28,11 @@ import tv.mapper.roadstuff.block.RotatablePaintBlock;
 import tv.mapper.roadstuff.init.ModBlocks;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
-public class ItemBrush extends Item
+public class BrushItem extends Item
 {
     public static final int MAX_PAINT = 128;
 
-    public ItemBrush(Properties properties)
+    public BrushItem(Properties properties)
     {
         super(properties);
         this.addPropertyOverride(new ResourceLocation("color"), (itemStack, world, entity) ->
@@ -58,7 +58,7 @@ public class ItemBrush extends Item
 
         if(world.isRemote && !player.isSneaking())
         {
-            ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"));
+            ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"), stack.getTag().getFloat("scroll"));
         }
 
         return new ActionResult<>(ActionResultType.SUCCESS, stack);
@@ -104,6 +104,7 @@ public class ItemBrush extends Item
             nbt.putInt("paint", 0);
             nbt.putInt("pattern", 0);
             nbt.putInt("color", EnumPaintColor.WHITE.getId());
+            nbt.putFloat("scroll", 0.0f);
         }
         return nbt;
     }
