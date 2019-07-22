@@ -1,11 +1,12 @@
 modLoader="javafml" #mandatory
-loaderVersion="[27,)"
-#issueTrackerURL="http://my.issue.tracker/" #optional
+loaderVersion="[28,)"
+issueTrackerURL="https://github.com/KillerMapper/roadstuff/issues" #optional
 logoFile="roadstuff_logo.png" #optional
 [[mods]] #mandatory
 modId="roadstuff" #mandatory
 version="${file.jarVersion}" #mandatory
 displayName="Road Stuff 2" #mandatory
+#updateJSONURL="http://myurl.me/" #optional
 displayURL="http://mapper.tv/roadstuff/" #optional
 credits="Thanks to everyone working on Forge and MinecraftForgeFrance." #optional
 authors="Mapper" #optional
@@ -17,13 +18,13 @@ Road Stuff 2 for Minecraft / Forge 1.14+ - WARNING: This is a very alpha version
 [[dependencies.roadstuff]]
     modId="forge" #mandatory
     mandatory=true #mandatory
-    versionRange="[27,)" #mandatory
+    versionRange="[28,)" #mandatory
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.roadstuff]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.3]"
+    versionRange="[1.14.4]"
     ordering="NONE"
     side="BOTH"

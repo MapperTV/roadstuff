@@ -12,6 +12,7 @@ import net.minecraft.util.text.TranslationTextComponent;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.network.BrushPacket;
 import tv.mapper.roadstuff.network.RSNetwork;
+import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 import tv.mapper.roadstuff.util.ModConstants;
 
 public class GuiBrush extends Screen
@@ -138,18 +139,18 @@ public class GuiBrush extends Screen
         {
             posX = Math.toIntExact(Math.round((mouseX - guiLeft - 9) / 18) * 18) + guiLeft + 9;
             posY = Math.toIntExact(Math.round((mouseY - guiTop - 17) / 18) * 18) + guiTop + 18;
-            this.font.drawStringWithShadow("posX: " + posX, 8, 80, new Color(255, 0, 0).getRGB());
-            this.font.drawStringWithShadow("PosY: " + posY, 8, 96, new Color(255, 0, 0).getRGB());
+            // this.font.drawStringWithShadow("posX: " + posX, 8, 80, new Color(255, 0, 0).getRGB());
+            // this.font.drawStringWithShadow("PosY: " + posY, 8, 96, new Color(255, 0, 0).getRGB());
             fill(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
         }
 
         // Draws selection box around the selected pattern
 
-        int patternCalc = pattern / 9;
+        // int patternCalc = pattern / 9;
         int boxY = selectY - (scroll * 18);
 
-        this.font.drawStringWithShadow("patternCalc: " + patternCalc + " (" + pattern / 9 + ")", 8, 170, new Color(255, 255, 0).getRGB());
-        this.font.drawStringWithShadow("boxY: " + boxY, 8, 186, new Color(255, 255, 0).getRGB());
+        // this.font.drawStringWithShadow("patternCalc: " + patternCalc + " (" + pattern / 9 + ")", 8, 170, new Color(255, 255, 0).getRGB());
+        // this.font.drawStringWithShadow("boxY: " + boxY, 8, 186, new Color(255, 255, 0).getRGB());
 
         if(boxY > guiTop && boxY < guiTop + HEIGHT - 27)
         {
@@ -169,14 +170,14 @@ public class GuiBrush extends Screen
         this.font.drawStringWithShadow(warning2, this.width / 2 - (warning2.length() * 5) / 2, this.height - this.height / 26, new Color(255, 0, 0).getRGB());
         this.font.drawStringWithShadow("Pattern: " + pattern, 8, 24, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow("Paint: " + paint, 8, 40, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow("Color: " + color, 8, 56, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow("selectX: " + selectX, 8, 72, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow("selectY: " + selectY, 8, 88, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow("scroll: " + scroll, 8, 110, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow("currentScroll: " + currentScroll, 8, 140, new Color(255, 255, 0).getRGB());
-        this.font.drawStringWithShadow("isScrolling: " + isScrolling, 8, 156, new Color(255, 255, 0).getRGB());
-        this.font.drawStringWithShadow("mouseX: " + mouseX, 8, 200, new Color(255, 255, 0).getRGB());
-        this.font.drawStringWithShadow("mouseY: " + mouseY, 8, 216, new Color(255, 255, 0).getRGB());
+        this.font.drawStringWithShadow("Color: " + EnumPaintColor.getColorByID(color), 8, 56, new Color(255, 255, 255).getRGB());
+        // this.font.drawStringWithShadow("selectX: " + selectX, 8, 72, new Color(255, 255, 255).getRGB());
+        // this.font.drawStringWithShadow("selectY: " + selectY, 8, 88, new Color(255, 255, 255).getRGB());
+        // this.font.drawStringWithShadow("scroll: " + scroll, 8, 110, new Color(255, 255, 255).getRGB());
+        // this.font.drawStringWithShadow("currentScroll: " + currentScroll, 8, 140, new Color(255, 255, 0).getRGB());
+        // this.font.drawStringWithShadow("isScrolling: " + isScrolling, 8, 156, new Color(255, 255, 0).getRGB());
+        // this.font.drawStringWithShadow("mouseX: " + mouseX, 8, 200, new Color(255, 255, 0).getRGB());
+        // this.font.drawStringWithShadow("mouseY: " + mouseY, 8, 216, new Color(255, 255, 0).getRGB());
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button)
