@@ -11,7 +11,7 @@ public class ModItemGroups
         @Override
         public ItemStack createIcon()
         {
-            return new ItemStack(ModBlocks.ASPHALT);
+            return new ItemStack(ModBlocks.TRAFFIC_CONE);
         }
     };
 }

@@ -581,6 +581,10 @@
     "block.roadstuff.concrete_yellow_line_143": "Concrete (Yellow Pattern 143)",
     
     "block.roadstuff.paint_bucket": "Paint Bucket",
+    
+    "block.roadstuff.traffic_cone": "Traffic Cone",
+    "block.roadstuff.traffic_barrel": "Traffic Barrel",
+    "block.roadstuff.traffic_bollard": "Traffic Bollard",
         
     "block.roadstuff.bitumen_block": "Block of Raw Bitumen",
     "block.roadstuff.bitumen_ore": "Bitumen Ore",

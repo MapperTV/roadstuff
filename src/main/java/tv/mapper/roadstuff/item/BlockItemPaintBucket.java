@@ -12,9 +12,9 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.world.World;
 
-public class ItemBlockPaintBucket extends BlockItem
+public class BlockItemPaintBucket extends BlockItem
 {
-    public ItemBlockPaintBucket(Block blockIn, Properties builder)
+    public BlockItemPaintBucket(Block blockIn, Properties builder)
     {
         super(blockIn, builder);
         this.addPropertyOverride(new ResourceLocation("color"), (itemStack, world, entity) ->

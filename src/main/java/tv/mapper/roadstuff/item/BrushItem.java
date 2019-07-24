@@ -58,7 +58,7 @@ public class BrushItem extends Item
 
         if(world.isRemote && !player.isSneaking())
         {
-            ItemBrushClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"), stack.getTag().getFloat("scroll"));
+            BrushItemClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"), stack.getTag().getFloat("scroll"));
         }
 
         return new ActionResult<>(ActionResultType.SUCCESS, stack);
