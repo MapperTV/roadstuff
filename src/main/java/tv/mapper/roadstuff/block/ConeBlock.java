@@ -2,6 +2,8 @@ package tv.mapper.roadstuff.block;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.block.IBucketPickupHandler;
+import net.minecraft.block.ILiquidContainer;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
@@ -17,22 +19,37 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 
-public class ConeBlock extends Block
+public class ConeBlock extends Block implements IBucketPickupHandler, ILiquidContainer
 {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private static final VoxelShape BASE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D);
+    private static final VoxelShape CONE_BASE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D);
     private static final VoxelShape CONE1 = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 4.0D, 13.0D);
     private static final VoxelShape CONE2 = Block.makeCuboidShape(4.0D, 4.0D, 4.0D, 12.0D, 7.0D, 12.0D);
     private static final VoxelShape CONE3 = Block.makeCuboidShape(5.0D, 6.0D, 5.0D, 11.0D, 10.0D, 11.0D);
     private static final VoxelShape CONE4 = Block.makeCuboidShape(6.0D, 9.0D, 6.0D, 10.0D, 13.0D, 10.0D);
     private static final VoxelShape CONE5 = Block.makeCuboidShape(7.0D, 13.0D, 7.0D, 9.0D, 16.0D, 9.0D);
 
-    private static final VoxelShape CONE = VoxelShapes.or(BASE, VoxelShapes.or(CONE1, VoxelShapes.or(CONE2, VoxelShapes.or(CONE3, VoxelShapes.or(CONE4, CONE5)))));
+    private static final VoxelShape CONE = VoxelShapes.or(CONE_BASE, VoxelShapes.or(CONE1, VoxelShapes.or(CONE2, VoxelShapes.or(CONE3, VoxelShapes.or(CONE4, CONE5)))));
 
-    public ConeBlock(Properties properties)
+    private static final VoxelShape BARREL_BASE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D);
+    private static final VoxelShape BARREL_MAIN = Block.makeCuboidShape(4.0D, 1.0D, 4.0D, 12.0D, 14.0D, 12.0D);
+    private static final VoxelShape BARREL_HANDLE = Block.makeCuboidShape(5.0D, 14.0D, 7.0D, 11.0D, 16.0D, 9.0D);
+
+    private static final VoxelShape BARREL = VoxelShapes.or(BARREL_BASE, VoxelShapes.or(BARREL_MAIN, BARREL_HANDLE));
+    
+    private static final VoxelShape BOLLARD_BOTTOM = Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 1.0D, 12.0D);
+    private static final VoxelShape BOLLARD_BASE = Block.makeCuboidShape(6.0D, 1.0D, 6.0D, 10.0D, 2.0D, 10.0D);
+    private static final VoxelShape BOLLARD_PORT = Block.makeCuboidShape(7.0D, 2.0D, 7.0D, 9.0D, 16.0D, 9.0D);
+
+    private static final VoxelShape BOLLARD = VoxelShapes.or(BOLLARD_BOTTOM, VoxelShapes.or(BOLLARD_BASE, BOLLARD_PORT));
+
+    private int type = 0;
+
+    public ConeBlock(Properties properties, int type)
     {
         super(properties);
+        this.type = type;
         this.setDefaultState(this.getDefaultState().with(WATERLOGGED, Boolean.valueOf(false)));
     }
 
@@ -45,13 +62,33 @@ public class ConeBlock extends Block
     @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
-        return CONE;
+        switch(type)
+        {
+            case 0:
+                return CONE;
+            case 1:
+                return BARREL;
+            case 2:
+                return BOLLARD;
+            default:
+                return CONE;
+        }
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
-        return CONE;
+        switch(type)
+        {
+            case 0:
+                return CONE;
+            case 1:
+                return BARREL;
+            case 2:
+                return BOLLARD;
+            default:
+                return CONE;
+        }
     }
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
