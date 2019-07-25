@@ -1,0 +1,23 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        " # ",
+        "O O",
+        "BBB"
+    ],
+    "key": {
+        "#": {
+            "item": "minecraft:white_dye"
+        },
+        "O": {
+            "item": "minecraft:orange_dye"
+        },
+        "B": {
+            "item": "roadstuff:raw_bitumen"
+        }
+    },
+    "result": {
+        "item": "roadstuff:traffic_cone",
+        "count": 1
+    }
+}
