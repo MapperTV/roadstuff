@@ -582,9 +582,9 @@
     
     "block.roadstuff.paint_bucket": "Paint Bucket",
     
-    "block.roadstuff.traffic_cone": "Traffic Cone",
-    "block.roadstuff.traffic_barrel": "Traffic Barrel",
-    "block.roadstuff.traffic_bollard": "Traffic Bollard",
+    "block.roadstuff.orange_traffic_cone": "Orange Traffic Cone",
+    "block.roadstuff.orange_traffic_barrel": "Orange Traffic Barrel",
+    "block.roadstuff.orange_traffic_bollard": "Orange Traffic Bollard",
         
     "block.roadstuff.bitumen_block": "Block of Raw Bitumen",
     "block.roadstuff.bitumen_ore": "Bitumen Ore",

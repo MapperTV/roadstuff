@@ -2,12 +2,12 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "traffic_cone",
+      "name": "orange_traffic_cone",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "roadstuff:traffic_cone"
+          "name": "roadstuff:orange_traffic_cone"
         }
       ],
       "conditions": [

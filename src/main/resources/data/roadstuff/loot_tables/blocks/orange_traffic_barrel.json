@@ -2,12 +2,12 @@
   "type": "minecraft:block",
   "pools": [
     {
-      "name": "traffic_bollard",
+      "name": "orange_traffic_barrel",
       "rolls": 1,
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "roadstuff:traffic_bollard"
+          "name": "roadstuff:orange_traffic_barrel"
         }
       ],
       "conditions": [

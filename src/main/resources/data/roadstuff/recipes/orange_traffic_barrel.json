@@ -1,8 +1,8 @@
 {
     "type": "minecraft:crafting_shaped",
     "pattern": [
-        " # ",
-        " O ",
+        "O#O",
+        "O O",
         "BBB"
     ],
     "key": {
@@ -17,7 +17,7 @@
         }
     },
     "result": {
-        "item": "roadstuff:traffic_bollard",
+        "item": "roadstuff:orange_traffic_barrel",
         "count": 1
     }
 }
