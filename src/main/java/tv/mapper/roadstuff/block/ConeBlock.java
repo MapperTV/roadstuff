@@ -11,6 +11,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
 import net.minecraft.util.Direction;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
@@ -44,9 +45,9 @@ public class ConeBlock extends Block implements IBucketPickupHandler, ILiquidCon
 
     private static final VoxelShape BOLLARD = VoxelShapes.or(BOLLARD_BOTTOM, VoxelShapes.or(BOLLARD_BASE, BOLLARD_PORT));
 
-    private int type = 0;
+    private EnumConeType type;
 
-    public ConeBlock(Properties properties, int type)
+    public ConeBlock(Properties properties, EnumConeType type)
     {
         super(properties);
         this.type = type;
@@ -64,11 +65,11 @@ public class ConeBlock extends Block implements IBucketPickupHandler, ILiquidCon
     {
         switch(type)
         {
-            case 0:
+            case CONE:
                 return CONE;
-            case 1:
+            case BARREL:
                 return BARREL;
-            case 2:
+            case BOLLARD:
                 return BOLLARD;
             default:
                 return CONE;
@@ -80,11 +81,11 @@ public class ConeBlock extends Block implements IBucketPickupHandler, ILiquidCon
     {
         switch(type)
         {
-            case 0:
+            case CONE:
                 return CONE;
-            case 1:
+            case BARREL:
                 return BARREL;
-            case 2:
+            case BOLLARD:
                 return BOLLARD;
             default:
                 return CONE;
@@ -153,6 +154,32 @@ public class ConeBlock extends Block implements IBucketPickupHandler, ILiquidCon
         else
         {
             return false;
+        }
+    }
+    
+    public enum EnumConeType implements IStringSerializable
+    {
+        CONE(0, "cone"),
+        BARREL(1, "barrel"),
+        BOLLARD(2, "bollard");
+
+        private final int id;
+        private final String name;
+
+        private EnumConeType(int id, String name)
+        {
+            this.id = id;
+            this.name = name;
+        }
+
+        public String getName()
+        {
+            return this.name;
+        }
+        
+        public int getId()
+        {
+            return this.id;
         }
     }
 }

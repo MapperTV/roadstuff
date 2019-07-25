@@ -16,6 +16,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.ConeBlock;
+import tv.mapper.roadstuff.block.ConeBlock.EnumConeType;
 import tv.mapper.roadstuff.block.PaintBucketBlock;
 import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.block.RotatablePaintBlock;
@@ -67,9 +68,9 @@ public class ModBlocks
 
         event.getRegistry().register(new PaintBucketBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F, 3.0F)).setRegistryName("paint_bucket"));
 
-        event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.IRON, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(0.5F, 3.0F), 0).setRegistryName("traffic_cone"));
-        event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.IRON, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(0.5F, 3.0F), 1).setRegistryName("traffic_barrel"));
-        event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.IRON, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(0.5F, 3.0F), 2).setRegistryName("traffic_bollard"));
+        event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.IRON, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(0.5F, 3.0F), EnumConeType.CONE).setRegistryName("traffic_cone"));
+        event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.IRON, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(0.5F, 3.0F), EnumConeType.BARREL).setRegistryName("traffic_barrel"));
+        event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.IRON, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(0.5F, 3.0F), EnumConeType.BOLLARD).setRegistryName("traffic_bollard"));
 
         event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F)).setRegistryName("bitumen_block"));
         event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F)).setRegistryName("bitumen_ore"));
