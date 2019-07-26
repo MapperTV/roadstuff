@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "OOO",
+        "O O",
+        "BBB"
+    ],
+    "key": {
+        "O": {
+            "item": "minecraft:white_dye"
+        },
+        "B": {
+            "item": "roadstuff:raw_bitumen"
+        }
+    },
+    "result": {
+        "item": "roadstuff:white_traffic_barrel",
+        "count": 1
+    }
+}

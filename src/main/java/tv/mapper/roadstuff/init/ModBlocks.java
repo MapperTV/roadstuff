@@ -39,6 +39,10 @@ public class ModBlocks
 
     public static final Block PAINT_BUCKET = null;;
 
+    public static final Block WHITE_TRAFFIC_CONE = null;;
+    public static final Block WHITE_TRAFFIC_BARREL = null;;
+    public static final Block WHITE_TRAFFIC_BOLLARD = null;;
+    
     public static final Block ORANGE_TRAFFIC_CONE = null;;
     public static final Block ORANGE_TRAFFIC_BARREL = null;;
     public static final Block ORANGE_TRAFFIC_BOLLARD = null;;
@@ -52,6 +56,10 @@ public class ModBlocks
         event.getRegistry().register(new PaintableBlock(Block.Properties.create(Material.ROCK, MaterialColor.GRAY).hardnessAndResistance(1.0F, 6.0F), 1).setRegistryName("concrete"));
 
         event.getRegistry().register(new PaintBucketBlock(Block.Properties.create(Material.IRON).hardnessAndResistance(0.5F, 3.0F)).setRegistryName("paint_bucket"));
+
+        event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.CONE).setRegistryName("white_traffic_cone"));
+        event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.BARREL).setRegistryName("white_traffic_barrel"));
+        event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.BOLLARD).setRegistryName("white_traffic_bollard"));
 
         event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.CONE).setRegistryName("orange_traffic_cone"));
         event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.ORANGE_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.BARREL).setRegistryName("orange_traffic_barrel"));
@@ -86,6 +94,10 @@ public class ModBlocks
 
         event.getRegistry().register(new BlockItemPaintBucket(PAINT_BUCKET, new Item.Properties().group(ModItemGroups.ROADSTUFF).maxStackSize(1)).setRegistryName(PAINT_BUCKET.getRegistryName()));
 
+        event.getRegistry().register(new BlockItem(WHITE_TRAFFIC_CONE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(WHITE_TRAFFIC_CONE.getRegistryName()));
+        event.getRegistry().register(new BlockItem(WHITE_TRAFFIC_BARREL, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(WHITE_TRAFFIC_BARREL.getRegistryName()));
+        event.getRegistry().register(new BlockItem(WHITE_TRAFFIC_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(WHITE_TRAFFIC_BOLLARD.getRegistryName()));
+        
         event.getRegistry().register(new BlockItem(ORANGE_TRAFFIC_CONE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ORANGE_TRAFFIC_CONE.getRegistryName()));
         event.getRegistry().register(new BlockItem(ORANGE_TRAFFIC_BARREL, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ORANGE_TRAFFIC_BARREL.getRegistryName()));
         event.getRegistry().register(new BlockItem(ORANGE_TRAFFIC_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ORANGE_TRAFFIC_BOLLARD.getRegistryName()));

@@ -582,6 +582,10 @@
 
     "block.roadstuff.paint_bucket": "Pot de peinture",
     
+    "block.roadstuff.white_traffic_cone": "Cône de signalisation blanc",
+    "block.roadstuff.white_traffic_barrel": "Baril de signalisation blanc",
+    "block.roadstuff.white_traffic_bollard": "Bollard de signalisation blanc",
+    
     "block.roadstuff.orange_traffic_cone": "Cône de signalisation orange",
     "block.roadstuff.orange_traffic_barrel": "Baril de signalisation orange",
     "block.roadstuff.orange_traffic_bollard": "Bollard de signalisation orange",
