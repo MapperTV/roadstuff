@@ -589,6 +589,62 @@
     "block.roadstuff.orange_traffic_cone": "Cône de signalisation orange",
     "block.roadstuff.orange_traffic_barrel": "Baril de signalisation orange",
     "block.roadstuff.orange_traffic_bollard": "Bollard de signalisation orange",
+        
+    "block.roadstuff.magenta_traffic_cone": "Cône de signalisation magenta",
+    "block.roadstuff.magenta_traffic_barrel": "Baril de signalisation magenta",
+    "block.roadstuff.magenta_traffic_bollard": "Bollard de signalisation magenta",
+        
+    "block.roadstuff.light_blue_traffic_cone": "Cône de signalisation bleu clair",
+    "block.roadstuff.light_blue_traffic_barrel": "Baril de signalisation bleu clair",
+    "block.roadstuff.light_blue_traffic_bollard": "Bollard de signalisation bleu clair",
+        
+    "block.roadstuff.yellow_traffic_cone": "Cône de signalisation jaune",
+    "block.roadstuff.yellow_traffic_barrel": "Baril de signalisation jaune",
+    "block.roadstuff.yellow_traffic_bollard": "Bollard de signalisation jaune",
+        
+    "block.roadstuff.lime_traffic_cone": "Cône de signalisation vert clair",
+    "block.roadstuff.lime_traffic_barrel": "Baril de signalisation vert clair",
+    "block.roadstuff.lime_traffic_bollard": "Bollard de signalisation vert clair",
+        
+    "block.roadstuff.pink_traffic_cone": "Cône de signalisation rose",
+    "block.roadstuff.pink_traffic_barrel": "Baril de signalisation rose",
+    "block.roadstuff.pink_traffic_bollard": "Bollard de signalisation rose",
+        
+    "block.roadstuff.gray_traffic_cone": "Cône de signalisation gris",
+    "block.roadstuff.gray_traffic_barrel": "Baril de signalisation gris",
+    "block.roadstuff.gray_traffic_bollard": "Bollard de signalisation gris",
+        
+    "block.roadstuff.light_gray_traffic_cone": "Cône de signalisation gris clair",
+    "block.roadstuff.light_gray_traffic_barrel": "Baril de signalisation gris clair",
+    "block.roadstuff.light_gray_traffic_bollard": "Bollard de signalisation gris clair",
+        
+    "block.roadstuff.cyan_traffic_cone": "Cône de signalisation cyan",
+    "block.roadstuff.cyan_traffic_barrel": "Baril de signalisation cyan",
+    "block.roadstuff.cyan_traffic_bollard": "Bollard de signalisation cyan",
+        
+    "block.roadstuff.purple_traffic_cone": "Cône de signalisation violet",
+    "block.roadstuff.purple_traffic_barrel": "Baril de signalisation violet",
+    "block.roadstuff.purple_traffic_bollard": "Bollard de signalisation violet",
+        
+    "block.roadstuff.blue_traffic_cone": "Cône de signalisation bleu",
+    "block.roadstuff.blue_traffic_barrel": "Baril de signalisation bleu",
+    "block.roadstuff.blue_traffic_bollard": "Bollard de signalisation bleu",
+        
+    "block.roadstuff.brown_traffic_cone": "Cône de signalisation marron",
+    "block.roadstuff.brown_traffic_barrel": "Baril de signalisation marron",
+    "block.roadstuff.brown_traffic_bollard": "Bollard de signalisation marron",
+        
+    "block.roadstuff.green_traffic_cone": "Cône de signalisation vert",
+    "block.roadstuff.green_traffic_barrel": "Baril de signalisation vert",
+    "block.roadstuff.green_traffic_bollard": "Bollard de signalisation vert",
+        
+    "block.roadstuff.red_traffic_cone": "Cône de signalisation rouge",
+    "block.roadstuff.red_traffic_barrel": "Baril de signalisation rouge",
+    "block.roadstuff.red_traffic_bollard": "Bollard de signalisation rouge",
+        
+    "block.roadstuff.black_traffic_cone": "Cône de signalisation noir",
+    "block.roadstuff.black_traffic_barrel": "Baril de signalisation noir",
+    "block.roadstuff.black_traffic_bollard": "Bollard de signalisation noir",
     
     "block.roadstuff.bitumen_block": "Bloc de bitume brut",
     "block.roadstuff.bitumen_ore": "Minerai de bitume",

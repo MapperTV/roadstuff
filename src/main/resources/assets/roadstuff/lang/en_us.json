@@ -590,6 +590,62 @@
     "block.roadstuff.orange_traffic_barrel": "Orange Traffic Barrel",
     "block.roadstuff.orange_traffic_bollard": "Orange Traffic Bollard",
         
+    "block.roadstuff.magenta_traffic_cone": "Magenta Traffic Cone",
+    "block.roadstuff.magenta_traffic_barrel": "Magenta Traffic Barrel",
+    "block.roadstuff.magenta_traffic_bollard": "Magenta Traffic Bollard",
+        
+    "block.roadstuff.light_blue_traffic_cone": "Light Blue Traffic Cone",
+    "block.roadstuff.light_blue_traffic_barrel": "Light Blue Traffic Barrel",
+    "block.roadstuff.light_blue_traffic_bollard": "Light Blue Traffic Bollard",
+        
+    "block.roadstuff.yellow_traffic_cone": "Yellow Traffic Cone",
+    "block.roadstuff.yellow_traffic_barrel": "Yellow Traffic Barrel",
+    "block.roadstuff.yellow_traffic_bollard": "Yellow Traffic Bollard",
+        
+    "block.roadstuff.lime_traffic_cone": "Lime Traffic Cone",
+    "block.roadstuff.lime_traffic_barrel": "Lime Traffic Barrel",
+    "block.roadstuff.lime_traffic_bollard": "Lime Traffic Bollard",
+        
+    "block.roadstuff.pink_traffic_cone": "Pink Traffic Cone",
+    "block.roadstuff.pink_traffic_barrel": "Pink Traffic Barrel",
+    "block.roadstuff.pink_traffic_bollard": "Pink Traffic Bollard",
+        
+    "block.roadstuff.gray_traffic_cone": "Gray Traffic Cone",
+    "block.roadstuff.gray_traffic_barrel": "Gray Traffic Barrel",
+    "block.roadstuff.gray_traffic_bollard": "Gray Traffic Bollard",
+        
+    "block.roadstuff.light_gray_traffic_cone": "Light Gray Traffic Cone",
+    "block.roadstuff.light_gray_traffic_barrel": "Light Gray Traffic Barrel",
+    "block.roadstuff.light_gray_traffic_bollard": "Light Gray Traffic Bollard",
+        
+    "block.roadstuff.cyan_traffic_cone": "Cyan Traffic Cone",
+    "block.roadstuff.cyan_traffic_barrel": "Cyan Traffic Barrel",
+    "block.roadstuff.cyan_traffic_bollard": "Cyan Traffic Bollard",
+        
+    "block.roadstuff.purple_traffic_cone": "Purple Traffic Cone",
+    "block.roadstuff.purple_traffic_barrel": "Purple Traffic Barrel",
+    "block.roadstuff.purple_traffic_bollard": "Purple Traffic Bollard",
+        
+    "block.roadstuff.blue_traffic_cone": "Blue Traffic Cone",
+    "block.roadstuff.blue_traffic_barrel": "Blue Traffic Barrel",
+    "block.roadstuff.blue_traffic_bollard": "Blue Traffic Bollard",
+        
+    "block.roadstuff.brown_traffic_cone": "Brown Traffic Cone",
+    "block.roadstuff.brown_traffic_barrel": "Brown Traffic Barrel",
+    "block.roadstuff.brown_traffic_bollard": "Brown Traffic Bollard",
+        
+    "block.roadstuff.green_traffic_cone": "Green Traffic Cone",
+    "block.roadstuff.green_traffic_barrel": "Green Traffic Barrel",
+    "block.roadstuff.green_traffic_bollard": "Green Traffic Bollard",
+        
+    "block.roadstuff.red_traffic_cone": "Red Traffic Cone",
+    "block.roadstuff.red_traffic_barrel": "Red Traffic Barrel",
+    "block.roadstuff.red_traffic_bollard": "Red Traffic Bollard",
+        
+    "block.roadstuff.black_traffic_cone": "Black Traffic Cone",
+    "block.roadstuff.black_traffic_barrel": "Black Traffic Barrel",
+    "block.roadstuff.black_traffic_bollard": "Black Traffic Bollard",
+        
     "block.roadstuff.bitumen_block": "Block of Raw Bitumen",
     "block.roadstuff.bitumen_ore": "Bitumen Ore",
     

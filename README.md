@@ -14,7 +14,7 @@ Roadmap:
 • Paintbrush and paint buckets ✔️  
 • Road line variants paintable with the paintbrush ✔️  
 • Traffic cone (orange default color) ✔️  
-• Traffic cone color variants [WIP]  
+• Traffic cone color variants ✔️  
 • Miscellaneous items (reflectors etc) [TODO]  
 • Road slope blocks [TODO]  
 • Traffic signs system [TODO]  
