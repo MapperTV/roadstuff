@@ -24,7 +24,7 @@ public class ConeBlock extends Block implements IBucketPickupHandler, ILiquidCon
 {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    private static final VoxelShape CONE_BASE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D);
+    private static final VoxelShape CONE_BASE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 1.0D, 14.0D);
     private static final VoxelShape CONE1 = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 4.0D, 13.0D);
     private static final VoxelShape CONE2 = Block.makeCuboidShape(4.0D, 4.0D, 4.0D, 12.0D, 7.0D, 12.0D);
     private static final VoxelShape CONE3 = Block.makeCuboidShape(5.0D, 6.0D, 5.0D, 11.0D, 10.0D, 11.0D);
