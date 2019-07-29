@@ -65,11 +65,11 @@ public class GuiBrush extends Screen
         guiLeft = this.width / 2 - WIDTH / 2;
         guiTop = this.height / 2 - HEIGHT / 2;
 
-        scroll = (int)((currentScroll + 0.1) * 6);
+        scroll = (int)((currentScroll + 0.1) * 14);
         if(scroll < 0)
             scroll = 0;
-        else if(scroll > 6)
-            scroll = 6;
+        else if(scroll > 14)
+            scroll = 14;
 
         int pattern_temp = pattern;
         if(pattern > 8 && pattern < 18)
@@ -102,6 +102,22 @@ public class GuiBrush extends Screen
             pattern_temp = pattern - 126;
         else if(pattern > 134 && pattern < 144)
             pattern_temp = pattern - 135;
+        else if(pattern > 143 && pattern < 153)
+            pattern_temp = pattern - 144;
+        else if(pattern > 152 && pattern < 162)
+            pattern_temp = pattern - 153;
+        else if(pattern > 161 && pattern < 171)
+            pattern_temp = pattern - 162;
+        else if(pattern > 170 && pattern < 180)
+            pattern_temp = pattern - 171;
+        else if(pattern > 179 && pattern < 189)
+            pattern_temp = pattern - 180;
+        else if(pattern > 188 && pattern < 198)
+            pattern_temp = pattern - 189;
+        else if(pattern > 197 && pattern < 207)
+            pattern_temp = pattern - 198;
+        else if(pattern > 206 && pattern < 216)
+            pattern_temp = pattern - 207;
 
         selectX = guiLeft + 6 + pattern_temp * 18;
         selectY = guiTop + 15 + (pattern / 9) * 18;
@@ -218,10 +234,10 @@ public class GuiBrush extends Screen
         scroll -= p_mouseScrolled_5_;
         if(scroll < 0)
             scroll = 0;
-        else if(scroll > (ModConstants.PATTERNS / 9) - 9)
-            scroll = (ModConstants.PATTERNS / 9) - 9;
+        else if(scroll > (ModConstants.PATTERNS / 9) - 10)
+            scroll = (ModConstants.PATTERNS / 9) - 10;
 
-        int i = (ModConstants.PATTERNS + 8) / 24;
+        int i = (ModConstants.PATTERNS + 8) / 16;
         this.currentScroll = (float)((double)this.currentScroll - p_mouseScrolled_5_ / (double)i);
         this.currentScroll = MathHelper.clamp(this.currentScroll, 0.0F, 1.0F);
 
@@ -237,7 +253,7 @@ public class GuiBrush extends Screen
             int j = i + 179;
             this.currentScroll = ((float)p_mouseDragged_3_ - (float)i - 7.5F) / ((float)(j - i) - 15.0F);
             this.currentScroll = MathHelper.clamp(this.currentScroll, 0.0F, 1.0F);
-            scroll = (int)((currentScroll + 0.1) * 6);
+            scroll = (int)((currentScroll + 0.05) * 14);
             if(scroll < 0)
                 scroll = 0;
             return true;

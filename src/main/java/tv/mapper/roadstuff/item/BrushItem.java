@@ -213,7 +213,8 @@ public class BrushItem extends Item
                         }
                         else
                             world.setBlockState(pos, newBlock.getDefaultState());
-                        nbt.putInt("paint", nbt.getInt("paint") - 1);
+                        if(!player.isCreative())
+                            nbt.putInt("paint", nbt.getInt("paint") - 1);
                         world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_PLACE, SoundCategory.BLOCKS, .8F, 2.0F);
                     }
                 }
