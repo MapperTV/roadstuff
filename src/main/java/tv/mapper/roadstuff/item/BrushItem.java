@@ -56,7 +56,8 @@ public class BrushItem extends Item
         CompoundNBT nbt = checkNBT(stack);
         stack.setTag(nbt);
 
-        if(world.isRemote && !player.isSneaking())
+        // ToDo: remove sneak condition when events will be back
+        if(world.isRemote && player.isSneaking())
         {
             BrushItemClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"), stack.getTag().getFloat("scroll"));
         }
@@ -69,13 +70,33 @@ public class BrushItem extends Item
         CompoundNBT nbt = checkNBT(context.getItem());
         context.getItem().setTag(nbt);
 
-        if(context.getPlayer().isSneaking())
+        // Temp fix for lack of events
+
+        ItemStack heldItem = context.getItem();
+        PlayerEntity player = context.getPlayer();
+
+        if(player.isSneaking())
         {
             if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.ASPHALT && context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.CONCRETE))
-            {
                 return copyPattern(context.getWorld().getBlockState(context.getPos()), context.getWorld(), nbt, context.getPlayer());
-            }
+            else if(context.getWorld().isRemote)
+                BrushItemClient.displayBrushGui(heldItem.getTag().getInt("pattern"), heldItem.getTag().getInt("paint"), heldItem.getTag().getInt("color"), heldItem.getTag().getFloat("scroll"));
         }
+        else
+            return paintLine(context.getFace(), context.getWorld().getBlockState(context.getPos()), context.getWorld(), context.getPos(), player, heldItem);
+
+        // ***
+
+        /*
+         * if(context.getPlayer().isSneaking())
+         * {
+         * if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.ASPHALT &&
+         * context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.CONCRETE))
+         * {
+         * return copyPattern(context.getWorld().getBlockState(context.getPos()), context.getWorld(), nbt, context.getPlayer());
+         * }
+         * }
+         */
         return ActionResultType.PASS;
 
     }
