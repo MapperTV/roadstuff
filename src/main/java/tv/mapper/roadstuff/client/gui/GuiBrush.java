@@ -186,7 +186,7 @@ public class GuiBrush extends Screen
         this.font.drawStringWithShadow(warning2, this.width / 2 - (warning2.length() * 5) / 2, this.height - this.height / 26, new Color(255, 0, 0).getRGB());
         this.font.drawStringWithShadow("Pattern: " + pattern, 8, 24, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow("Paint: " + paint, 8, 40, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow("Color: " + EnumPaintColor.getColorByID(color), 8, 56, new Color(255, 255, 255).getRGB());
+        this.font.drawStringWithShadow("Color: " + EnumPaintColor.getColorByID(color).getName(), 8, 56, new Color(255, 255, 255).getRGB());
         // this.font.drawStringWithShadow("selectX: " + selectX, 8, 72, new Color(255, 255, 255).getRGB());
         // this.font.drawStringWithShadow("selectY: " + selectY, 8, 88, new Color(255, 255, 255).getRGB());
         // this.font.drawStringWithShadow("scroll: " + scroll, 8, 110, new Color(255, 255, 255).getRGB());

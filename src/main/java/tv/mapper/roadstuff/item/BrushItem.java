@@ -107,7 +107,8 @@ public class BrushItem extends Item
         super.addInformation(stack, player, list, flag);
         if(stack.hasTag())
         {
-            list.add(new StringTextComponent("Pattern: " + stack.getTag().getInt("pattern") + ", paint: " + stack.getTag().getInt("paint") + ", color: " + stack.getTag().getInt("color")));
+            String color = EnumPaintColor.getColorByID(stack.getTag().getInt("color")).getName();
+            list.add(new StringTextComponent("Pattern: " + stack.getTag().getInt("pattern") + ", paint: " + stack.getTag().getInt("paint") + ", color: " + color));
         }
     }
 
