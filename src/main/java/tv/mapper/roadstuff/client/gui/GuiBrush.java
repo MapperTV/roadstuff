@@ -21,6 +21,7 @@ public class GuiBrush extends Screen
 
     private static final int WIDTH = 195;
     private static final int HEIGHT = 205;
+    private static final int ROWS = (ModConstants.PATTERNS / 9) - 10;
 
     String warning = "WARNING: Mod in alpha test, to not use on your main save!";
     String warning2 = "Blocks may change in the future, breaking saves. Always backup!";
@@ -65,59 +66,15 @@ public class GuiBrush extends Screen
         guiLeft = this.width / 2 - WIDTH / 2;
         guiTop = this.height / 2 - HEIGHT / 2;
 
-        scroll = (int)((currentScroll + 0.1) * 14);
+        scroll = (int)(currentScroll * ROWS);
         if(scroll < 0)
             scroll = 0;
-        else if(scroll > 14)
-            scroll = 14;
+        else if(scroll > ROWS)
+            scroll = ROWS;
 
         int pattern_temp = pattern;
-        if(pattern > 8 && pattern < 18)
-            pattern_temp = pattern - 9;
-        else if(pattern > 17 && pattern < 27)
-            pattern_temp = pattern - 18;
-        else if(pattern > 26 && pattern < 36)
-            pattern_temp = pattern - 27;
-        else if(pattern > 35 && pattern < 45)
-            pattern_temp = pattern - 36;
-        else if(pattern > 44 && pattern < 54)
-            pattern_temp = pattern - 45;
-        else if(pattern > 53 && pattern < 63)
-            pattern_temp = pattern - 54;
-        else if(pattern > 62 && pattern < 72)
-            pattern_temp = pattern - 63;
-        else if(pattern > 71 && pattern < 81)
-            pattern_temp = pattern - 72;
-        else if(pattern > 80 && pattern < 90)
-            pattern_temp = pattern - 81;
-        else if(pattern > 89 && pattern < 99)
-            pattern_temp = pattern - 90;
-        else if(pattern > 98 && pattern < 108)
-            pattern_temp = pattern - 99;
-        else if(pattern > 107 && pattern < 117)
-            pattern_temp = pattern - 108;
-        else if(pattern > 116 && pattern < 126)
-            pattern_temp = pattern - 117;
-        else if(pattern > 125 && pattern < 135)
-            pattern_temp = pattern - 126;
-        else if(pattern > 134 && pattern < 144)
-            pattern_temp = pattern - 135;
-        else if(pattern > 143 && pattern < 153)
-            pattern_temp = pattern - 144;
-        else if(pattern > 152 && pattern < 162)
-            pattern_temp = pattern - 153;
-        else if(pattern > 161 && pattern < 171)
-            pattern_temp = pattern - 162;
-        else if(pattern > 170 && pattern < 180)
-            pattern_temp = pattern - 171;
-        else if(pattern > 179 && pattern < 189)
-            pattern_temp = pattern - 180;
-        else if(pattern > 188 && pattern < 198)
-            pattern_temp = pattern - 189;
-        else if(pattern > 197 && pattern < 207)
-            pattern_temp = pattern - 198;
-        else if(pattern > 206 && pattern < 216)
-            pattern_temp = pattern - 207;
+        if(pattern > 8)
+            pattern_temp = pattern - 9 * (pattern / 9);
 
         selectX = guiLeft + 6 + pattern_temp * 18;
         selectY = guiTop + 15 + (pattern / 9) * 18;
@@ -155,18 +112,11 @@ public class GuiBrush extends Screen
         {
             posX = Math.toIntExact(Math.round((mouseX - guiLeft - 9) / 18) * 18) + guiLeft + 9;
             posY = Math.toIntExact(Math.round((mouseY - guiTop - 17) / 18) * 18) + guiTop + 18;
-            // this.font.drawStringWithShadow("posX: " + posX, 8, 80, new Color(255, 0, 0).getRGB());
-            // this.font.drawStringWithShadow("PosY: " + posY, 8, 96, new Color(255, 0, 0).getRGB());
             fill(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
         }
 
         // Draws selection box around the selected pattern
-
-        // int patternCalc = pattern / 9;
         int boxY = selectY - (scroll * 18);
-
-        // this.font.drawStringWithShadow("patternCalc: " + patternCalc + " (" + pattern / 9 + ")", 8, 170, new Color(255, 255, 0).getRGB());
-        // this.font.drawStringWithShadow("boxY: " + boxY, 8, 186, new Color(255, 255, 0).getRGB());
 
         if(boxY > guiTop && boxY < guiTop + HEIGHT - 27)
         {
@@ -175,7 +125,6 @@ public class GuiBrush extends Screen
         }
 
         // Scrollbar
-
         String title = new TranslationTextComponent("roadstuff.gui.paintbrush.title").getString();
         this.font.drawString(title, guiLeft + WIDTH / 2 - font.getStringWidth(title) / 2, guiTop + 6, 4210752);
 
@@ -187,13 +136,6 @@ public class GuiBrush extends Screen
         this.font.drawStringWithShadow("Pattern: " + pattern, 8, 24, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow("Paint: " + paint, 8, 40, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow("Color: " + EnumPaintColor.getColorByID(color).getName(), 8, 56, new Color(255, 255, 255).getRGB());
-        // this.font.drawStringWithShadow("selectX: " + selectX, 8, 72, new Color(255, 255, 255).getRGB());
-        // this.font.drawStringWithShadow("selectY: " + selectY, 8, 88, new Color(255, 255, 255).getRGB());
-        // this.font.drawStringWithShadow("scroll: " + scroll, 8, 110, new Color(255, 255, 255).getRGB());
-        // this.font.drawStringWithShadow("currentScroll: " + currentScroll, 8, 140, new Color(255, 255, 0).getRGB());
-        // this.font.drawStringWithShadow("isScrolling: " + isScrolling, 8, 156, new Color(255, 255, 0).getRGB());
-        // this.font.drawStringWithShadow("mouseX: " + mouseX, 8, 200, new Color(255, 255, 0).getRGB());
-        // this.font.drawStringWithShadow("mouseY: " + mouseY, 8, 216, new Color(255, 255, 0).getRGB());
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button)
@@ -234,10 +176,10 @@ public class GuiBrush extends Screen
         scroll -= p_mouseScrolled_5_;
         if(scroll < 0)
             scroll = 0;
-        else if(scroll > (ModConstants.PATTERNS / 9) - 10)
-            scroll = (ModConstants.PATTERNS / 9) - 10;
+        else if(scroll > ROWS)
+            scroll = ROWS;
 
-        int i = (ModConstants.PATTERNS + 8) / 16;
+        int i = (ModConstants.PATTERNS + 50) / ROWS;
         this.currentScroll = (float)((double)this.currentScroll - p_mouseScrolled_5_ / (double)i);
         this.currentScroll = MathHelper.clamp(this.currentScroll, 0.0F, 1.0F);
 
@@ -253,7 +195,7 @@ public class GuiBrush extends Screen
             int j = i + 179;
             this.currentScroll = ((float)p_mouseDragged_3_ - (float)i - 7.5F) / ((float)(j - i) - 15.0F);
             this.currentScroll = MathHelper.clamp(this.currentScroll, 0.0F, 1.0F);
-            scroll = (int)((currentScroll + 0.05) * 14);
+            scroll = (int)((currentScroll + 0.05) * ROWS);
             if(scroll < 0)
                 scroll = 0;
             return true;
