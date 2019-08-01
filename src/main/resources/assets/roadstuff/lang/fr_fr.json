@@ -73,6 +73,11 @@
     "block.roadstuff.bitumen_block": "Bloc de bitume brut",
     "block.roadstuff.bitumen_ore": "Minerai de bitume",
     
+    "block.roadstuff.white_reflector": "Réflecteur blanc",
+    "block.roadstuff.yellow_reflector": "Réflecteur jaune",
+    "block.roadstuff.luminescent_white_reflector": "Réflecteur blanc luminescent",
+    "block.roadstuff.luminescent_yellow_reflector": "Réflecteur jaune luminescent",
+    
     "_comment2": "ITEMS",
     
     "item.roadstuff.raw_bitumen": "Bitume brut",

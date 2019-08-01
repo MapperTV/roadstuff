@@ -73,6 +73,11 @@
     "block.roadstuff.bitumen_block": "Block of Raw Bitumen",
     "block.roadstuff.bitumen_ore": "Bitumen Ore",
     
+    "block.roadstuff.white_reflector": "White Reflector",
+    "block.roadstuff.yellow_reflector": "Yellow Reflector",
+    "block.roadstuff.luminescent_white_reflector": "Luminescent White Reflector",
+    "block.roadstuff.luminescent_yellow_reflector": "Luminescent Yellow Reflector",
+    
     "_comment2": "ITEMS",
     
     "item.roadstuff.raw_bitumen": "Raw Bitumen",
