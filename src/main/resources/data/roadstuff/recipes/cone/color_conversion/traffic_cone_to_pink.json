@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:pink_dye"
+        },
+        {
+            "tag": "roadstuff:traffic_cone"
+        }
+    ],
+    "result": {
+        "item": "roadstuff:pink_traffic_cone",
+        "count": 1
+    }
+}

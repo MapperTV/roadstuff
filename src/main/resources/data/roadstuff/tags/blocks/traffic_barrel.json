@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "roadstuff:white_traffic_barrel",
+    "roadstuff:orange_traffic_barrel",
+    "roadstuff:orange_traffic_barrel",
+    "roadstuff:light_blue_traffic_barrel",
+    "roadstuff:yellow_traffic_barrel",
+    "roadstuff:lime_traffic_barrel",
+    "roadstuff:pink_traffic_barrel",
+    "roadstuff:gray_traffic_barrel",
+    "roadstuff:light_gray_traffic_barrel",
+    "roadstuff:cyan_traffic_barrel",
+    "roadstuff:purple_traffic_barrel",
+    "roadstuff:blue_traffic_barrel",
+    "roadstuff:brown_traffic_barrel",
+    "roadstuff:green_traffic_barrel",
+    "roadstuff:red_traffic_barrel",
+    "roadstuff:black_traffic_barrel"
+  ]
+}

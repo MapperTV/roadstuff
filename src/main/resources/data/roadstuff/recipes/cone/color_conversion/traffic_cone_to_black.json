@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:black_dye"
+        },
+        {
+            "tag": "roadstuff:traffic_cone"
+        }
+    ],
+    "result": {
+        "item": "roadstuff:black_traffic_cone",
+        "count": 1
+    }
+}

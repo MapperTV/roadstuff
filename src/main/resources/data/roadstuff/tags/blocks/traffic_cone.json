@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "roadstuff:white_traffic_cone",
+    "roadstuff:orange_traffic_cone",
+    "roadstuff:orange_traffic_cone",
+    "roadstuff:light_blue_traffic_cone",
+    "roadstuff:yellow_traffic_cone",
+    "roadstuff:lime_traffic_cone",
+    "roadstuff:pink_traffic_cone",
+    "roadstuff:gray_traffic_cone",
+    "roadstuff:light_gray_traffic_cone",
+    "roadstuff:cyan_traffic_cone",
+    "roadstuff:purple_traffic_cone",
+    "roadstuff:blue_traffic_cone",
+    "roadstuff:brown_traffic_cone",
+    "roadstuff:green_traffic_cone",
+    "roadstuff:red_traffic_cone",
+    "roadstuff:black_traffic_cone"
+  ]
+}

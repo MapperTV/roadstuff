@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:red_dye"
+        },
+        {
+            "tag": "roadstuff:traffic_bollard"
+        }
+    ],
+    "result": {
+        "item": "roadstuff:red_traffic_bollard",
+        "count": 1
+    }
+}

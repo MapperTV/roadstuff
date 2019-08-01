@@ -1,0 +1,21 @@
+{
+  "replace": false,
+  "values": [
+    "roadstuff:white_traffic_bollard",
+    "roadstuff:orange_traffic_bollard",
+    "roadstuff:orange_traffic_bollard",
+    "roadstuff:light_blue_traffic_bollard",
+    "roadstuff:yellow_traffic_bollard",
+    "roadstuff:lime_traffic_bollard",
+    "roadstuff:pink_traffic_bollard",
+    "roadstuff:gray_traffic_bollard",
+    "roadstuff:light_gray_traffic_bollard",
+    "roadstuff:cyan_traffic_bollard",
+    "roadstuff:purple_traffic_bollard",
+    "roadstuff:blue_traffic_bollard",
+    "roadstuff:brown_traffic_bollard",
+    "roadstuff:green_traffic_bollard",
+    "roadstuff:red_traffic_bollard",
+    "roadstuff:black_traffic_bollard"
+  ]
+}

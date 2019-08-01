@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:yellow_dye"
+        },
+        {
+            "tag": "roadstuff:traffic_bollard"
+        }
+    ],
+    "result": {
+        "item": "roadstuff:yellow_traffic_bollard",
+        "count": 1
+    }
+}
