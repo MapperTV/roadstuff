@@ -24,10 +24,10 @@ public class RoadStuff
 {
     public static final String MODID = "roadstuff";
     public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
-    
+
     public static AsphaltPaintMap asphaltMap;
     public static ConcretePaintMap concreteMap;
-    
+
     public static long clickInterval = System.currentTimeMillis();
 
     public static final Logger LOGGER = LogManager.getLogger();
@@ -38,6 +38,7 @@ public class RoadStuff
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverSetup);
 
+        RoadStuffConfig.loadConfig(RoadStuffConfig.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("roadstuff-client.toml"));
         RoadStuffConfig.loadConfig(RoadStuffConfig.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve("roadstuff-server.toml"));
     }
 

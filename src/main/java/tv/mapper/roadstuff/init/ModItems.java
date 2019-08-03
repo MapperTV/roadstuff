@@ -14,8 +14,8 @@ import tv.mapper.roadstuff.item.ModItemGroups;
 @EventBusSubscriber(bus = Bus.MOD)
 public class ModItems
 {
-    public static Item RAW_BITUMEN;
-    public static Item PAINT_BRUSH;
+    public static final Item RAW_BITUMEN = null;
+    public static final Item PAINT_BRUSH = null;
 
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
