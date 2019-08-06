@@ -8,7 +8,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.PaintableBlock;
-import tv.mapper.roadstuff.config.GlobalConfig;
 import tv.mapper.roadstuff.init.ModItems;
 import tv.mapper.roadstuff.item.BrushItem;
 
@@ -18,9 +17,9 @@ public class EventHandler
     @SubscribeEvent
     public static void onLeftClickBlock(LeftClickBlock event)
     {
-        if(!GlobalConfig.BRUSH_ALTERNATIVE_MODE.get() && !event.getWorld().isRemote)
+        if(!ModConstants.ALTERNATE_BRUSH && !event.getWorld().isRemote)
         {
-            PlayerEntity player = event.getEntityPlayer();
+            PlayerEntity player = event.getPlayer();
             ItemStack heldItem = ItemStack.EMPTY;
 
             long timer = System.currentTimeMillis();

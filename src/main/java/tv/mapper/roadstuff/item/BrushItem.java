@@ -25,9 +25,9 @@ import net.minecraft.world.World;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.block.RotatablePaintBlock;
-import tv.mapper.roadstuff.config.GlobalConfig;
 import tv.mapper.roadstuff.init.ModBlocks;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
+import tv.mapper.roadstuff.util.ModConstants;
 
 public class BrushItem extends Item
 {
@@ -59,7 +59,7 @@ public class BrushItem extends Item
 
         if(world.isRemote)
         {
-            if(GlobalConfig.BRUSH_ALTERNATIVE_MODE.get())
+            if(ModConstants.ALTERNATE_BRUSH)
             {
                 if(player.isSneaking())
                     BrushItemClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"), stack.getTag().getFloat("scroll"));
@@ -79,7 +79,7 @@ public class BrushItem extends Item
         CompoundNBT nbt = checkNBT(context.getItem());
         context.getItem().setTag(nbt);
 
-        if(GlobalConfig.BRUSH_ALTERNATIVE_MODE.get())
+        if(ModConstants.ALTERNATE_BRUSH)
         {
             ItemStack heldItem = context.getItem();
             PlayerEntity player = context.getPlayer();

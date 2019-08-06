@@ -11,19 +11,14 @@ import tv.mapper.roadstuff.RoadStuff;
 public class RoadStuffConfig
 {
     private static final ForgeConfigSpec.Builder SERVER_BUILDER = new ForgeConfigSpec.Builder();
-    private static final ForgeConfigSpec.Builder CLIENT_BUILDER = new ForgeConfigSpec.Builder();
 
     public static final ForgeConfigSpec SERVER_CONFIG;
-    public static final ForgeConfigSpec CLIENT_CONFIG;
 
     static
     {
         WorldgenConfig.init(SERVER_BUILDER);
-        GlobalConfig.init(CLIENT_BUILDER);
 
         SERVER_CONFIG = SERVER_BUILDER.build();
-        CLIENT_CONFIG = CLIENT_BUILDER.build();
-
     }
 
     public static void loadConfig(ForgeConfigSpec spec, Path path)

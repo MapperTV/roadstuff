@@ -38,7 +38,6 @@ public class RoadStuff
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverSetup);
 
-        RoadStuffConfig.loadConfig(RoadStuffConfig.CLIENT_CONFIG, FMLPaths.CONFIGDIR.get().resolve("roadstuff-client.toml"));
         RoadStuffConfig.loadConfig(RoadStuffConfig.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve("roadstuff-server.toml"));
     }
 
