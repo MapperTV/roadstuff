@@ -29,7 +29,7 @@ public class EventHandler
             else if(player.getHeldItemOffhand().getItem() == ModItems.PAINT_BRUSH)
                 heldItem = player.getHeldItemOffhand();
 
-            if(event.getFace() == Direction.UP && event.getWorld().getBlockState(event.getPos()).getBlock() instanceof PaintableBlock)
+            if(heldItem.getItem() == ModItems.PAINT_BRUSH && event.getFace() == Direction.UP && event.getWorld().getBlockState(event.getPos()).getBlock() instanceof PaintableBlock)
             {
                 if(player.isCreative())
                     event.setCanceled(true);
