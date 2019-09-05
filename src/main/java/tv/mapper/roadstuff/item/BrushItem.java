@@ -31,8 +31,6 @@ import tv.mapper.roadstuff.util.ModConstants;
 
 public class BrushItem extends Item
 {
-    public static final int MAX_PAINT = 128;
-
     public BrushItem(Properties properties)
     {
         super(properties);
@@ -117,6 +115,21 @@ public class BrushItem extends Item
             String color = EnumPaintColor.getColorByID(stack.getTag().getInt("color")).getName();
             list.add(new StringTextComponent("Pattern: " + stack.getTag().getInt("pattern") + "; Paint: " + stack.getTag().getInt("paint") + "; Color: " + color));
         }
+    }
+
+    @Override
+    public boolean showDurabilityBar(ItemStack stack)
+    {
+        if(checkNBT(stack).getInt("paint") > 0)
+            return true;
+        else
+            return false;
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack)
+    {
+        return 1 - ((double)checkNBT(stack).getInt("paint") / (double)ModConstants.BRUSH_MAX_PAINT);
     }
 
     public static CompoundNBT checkNBT(ItemStack stack)
