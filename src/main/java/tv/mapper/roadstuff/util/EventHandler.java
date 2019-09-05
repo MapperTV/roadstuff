@@ -1,10 +1,14 @@
 package tv.mapper.roadstuff.util;
 
+import net.minecraft.block.BlockState;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Direction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.PaintableBlock;
@@ -17,32 +21,40 @@ public class EventHandler
     @SubscribeEvent
     public static void onLeftClickBlock(LeftClickBlock event)
     {
-        if(!ModConstants.ALTERNATE_BRUSH && !event.getWorld().isRemote)
+        if(event.getFace() == Direction.UP && !ModConstants.ALTERNATE_BRUSH)
         {
-            PlayerEntity player = event.getPlayer();
-            ItemStack heldItem = ItemStack.EMPTY;
+            BlockPos pos = event.getPos();
+            World world = event.getWorld();
+            BlockState state = world.getBlockState(pos);
 
-            long timer = System.currentTimeMillis();
-
-            if(player.getHeldItemMainhand().getItem() == ModItems.PAINT_BRUSH)
-                heldItem = player.getHeldItemMainhand();
-            else if(player.getHeldItemOffhand().getItem() == ModItems.PAINT_BRUSH)
-                heldItem = player.getHeldItemOffhand();
-
-            if(heldItem.getItem() == ModItems.PAINT_BRUSH && event.getFace() == Direction.UP && event.getWorld().getBlockState(event.getPos()).getBlock() instanceof PaintableBlock)
+            if(state.getBlock() instanceof PaintableBlock)
             {
-                if(player.isCreative())
-                    event.setCanceled(true);
-                if(timer - RoadStuff.clickInterval > ModConstants.CLICK_DELAY)
+                PlayerEntity player = event.getPlayer();
+                ItemStack heldItem = ItemStack.EMPTY;
+
+                long timer = System.currentTimeMillis();
+
+                if(player.getHeldItemMainhand().getItem() == ModItems.PAINT_BRUSH)
+                    heldItem = player.getHeldItemMainhand();
+                else if(player.getHeldItemOffhand().getItem() == ModItems.PAINT_BRUSH)
+                    heldItem = player.getHeldItemOffhand();
+
+                if(heldItem.getItem() == ModItems.PAINT_BRUSH)
                 {
-                    if(player.isSneaking())
-                        BrushItem.removeLine(event.getWorld(), event.getPos(), player);
-                    else
-                        BrushItem.paintLine(event.getFace(), event.getWorld().getBlockState(event.getPos()), event.getWorld(), event.getPos(), player, heldItem);
-                    RoadStuff.clickInterval = timer;
+                    if(player.isCreative())
+                    {
+                        event.setCanceled(true);
+                    }
+                    if(timer - RoadStuff.clickInterval > ModConstants.CLICK_DELAY && event.getSide() == LogicalSide.SERVER)
+                    {
+                        if(player.isSneaking())
+                            BrushItem.removeLine(world, pos, player);
+                        else
+                            BrushItem.paintLine(event.getFace(), state, world, pos, player, heldItem);
+                        RoadStuff.clickInterval = timer;
+                    }
                 }
             }
-
         }
     }
 }
