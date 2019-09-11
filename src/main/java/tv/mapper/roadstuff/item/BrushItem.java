@@ -60,12 +60,12 @@ public class BrushItem extends Item
             if(ModConstants.ALTERNATE_BRUSH)
             {
                 if(player.isSneaking())
-                    BrushItemClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"), stack.getTag().getFloat("scroll"));
+                    BrushItemClient.displayBrushGui(nbt.getInt("pattern"), nbt.getInt("paint"), nbt.getInt("color"), nbt.getFloat("scroll"), nbt.getIntArray("favs"));
             }
             else
             {
                 if(!player.isSneaking())
-                    BrushItemClient.displayBrushGui(stack.getTag().getInt("pattern"), stack.getTag().getInt("paint"), stack.getTag().getInt("color"), stack.getTag().getFloat("scroll"));
+                    BrushItemClient.displayBrushGui(nbt.getInt("pattern"), nbt.getInt("paint"), nbt.getInt("color"), nbt.getFloat("scroll"), nbt.getIntArray("favs"));
             }
         }
 
@@ -87,7 +87,7 @@ public class BrushItem extends Item
                 if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.ASPHALT && context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.CONCRETE))
                     return copyPattern(context.getWorld().getBlockState(context.getPos()), context.getWorld(), nbt, context.getPlayer());
                 else if(context.getWorld().isRemote)
-                    BrushItemClient.displayBrushGui(heldItem.getTag().getInt("pattern"), heldItem.getTag().getInt("paint"), heldItem.getTag().getInt("color"), heldItem.getTag().getFloat("scroll"));
+                    BrushItemClient.displayBrushGui(nbt.getInt("pattern"), nbt.getInt("paint"), nbt.getInt("color"), nbt.getFloat("scroll"), nbt.getIntArray("favs"));
             }
             else
                 return paintLine(context.getFace(), context.getWorld().getBlockState(context.getPos()), context.getWorld(), context.getPos(), player, heldItem);
@@ -142,11 +142,14 @@ public class BrushItem extends Item
         }
         else
         {
+            int favorites[] = {0, 0, 0, 0, 0, 0, 0, 0};
+
             nbt = new CompoundNBT();
             nbt.putInt("paint", 0);
             nbt.putInt("pattern", 0);
             nbt.putInt("color", EnumPaintColor.WHITE.getId());
             nbt.putFloat("scroll", 0.0f);
+            nbt.putIntArray("favs", favorites);
         }
         return nbt;
     }

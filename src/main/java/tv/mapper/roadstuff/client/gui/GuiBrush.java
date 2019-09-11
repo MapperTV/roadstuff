@@ -1,6 +1,7 @@
 package tv.mapper.roadstuff.client.gui;
 
 import java.awt.Color;
+import java.util.stream.IntStream;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.InputMappings;
@@ -19,7 +20,7 @@ public class GuiBrush extends Screen
 {
     public static final ITextComponent title = new StringTextComponent("");
 
-    private static final int WIDTH = 195;
+    private static final int WIDTH = 217;
     private static final int HEIGHT = 205;
     private static final int ROWS = (ModConstants.PATTERNS / 9) - 10;
 
@@ -42,15 +43,22 @@ public class GuiBrush extends Screen
     private float currentScroll = 0.0f;
     private boolean isScrolling;
 
+    private int favorites[] = {0, 0, 0, 0, 0, 0, 0, 0};
+    int favX;
+    int favY;
+
     private static final ResourceLocation brush_gui = new ResourceLocation(RoadStuff.MODID, "textures/gui/brush.png");
 
-    public GuiBrush(int pattern, int paint, int color, float scroll)
+    public GuiBrush(int pattern, int paint, int color, float scroll, int[] favorites)
     {
         super(title);
         this.pattern = pattern;
         this.paint = paint;
         this.color = color;
         this.currentScroll = scroll;
+
+        if(favorites.length == 8)
+            this.favorites = favorites;
     }
 
     @Override
@@ -89,6 +97,7 @@ public class GuiBrush extends Screen
         minecraft.getTextureManager().bindTexture(brush_gui);
         blit(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
 
+        // Draws patterns
         int j = 0;
         int row = 0;
         for(int i = 0; i < 90; i++)
@@ -107,12 +116,36 @@ public class GuiBrush extends Screen
             }
         }
 
+        // Draws current selected pattern
+        minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + pattern + ".png"));
+        blit(guiLeft + 193, guiTop + 18, 0, 0, 16, 16, 16, 16);
+
+        // Draws favorites
+        int fav_y = 54;
+        for(int i = 0; i < 8; i++)
+        {
+            if(favorites[i] != 0)
+            {
+                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + (favorites[i] + ".png")));
+                blit(guiLeft + 193, guiTop + fav_y, 0, 0, 16, 16, 16, 16);
+            }
+            fav_y += 18;
+        }
+
         // Draws hover square above slots
         if(mouseX > guiLeft + 7 && mouseX < guiLeft + 171 && mouseY > guiTop + 16 && mouseY < guiTop + 196)
         {
             posX = Math.toIntExact(Math.round((mouseX - guiLeft - 9) / 18) * 18) + guiLeft + 9;
             posY = Math.toIntExact(Math.round((mouseY - guiTop - 17) / 18) * 18) + guiTop + 18;
             fill(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
+        }
+
+        // Draws hover square above favs
+        if(mouseX > guiLeft + 191 && mouseX < guiLeft + 210 && mouseY > guiTop + 52 && mouseY < guiTop + 197)
+        {
+            favX = Math.toIntExact(Math.round((mouseX - guiLeft - 12) / 18) * 18) + guiLeft + 13;
+            favY = Math.toIntExact(Math.round((mouseY - guiTop - 17) / 18) * 18) + guiTop + 18;
+            fill(favX, favY, favX + 16, favY + 16, new Color(255, 255, 255, 128).getRGB());
         }
 
         // Draws selection box around the selected pattern
@@ -124,34 +157,76 @@ public class GuiBrush extends Screen
             blit(selectX, boxY, 256 - 22, 256 - 22, 22, 22);
         }
 
-        // Scrollbar
         String title = new TranslationTextComponent("roadstuff.gui.paintbrush.title").getString();
         this.font.drawString(title, guiLeft + WIDTH / 2 - font.getStringWidth(title) / 2, guiTop + 6, 4210752);
 
+        // Scrollbar
         minecraft.getTextureManager().bindTexture(brush_gui);
-        blit(guiLeft + WIDTH - 20, (int)(guiTop + 18 + 164 * this.currentScroll), 256 - 24, 0, 12, 15);
+        blit(guiLeft + WIDTH - 42, (int)(guiTop + 18 + 164 * this.currentScroll), 256 - 24, 0, 12, 15);
 
         this.font.drawStringWithShadow(warning, this.width / 2 - (warning.length() * 5) / 2, this.height / 96, new Color(255, 0, 0).getRGB());
         this.font.drawStringWithShadow(warning2, this.width / 2 - (warning2.length() * 5) / 2, this.height - this.height / 26, new Color(255, 0, 0).getRGB());
         this.font.drawStringWithShadow("Pattern: " + pattern, 8, 24, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow("Paint: " + paint, 8, 40, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow("Color: " + EnumPaintColor.getColorByID(color).getName(), 8, 56, new Color(255, 255, 255).getRGB());
+
+        //this.font.drawStringWithShadow("Favs: " + favorites[0] + ", " + favorites[1] + ", " + favorites[2] + ", " + favorites[3] + ", " + favorites[4] + ", " + favorites[5] + ", " + favorites[6] + ", " + favorites[7], 8, 72, new Color(255, 255, 255).getRGB());
+        //this.font.drawStringWithShadow("X: " + mouseX + " Y: " + mouseY, 8, 86, new Color(255, 0, 0).getRGB());
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button)
     {
-        if(button == 0 && mouseX > guiLeft + 7 && mouseX < guiLeft + WIDTH - 25 && mouseY > guiTop + 14 && mouseY < guiTop + 196)
+        if(mouseX > guiLeft + 7 && mouseX < guiLeft + WIDTH - 43 && mouseY > guiTop + 14 && mouseY < guiTop + 196)
         {
-            int choice = (posX - guiLeft - 9) / 18 + ((posY - guiTop - 9) / 18) * 9 + scroll * 9;
-            if(choice < ModConstants.PATTERNS)
+            if(button == 0)
             {
-                pattern = choice;
-                selectX = posX - 3;
-                selectY = posY + scroll * 18 - 3;
+                int choice = (posX - guiLeft - 9) / 18 + ((posY - guiTop - 9) / 18) * 9 + scroll * 9;
+                if(choice < ModConstants.PATTERNS)
+                {
+                    pattern = choice;
+                    selectX = posX - 3;
+                    selectY = posY + scroll * 18 - 3;
+                }
+                return true;
             }
-            return true;
+            else if(button == 1)
+            {
+                int fav = 0;
+
+                int choice = (posX - guiLeft - 9) / 18 + ((posY - guiTop - 9) / 18) * 9 + scroll * 9;
+
+                if(choice < ModConstants.PATTERNS && !IntStream.of(favorites).anyMatch(x -> x == choice) && choice != 0)
+                {
+                    while(favorites[fav] != 0 && fav < 7)
+                        fav++;
+
+                    if(fav == 7 && favorites[7] != 0)
+                    {
+                        for(int i = 7; i > 0; i--)
+                        {
+                            favorites[i] = favorites[i - 1];
+                        }
+                        favorites[0] = choice;
+                    }
+                    else
+                        favorites[fav] = choice;
+                }
+            }
         }
-        if(scrollbarClamp(mouseX, mouseY))
+        else if(mouseX > guiLeft + 191 && mouseX < guiLeft + 210 && mouseY > guiTop + 52 && mouseY < guiTop + 197)
+        {
+            int selectedFav = 0;
+            selectedFav = ((favY - guiTop - 40) / 18);
+            if(selectedFav >= 0 && selectedFav < 8)
+            {
+                if(favorites[selectedFav] != 0)
+                    pattern = favorites[selectedFav];
+            }
+            else
+                RoadStuff.LOGGER.warn("Invalid selected pattern! This is not supposed to happen... Please report to https://github.com/MapperTV/roadstuff/issues if you see this.");
+        }
+
+        if(button == 0 && scrollbarClamp(mouseX, mouseY))
             isScrolling = true;
         return false;
     }
@@ -160,7 +235,7 @@ public class GuiBrush extends Screen
     {
         if(this.shouldCloseOnEsc() && p_keyPressed_1_ == 256 || this.minecraft.gameSettings.keyBindInventory.isActiveAndMatches(InputMappings.getInputByCode(p_keyPressed_1_, p_keyPressed_2_)))
         {
-            RSNetwork.ROADSTUFF_CHANNEL.sendToServer(new BrushPacket(pattern, paint, currentScroll));
+            RSNetwork.ROADSTUFF_CHANNEL.sendToServer(new BrushPacket(pattern, currentScroll, favorites));
             this.onClose();
             return true;
         }
