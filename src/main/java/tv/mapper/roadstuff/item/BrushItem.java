@@ -21,6 +21,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.PaintableBlock;
@@ -112,8 +113,12 @@ public class BrushItem extends Item
         super.addInformation(stack, player, list, flag);
         if(stack.hasTag())
         {
-            String color = EnumPaintColor.getColorByID(stack.getTag().getInt("color")).getName();
-            list.add(new StringTextComponent("Pattern: " + stack.getTag().getInt("pattern") + "; Paint: " + stack.getTag().getInt("paint") + "; Color: " + color));
+            String color = EnumPaintColor.getColorByID(stack.getTag().getInt("color")).getNameTranslated();
+
+            if(stack.getTag().getInt("paint") == 0)
+                color = "X";
+            list.add(new StringTextComponent(new TranslationTextComponent("roadstuff.message.brush.gui.pattern").getString() + stack.getTag().getInt("pattern") + "; " + new TranslationTextComponent("roadstuff.message.brush.gui.color").getString() + color));
+            list.add(new StringTextComponent(new TranslationTextComponent("roadstuff.message.brush.gui.paint").getString() + stack.getTag().getInt("paint")));
         }
     }
 

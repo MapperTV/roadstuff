@@ -97,6 +97,15 @@
     "roadstuff.message.bucket.underwater": "You can't interact with a bucket under water!",
     
     "roadstuff.gui.paintbrush.title": "Paintbrush Configuration",
+    "roadstuff.message.brush.gui.eraser": "Paint Eraser",
+    "roadstuff.message.brush.gui.pattern": "Pattern n°",
+    "roadstuff.message.brush.gui.paint": "Paint amount: ",
+    "roadstuff.message.brush.gui.color": "Color: ",
+    "roadstuff.message.brush.gui.fav1": "Right click on a pattern",
+    "roadstuff.message.brush.gui.fav2": "to favorite it!",
+    
+    "roadstuff.message.paint.color.white": "White",
+    "roadstuff.message.paint.color.yellow": "Yellow",
     
     "_comment5": "Pattern blocks variants",
     

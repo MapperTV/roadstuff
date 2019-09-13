@@ -1,6 +1,7 @@
 package tv.mapper.roadstuff.state.properties;
 
 import net.minecraft.util.IStringSerializable;
+import net.minecraft.util.text.TranslationTextComponent;
 
 public enum EnumPaintColor implements IStringSerializable
 {
@@ -19,6 +20,11 @@ public enum EnumPaintColor implements IStringSerializable
     public String getName()
     {
         return this.name;
+    }
+    
+    public String getNameTranslated()
+    {
+        return new TranslationTextComponent("roadstuff.message.paint.color." + this.name).getString();
     }
     
     public int getId()

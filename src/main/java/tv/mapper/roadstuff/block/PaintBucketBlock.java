@@ -97,6 +97,7 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
         return this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE).with(DIRECTION, context.getPlacementHorizontalFacing());
     }
 
+    @Override
     public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result)
     {
         if(state.get(WATERLOGGED))

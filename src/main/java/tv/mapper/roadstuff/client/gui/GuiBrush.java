@@ -1,6 +1,9 @@
 package tv.mapper.roadstuff.client.gui;
 
 import java.awt.Color;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.stream.IntStream;
 
 import net.minecraft.client.gui.screen.Screen;
@@ -24,8 +27,8 @@ public class GuiBrush extends Screen
     private static final int HEIGHT = 205;
     private static final int ROWS = (ModConstants.PATTERNS / 9) - 10;
 
-    String warning = "WARNING: Mod in alpha test, to not use on your main save!";
-    String warning2 = "Blocks may change in the future, breaking saves. Always backup!";
+    String warning = "Note: this mod is still in alpha test and bugs can happen.";
+    String warning2 = "Always make backups of your saves for safety.";
 
     private int pattern;
     private int paint;
@@ -46,6 +49,14 @@ public class GuiBrush extends Screen
     private int favorites[] = {0, 0, 0, 0, 0, 0, 0, 0};
     int favX;
     int favY;
+
+    private TranslationTextComponent textTitle = new TranslationTextComponent("roadstuff.gui.paintbrush.title");
+    private TranslationTextComponent textEraser = new TranslationTextComponent("roadstuff.message.brush.gui.eraser");
+    private TranslationTextComponent textPattern = new TranslationTextComponent("roadstuff.message.brush.gui.pattern");
+    private TranslationTextComponent textPaint = new TranslationTextComponent("roadstuff.message.brush.gui.paint");
+    private TranslationTextComponent textColor = new TranslationTextComponent("roadstuff.message.brush.gui.color");
+    private TranslationTextComponent textFav1 = new TranslationTextComponent("roadstuff.message.brush.gui.fav1");
+    private TranslationTextComponent textFav2 = new TranslationTextComponent("roadstuff.message.brush.gui.fav2");
 
     private static final ResourceLocation brush_gui = new ResourceLocation(RoadStuff.MODID, "textures/gui/brush.png");
 
@@ -157,21 +168,54 @@ public class GuiBrush extends Screen
             blit(selectX, boxY, 256 - 22, 256 - 22, 22, 22);
         }
 
-        String title = new TranslationTextComponent("roadstuff.gui.paintbrush.title").getString();
+        String title = textTitle.getString();
         this.font.drawString(title, guiLeft + WIDTH / 2 - font.getStringWidth(title) / 2, guiTop + 6, 4210752);
 
         // Scrollbar
         minecraft.getTextureManager().bindTexture(brush_gui);
         blit(guiLeft + WIDTH - 42, (int)(guiTop + 18 + 164 * this.currentScroll), 256 - 24, 0, 12, 15);
 
-        this.font.drawStringWithShadow(warning, this.width / 2 - (warning.length() * 5) / 2, this.height / 96, new Color(255, 0, 0).getRGB());
-        this.font.drawStringWithShadow(warning2, this.width / 2 - (warning2.length() * 5) / 2, this.height - this.height / 26, new Color(255, 0, 0).getRGB());
-        this.font.drawStringWithShadow("Pattern: " + pattern, 8, 24, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow("Paint: " + paint, 8, 40, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow("Color: " + EnumPaintColor.getColorByID(color).getName(), 8, 56, new Color(255, 255, 255).getRGB());
+        this.font.drawStringWithShadow(warning, this.width / 2 - (warning.length() * 5) / 2, this.height / 96, new Color(255, 195, 0).getRGB());
+        this.font.drawStringWithShadow(warning2, this.width / 2 - (warning2.length() * 5) / 2, this.height - this.height / 26, new Color(255, 195, 0).getRGB());
+        this.font.drawStringWithShadow(textPattern.getString() + pattern, guiLeft + 225, guiTop + 22, new Color(255, 255, 255).getRGB());
+        this.font.drawStringWithShadow(textPaint.getString() + paint, guiLeft + 225, guiTop + 40, new Color(255, 255, 255).getRGB());
+        this.font.drawStringWithShadow(textColor.getString() + EnumPaintColor.getColorByID(color).getNameTranslated(), guiLeft + 225, guiTop + 58, new Color(255, 255, 255).getRGB());
 
-        //this.font.drawStringWithShadow("Favs: " + favorites[0] + ", " + favorites[1] + ", " + favorites[2] + ", " + favorites[3] + ", " + favorites[4] + ", " + favorites[5] + ", " + favorites[6] + ", " + favorites[7], 8, 72, new Color(255, 255, 255).getRGB());
-        //this.font.drawStringWithShadow("X: " + mouseX + " Y: " + mouseY, 8, 86, new Color(255, 0, 0).getRGB());
+        // this.font.drawStringWithShadow("Favs: " + favorites[0] + ", " + favorites[1] + ", " + favorites[2] + ", " + favorites[3] + ", " + favorites[4] + ", " + favorites[5] + ", " + favorites[6] +
+        // ", " + favorites[7], 8, 72, new Color(255, 255, 255).getRGB());
+        // this.font.drawStringWithShadow("X: " + mouseX + " Y: " + mouseY + " posX: " + posX + " posY: " + posY, 8, 86, new Color(255, 0, 0).getRGB());
+
+        if(mouseX > guiLeft + 7 && mouseX < guiLeft + WIDTH - 43 && mouseY > guiTop + 14 && mouseY < guiTop + 196)
+        {
+            int patternHover = (posX - guiLeft - 9) / 18 + ((posY - guiTop - 9) / 18) * 9 + scroll * 9;
+            if(patternHover == 0)
+                net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(Arrays.asList(textEraser.getString()), mouseX, mouseY, width, height, -1, font);
+            else
+                net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(Arrays.asList(textPattern.getString() + patternHover), mouseX, mouseY, width, height, -1, font);
+        }
+        else if(mouseX > guiLeft + 191 && mouseX < guiLeft + 210 && mouseY > guiTop + 52 && mouseY < guiTop + 197)
+        {
+            int patternHover = ((favY - guiTop - 40) / 18);
+
+            List<String> patternTooltipFinal = new ArrayList<String>();
+            String patternTooltip = "";
+            String patternTooltip2 = "";
+
+            if(favorites[patternHover] == 0)
+            {
+                patternTooltip = textFav1.getString();
+                patternTooltip2 = textFav2.getString();
+                patternTooltipFinal.add(patternTooltip);
+                patternTooltipFinal.add(patternTooltip2);
+            }
+            else
+            {
+                patternTooltip = textPattern.getString() + favorites[patternHover];
+                patternTooltipFinal.add(patternTooltip);
+            }
+            net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(patternTooltipFinal, mouseX, mouseY, width, height, -1, font);
+        }
+
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button)

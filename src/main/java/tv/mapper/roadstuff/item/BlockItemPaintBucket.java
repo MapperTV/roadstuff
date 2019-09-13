@@ -10,7 +10,9 @@ import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
 public class BlockItemPaintBucket extends BlockItem
 {
@@ -21,13 +23,13 @@ public class BlockItemPaintBucket extends BlockItem
         {
             if(itemStack.hasTag())
             {
-            CompoundNBT nbt = itemStack.getTag();
-            if(nbt.getInt("paint") == 0)
-                return 0.0f;
-            else if(nbt.getInt("color") == 0)
-                return 0.5f;
-            else if(nbt.getInt("color") == 1)
-                return 1.0f;
+                CompoundNBT nbt = itemStack.getTag();
+                if(nbt.getInt("paint") == 0)
+                    return 0.0f;
+                else if(nbt.getInt("color") == 0)
+                    return 0.5f;
+                else if(nbt.getInt("color") == 1)
+                    return 1.0f;
             }
             return 0.0f;
         });
@@ -39,7 +41,13 @@ public class BlockItemPaintBucket extends BlockItem
         super.addInformation(stack, player, list, flag);
         if(stack.hasTag())
         {
-            list.add(new StringTextComponent("Paint: " + stack.getTag().getInt("paint") + ", color: " + stack.getTag().getInt("color")));
+            String color = EnumPaintColor.getColorByID(stack.getTag().getInt("color")).getNameTranslated();
+            
+            int paint = (stack.getTag().getInt("paint") * 100) / 8;
+            if(paint < 10)
+                color = "X";
+            list.add(new StringTextComponent(new TranslationTextComponent("roadstuff.message.brush.gui.color").getString() + color));
+            list.add(new StringTextComponent(new TranslationTextComponent("roadstuff.message.brush.gui.paint").getString() + paint + "%"));
         }
     }
 }

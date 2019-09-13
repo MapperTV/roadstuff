@@ -97,6 +97,15 @@
     "roadstuff.message.bucket.underwater": "Vous ne pouvez pas interagir avec un pot sous l'eau !",
     
     "roadstuff.gui.paintbrush.title": "Configuration du pinceau",
+    "roadstuff.message.brush.gui.eraser": "Effaceur de peinture",
+    "roadstuff.message.brush.gui.pattern": "Motif n°",
+    "roadstuff.message.brush.gui.paint": "Quantité de peinture: ",
+    "roadstuff.message.brush.gui.color": "Couleur: ",
+    "roadstuff.message.brush.gui.fav1": "Clic droit sur un motif",
+    "roadstuff.message.brush.gui.fav2": "pour le mettre en favori!",
+    
+    "roadstuff.message.paint.color.white": "Blanc",
+    "roadstuff.message.paint.color.yellow": "Jaune",
     
     "_comment5": "Pattern Blocks Variants",
     
