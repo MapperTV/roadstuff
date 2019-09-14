@@ -59,12 +59,13 @@ public class BrushItem extends Item
 
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker)
     {
-        if(!stack.hasTag())
-            stack.setTag(BrushItem.checkNBT(stack));
+        CompoundNBT nbt = checkNBT(stack);
 
-        if(stack.getTag().getInt("paint") > 0)
+        if(nbt.getInt("paint") > 0)
         {
             target.addPotionEffect(new EffectInstance(Effects.BLINDNESS, 50));
+            nbt.putInt("paint", nbt.getInt("paint") - 1);
+            stack.setTag(nbt);
         }
         return true;
     }
