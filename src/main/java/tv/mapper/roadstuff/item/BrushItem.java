@@ -5,11 +5,14 @@ import java.util.List;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.util.ITooltipFlag;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.ItemUseContext;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
@@ -46,6 +49,24 @@ public class BrushItem extends Item
                 return 1.0f;
             return 0.0f;
         });
+    }
+
+    @Override
+    public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player)
+    {
+        return !player.isCreative();
+    }
+
+    public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker)
+    {
+        if(!stack.hasTag())
+            stack.setTag(BrushItem.checkNBT(stack));
+
+        if(stack.getTag().getInt("paint") > 0)
+        {
+            target.addPotionEffect(new EffectInstance(Effects.BLINDNESS, 50));
+        }
+        return true;
     }
 
     @Override
