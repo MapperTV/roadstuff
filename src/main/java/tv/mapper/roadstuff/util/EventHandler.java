@@ -41,10 +41,6 @@ public class EventHandler
 
                 if(heldItem.getItem() == ModItems.PAINT_BRUSH)
                 {
-                    if(player.isCreative())
-                    {
-                        event.setCanceled(true);
-                    }
                     if(timer - RoadStuff.clickInterval > ModConstants.CLICK_DELAY && event.getSide() == LogicalSide.SERVER)
                     {
                         if(player.isSneaking())

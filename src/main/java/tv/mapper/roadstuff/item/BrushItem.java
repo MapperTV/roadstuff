@@ -54,7 +54,9 @@ public class BrushItem extends Item
     @Override
     public boolean canPlayerBreakBlockWhileHolding(BlockState state, World worldIn, BlockPos pos, PlayerEntity player)
     {
-        return !player.isCreative();
+        if(player.isCreative() && state.getBlock() instanceof PaintableBlock)
+            return false;
+        return true;
     }
 
     public boolean hitEntity(ItemStack stack, LivingEntity target, LivingEntity attacker)
