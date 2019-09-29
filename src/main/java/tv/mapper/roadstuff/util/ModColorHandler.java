@@ -19,7 +19,7 @@ public class ModColorHandler
 
         final IBlockColor yellowColor = (state, blockAccess, pos, tintIndex) ->
         {
-            return 16762880;
+            return 15118080;
         };
 
         for(Block block : ModBlocks.MOD_PAINTABLEBLOCKS)

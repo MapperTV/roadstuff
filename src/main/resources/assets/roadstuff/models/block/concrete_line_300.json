@@ -1,0 +1,8 @@
+{
+    "parent": "roadstuff:block/cube_line",
+    "textures": {
+        "base": "roadstuff:block/concrete",
+        "overlay": "roadstuff:block/line/300",
+        "particle": "roadstuff:block/concrete"
+    }
+}
