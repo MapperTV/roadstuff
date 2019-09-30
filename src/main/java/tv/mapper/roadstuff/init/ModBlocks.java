@@ -9,6 +9,7 @@ import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraft.item.Rarity;
+import net.minecraftforge.common.ToolType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
@@ -18,6 +19,7 @@ import net.minecraftforge.registries.ObjectHolder;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.ConeBlock;
 import tv.mapper.roadstuff.block.ConeBlock.EnumConeType;
+import tv.mapper.roadstuff.block.CustomBlock;
 import tv.mapper.roadstuff.block.PaintBucketBlock;
 import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.block.ReflectorBlock;
@@ -190,8 +192,8 @@ public class ModBlocks
         event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.BARREL).setRegistryName("black_traffic_barrel"));
         event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.BOLLARD).setRegistryName("black_traffic_bollard"));
 
-        event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F)).setRegistryName("bitumen_block"));
-        event.getRegistry().register(new Block(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F)).setRegistryName("bitumen_ore"));
+        event.getRegistry().register(new CustomBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F), ToolType.PICKAXE).setRegistryName("bitumen_block"));
+        event.getRegistry().register(new CustomBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F), ToolType.PICKAXE).setRegistryName("bitumen_ore"));
 
         for(int i = 1; i < ModConstants.PATTERNS; i++)
         {
