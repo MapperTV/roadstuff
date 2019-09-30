@@ -27,8 +27,8 @@ public class GuiBrush extends Screen
     private static final int HEIGHT = 205;
     private static final int ROWS = (ModConstants.PATTERNS / 9) - 10;
 
-    String warning = "Note: this mod is still in alpha test and bugs can happen.";
-    String warning2 = "Always make backups of your saves for safety.";
+    //String warning = "Note: this mod is still in alpha test and bugs can happen.";
+    String warning2 = "Mod in beta test: report any bug on GitHub or Curse!";
 
     private int pattern;
     private int paint;
@@ -175,8 +175,8 @@ public class GuiBrush extends Screen
         minecraft.getTextureManager().bindTexture(brush_gui);
         blit(guiLeft + WIDTH - 42, (int)(guiTop + 18 + 164 * this.currentScroll), 256 - 24, 0, 12, 15);
 
-        this.font.drawStringWithShadow(warning, this.width / 2 - (warning.length() * 5) / 2, this.height / 96, new Color(255, 195, 0).getRGB());
-        this.font.drawStringWithShadow(warning2, this.width / 2 - (warning2.length() * 5) / 2, this.height - this.height / 26, new Color(255, 195, 0).getRGB());
+        //this.font.drawStringWithShadow(warning, this.width / 2 - (warning.length() * 5) / 2, this.height / 96, new Color(255, 195, 0).getRGB());
+        this.font.drawStringWithShadow(warning2, this.width / 2 - (warning2.length() * 5) / 2, this.height - this.height / 26, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow(textPattern.getString() + pattern, guiLeft + 225, guiTop + 22, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow(textPaint.getString() + paint, guiLeft + 225, guiTop + 40, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow(textColor.getString() + EnumPaintColor.getColorByID(color).getNameTranslated(), guiLeft + 225, guiTop + 58, new Color(255, 255, 255).getRGB());
