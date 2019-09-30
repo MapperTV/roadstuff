@@ -9,6 +9,6 @@ public class ClientProxy implements IProxy
     public void setup(FMLCommonSetupEvent event)
     {
         ModColorHandler.registerBlockColor();
-        ModColorHandler.registerItemColorHandlers();
+        // ModColorHandler.registerItemColorHandlers();
     }
 }
