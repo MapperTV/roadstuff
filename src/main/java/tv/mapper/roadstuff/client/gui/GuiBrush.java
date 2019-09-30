@@ -246,11 +246,11 @@ public class GuiBrush extends Screen
 
                     if(fav == 7 && favorites[7] != 0)
                     {
-                        for(int i = 7; i > 0; i--)
+                        for(int i = 0; i < 7; i++)
                         {
-                            favorites[i] = favorites[i - 1];
+                            favorites[i] = favorites[i + 1];
                         }
-                        favorites[0] = choice;
+                        favorites[7] = choice;
                     }
                     else
                         favorites[fav] = choice;
