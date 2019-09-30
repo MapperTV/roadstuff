@@ -19,6 +19,7 @@ import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
+import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
@@ -45,6 +46,7 @@ public class ReflectorBlock extends Block implements IBucketPickupHandler, ILiqu
         return false;
     }
 
+    @Override
     public boolean canSpawnInBlock()
     {
         return true;
@@ -71,19 +73,7 @@ public class ReflectorBlock extends Block implements IBucketPickupHandler, ILiqu
     @Override
     public VoxelShape getCollisionShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
-        switch((Direction)state.get(DIRECTION))
-        {
-            case NORTH:
-                return SHAPE_NS;
-            case SOUTH:
-                return SHAPE_NS;
-            case WEST:
-                return SHAPE_EW;
-            case EAST:
-                return SHAPE_EW;
-            default:
-                return SHAPE_NS;
-        }
+        return VoxelShapes.empty();
     }
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)

@@ -121,10 +121,10 @@ public class ModBlocks
 
         event.getRegistry().register(new PaintBucketBlock(Block.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(0.5F, 3.0F)).setRegistryName("paint_bucket"));
 
-        event.getRegistry().register(new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.QUARTZ).doesNotBlockMovement().hardnessAndResistance(0.1F, 3.0F), false).setRegistryName("white_reflector"));
-        event.getRegistry().register(new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.YELLOW).doesNotBlockMovement().hardnessAndResistance(0.1F, 3.0F), false).setRegistryName("yellow_reflector"));
-        event.getRegistry().register(new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.QUARTZ).doesNotBlockMovement().hardnessAndResistance(0.1F, 3.0F).lightValue(14), true).setRegistryName("luminescent_white_reflector"));
-        event.getRegistry().register(new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.YELLOW).doesNotBlockMovement().hardnessAndResistance(0.1F, 3.0F).lightValue(14), true).setRegistryName("luminescent_yellow_reflector"));
+        event.getRegistry().register(new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.QUARTZ).hardnessAndResistance(0.1F, 3.0F), false).setRegistryName("white_reflector"));
+        event.getRegistry().register(new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.YELLOW).hardnessAndResistance(0.1F, 3.0F), false).setRegistryName("yellow_reflector"));
+        event.getRegistry().register(new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.QUARTZ).hardnessAndResistance(0.1F, 3.0F).lightValue(14), true).setRegistryName("luminescent_white_reflector"));
+        event.getRegistry().register(new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.YELLOW).hardnessAndResistance(0.1F, 3.0F).lightValue(14), true).setRegistryName("luminescent_yellow_reflector"));
 
         event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.CONE).setRegistryName("white_traffic_cone"));
         event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.WHITE_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.BARREL).setRegistryName("white_traffic_barrel"));
