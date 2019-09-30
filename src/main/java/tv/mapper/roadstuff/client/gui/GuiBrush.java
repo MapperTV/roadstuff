@@ -298,7 +298,7 @@ public class GuiBrush extends Screen
         else if(scroll > ROWS)
             scroll = ROWS;
 
-        int i = (ModConstants.PATTERNS + 50) / ROWS;
+        int i = (ModConstants.PATTERNS + 375) / ROWS;
         this.currentScroll = (float)((double)this.currentScroll - p_mouseScrolled_5_ / (double)i);
         this.currentScroll = MathHelper.clamp(this.currentScroll, 0.0F, 1.0F);
 
@@ -314,7 +314,7 @@ public class GuiBrush extends Screen
             int j = i + 179;
             this.currentScroll = ((float)p_mouseDragged_3_ - (float)i - 7.5F) / ((float)(j - i) - 15.0F);
             this.currentScroll = MathHelper.clamp(this.currentScroll, 0.0F, 1.0F);
-            scroll = (int)((currentScroll + 0.05) * ROWS);
+            scroll = (int)((currentScroll + 0.01) * ROWS);
             if(scroll < 0)
                 scroll = 0;
             return true;
