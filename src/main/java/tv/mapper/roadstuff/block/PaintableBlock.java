@@ -1,10 +1,13 @@
 package tv.mapper.roadstuff.block;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
+import net.minecraftforge.common.ToolType;
 
 public class PaintableBlock extends Block
 {
@@ -31,5 +34,12 @@ public class PaintableBlock extends Block
     public boolean isSolid(BlockState state)
     {
         return true;
+    }
+
+    @Nullable
+    @Override
+    public ToolType getHarvestTool(BlockState state)
+    {
+        return ToolType.PICKAXE;
     }
 }

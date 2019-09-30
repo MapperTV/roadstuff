@@ -9,6 +9,7 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
+import net.minecraftforge.common.ToolType;
 
 public class RotatablePaintBlock extends PaintableBlock
 {
@@ -29,5 +30,12 @@ public class RotatablePaintBlock extends PaintableBlock
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
         return this.getDefaultState().with(DIRECTION, context.getPlacementHorizontalFacing());
+    }
+
+    @Nullable
+    @Override
+    public ToolType getHarvestTool(BlockState state)
+    {
+        return ToolType.PICKAXE;
     }
 }
