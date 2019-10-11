@@ -24,6 +24,7 @@ import tv.mapper.roadstuff.block.PaintBucketBlock;
 import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.block.ReflectorBlock;
 import tv.mapper.roadstuff.block.RotatablePaintBlock;
+import tv.mapper.roadstuff.block.RotatableSlopeBlock;
 import tv.mapper.roadstuff.block.SlopeBlock;
 import tv.mapper.roadstuff.item.BlockItemPaintBucket;
 import tv.mapper.roadstuff.item.ModItemGroups;
@@ -42,7 +43,7 @@ public class ModBlocks
 
     public static final PaintableBlock ASPHALT = null;
     public static final PaintableBlock CONCRETE = null;
-    
+
     public static final SlopeBlock ASPHALT_SLOPE = null;
     public static final SlopeBlock CONCRETE_SLOPE = null;
 
@@ -127,7 +128,7 @@ public class ModBlocks
 
         event.getRegistry().register(new SlopeBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(1.0F, 6.0F), 0).setRegistryName("asphalt_slope"));
         event.getRegistry().register(new SlopeBlock(Block.Properties.create(Material.ROCK, MaterialColor.GRAY).hardnessAndResistance(1.0F, 6.0F), 1).setRegistryName("concrete_slope"));
-        
+
         event.getRegistry().register(new PaintBucketBlock(Block.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(0.5F, 3.0F)).setRegistryName("paint_bucket"));
 
         event.getRegistry().register(new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.QUARTZ).hardnessAndResistance(0.1F, 3.0F), false).setRegistryName("white_reflector"));
@@ -208,6 +209,11 @@ public class ModBlocks
             registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(1.0F, 6.0F), 0), "asphalt_yellow_line_" + i, registry);
             registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK, MaterialColor.GRAY).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_white_line_" + i, registry);
             registerBlock(new RotatablePaintBlock(Block.Properties.create(Material.ROCK, MaterialColor.GRAY).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_yellow_line_" + i, registry);
+
+            registerBlock(new RotatableSlopeBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(1.0F, 6.0F), 0), "asphalt_slope_white_line_" + i, registry);
+            registerBlock(new RotatableSlopeBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(1.0F, 6.0F), 0), "asphalt_slope_yellow_line_" + i, registry);
+            registerBlock(new RotatableSlopeBlock(Block.Properties.create(Material.ROCK, MaterialColor.GRAY).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_slope_white_line_" + i, registry);
+            registerBlock(new RotatableSlopeBlock(Block.Properties.create(Material.ROCK, MaterialColor.GRAY).hardnessAndResistance(1.0F, 6.0F), 1), "concrete_slope_yellow_line_" + i, registry);
         }
     }
 
@@ -228,7 +234,7 @@ public class ModBlocks
 
         event.getRegistry().register(new BlockItem(ASPHALT_SLOPE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT_SLOPE.getRegistryName()));
         event.getRegistry().register(new BlockItem(CONCRETE_SLOPE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(CONCRETE_SLOPE.getRegistryName()));
-        
+
         event.getRegistry().register(new BlockItemPaintBucket(PAINT_BUCKET, new Item.Properties().group(ModItemGroups.ROADSTUFF).maxStackSize(1)).setRegistryName(PAINT_BUCKET.getRegistryName()));
 
         event.getRegistry().register(new ReflectorBlockItem(WHITE_REFLECTOR, new Item.Properties().group(ModItemGroups.ROADSTUFF), false).setRegistryName(WHITE_REFLECTOR.getRegistryName()));

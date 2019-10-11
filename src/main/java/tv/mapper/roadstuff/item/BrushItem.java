@@ -29,8 +29,12 @@ import net.minecraft.world.World;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.block.RotatablePaintBlock;
+import tv.mapper.roadstuff.block.RotatableSlopeBlock;
+import tv.mapper.roadstuff.block.SlopeBlock;
 import tv.mapper.roadstuff.init.ModBlocks;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
+import tv.mapper.roadstuff.util.AsphaltPaintMap;
+import tv.mapper.roadstuff.util.ConcretePaintMap;
 import tv.mapper.roadstuff.util.ModConstants;
 
 public class BrushItem extends Item
@@ -193,82 +197,160 @@ public class BrushItem extends Item
         int pattern = nbt.getInt("pattern");
         int color = nbt.getInt("color");
 
-        if(!world.isRemote && face == Direction.UP && state.getBlock() instanceof PaintableBlock)
+        if(!world.isRemote && face == Direction.UP)
         {
             if(pattern == 0)
             {
                 return removeLine(world, pos, player);
             }
 
-            switch(((PaintableBlock)state.getBlock()).getMaterialType())
+            if(state.getBlock() instanceof SlopeBlock)
             {
-                case 0:
-                    newBlock = RoadStuff.asphaltMap.getBlockFor(color, pattern);
-                    break;
-                case 1:
-                    newBlock = RoadStuff.concreteMap.getBlockFor(color, pattern);
-                    break;
-                default:
-                    return ActionResultType.PASS;
-            }
-
-            if(state.getBlock() == newBlock)
-            {
-                if(newBlock instanceof RotatablePaintBlock && !world.isRemote)
+                switch(((SlopeBlock)state.getBlock()).getMaterialType())
                 {
-                    switch(state.get(RotatablePaintBlock.DIRECTION))
+                    case 0:
+                        newBlock = RoadStuff.asphaltSlopeMap.getBlockFor(color, pattern);
+                        break;
+                    case 1:
+                        newBlock = RoadStuff.concreteSlopeMap.getBlockFor(color, pattern);
+                        break;
+                    default:
+                        return ActionResultType.PASS;
+                }
+
+                if(state.getBlock() == newBlock)
+                {
+                    if(newBlock instanceof RotatableSlopeBlock && !world.isRemote)
                     {
-                        case NORTH:
-                            if(player.getHeldItemMainhand() == stack)
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.EAST));
+                        switch(state.get(RotatableSlopeBlock.DIRECTION))
+                        {
+                            case NORTH:
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.EAST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.WEST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                break;
+                            case EAST:
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.SOUTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.NORTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                break;
+                            case SOUTH:
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.WEST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.EAST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                break;
+                            case WEST:
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.NORTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.SOUTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                break;
+                            default:
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.EAST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.WEST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                break;
+                        }
+                    }
+                }
+                else
+                {
+                    if(nbt.getInt("paint") > 0)
+                    {
+                        if(!world.isRemote)
+                        {
+                            if(newBlock instanceof RotatableSlopeBlock)
+                            {
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, player.getHorizontalFacing()).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, player.getHorizontalFacing().getOpposite()).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                            }
                             else
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.WEST));
-                            break;
-                        case EAST:
-                            if(player.getHeldItemMainhand() == stack)
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.SOUTH));
-                            else
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.NORTH));
-                            break;
-                        case SOUTH:
-                            if(player.getHeldItemMainhand() == stack)
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.WEST));
-                            else
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.EAST));
-                            break;
-                        case WEST:
-                            if(player.getHeldItemMainhand() == stack)
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.NORTH));
-                            else
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.SOUTH));
-                            break;
-                        default:
-                            if(player.getHeldItemMainhand() == stack)
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.EAST));
-                            else
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.WEST));
-                            break;
+                                world.setBlockState(pos, newBlock.getDefaultState());
+                            if(!player.isCreative())
+                                nbt.putInt("paint", nbt.getInt("paint") - 1);
+                            world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_PLACE, SoundCategory.BLOCKS, .8F, 2.0F);
+                        }
                     }
                 }
             }
-            else
+            else if(state.getBlock() instanceof PaintableBlock)
             {
-                if(nbt.getInt("paint") > 0)
+                switch(((PaintableBlock)state.getBlock()).getMaterialType())
                 {
-                    if(!world.isRemote)
+                    case 0:
+                        newBlock = RoadStuff.asphaltMap.getBlockFor(color, pattern);
+                        break;
+                    case 1:
+                        newBlock = RoadStuff.concreteMap.getBlockFor(color, pattern);
+                        break;
+                    default:
+                        return ActionResultType.PASS;
+                }
+
+                if(state.getBlock() == newBlock)
+                {
+                    if(newBlock instanceof RotatablePaintBlock && !world.isRemote)
                     {
-                        if(newBlock instanceof RotatablePaintBlock)
+                        switch(state.get(RotatablePaintBlock.DIRECTION))
                         {
-                            if(player.getHeldItemMainhand() == stack)
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, player.getHorizontalFacing()));
-                            else
-                                world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, player.getHorizontalFacing().getOpposite()));
+                            case NORTH:
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.EAST));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.WEST));
+                                break;
+                            case EAST:
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.SOUTH));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.NORTH));
+                                break;
+                            case SOUTH:
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.WEST));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.EAST));
+                                break;
+                            case WEST:
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.NORTH));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.SOUTH));
+                                break;
+                            default:
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.EAST));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, Direction.WEST));
+                                break;
                         }
-                        else
-                            world.setBlockState(pos, newBlock.getDefaultState());
-                        if(!player.isCreative())
-                            nbt.putInt("paint", nbt.getInt("paint") - 1);
-                        world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_PLACE, SoundCategory.BLOCKS, .8F, 2.0F);
+                    }
+                }
+                else
+                {
+                    if(nbt.getInt("paint") > 0)
+                    {
+                        if(!world.isRemote)
+                        {
+                            if(newBlock instanceof RotatablePaintBlock)
+                            {
+                                if(player.getHeldItemMainhand() == stack)
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, player.getHorizontalFacing()));
+                                else
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatablePaintBlock.DIRECTION, player.getHorizontalFacing().getOpposite()));
+                            }
+                            else
+                                world.setBlockState(pos, newBlock.getDefaultState());
+                            if(!player.isCreative())
+                                nbt.putInt("paint", nbt.getInt("paint") - 1);
+                            world.playSound(null, pos, SoundEvents.BLOCK_SLIME_BLOCK_PLACE, SoundCategory.BLOCKS, .8F, 2.0F);
+                        }
                     }
                 }
             }
@@ -282,9 +364,9 @@ public class BrushItem extends Item
     {
         BlockState state = world.getBlockState(pos);
 
-        if(state.getBlock() instanceof PaintableBlock && state.getBlock() != ModBlocks.ASPHALT && state.getBlock() != ModBlocks.CONCRETE)
+        if(state.getBlock() instanceof SlopeBlock && state.getBlock() != ModBlocks.ASPHALT_SLOPE && state.getBlock() != ModBlocks.CONCRETE_SLOPE)
         {
-            Block newBlock = getPaintableBlockFromMaterial(state);
+            BlockState newBlock = getPaintableBlockFromMaterial(state);
 
             if(newBlock == null)
             {
@@ -294,7 +376,24 @@ public class BrushItem extends Item
             {
                 if(!world.isRemote)
                 {
-                    world.setBlockState(pos, newBlock.getDefaultState());
+                    world.setBlockState(pos, newBlock.with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                    world.playSound(null, pos, SoundEvents.BLOCK_COMPOSTER_FILL, SoundCategory.BLOCKS, 1.0F, 1.5F);
+                }
+            }
+        }
+        else if(state.getBlock() instanceof PaintableBlock && !(state.getBlock() instanceof SlopeBlock) && state.getBlock() != ModBlocks.ASPHALT && state.getBlock() != ModBlocks.CONCRETE)
+        {
+            BlockState newBlock = getPaintableBlockFromMaterial(state);
+
+            if(newBlock == null)
+            {
+                return ActionResultType.PASS;
+            }
+            else
+            {
+                if(!world.isRemote)
+                {
+                    world.setBlockState(pos, newBlock);
                     world.playSound(null, pos, SoundEvents.BLOCK_COMPOSTER_FILL, SoundCategory.BLOCKS, 1.0F, 1.5F);
                 }
             }
@@ -305,30 +404,68 @@ public class BrushItem extends Item
     private ActionResultType copyPattern(BlockState state, World world, CompoundNBT nbt, PlayerEntity player)
     {
         PaintableBlock block = (PaintableBlock)state.getBlock();
+        int materialType = block.getMaterialType();
 
-        if(!world.isRemote)
+        AsphaltPaintMap asphaltMap = null;
+        ConcretePaintMap concreteMap = null;
+
+        if(materialType == 0)
         {
-            int[] params = {0, 0};
-            if(((PaintableBlock)state.getBlock()).getMaterialType() == 0)
-                params = RoadStuff.asphaltMap.getParamsFor(block);
-            else if(((PaintableBlock)state.getBlock()).getMaterialType() == 1)
-                params = RoadStuff.concreteMap.getParamsFor(block);
-            nbt.putInt("pattern", params[1]);
-            player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "Copied pattern " + params[1] + " into brush"), true);
+            if(state.getBlock() instanceof SlopeBlock)
+                asphaltMap = RoadStuff.asphaltSlopeMap;
+            else
+                asphaltMap = RoadStuff.asphaltMap;
         }
-        return ActionResultType.SUCCESS;
+        else if(materialType == 1)
+        {
+            if(state.getBlock() instanceof SlopeBlock)
+                concreteMap = RoadStuff.concreteSlopeMap;
+            else
+                concreteMap = RoadStuff.concreteMap;
+        }
+        
+        if(asphaltMap != null || concreteMap != null)
+        {
+            if(!world.isRemote)
+            {
+                int[] params = {0, 0};
+                if(((PaintableBlock)state.getBlock()).getMaterialType() == 0)
+                    params = asphaltMap.getParamsFor(block);
+                else if(((PaintableBlock)state.getBlock()).getMaterialType() == 1)
+                    params = concreteMap.getParamsFor(block);
+                nbt.putInt("pattern", params[1]);
+                player.sendStatusMessage(new StringTextComponent(TextFormatting.WHITE + "Copied pattern " + params[1] + " into brush"), true);
+            }
+            return ActionResultType.SUCCESS;
+        }
+        return ActionResultType.PASS;
     }
 
-    private static PaintableBlock getPaintableBlockFromMaterial(BlockState state)
+    private static BlockState getPaintableBlockFromMaterial(BlockState state)
     {
-        switch(((PaintableBlock)state.getBlock()).getMaterialType())
+        if(state.getBlock() instanceof SlopeBlock)
         {
-            case 0:
-                return ModBlocks.ASPHALT;
-            case 1:
-                return ModBlocks.CONCRETE;
-            default:
-                return null;
+            switch(((SlopeBlock)state.getBlock()).getMaterialType())
+            {
+                case 0:
+                    return ModBlocks.ASPHALT_SLOPE.getDefaultState().with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS));
+                case 1:
+                    return ModBlocks.CONCRETE_SLOPE.getDefaultState().with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS));
+                default:
+                    return null;
+            }
+        }
+        else
+        {
+            switch(((PaintableBlock)state.getBlock()).getMaterialType())
+            {
+                case 0:
+                    return ModBlocks.ASPHALT.getDefaultState();
+                case 1:
+                    return ModBlocks.CONCRETE.getDefaultState();
+                default:
+                    return null;
+            }
         }
     }
 }

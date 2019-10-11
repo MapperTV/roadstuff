@@ -27,6 +27,9 @@ public class RoadStuff
 
     public static AsphaltPaintMap asphaltMap;
     public static ConcretePaintMap concreteMap;
+    
+    public static AsphaltPaintMap asphaltSlopeMap;
+    public static ConcretePaintMap concreteSlopeMap;
 
     public static long clickInterval = System.currentTimeMillis();
 
@@ -45,9 +48,14 @@ public class RoadStuff
     {
         LOGGER.info("RoadStuff setup");
         proxy.setup(event);
+        
         RSNetwork.registerNetworkPackets();
-        asphaltMap = new AsphaltPaintMap();
-        concreteMap = new ConcretePaintMap();
+        
+        asphaltMap = new AsphaltPaintMap(false);
+        concreteMap = new ConcretePaintMap(false);
+        asphaltSlopeMap = new AsphaltPaintMap(true);
+        concreteSlopeMap = new ConcretePaintMap(true);
+        
         OreGenerator.setupOregen();
     }
 

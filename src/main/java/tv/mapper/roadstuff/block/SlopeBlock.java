@@ -1,5 +1,7 @@
 package tv.mapper.roadstuff.block;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
@@ -24,6 +26,7 @@ import net.minecraft.util.math.shapes.VoxelShapes;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraftforge.common.ToolType;
 import tv.mapper.roadstuff.init.ModBlocks;
 
 public class SlopeBlock extends PaintableBlock implements IWaterLoggable
@@ -64,7 +67,7 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
         if(hit.getFace() == Direction.UP)
         {
             Item itemCheck = null;
-            
+
             switch(getMaterialType())
             {
                 case 0:
@@ -116,5 +119,12 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
     public IFluidState getFluidState(BlockState state)
     {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
+    }
+
+    @Nullable
+    @Override
+    public ToolType getHarvestTool(BlockState state)
+    {
+        return ToolType.PICKAXE;
     }
 }

@@ -9,10 +9,13 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
 {
     private static final long serialVersionUID = -2560468416060236377L;
 
-    public ConcretePaintMap()
+    public ConcretePaintMap(boolean slope)
     {
         super();
-        register(0, 0, ModBlocks.CONCRETE);
+        if(!slope)
+            register(0, 0, ModBlocks.CONCRETE);
+        else if(slope)
+            register(0, 0, ModBlocks.CONCRETE_SLOPE);
 
         int index = 1;
         for(PaintableBlock blockWhite : ModBlocks.MOD_PAINTABLEBLOCKS)
@@ -21,13 +24,25 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
             {
                 if(blockWhite.getRegistryName().toString().contains("_white_"))
                 {
-                    register(0, index, blockWhite);
-                    index++;
+                    if(blockWhite.getRegistryName().toString().contains("slope") && slope)
+                    {
+                        register(0, index, blockWhite);
+                        index++;
+                    }
+                    else if(!blockWhite.getRegistryName().toString().contains("slope") && !slope)
+                    {
+                        register(0, index, blockWhite);
+                        index++;
+                    }
                 }
+
             }
         }
 
-        register(1, 0, ModBlocks.CONCRETE);
+        if(!slope)
+            register(1, 0, ModBlocks.CONCRETE);
+        else if(slope)
+            register(1, 0, ModBlocks.CONCRETE_SLOPE);
 
         index = 1;
         for(PaintableBlock blockYellow : ModBlocks.MOD_PAINTABLEBLOCKS)
@@ -36,8 +51,16 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
             {
                 if(blockYellow.getRegistryName().toString().contains("_yellow_"))
                 {
-                    register(1, index, blockYellow);
-                    index++;
+                    if(blockYellow.getRegistryName().toString().contains("slope") && slope)
+                    {
+                        register(1, index, blockYellow);
+                        index++;
+                    }
+                    else if(!blockYellow.getRegistryName().toString().contains("slope") && !slope)
+                    {
+                        register(1, index, blockYellow);
+                        index++;
+                    }
                 }
             }
         }
