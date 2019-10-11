@@ -4,6 +4,9 @@
     "block.roadstuff.asphalt": "Asphalte",
     "block.roadstuff.concrete": "Béton",
     
+    "block.roadstuff.asphalt_slope": "Pente en Asphalte",
+    "block.roadstuff.concrete_slope": "Pente en Béton",
+    
     "block.roadstuff.paint_bucket": "Pot de peinture",
     
     "block.roadstuff.white_traffic_cone": "Cône de signalisation blanc",

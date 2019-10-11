@@ -4,6 +4,9 @@
     "block.roadstuff.asphalt": "Asphalt",
     "block.roadstuff.concrete": "Concrete",
     
+    "block.roadstuff.asphalt_slope": "Asphalt Slope",
+    "block.roadstuff.concrete_slope": "Concrete Slope",
+    
     "block.roadstuff.paint_bucket": "Paint Bucket",
     
     "block.roadstuff.white_traffic_cone": "White Traffic Cone",

@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "roadstuff:white_reflector",
+    "roadstuff:yellow_reflector",
+    "roadstuff:luminescent_white_reflector",
+    "roadstuff:luminescent_yellow_reflector"
+  ]
+}

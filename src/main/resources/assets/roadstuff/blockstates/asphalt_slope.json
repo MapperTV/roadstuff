@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "layers=1": { "model": "roadstuff:block/slope/asphalt_slope_4" },
+        "layers=2": { "model": "roadstuff:block/slope/asphalt_slope_8" },
+        "layers=3": { "model": "roadstuff:block/slope/asphalt_slope_12" },
+        "layers=4": { "model": "roadstuff:block/asphalt" }
+    }
+}

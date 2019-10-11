@@ -2,6 +2,7 @@
   "replace": false,
   "values": [
     "roadstuff:asphalt",
+    "roadstuff:asphalt_slope",
     "roadstuff:asphalt_white_line_1",
     "roadstuff:asphalt_white_line_2",
     "roadstuff:asphalt_white_line_3",
