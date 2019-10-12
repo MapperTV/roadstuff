@@ -15,19 +15,6 @@
                   "condition": "minecraft:block_state_property",
                   "block": "roadstuff:asphalt_slope",
                   "properties": {
-                    "layers": "1"
-                  }
-                }
-              ],
-              "count": 1
-            },
-            {
-              "function": "minecraft:set_count",
-              "conditions": [
-                {
-                  "condition": "minecraft:block_state_property",
-                  "block": "roadstuff:asphalt_slope",
-                  "properties": {
                     "layers": "2"
                   }
                 }
