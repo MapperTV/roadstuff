@@ -8,11 +8,11 @@ version="${file.jarVersion}" #mandatory
 displayName="Road Stuff 2" #mandatory
 #updateJSONURL="http://myurl.me/" #optional
 displayURL="http://mapper.tv/roadstuff/" #optional
-credits="Thanks to everyone working on Forge and MinecraftForgeFrance." #optional
+credits="The Forge and MinecraftForgeFrance communities for their help." #optional
 authors="Mapper" #optional
 # The description text for the mod (multi line!) (#mandatory)
 description='''
-Road Stuff 2 for Minecraft / Forge 1.14+ - WARNING: This is a very alpha version, do not use on your main save: blocks may change in the future, resulting into broken saves!
+Road Stuff 2 for Minecraft / Forge 1.14+ - WARNING: This is a beta version, bugs can still happen. Please report them!
 '''
 
 [[dependencies.roadstuff]]
