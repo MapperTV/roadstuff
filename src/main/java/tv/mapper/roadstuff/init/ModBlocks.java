@@ -36,7 +36,6 @@ import tv.mapper.roadstuff.util.ModConstants;
 public class ModBlocks
 {
     public static Set<PaintableBlock> MOD_PAINTABLEBLOCKS = new LinkedHashSet<>();
-    // public static Set<Item> MOD_ITEMS = new LinkedHashSet<>();
 
     public static final Block BITUMEN_BLOCK = null;
     public static final Block BITUMEN_ORE = null;
@@ -227,8 +226,6 @@ public class ModBlocks
     @SubscribeEvent
     public static void registerItems(RegistryEvent.Register<Item> event)
     {
-        // IForgeRegistry<Item> registry = event.getRegistry();
-
         event.getRegistry().register(new BlockItem(ASPHALT, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(ASPHALT.getRegistryName()));
         event.getRegistry().register(new BlockItem(CONCRETE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(CONCRETE.getRegistryName()));
 
@@ -308,18 +305,5 @@ public class ModBlocks
 
         event.getRegistry().register(new BlockItem(BITUMEN_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BITUMEN_BLOCK.getRegistryName()));
         event.getRegistry().register(new BlockItem(BITUMEN_ORE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BITUMEN_ORE.getRegistryName()));
-
-        // for(Block block : MOD_PAINTABLEBLOCKS)
-        // {
-        // registerItem(new BlockItem(block, new Item.Properties().group(ModItemGroups.ROADSTUFF)), block.getRegistryName().toString(), registry);
-        // }
     }
-
-    // private static void registerItem(Item item, String name, IForgeRegistry<Item> registry)
-    // {
-    // item.setRegistryName(name);
-    // MOD_ITEMS.add(item);
-    // registry.register(item);
-    // }
-
 }
