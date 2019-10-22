@@ -17,7 +17,7 @@ Roadmap:
 • Traffic cone color variants ✔️  
 • Miscellaneous items (reflectors etc) [WIP]  
 • More paintbrush GUI functionnality (pinned patterns etc) ✔️  
-• Road "slope" blocks (similar to snow layer block from Minecraft) [WIP]  
+• Road "slope" blocks (similar to snow layer block from Minecraft) ✔️  
 • Traffic signs system [TODO]  
 • Traffic lights system [TODO]  
 
