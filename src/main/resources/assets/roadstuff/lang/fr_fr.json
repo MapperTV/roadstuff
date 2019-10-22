@@ -82,6 +82,12 @@
     "block.roadstuff.luminescent_yellow_reflector": "Réflecteur jaune luminescent",
     
     "block.roadstuff.steel_guardrail": "Rambarde en acier",
+    "block.roadstuff.white_guardrail": "Rambarde blanche",
+    "block.roadstuff.black_guardrail": "Rambarde noire",
+    "block.roadstuff.yellow_guardrail": "Rambarde jaune",
+    
+    "block.roadstuff.white_bollard": "Bollard blanc",
+    "block.roadstuff.yellow_bollard": "Bollard jaune",
     
     "_comment2": "ITEMS",
     

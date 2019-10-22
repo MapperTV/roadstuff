@@ -18,6 +18,7 @@ import net.minecraftforge.fml.common.Mod.EventBusSubscriber.Bus;
 import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.ObjectHolder;
 import tv.mapper.roadstuff.RoadStuff;
+import tv.mapper.roadstuff.block.BollardBlock;
 import tv.mapper.roadstuff.block.ConeBlock;
 import tv.mapper.roadstuff.block.ConeBlock.EnumConeType;
 import tv.mapper.roadstuff.block.CustomBlock;
@@ -118,8 +119,14 @@ public class ModBlocks
     public static final Block BLACK_TRAFFIC_CONE = null;
     public static final Block BLACK_TRAFFIC_BARREL = null;
     public static final Block BLACK_TRAFFIC_BOLLARD = null;
-    
+
     public static final Block STEEL_GUARDRAIL = null;
+    public static final Block BLACK_GUARDRAIL = null;
+    public static final Block WHITE_GUARDRAIL = null;
+    public static final Block YELLOW_GUARDRAIL = null;
+
+    public static final Block WHITE_BOLLARD = null;
+    public static final Block YELLOW_BOLLARD = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
@@ -205,8 +212,14 @@ public class ModBlocks
 
         event.getRegistry().register(new CustomBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F), ToolType.PICKAXE).setRegistryName("bitumen_block"));
         event.getRegistry().register(new CustomBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F), ToolType.PICKAXE).setRegistryName("bitumen_ore"));
-        
+
         event.getRegistry().register(new GuardrailBlock(Block.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(3.0F).sound(SoundType.LANTERN), ToolType.PICKAXE).setRegistryName("steel_guardrail"));
+        event.getRegistry().register(new GuardrailBlock(Block.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(3.0F).sound(SoundType.LANTERN), ToolType.PICKAXE).setRegistryName("black_guardrail"));
+        event.getRegistry().register(new GuardrailBlock(Block.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(3.0F).sound(SoundType.LANTERN), ToolType.PICKAXE).setRegistryName("white_guardrail"));
+        event.getRegistry().register(new GuardrailBlock(Block.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(3.0F).sound(SoundType.LANTERN), ToolType.PICKAXE).setRegistryName("yellow_guardrail"));
+
+        event.getRegistry().register(new BollardBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.SNOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("white_bollard"));
+        event.getRegistry().register(new BollardBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.SNOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("yellow_bollard"));
 
         for(int i = 1; i < ModConstants.PATTERNS; i++)
         {
@@ -311,7 +324,13 @@ public class ModBlocks
 
         event.getRegistry().register(new BlockItem(BITUMEN_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BITUMEN_BLOCK.getRegistryName()));
         event.getRegistry().register(new BlockItem(BITUMEN_ORE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BITUMEN_ORE.getRegistryName()));
-        
+
         event.getRegistry().register(new BlockItem(STEEL_GUARDRAIL, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(STEEL_GUARDRAIL.getRegistryName()));
+        event.getRegistry().register(new BlockItem(BLACK_GUARDRAIL, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BLACK_GUARDRAIL.getRegistryName()));
+        event.getRegistry().register(new BlockItem(WHITE_GUARDRAIL, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(WHITE_GUARDRAIL.getRegistryName()));
+        event.getRegistry().register(new BlockItem(YELLOW_GUARDRAIL, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(YELLOW_GUARDRAIL.getRegistryName()));
+
+        event.getRegistry().register(new BlockItem(WHITE_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(WHITE_BOLLARD.getRegistryName()));
+        event.getRegistry().register(new BlockItem(YELLOW_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(YELLOW_BOLLARD.getRegistryName()));
     }
 }

@@ -82,6 +82,13 @@
     "block.roadstuff.luminescent_yellow_reflector": "Luminescent Yellow Reflector",
     
     "block.roadstuff.steel_guardrail": "Steel Guardrail",
+    "block.roadstuff.white_guardrail": "White Guardrail",
+    "block.roadstuff.black_guardrail": "Black Guardrail",
+    "block.roadstuff.yellow_guardrail": "Yellow Guardrail",
+    
+    "block.roadstuff.white_bollard": "White Bollard",
+    "block.roadstuff.yellow_bollard": "Yellow Bollard",
+    
     
     "_comment2": "ITEMS",
     
