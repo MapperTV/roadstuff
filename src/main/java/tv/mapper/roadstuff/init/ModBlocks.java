@@ -4,6 +4,7 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.material.MaterialColor;
 import net.minecraft.item.BlockItem;
@@ -20,6 +21,7 @@ import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.ConeBlock;
 import tv.mapper.roadstuff.block.ConeBlock.EnumConeType;
 import tv.mapper.roadstuff.block.CustomBlock;
+import tv.mapper.roadstuff.block.GuardrailBlock;
 import tv.mapper.roadstuff.block.PaintBucketBlock;
 import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.block.ReflectorBlock;
@@ -116,6 +118,8 @@ public class ModBlocks
     public static final Block BLACK_TRAFFIC_CONE = null;
     public static final Block BLACK_TRAFFIC_BARREL = null;
     public static final Block BLACK_TRAFFIC_BOLLARD = null;
+    
+    public static final Block STEEL_GUARDRAIL = null;
 
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
@@ -199,8 +203,10 @@ public class ModBlocks
         event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.BARREL).setRegistryName("black_traffic_barrel"));
         event.getRegistry().register(new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.BLACK_TERRACOTTA).hardnessAndResistance(0.1F, 3.0F), EnumConeType.BOLLARD).setRegistryName("black_traffic_bollard"));
 
-        event.getRegistry().register(new CustomBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F), ToolType.PICKAXE).setRegistryName("bitumen_block"));
-        event.getRegistry().register(new CustomBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F, 3.0F), ToolType.PICKAXE).setRegistryName("bitumen_ore"));
+        event.getRegistry().register(new CustomBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F), ToolType.PICKAXE).setRegistryName("bitumen_block"));
+        event.getRegistry().register(new CustomBlock(Block.Properties.create(Material.ROCK, MaterialColor.BLACK).hardnessAndResistance(3.0F), ToolType.PICKAXE).setRegistryName("bitumen_ore"));
+        
+        event.getRegistry().register(new GuardrailBlock(Block.Properties.create(Material.IRON, MaterialColor.GRAY).hardnessAndResistance(3.0F).sound(SoundType.LANTERN), ToolType.PICKAXE).setRegistryName("steel_guardrail"));
 
         for(int i = 1; i < ModConstants.PATTERNS; i++)
         {
@@ -305,5 +311,7 @@ public class ModBlocks
 
         event.getRegistry().register(new BlockItem(BITUMEN_BLOCK, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BITUMEN_BLOCK.getRegistryName()));
         event.getRegistry().register(new BlockItem(BITUMEN_ORE, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BITUMEN_ORE.getRegistryName()));
+        
+        event.getRegistry().register(new BlockItem(STEEL_GUARDRAIL, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(STEEL_GUARDRAIL.getRegistryName()));
     }
 }
