@@ -86,7 +86,10 @@ public class ReflectorBlock extends Block implements IWaterLoggable
     @Nullable
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
-        return this.getDefaultState().with(DIRECTION, context.getPlacementHorizontalFacing()).with(WATERLOGGED, Boolean.valueOf(false));
+        BlockPos blockpos = context.getPos();
+        IFluidState ifluidstate = context.getWorld().getFluidState(blockpos);
+
+        return this.getDefaultState().with(DIRECTION, context.getPlacementHorizontalFacing()).with(WATERLOGGED, Boolean.valueOf(Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER)));
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
