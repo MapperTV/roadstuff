@@ -128,6 +128,7 @@ public class ModBlocks
 
     public static final Block WHITE_BOLLARD = null;
     public static final Block YELLOW_BOLLARD = null;
+    public static final Block RED_BOLLARD = null;
     public static final Block GREEN_CYLINDRICAL_BOLLARD = null;
     public static final Block BLACK_CYLINDRICAL_BOLLARD = null;
 
@@ -223,6 +224,7 @@ public class ModBlocks
 
         event.getRegistry().register(new BollardBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.SNOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("white_bollard"));
         event.getRegistry().register(new BollardBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.SNOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("yellow_bollard"));
+        event.getRegistry().register(new BollardBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.SNOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("red_bollard"));
         event.getRegistry().register(new CylindricalBollardBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.SNOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("green_cylindrical_bollard"));
         event.getRegistry().register(new CylindricalBollardBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.SNOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("black_cylindrical_bollard"));
 
@@ -337,6 +339,7 @@ public class ModBlocks
 
         event.getRegistry().register(new BlockItem(WHITE_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(WHITE_BOLLARD.getRegistryName()));
         event.getRegistry().register(new BlockItem(YELLOW_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(YELLOW_BOLLARD.getRegistryName()));
+        event.getRegistry().register(new BlockItem(RED_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(RED_BOLLARD.getRegistryName()));
         event.getRegistry().register(new BlockItem(GREEN_CYLINDRICAL_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(GREEN_CYLINDRICAL_BOLLARD.getRegistryName()));
         event.getRegistry().register(new BlockItem(BLACK_CYLINDRICAL_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(BLACK_CYLINDRICAL_BOLLARD.getRegistryName()));
     }
