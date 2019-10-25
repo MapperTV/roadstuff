@@ -89,10 +89,23 @@
     "block.roadstuff.white_bollard": "White Bollard",
     "block.roadstuff.yellow_bollard": "Yellow Bollard",
     "block.roadstuff.red_bollard": "Red Bollard",
+    
     "block.roadstuff.green_cylindrical_bollard": "Green Cylindrical Bollard",
     "block.roadstuff.black_cylindrical_bollard": "Black Cylindrical Bollard",
     "block.roadstuff.yellow_cylindrical_bollard": "Yellow Cylindrical Bollard",
     "block.roadstuff.white_cylindrical_bollard": "White Cylindrical Bollard",
+    "block.roadstuff.blue_cylindrical_bollard": "Blue Cylindrical Bollard",
+    "block.roadstuff.cyan_cylindrical_bollard": "Cyan Cylindrical Bollard",
+    "block.roadstuff.brown_cylindrical_bollard": "Brown Cylindrical Bollard",
+    "block.roadstuff.gray_cylindrical_bollard": "Gray Cylindrical Bollard",
+    "block.roadstuff.light_blue_cylindrical_bollard": "Light Blue Cylindrical Bollard",
+    "block.roadstuff.light_gray_cylindrical_bollard": "Light Gray Cylindrical Bollard",
+    "block.roadstuff.magenta_cylindrical_bollard": "Magenta Cylindrical Bollard",
+    "block.roadstuff.lime_cylindrical_bollard": "Lime Cylindrical Bollard",
+    "block.roadstuff.orange_cylindrical_bollard": "Orange Cylindrical Bollard",
+    "block.roadstuff.pink_cylindrical_bollard": "Pink Cylindrical Bollard",
+    "block.roadstuff.purple_cylindrical_bollard": "Purple Cylindrical Bollard",
+    "block.roadstuff.red_cylindrical_bollard": "Red Cylindrical Bollard",
     
     
     "_comment2": "ITEMS",

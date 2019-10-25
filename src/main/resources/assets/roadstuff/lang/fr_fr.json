@@ -89,10 +89,23 @@
     "block.roadstuff.white_bollard": "Bollard blanc",
     "block.roadstuff.yellow_bollard": "Bollard jaune",
     "block.roadstuff.red_bollard": "Bollard rouge",
+    
     "block.roadstuff.green_cylindrical_bollard": "Bollard cylindrique vert",
     "block.roadstuff.black_cylindrical_bollard": "Bollard cylindrique noir",
     "block.roadstuff.yellow_cylindrical_bollard": "Bollard cylindrique jaune",
     "block.roadstuff.white_cylindrical_bollard": "Bollard cylindrique blanc",
+    "block.roadstuff.blue_cylindrical_bollard": "Bollard cylindrique bleu",
+    "block.roadstuff.cyan_cylindrical_bollard": "Bollard cylindrique cyan",
+    "block.roadstuff.brown_cylindrical_bollard": "Bollard cylindrique marron",
+    "block.roadstuff.gray_cylindrical_bollard": "Bollard cylindrique gris",
+    "block.roadstuff.light_blue_cylindrical_bollard": "Bollard cylindrique bleu clair",
+    "block.roadstuff.light_gray_cylindrical_bollard": "Bollard cylindrique gris clair",
+    "block.roadstuff.magenta_cylindrical_bollard": "Bollard cylindrique magenta",
+    "block.roadstuff.lime_cylindrical_bollard": "Bollard cylindrique vert clair",
+    "block.roadstuff.orange_cylindrical_bollard": "Bollard cylindrique orange",
+    "block.roadstuff.pink_cylindrical_bollard": "Bollard cylindrique rose",
+    "block.roadstuff.purple_cylindrical_bollard": "Bollard cylindrique violet",
+    "block.roadstuff.red_cylindrical_bollard": "Bollard cylindrique rouge",
     
     "_comment2": "ITEMS",
     

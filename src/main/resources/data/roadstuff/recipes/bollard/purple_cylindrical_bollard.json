@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "/",
+        "#",
+        "/"
+    ],
+    "key": {
+        "#": {
+            "item": "roadstuff:white_reflector"
+        },
+        "/": {
+            "tag": "forge:dyes/purple"
+        }
+    },
+    "result": {
+        "item": "roadstuff:purple_cylindrical_bollard",
+        "count": 1
+    }
+}
