@@ -125,6 +125,20 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
         return super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
     }
 
+    @Override
+    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state)
+    {
+        switch(materialType)
+        {
+            case 0:
+                return new ItemStack(ModBlocks.ASPHALT_SLOPE);
+            case 1:
+                return new ItemStack(ModBlocks.CONCRETE_SLOPE);
+            default:
+                return null;
+        }
+    }
+
     @SuppressWarnings("deprecation")
     public IFluidState getFluidState(BlockState state)
     {

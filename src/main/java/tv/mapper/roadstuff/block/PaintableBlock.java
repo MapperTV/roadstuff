@@ -4,14 +4,18 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
+import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockReader;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
+import tv.mapper.roadstuff.init.ModBlocks;
 
 public class PaintableBlock extends Block
 {
-    private int materialType = 0;
+    protected int materialType = 0;
 
     public PaintableBlock(Properties properties, int materialType)
     {
@@ -34,6 +38,20 @@ public class PaintableBlock extends Block
     public boolean isSolid(BlockState state)
     {
         return true;
+    }
+
+    @Override
+    public ItemStack getItem(IBlockReader worldIn, BlockPos pos, BlockState state)
+    {
+        switch(materialType)
+        {
+            case 0:
+                return new ItemStack(ModBlocks.ASPHALT);
+            case 1:
+                return new ItemStack(ModBlocks.CONCRETE);
+            default:
+                return null;
+        }
     }
 
     @Nullable
