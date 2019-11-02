@@ -1,0 +1,15 @@
+{
+    "type": "minecraft:crafting_shapeless",
+    "ingredients": [
+        {
+            "item": "minecraft:redstone"
+        },
+        {
+            "item": "roadstuff:red_reflector"
+        }
+    ],
+    "result": {
+        "item": "roadstuff:luminescent_red_reflector",
+        "count": 1
+    }
+}

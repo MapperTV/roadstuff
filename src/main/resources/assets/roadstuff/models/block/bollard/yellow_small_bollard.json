@@ -1,0 +1,6 @@
+{
+    "parent": "roadstuff:block/bollard/base/small_eur_bollard",
+    "textures": {
+        "all": "roadstuff:block/bollard/yellow_bollard"
+    }
+}

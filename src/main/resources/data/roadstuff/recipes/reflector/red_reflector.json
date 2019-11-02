@@ -7,7 +7,7 @@
     ],
     "key": {
         "#": {
-            "tag": "forge:dyes/yellow"
+            "tag": "forge:dyes/red"
         },
         "G": {
             "item": "minecraft:glowstone_dust"
@@ -17,7 +17,7 @@
         }
     },
     "result": {
-        "item": "roadstuff:yellow_reflector",
+        "item": "roadstuff:red_reflector",
         "count": 1
     }
 }

@@ -2,19 +2,18 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         "#",
-        "/",
         "/"
     ],
     "key": {
         "#": {
-            "item": "roadstuff:red_reflector"
+            "item": "roadstuff:white_reflector"
         },
         "/": {
             "item": "minecraft:stick"
         }
     },
     "result": {
-        "item": "roadstuff:red_bollard",
+        "item": "roadstuff:white_small_bollard",
         "count": 1
     }
 }

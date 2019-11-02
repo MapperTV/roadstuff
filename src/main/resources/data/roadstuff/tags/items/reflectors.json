@@ -3,7 +3,9 @@
   "values": [
     "roadstuff:white_reflector",
     "roadstuff:yellow_reflector",
+    "roadstuff:red_reflector",
     "roadstuff:luminescent_white_reflector",
-    "roadstuff:luminescent_yellow_reflector"
+    "roadstuff:luminescent_yellow_reflector",
+    "roadstuff:luminescent_red_reflector"
   ]
 }

@@ -78,8 +78,11 @@
     
     "block.roadstuff.white_reflector": "White Reflector",
     "block.roadstuff.yellow_reflector": "Yellow Reflector",
+    "block.roadstuff.red_reflector": "Red Reflector",
+    
     "block.roadstuff.luminescent_white_reflector": "Luminescent White Reflector",
     "block.roadstuff.luminescent_yellow_reflector": "Luminescent Yellow Reflector",
+    "block.roadstuff.luminescent_red_reflector": "Luminescent Red Reflector",
     
     "block.roadstuff.steel_guardrail": "Steel Guardrail",
     "block.roadstuff.white_guardrail": "White Guardrail",
@@ -89,6 +92,10 @@
     "block.roadstuff.white_bollard": "White Bollard",
     "block.roadstuff.yellow_bollard": "Yellow Bollard",
     "block.roadstuff.red_bollard": "Red Bollard",
+    
+    "block.roadstuff.white_small_bollard": "White Small Bollard",
+    "block.roadstuff.yellow_small_bollard": "Yellow Small Bollard",
+    "block.roadstuff.red_small_bollard": "Red Small Bollard",
     
     "block.roadstuff.green_cylindrical_bollard": "Green Cylindrical Bollard",
     "block.roadstuff.black_cylindrical_bollard": "Black Cylindrical Bollard",
