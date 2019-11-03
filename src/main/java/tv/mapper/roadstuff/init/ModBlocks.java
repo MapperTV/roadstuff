@@ -29,6 +29,7 @@ import tv.mapper.roadstuff.block.PaintableBlock;
 import tv.mapper.roadstuff.block.ReflectorBlock;
 import tv.mapper.roadstuff.block.RotatablePaintBlock;
 import tv.mapper.roadstuff.block.RotatableSlopeBlock;
+import tv.mapper.roadstuff.block.SignWorkshopBlock;
 import tv.mapper.roadstuff.block.SlopeBlock;
 import tv.mapper.roadstuff.item.BlockItemPaintBucket;
 import tv.mapper.roadstuff.item.ModItemGroups;
@@ -154,6 +155,8 @@ public class ModBlocks
     public static final Block YELLOW_CYLINDRICAL_BOLLARD = null;
     public static final Block MAGENTA_CYLINDRICAL_BOLLARD = null;
 
+    public static final Block SIGN_WORKSHOP = null;
+
     @SubscribeEvent
     public static void registerBlocks(RegistryEvent.Register<Block> event)
     {
@@ -271,6 +274,8 @@ public class ModBlocks
         event.getRegistry().register(new CylindricalBollardBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.YELLOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("purple_cylindrical_bollard"));
         event.getRegistry().register(new CylindricalBollardBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.YELLOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("red_cylindrical_bollard"));
         event.getRegistry().register(new CylindricalBollardBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.YELLOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("orange_cylindrical_bollard"));
+
+        event.getRegistry().register(new SignWorkshopBlock(Block.Properties.create(Material.MISCELLANEOUS, MaterialColor.YELLOW).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL)).setRegistryName("sign_workshop"));
 
         for(int i = 1; i < ModConstants.PATTERNS; i++)
         {
@@ -408,5 +413,7 @@ public class ModBlocks
         event.getRegistry().register(new BlockItem(PURPLE_CYLINDRICAL_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(PURPLE_CYLINDRICAL_BOLLARD.getRegistryName()));
         event.getRegistry().register(new BlockItem(RED_CYLINDRICAL_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(RED_CYLINDRICAL_BOLLARD.getRegistryName()));
         event.getRegistry().register(new BlockItem(MAGENTA_CYLINDRICAL_BOLLARD, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(MAGENTA_CYLINDRICAL_BOLLARD.getRegistryName()));
-    }
+
+        event.getRegistry().register(new BlockItem(SIGN_WORKSHOP, new Item.Properties().group(ModItemGroups.ROADSTUFF)).setRegistryName(SIGN_WORKSHOP.getRegistryName()));
+}
 }
