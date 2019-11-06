@@ -32,10 +32,11 @@ public class SignWorkshopContainer extends Container
 
         tileEntity.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY).ifPresent(h ->
         {
-            addSlot(new SlotItemHandler(h, 0, 10, 16));
-            addSlot(new SlotItemHandler(h, 1, 10, 34));
+            addSlot(new SlotItemHandler(h, 0, 10, 17));
+            addSlot(new SlotItemHandler(h, 1, 10, 35));
+            addSlot(new SlotItemHandler(h, 2, 10, 107));
         });
-        layoutPlayerInventorySlots(10, 70);
+        layoutPlayerInventorySlots(10, 134);
     }
 
     @Override
