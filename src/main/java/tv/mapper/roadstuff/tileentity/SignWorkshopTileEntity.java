@@ -103,8 +103,6 @@ public class SignWorkshopTileEntity extends TileEntity implements INamedContaine
                     return stack;
                 else if(slot == 1 && stack.getItem() != Items.STICK)
                     return stack;
-                else if(slot == 2)
-                    return ItemStack.EMPTY;
 
                 return super.insertItem(slot, stack, simulate);
             }
