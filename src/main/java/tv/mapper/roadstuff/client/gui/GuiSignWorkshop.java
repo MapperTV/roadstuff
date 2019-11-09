@@ -158,7 +158,6 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
         {
             if(button == 0)
             {
-                RoadStuff.LOGGER.debug("Clicked");
                 Minecraft.getInstance().displayGuiScreen(new RGBScreen(this));
             }
         }
