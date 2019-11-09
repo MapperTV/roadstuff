@@ -4,6 +4,7 @@ import java.awt.Color;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.client.gui.widget.TextFieldWidget;
 import net.minecraft.entity.player.PlayerInventory;
@@ -65,7 +66,6 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
         this.minecraft.keyboardListener.enableRepeatEvents(true);
         this.signTextField = new TextFieldWidget(this.font, guiLeft - 30, guiTop + 107, 30, 15, "Test");
         this.signTextField.setCanLoseFocus(true);
-        // this.signTextField.changeFocus(true);
         this.signTextField.setTextColor(new Color(255, 255, 255).hashCode());
         this.signTextField.setEnableBackgroundDrawing(true);
         this.signTextField.setMaxStringLength(3);
@@ -96,7 +96,7 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
         switch(currentTab)
         {
             case 0:
-                this.blit(guiLeft + 177, guiTop + 18, 208, 112, 23, 22);
+                this.blit(guiLeft + 177, guiTop + 18, 208, 112, 23, 22); // Tab
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
                 this.blit(guiLeft + 83, guiTop + 16, 0, 0, 90, 112); // Grid
                 this.minecraft.getTextureManager().bindTexture(GUI);
@@ -111,7 +111,7 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
 
                 break;
             case 1:
-                this.blit(guiLeft + 177, guiTop + 40, 208, 134, 23, 22);
+                this.blit(guiLeft + 177, guiTop + 40, 208, 134, 23, 22); // Tab
                 this.blit(guiLeft + 155, guiTop + 16, 237, 113, 18, 108); // Scrollbar
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
                 this.blit(guiLeft + 82, guiTop + 16, 90, 0, 91, 108); // Grid
@@ -127,7 +127,7 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
 
                 break;
             case 2:
-                this.blit(guiLeft + 177, guiTop + 62, 208, 134, 23, 22);
+                this.blit(guiLeft + 177, guiTop + 62, 208, 134, 23, 22); // Tab
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
                 this.blit(guiLeft + 83, guiTop + 16, 181, 0, 72, 108); // Grid
                 this.minecraft.getTextureManager().bindTexture(GUI);
@@ -148,10 +148,21 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
         this.font.drawStringWithShadow("Current symbol: " + signSymbol, 10, 25, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow("mouse: " + mouseX + ";" + mouseY, 10, 40, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow("Pos: " + posX + ";" + posY, 10, 55, new Color(150, 150, 150).getRGB());
+
+        fill(guiLeft + 83, guiTop + 112, guiLeft + 107, guiTop + 124, new Color(255, 0, 0, 128).getRGB());
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button)
     {
+        if(currentTab == 1 && mouseX > guiLeft + 83 && mouseX < guiLeft + 107 && mouseY > guiTop + 112 && mouseY < guiTop + 124)
+        {
+            if(button == 0)
+            {
+                RoadStuff.LOGGER.debug("Clicked");
+                Minecraft.getInstance().displayGuiScreen(new RGBScreen(this));
+            }
+        }
+        
         if(mouseX > guiLeft + WIDTH && mouseX < guiLeft + WIDTH + 20)
         {
             if(mouseY > guiTop + 18 && mouseY < guiTop + 40)
@@ -178,7 +189,7 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
 
         else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 16)
         {
-            if(currentTab == 0 &&  mouseY < guiTop + 112)
+            if(currentTab == 0 && mouseY < guiTop + 112)
             {
                 if(button == 0)
                 {
@@ -190,7 +201,7 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
                     return true;
                 }
             }
-            else if(currentTab == 1 &&  mouseY < guiTop + 106)
+            else if(currentTab == 1 && mouseY < guiTop + 106)
             {
                 if(button == 0)
                 {
@@ -203,7 +214,7 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
                 }
             }
         }
-
+        
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
