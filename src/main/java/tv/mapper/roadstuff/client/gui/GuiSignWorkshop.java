@@ -6,7 +6,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
-import net.minecraft.client.gui.widget.TextFieldWidget;
+import net.minecraft.client.gui.widget.button.Button;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.inventory.container.IContainerListener;
@@ -16,6 +16,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.inventory.container.SignWorkshopContainer;
+import tv.mapper.roadstuff.network.RSNetwork;
+import tv.mapper.roadstuff.network.TrafficSignPacket;
 
 public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> implements IContainerListener
 {
@@ -28,25 +30,26 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
 
     // GUI variables
     private short currentTab;
+    private int shapeRotationTextX;
 
     // Sign parameters
-    private int signShape = 0;
-    private int signShapeRot = 0;
 
-    private int signSymbol = 0;
-    private Color signSymbolColor = new Color(0, 0, 0);
+    private int shape = 0;
+    private int shapeRotation = 0;
+    private int symbol = 0;
+    protected Color symbolColor = new Color(0, 0, 0);
+    private int symbolRotation = 0;
+    private boolean symbolMirror = false;
+    protected Color bgColor = new Color(0, 0, 0);
+    protected Color borderColor = new Color(0, 0, 0);
+    private boolean borderThin = false;
+    private int detail = 0;
+    protected Color detailColor = new Color(255, 0, 0);
 
-    private Color signBorderColor = new Color(255, 0, 0);
-    private boolean signThinBorder = false;
-    private int signBorderDetail = 0;
-    private Color signBorderDetailColor = new Color(255, 0, 0);
-
-    private Color signBgColor = new Color(255, 255, 255);
-
-    private String signText = "";
+    // private String signText = "";
 
     // GUI text fields
-    private TextFieldWidget signTextField;
+    // private TextFieldWidget signTextField;
 
     private int posX;
     private int posY;
@@ -63,14 +66,20 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
         guiLeft = this.width / 2 - WIDTH / 2;
         guiTop = this.height / 2 - HEIGHT / 2;
 
-        this.minecraft.keyboardListener.enableRepeatEvents(true);
-        this.signTextField = new TextFieldWidget(this.font, guiLeft - 30, guiTop + 107, 30, 15, "Test");
-        this.signTextField.setCanLoseFocus(true);
-        this.signTextField.setTextColor(new Color(255, 255, 255).hashCode());
-        this.signTextField.setEnableBackgroundDrawing(true);
-        this.signTextField.setMaxStringLength(3);
-        this.children.add(this.signTextField);
-        this.container.addListener(this);
+        // this.minecraft.keyboardListener.enableRepeatEvents(true);
+        // this.signTextField = new TextFieldWidget(this.font, guiLeft - 30, guiTop + 107, 30, 15, "Test");
+        // this.signTextField.setCanLoseFocus(true);
+        // this.signTextField.setTextColor(new Color(255, 255, 255).hashCode());
+        // this.signTextField.setEnableBackgroundDrawing(true);
+        // this.signTextField.setMaxStringLength(3);
+        // this.children.add(this.signTextField);
+        // this.container.addListener(this);
+
+        this.addButton(new Button(guiLeft + 9, guiTop + 80, 18, 20, "▼", (makeItem) ->
+        {
+            RSNetwork.ROADSTUFF_CHANNEL.sendToServer(new TrafficSignPacket(shape, shapeRotation, symbol, symbolColor.getRGB(), symbolRotation, symbolMirror, bgColor.getRGB(), borderColor.getRGB(), borderThin, detail, detailColor.getRGB()));
+
+        }));
     }
 
     @Override
@@ -79,7 +88,7 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
         this.renderBackground();
         super.render(mouseX, mouseY, partialTicks);
         this.renderHoveredToolTip(mouseX, mouseY);
-        this.signTextField.render(mouseX, mouseY, partialTicks);
+        // this.signTextField.render(mouseX, mouseY, partialTicks);
     }
 
     @Override
@@ -109,6 +118,16 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
                     fill(posX, posY, posX + 22, posY + 22, new Color(255, 255, 255, 128).getRGB());
                 }
 
+                // Draws rotation amount
+
+                if(shapeRotation == 0)
+                    shapeRotationTextX = guiLeft + 130;
+                else if(shapeRotation == 90)
+                    shapeRotationTextX = guiLeft + 127;
+                else
+                    shapeRotationTextX = guiLeft + 124;
+                this.font.drawStringWithShadow("" + shapeRotation, shapeRotationTextX, guiTop + 118, new Color(255, 255, 255).getRGB());
+
                 break;
             case 1:
                 this.blit(guiLeft + 177, guiTop + 40, 208, 134, 23, 22); // Tab
@@ -124,6 +143,8 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
                     posY = Math.toIntExact(Math.round((mouseY - guiTop - 17) / 18) * 18) + guiTop + 17;
                     fill(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
                 }
+
+                fill(guiLeft + 83, guiTop + 112, guiLeft + 107, guiTop + 124, new Color(255, 0, 0, 128).getRGB());
 
                 break;
             case 2:
@@ -143,13 +164,14 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
         this.blit(guiLeft + 182, guiTop + 65, 224, 224, 16, 16);
         this.blit(guiLeft + 182, guiTop + 87, 224, 240, 16, 16);
 
+        // DEBUG
         this.font.drawStringWithShadow("Tab: " + currentTab, this.width / 2, this.height - this.height / 26, new Color(150, 150, 150).getRGB());
-        this.font.drawStringWithShadow("Current shape: " + signShape, 10, 10, new Color(150, 150, 150).getRGB());
-        this.font.drawStringWithShadow("Current symbol: " + signSymbol, 10, 25, new Color(150, 150, 150).getRGB());
+        this.font.drawStringWithShadow("Current shape: " + shape, 10, 10, new Color(150, 150, 150).getRGB());
+        this.font.drawStringWithShadow("Current symbol: " + symbol, 10, 25, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow("mouse: " + mouseX + ";" + mouseY, 10, 40, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow("Pos: " + posX + ";" + posY, 10, 55, new Color(150, 150, 150).getRGB());
+        this.font.drawStringWithShadow("Shape rotation: " + shapeRotation, 10, 70, new Color(150, 150, 150).getRGB());
 
-        fill(guiLeft + 83, guiTop + 112, guiLeft + 107, guiTop + 124, new Color(255, 0, 0, 128).getRGB());
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button)
@@ -158,10 +180,10 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
         {
             if(button == 0)
             {
-                Minecraft.getInstance().displayGuiScreen(new RGBScreen(this));
+                Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 0));
             }
         }
-        
+
         if(mouseX > guiLeft + WIDTH && mouseX < guiLeft + WIDTH + 20)
         {
             if(mouseY > guiTop + 18 && mouseY < guiTop + 40)
@@ -195,7 +217,7 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
                     int choice = (posX - guiLeft - 83) / 22 + ((posY - guiTop - 16) / 22) * 3;
                     if(choice < 12)
                     {
-                        signShape = choice;
+                        shape = choice;
                     }
                     return true;
                 }
@@ -207,13 +229,27 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
                     int choice = (posX - guiLeft - 83) / 16 + ((posY - guiTop - 16) / 16) * 4;
                     if(choice < 20)
                     {
-                        signSymbol = choice;
+                        symbol = choice;
                     }
                     return true;
                 }
             }
         }
-        
+
+        if(mouseX > guiLeft + 112 && mouseX < guiLeft + 124 && mouseY > guiTop + 116 && mouseY < guiTop + 130)
+        {
+            shapeRotation += 90;
+            if(shapeRotation > 270)
+                shapeRotation = 0;
+        }
+        else if(mouseX > guiLeft + 143 && mouseX < guiLeft + 155 && mouseY > guiTop + 116 && mouseY < guiTop + 130)
+        {
+            if(shapeRotation == 0)
+                shapeRotation = 270;
+            else
+                shapeRotation -= 90;
+        }
+
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
@@ -223,8 +259,9 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
         {
             this.minecraft.player.closeScreen();
         }
-
-        return !this.signTextField.keyPressed(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_) && !this.signTextField.func_212955_f() ? super.keyPressed(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_) : true;
+        return super.keyPressed(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_);
+        // return !this.signTextField.keyPressed(p_keyPressed_1_, p_keyPressed_2_, p_keyPressed_3_) && !this.signTextField.func_212955_f() ? super.keyPressed(p_keyPressed_1_, p_keyPressed_2_,
+        // p_keyPressed_3_) : true;
     }
 
     @Override

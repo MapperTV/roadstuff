@@ -69,7 +69,7 @@ public class SignWorkshopTileEntity extends TileEntity implements INamedContaine
 
     private IItemHandler createHandler()
     {
-        return new ItemStackHandler(3)
+        return new ItemStackHandler(2)
         {
 
             @Override
@@ -86,11 +86,9 @@ public class SignWorkshopTileEntity extends TileEntity implements INamedContaine
                     case 0:
                         return stack.getItem() == Items.IRON_INGOT;
                     case 1:
-                        return stack.getItem() == Items.STICK;
-                    case 2:
                         return false;
                     default:
-                        return stack.getItem() == Items.IRON_INGOT;
+                        return false;
                 }
 
             }
@@ -100,8 +98,6 @@ public class SignWorkshopTileEntity extends TileEntity implements INamedContaine
             public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate)
             {
                 if(slot == 0 && stack.getItem() != Items.IRON_INGOT)
-                    return stack;
-                else if(slot == 1 && stack.getItem() != Items.STICK)
                     return stack;
 
                 return super.insertItem(slot, stack, simulate);

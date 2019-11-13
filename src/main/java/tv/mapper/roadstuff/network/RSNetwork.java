@@ -14,5 +14,6 @@ public class RSNetwork
     public static void registerNetworkPackets()
     {
         ROADSTUFF_CHANNEL.messageBuilder(BrushPacket.class, 0).encoder(BrushPacket::encode).decoder(BrushPacket::decode).consumer(BrushPacket::handle).add();
+        ROADSTUFF_CHANNEL.messageBuilder(TrafficSignPacket.class, 1).encoder(TrafficSignPacket::encode).decoder(TrafficSignPacket::decode).consumer(TrafficSignPacket::handle).add();
     }
 }

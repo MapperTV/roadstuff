@@ -33,17 +33,13 @@ public class RGBScreen extends Screen
     private int greenCursor = 0;
     private int blueCursor = 0;
 
-    private Button redPlus;
-    private Button redMinus;
-    private Button greenPlus;
-    private Button greenMinus;
-    private Button bluePlus;
-    private Button blueMinus;
+    private int colorIndex;
 
-    protected RGBScreen(GuiSignWorkshop previousScreen)
+    protected RGBScreen(GuiSignWorkshop previousScreen, int colorIndex)
     {
         super(title);
         this.previousScreen = previousScreen;
+        this.colorIndex = colorIndex;
     }
 
     @Override
@@ -103,7 +99,7 @@ public class RGBScreen extends Screen
         this.blit(guiLeft, guiTop, 0, 160, WIDTH, HEIGHT);
 
         this.font.drawStringWithShadow("Select color:", 30, 80, new Color(255, 255, 255).getRGB());
-        
+
         this.font.drawStringWithShadow("R:" + red, guiLeft + 11, guiTop + 23, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow("G:" + green, guiLeft + 11, guiTop + 45, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow("B:" + blue, guiLeft + 11, guiTop + 67, new Color(255, 255, 255).getRGB());
@@ -127,6 +123,22 @@ public class RGBScreen extends Screen
     {
         if(p_keyPressed_1_ == 256 || p_keyPressed_1_ == 69)
         {
+            switch(colorIndex)
+            {
+                case 0:
+                    previousScreen.symbolColor = new Color(red, green, blue);
+                    break;
+                case 1:
+                    previousScreen.borderColor = new Color(red, green, blue);
+                    break;
+                case 2:
+                    previousScreen.bgColor = new Color(red, green, blue);
+                    break;
+                case 3:
+                    previousScreen.detailColor = new Color(red, green, blue);
+                    break;
+            }
+
             minecraft.displayGuiScreen(previousScreen);
             return true;
         }
