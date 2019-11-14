@@ -19,7 +19,7 @@ import tv.mapper.roadstuff.inventory.container.SignWorkshopContainer;
 import tv.mapper.roadstuff.network.RSNetwork;
 import tv.mapper.roadstuff.network.TrafficSignPacket;
 
-public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> implements IContainerListener
+public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> implements IContainerListener
 {
     private ResourceLocation GUI = new ResourceLocation(RoadStuff.MODID, "textures/gui/sign_workshop.png");
     private ResourceLocation GUI_TABS = new ResourceLocation(RoadStuff.MODID, "textures/gui/sign_workshop_tabs.png");
@@ -54,7 +54,7 @@ public class GuiSignWorkshop extends ContainerScreen<SignWorkshopContainer> impl
     private int posX;
     private int posY;
 
-    public GuiSignWorkshop(SignWorkshopContainer screenContainer, PlayerInventory inv, ITextComponent titleIn)
+    public SignWorkshopScreen(SignWorkshopContainer screenContainer, PlayerInventory inv, ITextComponent titleIn)
     {
         super(screenContainer, inv, titleIn);
     }
