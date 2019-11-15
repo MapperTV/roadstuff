@@ -70,7 +70,7 @@ public class TrafficSignItem extends BlockItem
             Color detail_color = new Color(nbt.getInt("detail_color"));
 
             list.add(new StringTextComponent("Shape: " + nbt.getInt("shape") + " (" + nbt.getInt("shape_rotation") + "°); Color: R" + bg_color.getRed() + ", G" + bg_color.getGreen() + ", B" + bg_color.getBlue()));
-            list.add(new StringTextComponent("Symbol: " + nbt.getInt("shape") + " (" + nbt.getInt("shape_rotation") + "°, mirror: " + nbt.getBoolean("symbol_mirror") + "), Color: R" + symbol_color.getRed() + ", G" + symbol_color.getGreen() + ", B" + symbol_color.getBlue()));
+            list.add(new StringTextComponent("Symbol: " + nbt.getInt("symbol") + " (" + nbt.getInt("symbol_rotation") + "°, mirror: " + nbt.getBoolean("symbol_mirror") + "), Color: R" + symbol_color.getRed() + ", G" + symbol_color.getGreen() + ", B" + symbol_color.getBlue()));
             list.add(new StringTextComponent("Border: Color: R" + border_color.getRed() + ", G" + border_color.getGreen() + ", B" + border_color.getBlue() + " (thin: " + nbt.getBoolean("border_thin") + ")"));
             list.add(new StringTextComponent("Detail: " + nbt.getInt("detail") + ", Color: R" + detail_color.getRed() + ", G" + detail_color.getGreen() + ", B" + detail_color.getBlue()));
         }
