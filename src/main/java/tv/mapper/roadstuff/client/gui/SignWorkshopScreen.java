@@ -33,6 +33,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
     // GUI variables
     private short currentTab;
     private int shapeRotationTextX;
+    private int symbolRotationTextX;
     private boolean rotClockPressed = false;
     private boolean rotCClockPressed = false;
 
@@ -143,23 +144,37 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                 else
                     shapeRotationTextX = guiLeft + 125;
 
+                if(symbolRotation == 0)
+                    symbolRotationTextX = guiLeft + 130;
+                else if(symbolRotation == 90)
+                    symbolRotationTextX = guiLeft + 127;
+                else
+                    symbolRotationTextX = guiLeft + 125;
+
                 break;
             case 1:
                 this.blit(guiLeft + 177, guiTop + 40, 208, 134, 23, 22); // Tab
                 // this.blit(guiLeft + 155, guiTop + 16, 237, 113, 18, 108); // Scrollbar
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
-                this.blit(guiLeft + 82, guiTop + 16, 90, 0, 90, 108); // Grid
+                this.blit(guiLeft + 83, guiTop + 16, 90, 0, 90, 112); // Grid
                 this.minecraft.getTextureManager().bindTexture(GUI);
 
+                // Draw rotation buttons being pressed
+                if(rotClockPressed)
+                    this.blit(guiLeft + 112, guiTop + 116, 200, 244, 12, 12);
+                else if(rotCClockPressed)
+                    this.blit(guiLeft + 143, guiTop + 116, 212, 244, 12, 12);
+
                 // Draws hover square above slots
-                if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 16 && mouseY < guiTop + 106)
+                if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 16 && mouseY < guiTop + 88)
                 {
-                    posX = Math.toIntExact(Math.round((mouseX - guiLeft - 11) / 18) * 18) + guiLeft + 12;
+                    posX = Math.toIntExact(Math.round((mouseX - guiLeft - 11) / 18) * 18) + guiLeft + 11;
                     posY = Math.toIntExact(Math.round((mouseY - guiTop - 17) / 18) * 18) + guiTop + 17;
                     fill(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
                 }
 
-                fill(guiLeft + 83, guiTop + 112, guiLeft + 107, guiTop + 124, new Color(255, 0, 0, 128).getRGB());
+                fill(guiLeft + 120, guiTop + 91, guiLeft + 153, guiTop + 100, symbolColor.getRGB());
+                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
 
                 break;
             case 2:
@@ -177,6 +192,16 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
 
         if(currentTab == 0)
             this.font.drawStringWithShadow("" + shapeRotation, shapeRotationTextX, guiTop + 118, new Color(255, 255, 255).getRGB());
+        if(currentTab == 1)
+        {
+            String hex = String.format("#%02X%02X%02X", symbolColor.getRed(), symbolColor.getGreen(), symbolColor.getBlue());
+            this.font.drawStringWithShadow("Color" + hex, guiLeft + 83, guiTop + 92, new Color(255, 255, 255).getRGB());
+            this.font.drawStringWithShadow("Mirror", guiLeft + 83, guiTop + 105, new Color(255, 255, 255).getRGB());
+            if(symbolMirror)
+                this.font.drawStringWithShadow("x", guiLeft + 146, guiTop + 104, new Color(255, 255, 255).getRGB());
+            this.font.drawStringWithShadow("" + symbolRotation, symbolRotationTextX, guiTop + 118, new Color(255, 255, 255).getRGB());
+
+        }
 
         // DEBUG
         this.font.drawStringWithShadow("Tab: " + currentTab, this.width / 2, this.height - this.height / 26, new Color(150, 150, 150).getRGB());
@@ -185,20 +210,13 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
         this.font.drawStringWithShadow("mouse: " + mouseX + ";" + mouseY, 10, 40, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow("Pos: " + posX + ";" + posY, 10, 55, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow("Shape rotation: " + shapeRotation, 10, 70, new Color(150, 150, 150).getRGB());
+        this.font.drawStringWithShadow("Symbol rotation: " + symbolRotation, 10, 85, new Color(150, 150, 150).getRGB());
 
     }
 
     public boolean mouseClicked(double mouseX, double mouseY, int button)
     {
-        if(currentTab == 1 && mouseX > guiLeft + 83 && mouseX < guiLeft + 107 && mouseY > guiTop + 112 && mouseY < guiTop + 124)
-        {
-            if(button == 0)
-            {
-                this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-                Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 0));
-            }
-        }
-
+        // Tab selection
         if(mouseX > guiLeft + WIDTH && mouseX < guiLeft + WIDTH + 20)
         {
             if(mouseY > guiTop + 18 && mouseY < guiTop + 40)
@@ -218,50 +236,91 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
             }
         }
 
-        else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 16)
+        switch(currentTab)
         {
-            if(currentTab == 0 && mouseY < guiTop + 112)
-            {
+            case 0:
                 if(button == 0)
                 {
-                    int choice = (posX - guiLeft - 83) / 22 + ((posY - guiTop - 16) / 22) * 3;
-                    if(choice < 12)
+                    if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 16 && mouseY < guiTop + 112)
                     {
-                        shape = choice;
+                        int choice = (posX - guiLeft - 83) / 22 + ((posY - guiTop - 16) / 22) * 3;
+                        if(choice < 12)
+                        {
+                            shape = choice;
+                        }
+                        return true;
                     }
-                    return true;
-                }
-            }
-            else if(currentTab == 1 && mouseY < guiTop + 106)
-            {
-                if(button == 0)
-                {
-                    int choice = (posX - guiLeft - 83) / 16 + ((posY - guiTop - 16) / 16) * 4;
-                    if(choice < 20)
+                    else if(mouseX > guiLeft + 112 && mouseX < guiLeft + 124 && mouseY > guiTop + 116 && mouseY < guiTop + 128)
                     {
-                        symbol = choice;
+                        rotClockPressed = true;
+                        this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                        shapeRotation += 90;
+                        if(shapeRotation > 270)
+                            shapeRotation = 0;
                     }
-                    return true;
+                    else if(mouseX > guiLeft + 143 && mouseX < guiLeft + 155 && mouseY > guiTop + 116 && mouseY < guiTop + 128)
+                    {
+                        rotCClockPressed = true;
+                        this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 0.75F));
+                        if(shapeRotation == 0)
+                            shapeRotation = 270;
+                        else
+                            shapeRotation -= 90;
+                    }
                 }
-            }
-        }
+                break;
 
-        if(mouseX > guiLeft + 112 && mouseX < guiLeft + 124 && mouseY > guiTop + 116 && mouseY < guiTop + 128)
-        {
-            rotClockPressed = true;
-            this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
-            shapeRotation += 90;
-            if(shapeRotation > 270)
-                shapeRotation = 0;
-        }
-        else if(mouseX > guiLeft + 143 && mouseX < guiLeft + 155 && mouseY > guiTop + 116 && mouseY < guiTop + 128)
-        {
-            rotCClockPressed = true;
-            this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 0.75F));
-            if(shapeRotation == 0)
-                shapeRotation = 270;
-            else
-                shapeRotation -= 90;
+            case 1:
+                if(button == 0)
+                {
+                    if(mouseX > guiLeft + 120 && mouseX < guiLeft + 153 && mouseY > guiTop + 91 && mouseY < guiTop + 100)
+                    {
+                        this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                        Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 0, symbolColor));
+                    }
+                    else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 16 && mouseY < guiTop + 88)
+                    {
+                        int choice = (posX - guiLeft - 82) / 16 + ((posY - guiTop - 16) / 16) * 4;
+                        if(choice < 16)
+                        {
+                            symbol = choice;
+                        }
+                        return true;
+                    }
+                    else if(mouseX > guiLeft + 112 && mouseX < guiLeft + 124 && mouseY > guiTop + 116 && mouseY < guiTop + 128)
+                    {
+                        rotClockPressed = true;
+                        this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                        symbolRotation += 90;
+                        if(symbolRotation > 270)
+                            symbolRotation = 0;
+                    }
+                    else if(mouseX > guiLeft + 143 && mouseX < guiLeft + 155 && mouseY > guiTop + 116 && mouseY < guiTop + 128)
+                    {
+                        rotCClockPressed = true;
+                        this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 0.75F));
+                        if(symbolRotation == 0)
+                            symbolRotation = 270;
+                        else
+                            symbolRotation -= 90;
+                    }
+                    else if(mouseX > guiLeft + 142 && mouseX < guiLeft + 154 && mouseY > guiTop + 103 && mouseY < guiTop + 115)
+                    {
+                        if(symbolMirror)
+                        {
+                            this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 0.75F));
+                            symbolMirror = false;
+                        }
+                        else
+                        {
+                            this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                            symbolMirror = true;
+                        }
+                    }
+                }
+                break;
+            case 2:
+                break;
         }
 
         return super.mouseClicked(mouseX, mouseY, button);

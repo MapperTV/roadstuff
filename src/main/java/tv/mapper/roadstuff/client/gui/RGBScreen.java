@@ -37,14 +37,17 @@ public class RGBScreen extends Screen
     private int colorIndex;
     private int currentCursor;
 
-    private int scroll = 0;
     private boolean isScrolling;
 
-    protected RGBScreen(SignWorkshopScreen previousScreen, int colorIndex)
+    protected RGBScreen(SignWorkshopScreen previousScreen, int colorIndex, Color existingColor)
     {
         super(title);
         this.previousScreen = previousScreen;
         this.colorIndex = colorIndex;
+
+        red = existingColor.getRed();
+        green = existingColor.getGreen();
+        blue = existingColor.getBlue();
     }
 
     @Override
