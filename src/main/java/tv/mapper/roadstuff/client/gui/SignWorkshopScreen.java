@@ -114,6 +114,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
                 this.blit(guiLeft + 83, guiTop + 16, 0, 0, 90, 112); // Grid
                 this.minecraft.getTextureManager().bindTexture(GUI);
+                this.blit(guiLeft + 160, guiTop + 17, 220, 192, 12, 15); // Scroll button (disabled)
 
                 // Draw rotation buttons being pressed
                 if(rotClockPressed)
@@ -136,20 +137,12 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                 blit(guiLeft + 82 + boxX * 24, guiTop + 15 + boxY * 24, 180, 182, 26, 26);
 
                 // Draws rotation amount
-
                 if(shapeRotation == 0)
                     shapeRotationTextX = guiLeft + 130;
                 else if(shapeRotation == 90)
                     shapeRotationTextX = guiLeft + 127;
                 else
                     shapeRotationTextX = guiLeft + 125;
-
-                if(symbolRotation == 0)
-                    symbolRotationTextX = guiLeft + 130;
-                else if(symbolRotation == 90)
-                    symbolRotationTextX = guiLeft + 127;
-                else
-                    symbolRotationTextX = guiLeft + 125;
 
                 break;
             case 1:
@@ -158,6 +151,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
                 this.blit(guiLeft + 83, guiTop + 16, 90, 0, 90, 112); // Grid
                 this.minecraft.getTextureManager().bindTexture(GUI);
+                this.blit(guiLeft + 160, guiTop + 17, 208, 192, 12, 15); // Scroll button
 
                 // Draw rotation buttons being pressed
                 if(rotClockPressed)
@@ -168,19 +162,28 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                 // Draws hover square above slots
                 if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 16 && mouseY < guiTop + 88)
                 {
-                    posX = Math.toIntExact(Math.round((mouseX - guiLeft - 11) / 18) * 18) + guiLeft + 11;
+                    posX = Math.toIntExact(Math.round((mouseX - guiLeft - 11) / 18) * 18) + guiLeft + 12;
                     posY = Math.toIntExact(Math.round((mouseY - guiTop - 17) / 18) * 18) + guiTop + 17;
                     fill(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
                 }
 
-                fill(guiLeft + 120, guiTop + 91, guiLeft + 153, guiTop + 100, symbolColor.getRGB());
+                // Draws colored button
+                fill(guiLeft + 85, guiTop + 91, guiLeft + 153, guiTop + 100, symbolColor.getRGB());
                 GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+                // Draws rotation amount
+                if(symbolRotation == 0)
+                    symbolRotationTextX = guiLeft + 130;
+                else if(symbolRotation == 90)
+                    symbolRotationTextX = guiLeft + 127;
+                else
+                    symbolRotationTextX = guiLeft + 125;
 
                 break;
             case 2:
                 this.blit(guiLeft + 177, guiTop + 62, 208, 134, 23, 22); // Tab
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
-                this.blit(guiLeft + 83, guiTop + 16, 180, 0, 72, 108); // Grid
+                this.blit(guiLeft + 83, guiTop + 16, 180, 0, 72, 112); // GUI
                 this.minecraft.getTextureManager().bindTexture(GUI);
                 break;
         }
@@ -195,7 +198,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
         if(currentTab == 1)
         {
             String hex = String.format("#%02X%02X%02X", symbolColor.getRed(), symbolColor.getGreen(), symbolColor.getBlue());
-            this.font.drawStringWithShadow("Color" + hex, guiLeft + 83, guiTop + 92, new Color(255, 255, 255).getRGB());
+            this.font.drawStringWithShadow("" + hex, guiLeft + 98, guiTop + 92, new Color(255, 255, 255).getRGB());
             this.font.drawStringWithShadow("Mirror", guiLeft + 83, guiTop + 105, new Color(255, 255, 255).getRGB());
             if(symbolMirror)
                 this.font.drawStringWithShadow("x", guiLeft + 146, guiTop + 104, new Color(255, 255, 255).getRGB());
@@ -209,8 +212,8 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
         this.font.drawStringWithShadow("Current symbol: " + symbol, 10, 25, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow("mouse: " + mouseX + ";" + mouseY, 10, 40, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow("Pos: " + posX + ";" + posY, 10, 55, new Color(150, 150, 150).getRGB());
-        this.font.drawStringWithShadow("Shape rotation: " + shapeRotation, 10, 70, new Color(150, 150, 150).getRGB());
-        this.font.drawStringWithShadow("Symbol rotation: " + symbolRotation, 10, 85, new Color(150, 150, 150).getRGB());
+        this.font.drawStringWithShadow("Shape rotation: " + shapeRotation + " (" + shapeRotationTextX + ")", 10, 70, new Color(150, 150, 150).getRGB());
+        this.font.drawStringWithShadow("Symbol rotation: " + symbolRotation + " (" + symbolRotationTextX + ")", 10, 85, new Color(150, 150, 150).getRGB());
 
     }
 
@@ -241,6 +244,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
             case 0:
                 if(button == 0)
                 {
+                    // Shape selection
                     if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 16 && mouseY < guiTop + 112)
                     {
                         int choice = (posX - guiLeft - 83) / 22 + ((posY - guiTop - 16) / 22) * 3;
@@ -250,6 +254,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                         }
                         return true;
                     }
+                    // Rotation
                     else if(mouseX > guiLeft + 112 && mouseX < guiLeft + 124 && mouseY > guiTop + 116 && mouseY < guiTop + 128)
                     {
                         rotClockPressed = true;
@@ -258,6 +263,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                         if(shapeRotation > 270)
                             shapeRotation = 0;
                     }
+                    // Rotation (counter clockwise)
                     else if(mouseX > guiLeft + 143 && mouseX < guiLeft + 155 && mouseY > guiTop + 116 && mouseY < guiTop + 128)
                     {
                         rotCClockPressed = true;
@@ -273,11 +279,13 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
             case 1:
                 if(button == 0)
                 {
-                    if(mouseX > guiLeft + 120 && mouseX < guiLeft + 153 && mouseY > guiTop + 91 && mouseY < guiTop + 100)
+                    // RGB button
+                    if(mouseX > guiLeft + 83 && mouseX < guiLeft + 153 && mouseY > guiTop + 91 && mouseY < guiTop + 100)
                     {
                         this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                         Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 0, symbolColor));
                     }
+                    // Symbol selection
                     else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 16 && mouseY < guiTop + 88)
                     {
                         int choice = (posX - guiLeft - 82) / 16 + ((posY - guiTop - 16) / 16) * 4;
@@ -287,6 +295,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                         }
                         return true;
                     }
+                    // Rotation
                     else if(mouseX > guiLeft + 112 && mouseX < guiLeft + 124 && mouseY > guiTop + 116 && mouseY < guiTop + 128)
                     {
                         rotClockPressed = true;
@@ -295,6 +304,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                         if(symbolRotation > 270)
                             symbolRotation = 0;
                     }
+                    // Rotation (counter clockwise)
                     else if(mouseX > guiLeft + 143 && mouseX < guiLeft + 155 && mouseY > guiTop + 116 && mouseY < guiTop + 128)
                     {
                         rotCClockPressed = true;
@@ -304,6 +314,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                         else
                             symbolRotation -= 90;
                     }
+                    // Mirror checkbox
                     else if(mouseX > guiLeft + 142 && mouseX < guiLeft + 154 && mouseY > guiTop + 103 && mouseY < guiTop + 115)
                     {
                         if(symbolMirror)
