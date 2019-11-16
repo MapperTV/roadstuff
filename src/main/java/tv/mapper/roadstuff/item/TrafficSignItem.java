@@ -64,15 +64,20 @@ public class TrafficSignItem extends BlockItem
         if(stack.hasTag())
         {
             CompoundNBT nbt = stack.getTag();
-            Color bg_color = new Color(nbt.getInt("bg_color"));
-            Color symbol_color = new Color(nbt.getInt("symbol_color"));
-            Color border_color = new Color(nbt.getInt("border_color"));
-            Color detail_color = new Color(nbt.getInt("detail_color"));
+            Color bgColor = new Color(nbt.getInt("bg_color"));
+            Color symbolColor = new Color(nbt.getInt("symbol_color"));
+            Color borderColor = new Color(nbt.getInt("border_color"));
+            Color detailColor = new Color(nbt.getInt("detail_color"));
 
-            list.add(new StringTextComponent("Shape: " + nbt.getInt("shape") + " (" + nbt.getInt("shape_rotation") + "°); Color: R" + bg_color.getRed() + ", G" + bg_color.getGreen() + ", B" + bg_color.getBlue()));
-            list.add(new StringTextComponent("Symbol: " + nbt.getInt("symbol") + " (" + nbt.getInt("symbol_rotation") + "°, mirror: " + nbt.getBoolean("symbol_mirror") + "), Color: R" + symbol_color.getRed() + ", G" + symbol_color.getGreen() + ", B" + symbol_color.getBlue()));
-            list.add(new StringTextComponent("Border: Color: R" + border_color.getRed() + ", G" + border_color.getGreen() + ", B" + border_color.getBlue() + " (thin: " + nbt.getBoolean("border_thin") + ")"));
-            list.add(new StringTextComponent("Detail: " + nbt.getInt("detail") + ", Color: R" + detail_color.getRed() + ", G" + detail_color.getGreen() + ", B" + detail_color.getBlue()));
+            String bgHex = String.format("#%02X%02X%02X", bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue());
+            String symbolHex = String.format("#%02X%02X%02X", symbolColor.getRed(), symbolColor.getGreen(), symbolColor.getBlue());
+            String borderHex = String.format("#%02X%02X%02X", borderColor.getRed(), borderColor.getGreen(), borderColor.getBlue());
+            String detailHex = String.format("#%02X%02X%02X", detailColor.getRed(), detailColor.getGreen(), detailColor.getBlue());
+
+            list.add(new StringTextComponent("Shape: " + nbt.getInt("shape") + " (" + nbt.getInt("shape_rotation") + "°); Color: " + symbolHex));
+            list.add(new StringTextComponent("Symbol: " + nbt.getInt("symbol") + " (" + nbt.getInt("symbol_rotation") + "°, mirror: " + nbt.getBoolean("symbol_mirror") + "), Color: " + bgHex));
+            list.add(new StringTextComponent("Border: Color: " + borderHex + " (thin: " + nbt.getBoolean("border_thin") + ")"));
+            list.add(new StringTextComponent("Detail: " + nbt.getInt("detail") + ", Color: " + detailHex));
         }
     }
 }
