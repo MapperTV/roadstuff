@@ -185,6 +185,12 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
                 this.blit(guiLeft + 83, guiTop + 16, 180, 0, 72, 112); // GUI
                 this.minecraft.getTextureManager().bindTexture(GUI);
+
+                // Draw colored buttons
+                fill(guiLeft + 85, guiTop + 41, guiLeft + 153, guiTop + 50, borderColor.getRGB()); // border
+                fill(guiLeft + 85, guiTop + 95, guiLeft + 153, guiTop + 104, detailColor.getRGB()); // detail
+                fill(guiLeft + 85, guiTop + 117, guiLeft + 153, guiTop + 126, bgColor.getRGB()); // background
+                GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
                 break;
         }
 
@@ -193,9 +199,10 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
         this.blit(guiLeft + 182, guiTop + 43, 240, 240, 16, 16);
         this.blit(guiLeft + 182, guiTop + 65, 224, 224, 16, 16);
 
+        // Texts
         if(currentTab == 0)
             this.font.drawStringWithShadow("" + shapeRotation, shapeRotationTextX, guiTop + 118, new Color(255, 255, 255).getRGB());
-        if(currentTab == 1)
+        else if(currentTab == 1)
         {
             String hex = String.format("#%02X%02X%02X", symbolColor.getRed(), symbolColor.getGreen(), symbolColor.getBlue());
             this.font.drawStringWithShadow("" + hex, guiLeft + 98, guiTop + 92, new Color(255, 255, 255).getRGB());
@@ -203,6 +210,26 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
             if(symbolMirror)
                 this.font.drawStringWithShadow("x", guiLeft + 146, guiTop + 104, new Color(255, 255, 255).getRGB());
             this.font.drawStringWithShadow("" + symbolRotation, symbolRotationTextX, guiTop + 118, new Color(255, 255, 255).getRGB());
+        }
+        else if(currentTab == 2)
+        {
+            this.font.drawStringWithShadow("Border config.", guiLeft + 83, guiTop + 16, new Color(255, 255, 255).getRGB());
+            this.font.drawStringWithShadow("Thin border", guiLeft + 83, guiTop + 28, new Color(255, 255, 255).getRGB());
+            if(borderThin)
+                this.font.drawStringWithShadow("x", guiLeft + 146, guiTop + 27, new Color(255, 255, 255).getRGB());
+            
+            String hex = String.format("#%02X%02X%02X", borderColor.getRed(), borderColor.getGreen(), borderColor.getBlue());
+            this.font.drawStringWithShadow("" + hex, guiLeft + 98, guiTop + 42, new Color(255, 255, 255).getRGB());
+
+            this.font.drawStringWithShadow("Detail config.", guiLeft + 83, guiTop + 53, new Color(255, 255, 255).getRGB());
+
+            String hex2 = String.format("#%02X%02X%02X", detailColor.getRed(), detailColor.getGreen(), detailColor.getBlue());
+            this.font.drawStringWithShadow("" + hex2, guiLeft + 98, guiTop + 96, new Color(255, 255, 255).getRGB());
+
+            this.font.drawStringWithShadow("Background color", guiLeft + 83, guiTop + 106, new Color(255, 255, 255).getRGB());
+
+            String hex3 = String.format("#%02X%02X%02X", bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue());
+            this.font.drawStringWithShadow("" + hex3, guiLeft + 98, guiTop + 118, new Color(255, 255, 255).getRGB());
 
         }
 
@@ -238,12 +265,11 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                 return true;
             }
         }
-
-        switch(currentTab)
+        if(button == 0)
         {
-            case 0:
-                if(button == 0)
-                {
+            switch(currentTab)
+            {
+                case 0:
                     // Shape selection
                     if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 16 && mouseY < guiTop + 112)
                     {
@@ -273,14 +299,11 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                         else
                             shapeRotation -= 90;
                     }
-                }
-                break;
+                    break;
 
-            case 1:
-                if(button == 0)
-                {
+                case 1:
                     // RGB button
-                    if(mouseX > guiLeft + 83 && mouseX < guiLeft + 153 && mouseY > guiTop + 91 && mouseY < guiTop + 100)
+                    if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 91 && mouseY < guiTop + 100)
                     {
                         this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                         Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 0, symbolColor));
@@ -328,12 +351,43 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                             symbolMirror = true;
                         }
                     }
-                }
-                break;
-            case 2:
-                break;
+                    break;
+                case 2:
+                    // RGB button border
+                    if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 39 && mouseY < guiTop + 52)
+                    {
+                        this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                        Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 1, borderColor));
+                    }
+                    // Mirror checkbox
+                    else if(mouseX > guiLeft + 142 && mouseX < guiLeft + 154 && mouseY > guiTop + 26 && mouseY < guiTop + 38)
+                    {
+                        if(borderThin)
+                        {
+                            this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 0.75F));
+                            borderThin = false;
+                        }
+                        else
+                        {
+                            this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                            borderThin = true;
+                        }
+                    }
+                    // RGB button detail
+                    else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 93 && mouseY < guiTop + 106)
+                    {
+                        this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                        Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 3, detailColor));
+                    }
+                    // RGB button bg
+                    else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 115 && mouseY < guiTop + 128)
+                    {
+                        this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+                        Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 2, bgColor));
+                    }
+                    break;
+            }
         }
-
         return super.mouseClicked(mouseX, mouseY, button);
     }
 
