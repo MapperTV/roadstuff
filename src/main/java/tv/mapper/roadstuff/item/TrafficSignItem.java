@@ -74,8 +74,8 @@ public class TrafficSignItem extends BlockItem
             String borderHex = String.format("#%02X%02X%02X", borderColor.getRed(), borderColor.getGreen(), borderColor.getBlue());
             String detailHex = String.format("#%02X%02X%02X", detailColor.getRed(), detailColor.getGreen(), detailColor.getBlue());
 
-            list.add(new StringTextComponent("Shape: " + nbt.getInt("shape") + " (" + nbt.getInt("shape_rotation") + "°); Color: " + symbolHex));
-            list.add(new StringTextComponent("Symbol: " + nbt.getInt("symbol") + " (" + nbt.getInt("symbol_rotation") + "°, mirror: " + nbt.getBoolean("symbol_mirror") + "), Color: " + bgHex));
+            list.add(new StringTextComponent("Shape: " + nbt.getInt("shape") + " (" + nbt.getInt("shape_rotation") + "°); Color: " + bgHex));
+            list.add(new StringTextComponent("Symbol: " + nbt.getInt("symbol") + " (" + nbt.getInt("symbol_rotation") + "°, mirror: " + nbt.getBoolean("symbol_mirror") + "), Color: " + symbolHex));
             list.add(new StringTextComponent("Border: Color: " + borderHex + " (thin: " + nbt.getBoolean("border_thin") + ")"));
             list.add(new StringTextComponent("Detail: " + nbt.getInt("detail") + ", Color: " + detailHex));
         }
