@@ -83,7 +83,6 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
         this.addButton(new Button(guiLeft + 9, guiTop + 84, 18, 20, "▼", (makeItem) ->
         {
             RSNetwork.ROADSTUFF_CHANNEL.sendToServer(new TrafficSignPacket(shape, shapeRotation, symbol, symbolColor.getRGB(), symbolRotation, symbolMirror, bgColor.getRGB(), borderColor.getRGB(), borderThin, detail, detailColor.getRGB()));
-
         }));
     }
 
@@ -112,7 +111,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
             case 0:
                 this.blit(guiLeft + 177, guiTop + 18, 208, 112, 23, 22); // Tab
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
-                this.blit(guiLeft + 83, guiTop + 16, 0, 0, 90, 112); // Grid
+                this.blit(guiLeft + 83, guiTop + 16, 0, 0, 72, 112); // Grid
                 this.minecraft.getTextureManager().bindTexture(GUI);
                 this.blit(guiLeft + 160, guiTop + 17, 220, 192, 12, 15); // Scroll button (disabled)
 
@@ -149,7 +148,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                 this.blit(guiLeft + 177, guiTop + 40, 208, 134, 23, 22); // Tab
                 // this.blit(guiLeft + 155, guiTop + 16, 237, 113, 18, 108); // Scrollbar
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
-                this.blit(guiLeft + 83, guiTop + 16, 90, 0, 90, 112); // Grid
+                this.blit(guiLeft + 83, guiTop + 16, 72, 0, 72, 112); // Grid
                 this.minecraft.getTextureManager().bindTexture(GUI);
                 this.blit(guiLeft + 160, guiTop + 17, 208, 192, 12, 15); // Scroll button
 
@@ -183,14 +182,19 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
             case 2:
                 this.blit(guiLeft + 177, guiTop + 62, 208, 134, 23, 22); // Tab
                 this.minecraft.getTextureManager().bindTexture(GUI_TABS);
-                this.blit(guiLeft + 83, guiTop + 16, 180, 0, 72, 112); // GUI
+                this.blit(guiLeft + 83, guiTop + 16, 144, 0, 90, 112); // GUI
+                
+                if(detail > 0 && detail < 7)
+                    blit(guiLeft + 83 + (detail - 1) * 15, guiTop + 69, 241, 225, 15, 15);
                 this.minecraft.getTextureManager().bindTexture(GUI);
 
                 // Draw colored buttons
-                fill(guiLeft + 85, guiTop + 41, guiLeft + 153, guiTop + 50, borderColor.getRGB()); // border
-                fill(guiLeft + 85, guiTop + 95, guiLeft + 153, guiTop + 104, detailColor.getRGB()); // detail
-                fill(guiLeft + 85, guiTop + 117, guiLeft + 153, guiTop + 126, bgColor.getRGB()); // background
+                fill(guiLeft + 85, guiTop + 44, guiLeft + 171, guiTop + 53, borderColor.getRGB()); // border
+                fill(guiLeft + 85, guiTop + 87, guiLeft + 171, guiTop + 96, detailColor.getRGB()); // detail
+                fill(guiLeft + 85, guiTop + 117, guiLeft + 171, guiTop + 126, bgColor.getRGB()); // background
                 GlStateManager.color4f(1.0F, 1.0F, 1.0F, 1.0F);
+
+
                 break;
         }
 
@@ -216,20 +220,23 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
             this.font.drawStringWithShadow("Border config.", guiLeft + 83, guiTop + 16, new Color(255, 255, 255).getRGB());
             this.font.drawStringWithShadow("Thin border", guiLeft + 83, guiTop + 28, new Color(255, 255, 255).getRGB());
             if(borderThin)
-                this.font.drawStringWithShadow("x", guiLeft + 146, guiTop + 27, new Color(255, 255, 255).getRGB());
-            
+                this.font.drawStringWithShadow("x", guiLeft + 164, guiTop + 29, new Color(255, 255, 255).getRGB());
+
+            // Color border
             String hex = String.format("#%02X%02X%02X", borderColor.getRed(), borderColor.getGreen(), borderColor.getBlue());
-            this.font.drawStringWithShadow("" + hex, guiLeft + 98, guiTop + 42, new Color(255, 255, 255).getRGB());
+            this.font.drawStringWithShadow("" + hex, guiLeft + 108, guiTop + 45, new Color(255, 255, 255).getRGB());
 
-            this.font.drawStringWithShadow("Detail config.", guiLeft + 83, guiTop + 53, new Color(255, 255, 255).getRGB());
+            this.font.drawStringWithShadow("Detail selected: " + detail, guiLeft + 83, guiTop + 58, new Color(255, 255, 255).getRGB());
 
+            // Color detail
             String hex2 = String.format("#%02X%02X%02X", detailColor.getRed(), detailColor.getGreen(), detailColor.getBlue());
-            this.font.drawStringWithShadow("" + hex2, guiLeft + 98, guiTop + 96, new Color(255, 255, 255).getRGB());
+            this.font.drawStringWithShadow("" + hex2, guiLeft + 108, guiTop + 88, new Color(255, 255, 255).getRGB());
 
             this.font.drawStringWithShadow("Background color", guiLeft + 83, guiTop + 106, new Color(255, 255, 255).getRGB());
 
+            // Color bg
             String hex3 = String.format("#%02X%02X%02X", bgColor.getRed(), bgColor.getGreen(), bgColor.getBlue());
-            this.font.drawStringWithShadow("" + hex3, guiLeft + 98, guiTop + 118, new Color(255, 255, 255).getRGB());
+            this.font.drawStringWithShadow("" + hex3, guiLeft + 108, guiTop + 118, new Color(255, 255, 255).getRGB());
 
         }
 
@@ -241,6 +248,7 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
         this.font.drawStringWithShadow("Pos: " + posX + ";" + posY, 10, 55, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow("Shape rotation: " + shapeRotation + " (" + shapeRotationTextX + ")", 10, 70, new Color(150, 150, 150).getRGB());
         this.font.drawStringWithShadow("Symbol rotation: " + symbolRotation + " (" + symbolRotationTextX + ")", 10, 85, new Color(150, 150, 150).getRGB());
+        this.font.drawStringWithShadow("Detail: " + detail, 10, 100, new Color(150, 150, 150).getRGB());
 
     }
 
@@ -354,13 +362,13 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                     break;
                 case 2:
                     // RGB button border
-                    if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 39 && mouseY < guiTop + 52)
+                    if(mouseX > guiLeft + 83 && mouseX < guiLeft + 173 && mouseY > guiTop + 42 && mouseY < guiTop + 55)
                     {
                         this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                         Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 1, borderColor));
                     }
                     // Mirror checkbox
-                    else if(mouseX > guiLeft + 142 && mouseX < guiLeft + 154 && mouseY > guiTop + 26 && mouseY < guiTop + 38)
+                    else if(mouseX > guiLeft + 162 && mouseX < guiLeft + 172 && mouseY > guiTop + 26 && mouseY < guiTop + 38)
                     {
                         if(borderThin)
                         {
@@ -373,14 +381,30 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
                             borderThin = true;
                         }
                     }
+                    // Detail selection
+                    else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 173 && mouseY > guiTop + 70 && mouseY < guiTop + 83)
+                    {
+                        if(mouseX > guiLeft + 83 && mouseX < guiLeft + 96)
+                            assignDetail(1);
+                        else if(mouseX > guiLeft + 98 && mouseX < guiLeft + 111)
+                            assignDetail(2);
+                        else if(mouseX > guiLeft + 113 && mouseX < guiLeft + 126)
+                            assignDetail(3);
+                        else if(mouseX > guiLeft + 128 && mouseX < guiLeft + 141)
+                            assignDetail(4);
+                        else if(mouseX > guiLeft + 143 && mouseX < guiLeft + 156)
+                            assignDetail(5);
+                        else if(mouseX > guiLeft + 158 && mouseX < guiLeft + 171)
+                            assignDetail(6);;
+                    }
                     // RGB button detail
-                    else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 93 && mouseY < guiTop + 106)
+                    else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 173 && mouseY > guiTop + 85 && mouseY < guiTop + 98)
                     {
                         this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                         Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 3, detailColor));
                     }
                     // RGB button bg
-                    else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 155 && mouseY > guiTop + 115 && mouseY < guiTop + 128)
+                    else if(mouseX > guiLeft + 83 && mouseX < guiLeft + 173 && mouseY > guiTop + 115 && mouseY < guiTop + 128)
                     {
                         this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
                         Minecraft.getInstance().displayGuiScreen(new RGBScreen(this, 2, bgColor));
@@ -389,6 +413,34 @@ public class SignWorkshopScreen extends ContainerScreen<SignWorkshopContainer> i
             }
         }
         return super.mouseClicked(mouseX, mouseY, button);
+    }
+
+    private void assignDetail(int newDetail)
+    {
+        this.minecraft.getSoundHandler().play(SimpleSound.master(SoundEvents.UI_BUTTON_CLICK, 1.0F));
+        switch(newDetail)
+        {
+            case 0:
+                detail = 0;
+                break;
+            case 1:
+                detail = (newDetail == detail) ? 0 : 1;
+                break;
+            case 2:
+                detail = (newDetail == detail) ? 0 : 2;
+                break;
+            case 3:
+                detail = (newDetail == detail) ? 0 : 3;
+                break;
+            case 4:
+                detail = (newDetail == detail) ? 0 : 4;
+                break;
+            case 5:
+                detail = (newDetail == detail) ? 0 : 5;
+                break;
+            case 6:
+                detail = (newDetail == detail) ? 0 : 6;
+        }
     }
 
     @Override
