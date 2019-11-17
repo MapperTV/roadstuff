@@ -1,6 +1,7 @@
 package tv.mapper.roadstuff.client.gui;
 
 import java.awt.Color;
+import java.util.Arrays;
 
 import com.mojang.blaze3d.platform.GlStateManager;
 
@@ -10,6 +11,7 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
+import net.minecraftforge.fml.client.config.GuiUtils;
 import tv.mapper.roadstuff.RoadStuff;
 
 public class RGBScreen extends Screen
@@ -94,7 +96,25 @@ public class RGBScreen extends Screen
             if(blue < 255)
                 blue++;
         }));
-
+        this.addButton(new Button(guiLeft + 60, guiTop + 100, 120, 20, "Confirm", (validation) ->
+        {
+            switch(colorIndex)
+            {
+                case 0:
+                    previousScreen.symbolColor = new Color(red, green, blue);
+                    break;
+                case 1:
+                    previousScreen.borderColor = new Color(red, green, blue);
+                    break;
+                case 2:
+                    previousScreen.bgColor = new Color(red, green, blue);
+                    break;
+                case 3:
+                    previousScreen.detailColor = new Color(red, green, blue);
+                    break;
+            }
+            minecraft.displayGuiScreen(previousScreen);
+        }));
     }
 
     @Override
@@ -116,10 +136,14 @@ public class RGBScreen extends Screen
         this.font.drawStringWithShadow("G:" + green, guiLeft + 11, guiTop + 45, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow("B:" + blue, guiLeft + 11, guiTop + 67, new Color(255, 255, 255).getRGB());
 
-        this.font.drawStringWithShadow("red: " + redCursor, 10, 10, new Color(255, 255, 255).getRGB());
-
         RGB = new Color(red, green, blue);
         fill(guiLeft + 218, guiTop + 17, guiLeft + 233, guiTop + 81, RGB.getRGB());
+
+        if(mouseX > guiLeft + 218 && mouseX < guiLeft + 233 && mouseY > guiTop + 17 && mouseY < guiTop + 81)
+        {
+            String hex = String.format("#%02X%02X%02X", red, green, blue);
+            GuiUtils.drawHoveringText(Arrays.asList("" + hex), mouseX, mouseY, width, height, -1, font);
+        }
 
         super.render(mouseX, mouseY, partialTicks);
     }
@@ -201,22 +225,6 @@ public class RGBScreen extends Screen
     {
         if(p_keyPressed_1_ == 256 || p_keyPressed_1_ == 69)
         {
-            switch(colorIndex)
-            {
-                case 0:
-                    previousScreen.symbolColor = new Color(red, green, blue);
-                    break;
-                case 1:
-                    previousScreen.borderColor = new Color(red, green, blue);
-                    break;
-                case 2:
-                    previousScreen.bgColor = new Color(red, green, blue);
-                    break;
-                case 3:
-                    previousScreen.detailColor = new Color(red, green, blue);
-                    break;
-            }
-
             minecraft.displayGuiScreen(previousScreen);
             return true;
         }
