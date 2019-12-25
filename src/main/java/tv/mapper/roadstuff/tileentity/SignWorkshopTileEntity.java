@@ -90,7 +90,6 @@ public class SignWorkshopTileEntity extends TileEntity implements INamedContaine
                     default:
                         return false;
                 }
-
             }
 
             @Nonnull

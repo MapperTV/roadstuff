@@ -6,7 +6,6 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class ServerProxy implements IProxy
 {
-
     @Override
     public void setup(FMLCommonSetupEvent event)
     {
@@ -24,5 +23,4 @@ public class ServerProxy implements IProxy
     {
         throw new IllegalStateException("Only run this on the client!");
     }
-
 }
