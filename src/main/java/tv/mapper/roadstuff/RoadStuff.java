@@ -4,12 +4,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
-import net.minecraftforge.fml.loading.FMLPaths;
 import tv.mapper.roadstuff.config.RoadStuffConfig;
 import tv.mapper.roadstuff.network.RSNetwork;
 import tv.mapper.roadstuff.proxy.ClientProxy;
@@ -27,7 +28,7 @@ public class RoadStuff
 
     public static AsphaltPaintMap asphaltMap;
     public static ConcretePaintMap concreteMap;
-    
+
     public static AsphaltPaintMap asphaltSlopeMap;
     public static ConcretePaintMap concreteSlopeMap;
 
@@ -37,25 +38,25 @@ public class RoadStuff
 
     public RoadStuff()
     {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RoadStuffConfig.COMMON_CONFIG);
+
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverSetup);
-
-        RoadStuffConfig.loadConfig(RoadStuffConfig.SERVER_CONFIG, FMLPaths.CONFIGDIR.get().resolve("roadstuff-server.toml"));
     }
 
     private void setup(final FMLCommonSetupEvent event)
     {
         LOGGER.info("RoadStuff setup");
         proxy.setup(event);
-        
+
         RSNetwork.registerNetworkPackets();
-        
+
         asphaltMap = new AsphaltPaintMap(false);
         concreteMap = new ConcretePaintMap(false);
         asphaltSlopeMap = new AsphaltPaintMap(true);
         concreteSlopeMap = new ConcretePaintMap(true);
-        
+
         OreGenerator.setupOregen();
     }
 
