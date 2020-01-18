@@ -94,9 +94,11 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
         CompoundNBT tagCompound = stack.getTag();
         if(tagCompound != null)
         {
-            return this.getDefaultState().with(PAINT, stack.getTag().getInt("paint")).with(COLOR, EnumPaintColor.values()[stack.getTag().getInt("color")]).with(DIRECTION, context.getPlacementHorizontalFacing()).with(WATERLOGGED, Boolean.valueOf(Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER)));
+            return this.getDefaultState().with(PAINT, stack.getTag().getInt("paint")).with(COLOR, EnumPaintColor.values()[stack.getTag().getInt("color")]).with(DIRECTION,
+                context.getPlacementHorizontalFacing()).with(WATERLOGGED, Boolean.valueOf(Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER)));
         }
-        return this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE).with(DIRECTION, context.getPlacementHorizontalFacing()).with(WATERLOGGED, Boolean.valueOf(Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER)));
+        return this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE).with(DIRECTION, context.getPlacementHorizontalFacing()).with(WATERLOGGED,
+            Boolean.valueOf(Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER)));
     }
 
     @Override
@@ -124,7 +126,8 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
             if(!item.hasTag())
                 item.setTag(BrushItem.checkNBT(item));
 
-            if((item.getTag().getInt("paint") < ModConstants.BRUSH_MAX_PAINT && paint > 0) || (item.getTag().getInt("paint") == ModConstants.BRUSH_MAX_PAINT && item.getTag().getInt("color") != state.get(COLOR).getId()))
+            if((item.getTag().getInt("paint") < ModConstants.BRUSH_MAX_PAINT && paint > 0) || (item.getTag().getInt("paint") == ModConstants.BRUSH_MAX_PAINT && item.getTag().getInt(
+                "color") != state.get(COLOR).getId()))
             {
                 if(!world.isRemote)
                 {
@@ -163,14 +166,16 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
 
             if(state.get(PAINT) < MAX_PAINT)
             {
-
                 if(dye.getDyeColor() == DyeColor.WHITE)
                     world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.WHITE));
                 else if(dye.getDyeColor() == DyeColor.YELLOW)
                     world.setBlockState(pos, state.with(PAINT, state.get(PAINT) + 1).with(COLOR, EnumPaintColor.YELLOW));
-                if(!player.isCreative())
-                    player.getHeldItem(hand).shrink(1);
-                world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 0.9F);
+                if(dye.getDyeColor() == DyeColor.WHITE || dye.getDyeColor() == DyeColor.YELLOW)
+                {
+                    if(!player.isCreative())
+                        player.getHeldItem(hand).shrink(1);
+                    world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 0.9F);
+                }
                 return true;
             }
         }
