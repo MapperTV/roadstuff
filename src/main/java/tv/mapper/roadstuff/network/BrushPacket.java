@@ -40,24 +40,28 @@ public class BrushPacket
 
     public static void handle(BrushPacket packet, Supplier<NetworkEvent.Context> context)
     {
+        context.get().enqueueWork(() ->
+        {
+            ServerPlayerEntity sender = context.get().getSender();
+
+            if(sender.getHeldItemMainhand().getItem() instanceof BrushItem)
+            {
+                CompoundNBT nbt = sender.getHeldItemMainhand().getTag();
+
+                nbt.putInt("pattern", packet.pattern);
+                nbt.putFloat("scroll", packet.scroll);
+                nbt.putIntArray("favs", packet.favs);
+            }
+            else if(sender.getHeldItemOffhand().getItem() instanceof BrushItem)
+            {
+                CompoundNBT nbt = sender.getHeldItemOffhand().getTag();
+
+                nbt.putInt("pattern", packet.pattern);
+                nbt.putFloat("scroll", packet.scroll);
+                nbt.putIntArray("favs", packet.favs);
+            }
+        });
         context.get().setPacketHandled(true);
-        ServerPlayerEntity sender = context.get().getSender();
 
-        if(sender.getHeldItemMainhand().getItem() instanceof BrushItem)
-        {
-            CompoundNBT nbt = sender.getHeldItemMainhand().getTag();
-
-            nbt.putInt("pattern", packet.pattern);
-            nbt.putFloat("scroll", packet.scroll);
-            nbt.putIntArray("favs", packet.favs);
-        }
-        else if(sender.getHeldItemOffhand().getItem() instanceof BrushItem)
-        {
-            CompoundNBT nbt = sender.getHeldItemOffhand().getTag();
-
-            nbt.putInt("pattern", packet.pattern);
-            nbt.putFloat("scroll", packet.scroll);
-            nbt.putIntArray("favs", packet.favs);
-        }
     }
 }
