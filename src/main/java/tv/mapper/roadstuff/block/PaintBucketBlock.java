@@ -131,7 +131,8 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
             {
                 if(!world.isRemote)
                 {
-                    world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1));
+                    if(!player.isCreative())
+                        world.setBlockState(pos, state.with(PAINT, state.get(PAINT) - 1));
 
                     item.getTag().putInt("paint", ModConstants.BRUSH_MAX_PAINT);
                     item.getTag().putInt("color", state.get(COLOR).getId());
