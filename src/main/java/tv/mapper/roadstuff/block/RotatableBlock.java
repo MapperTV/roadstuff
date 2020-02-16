@@ -10,6 +10,7 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.ToolType;
+import tv.mapper.mapperbase.block.CustomBlock;
 
 public class RotatableBlock extends CustomBlock
 {
