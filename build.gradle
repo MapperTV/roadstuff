@@ -48,7 +48,21 @@ minecraft {
                 }
             }
         }
+        
+        data {
+            workingDirectory project.file('run').canonicalPath
+
+            property 'forge.logging.markers', ''
+            property 'forge.logging.console.level', 'debug'
+
+            args '--mod', 'roadstuff', '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
+            source sourceSets.main
+        }
     }
+}
+
+sourceSets.main.resources {
+    srcDir 'src/generated/resources'
 }
 
 repositories {
@@ -67,6 +81,8 @@ dependencies {
 
     compileOnly fg.deobf("mezz.jei:jei-${lib_mc_version}:${jei_version}:api")
     runtimeOnly fg.deobf("mezz.jei:jei-${lib_mc_version}:${jei_version}")
+    
+    deobf files("dep/mapperbase-${lib_mc_version}-${base_version}-deobf.jar")
     
 }
 

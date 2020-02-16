@@ -1,30 +1,34 @@
-modLoader="javafml" #mandatory
-loaderVersion="[28,)"
-issueTrackerURL="https://github.com/KillerMapper/roadstuff/issues" #optional
-logoFile="roadstuff_logo.png" #optional
-[[mods]] #mandatory
-modId="roadstuff" #mandatory
-version="${file.jarVersion}" #mandatory
-displayName="Road Stuff 2" #mandatory
-#updateJSONURL="http://myurl.me/" #optional
-displayURL="http://mapper.tv/roadstuff/" #optional
-credits="The Forge and MinecraftForgeFrance communities for their help." #optional
-authors="Mapper" #optional
-# The description text for the mod (multi line!) (#mandatory)
-description='''
-Road Stuff 2 for Minecraft / Forge 1.14+ - WARNING: This is a beta version, bugs can still happen. Please report them!
-'''
+modLoader="javafml"
+loaderVersion="[31,)"
+issueTrackerURL="https://github.com/KillerMapper/roadstuff/issues"
+logoFile="roadstuff_logo.png"
+[[mods]]
+modId="roadstuff"
+version="${file.jarVersion}"
+displayName="Road Stuff"
+#updateJSONURL="http://myurl.me/"
+displayURL="http://mapper.tv/roadstuff/"
+credits="The Forge team and community for the help and resources."
+authors="Mapper"
+description='''Road Stuff 2 for Minecraft 1.15 brings you everything you need to create the roads of your dreams!'''
 
 [[dependencies.roadstuff]]
-    modId="forge" #mandatory
-    mandatory=true #mandatory
-    versionRange="[28,)" #mandatory
+    modId="forge"
+    mandatory=true
+    versionRange="[31,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.roadstuff]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.14.4]"
+    versionRange="[1.15.2]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.roadstuff]]
+    modId="mapperbase"
+    mandatory=true
+    versionRange="[1.15.2-1.0,]"
     ordering="NONE"
     side="BOTH"

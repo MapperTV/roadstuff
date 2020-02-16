@@ -13,6 +13,7 @@ import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
+import net.minecraftforge.fml.client.gui.GuiUtils;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.network.BrushPacket;
 import tv.mapper.roadstuff.network.RSNetwork;
@@ -180,9 +181,9 @@ public class GuiBrush extends Screen
         {
             int patternHover = (posX - guiLeft - 9) / 18 + ((posY - guiTop - 9) / 18) * 9 + scroll * 9;
             if(patternHover == 0)
-                net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(Arrays.asList(textEraser.getString()), mouseX, mouseY, width, height, -1, font);
+                GuiUtils.drawHoveringText(Arrays.asList(textEraser.getString()), mouseX, mouseY, width, height, -1, font);
             else
-                net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(Arrays.asList(textPattern.getString() + patternHover), mouseX, mouseY, width, height, -1, font);
+                GuiUtils.drawHoveringText(Arrays.asList(textPattern.getString() + patternHover), mouseX, mouseY, width, height, -1, font);
         }
         else if(mouseX > guiLeft + 191 && mouseX < guiLeft + 210 && mouseY > guiTop + 52 && mouseY < guiTop + 197)
         {
@@ -204,7 +205,7 @@ public class GuiBrush extends Screen
                 patternTooltip = textPattern.getString() + favorites[patternHover];
                 patternTooltipFinal.add(patternTooltip);
             }
-            net.minecraftforge.fml.client.config.GuiUtils.drawHoveringText(patternTooltipFinal, mouseX, mouseY, width, height, -1, font);
+            GuiUtils.drawHoveringText(patternTooltipFinal, mouseX, mouseY, width, height, -1, font);
         }
 
     }

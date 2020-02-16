@@ -22,13 +22,17 @@ public class GuardrailBlock extends FourWayBlock
     public GuardrailBlock(Properties properties)
     {
         super(2.0F, 2.0F, 16.0F, 16.0F, 16.0F, properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(WATERLOGGED, Boolean.valueOf(false)));
+        this.setDefaultState(
+            this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(
+                WATERLOGGED, Boolean.valueOf(false)));
     }
 
     public GuardrailBlock(Properties properties, ToolType toolType)
     {
         super(2.0F, 2.0F, 16.0F, 16.0F, 16.0F, properties);
-        this.setDefaultState(this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(WATERLOGGED, Boolean.valueOf(false)));
+        this.setDefaultState(
+            this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(
+                WATERLOGGED, Boolean.valueOf(false)));
         this.toolType = toolType;
     }
 
@@ -45,7 +49,12 @@ public class GuardrailBlock extends FourWayBlock
         BlockState blockstate1 = iblockreader.getBlockState(blockpos2);
         BlockState blockstate2 = iblockreader.getBlockState(blockpos3);
         BlockState blockstate3 = iblockreader.getBlockState(blockpos4);
-        return super.getStateForPlacement(context).with(NORTH, Boolean.valueOf(this.func_220111_a(blockstate, blockstate.func_224755_d(iblockreader, blockpos1, Direction.SOUTH), Direction.SOUTH))).with(EAST, Boolean.valueOf(this.func_220111_a(blockstate1, blockstate1.func_224755_d(iblockreader, blockpos2, Direction.WEST), Direction.WEST))).with(SOUTH, Boolean.valueOf(this.func_220111_a(blockstate2, blockstate2.func_224755_d(iblockreader, blockpos3, Direction.NORTH), Direction.NORTH))).with(WEST, Boolean.valueOf(this.func_220111_a(blockstate3, blockstate3.func_224755_d(iblockreader, blockpos4, Direction.EAST), Direction.EAST))).with(WATERLOGGED, Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER));
+        return super.getStateForPlacement(context).with(NORTH,
+            Boolean.valueOf(this.func_220111_a(blockstate, blockstate.canBeConnectedTo(iblockreader, blockpos1, Direction.SOUTH), Direction.SOUTH))).with(EAST,
+                Boolean.valueOf(this.func_220111_a(blockstate1, blockstate1.canBeConnectedTo(iblockreader, blockpos2, Direction.WEST), Direction.WEST))).with(SOUTH,
+                    Boolean.valueOf(this.func_220111_a(blockstate2, blockstate2.canBeConnectedTo(iblockreader, blockpos3, Direction.NORTH), Direction.NORTH))).with(WEST,
+                        Boolean.valueOf(this.func_220111_a(blockstate3, blockstate3.canBeConnectedTo(iblockreader, blockpos4, Direction.EAST), Direction.EAST))).with(WATERLOGGED,
+                            Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER));
     }
 
     @SuppressWarnings("deprecation")
@@ -56,7 +65,9 @@ public class GuardrailBlock extends FourWayBlock
             worldIn.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(worldIn));
         }
 
-        return facing.getAxis().getPlane() == Direction.Plane.HORIZONTAL ? stateIn.with(FACING_TO_PROPERTY_MAP.get(facing), Boolean.valueOf(this.func_220111_a(facingState, facingState.func_224755_d(worldIn, facingPos, facing.getOpposite()), facing.getOpposite()))) : super.updatePostPlacement(stateIn, facing, facingState, worldIn, currentPos, facingPos);
+        return facing.getAxis().getPlane() == Direction.Plane.HORIZONTAL ? stateIn.with(FACING_TO_PROPERTY_MAP.get(facing),
+            Boolean.valueOf(this.func_220111_a(facingState, facingState.canBeConnectedTo(worldIn, facingPos, facing.getOpposite()), facing.getOpposite()))) : super.updatePostPlacement(stateIn, facing,
+                facingState, worldIn, currentPos, facingPos);
     }
 
     public boolean func_220111_a(BlockState p_220111_1_, boolean p_220111_2_, Direction p_220111_3_)

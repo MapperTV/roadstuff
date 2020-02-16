@@ -88,12 +88,12 @@ public class BrushItem extends Item
         {
             if(ModConstants.ALTERNATE_BRUSH)
             {
-                if(player.isSneaking())
+                if(player.isShiftKeyDown())
                     BrushItemClient.displayBrushGui(nbt.getInt("pattern"), nbt.getInt("paint"), nbt.getInt("color"), nbt.getFloat("scroll"), nbt.getIntArray("favs"));
             }
             else
             {
-                if(!player.isSneaking())
+                if(!player.isShiftKeyDown())
                     BrushItemClient.displayBrushGui(nbt.getInt("pattern"), nbt.getInt("paint"), nbt.getInt("color"), nbt.getFloat("scroll"), nbt.getIntArray("favs"));
             }
         }
@@ -111,9 +111,10 @@ public class BrushItem extends Item
             ItemStack heldItem = context.getItem();
             PlayerEntity player = context.getPlayer();
 
-            if(player.isSneaking())
+            if(player.isShiftKeyDown())
             {
-                if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.ASPHALT && context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.CONCRETE))
+                if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(
+                    context.getPos()).getBlock() != ModBlocks.ASPHALT && context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.CONCRETE))
                     return copyPattern(context.getWorld().getBlockState(context.getPos()), context.getWorld(), nbt, context.getPlayer());
                 else if(context.getWorld().isRemote)
                     BrushItemClient.displayBrushGui(nbt.getInt("pattern"), nbt.getInt("paint"), nbt.getInt("color"), nbt.getFloat("scroll"), nbt.getIntArray("favs"));
@@ -123,9 +124,10 @@ public class BrushItem extends Item
         }
         else
         {
-            if(context.getPlayer().isSneaking())
+            if(context.getPlayer().isShiftKeyDown())
             {
-                if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.ASPHALT && context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.CONCRETE))
+                if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(
+                    context.getPos()).getBlock() != ModBlocks.ASPHALT && context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.CONCRETE))
                 {
                     return copyPattern(context.getWorld().getBlockState(context.getPos()), context.getWorld(), nbt, context.getPlayer());
                 }
@@ -145,7 +147,8 @@ public class BrushItem extends Item
 
             if(stack.getTag().getInt("paint") == 0)
                 color = "X";
-            list.add(new StringTextComponent(new TranslationTextComponent("roadstuff.message.brush.gui.pattern").getString() + stack.getTag().getInt("pattern") + "; " + new TranslationTextComponent("roadstuff.message.brush.gui.color").getString() + color));
+            list.add(new StringTextComponent(new TranslationTextComponent("roadstuff.message.brush.gui.pattern").getString() + stack.getTag().getInt(
+                "pattern") + "; " + new TranslationTextComponent("roadstuff.message.brush.gui.color").getString() + color));
             list.add(new StringTextComponent(new TranslationTextComponent("roadstuff.message.brush.gui.paint").getString() + stack.getTag().getInt("paint")));
         }
     }
@@ -226,33 +229,43 @@ public class BrushItem extends Item
                         {
                             case NORTH:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.EAST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.EAST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                        SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.WEST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.WEST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                        SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 break;
                             case EAST:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.SOUTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.SOUTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                        SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.NORTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.NORTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                        SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 break;
                             case SOUTH:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.WEST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.WEST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                        SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.EAST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.EAST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                        SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 break;
                             case WEST:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.NORTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.NORTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                        SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.SOUTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.SOUTH).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                        SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 break;
                             default:
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.EAST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.EAST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                        SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.WEST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, Direction.WEST).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                        SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 break;
                         }
                     }
@@ -266,9 +279,12 @@ public class BrushItem extends Item
                             if(newBlock instanceof RotatableSlopeBlock)
                             {
                                 if(player.getHeldItemMainhand() == stack)
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, player.getHorizontalFacing()).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos,
+                                        newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, player.getHorizontalFacing()).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                            SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, player.getHorizontalFacing().getOpposite()).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, player.getHorizontalFacing().getOpposite()).with(SlopeBlock.LAYERS,
+                                        state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                             }
                             else
                                 world.setBlockState(pos, newBlock.getDefaultState());
@@ -423,7 +439,7 @@ public class BrushItem extends Item
             else
                 concreteMap = RoadStuff.concreteMap;
         }
-        
+
         if(asphaltMap != null || concreteMap != null)
         {
             if(!world.isRemote)

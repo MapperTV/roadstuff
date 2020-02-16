@@ -38,12 +38,6 @@ public class CylindricalBollardBlock extends CustomBlock implements IWaterLoggab
     }
 
     @Override
-    public boolean isSolid(BlockState state)
-    {
-        return false;
-    }
-
-    @Override
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
     {
         return SHAPE;
@@ -60,7 +54,7 @@ public class CylindricalBollardBlock extends CustomBlock implements IWaterLoggab
     {
         builder.add(WATERLOGGED);
     }
-    
+
     @Override
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {

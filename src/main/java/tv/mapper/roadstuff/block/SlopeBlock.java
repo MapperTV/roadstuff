@@ -15,6 +15,7 @@ import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -35,7 +36,8 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
     public static final IntegerProperty LAYERS = IntegerProperty.create("layers", 1, 4);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected static final VoxelShape[] SHAPES = new VoxelShape[] {VoxelShapes.empty(), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
+    protected static final VoxelShape[] SHAPES = new VoxelShape[] {VoxelShapes.empty(), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D,
+        8.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 
     public SlopeBlock(Properties properties, int materialType)
     {
@@ -54,15 +56,6 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
     }
 
     @Override
-    public boolean isSolid(BlockState state)
-    {
-        if(state.get(LAYERS) == 4)
-            return true;
-        else
-            return false;
-    }
-
-    @Override
     public BlockState getStateForPlacement(BlockItemUseContext context)
     {
         BlockPos blockpos = context.getPos();
@@ -72,7 +65,7 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
+    public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit)
     {
         if(hit.getFace() == Direction.UP)
         {
@@ -91,7 +84,7 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
                     break;
             }
 
-            if(!player.isSneaking() && state.get(LAYERS) < 4)
+            if(!player.isShiftKeyDown() && state.get(LAYERS) < 4)
             {
                 ItemStack stack = ItemStack.EMPTY;
                 if(player.getHeldItemMainhand().getItem() == itemCheck)
@@ -107,12 +100,12 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
 
                     if(!player.isCreative())
                         stack.setCount(stack.getCount() - 1);
-                    return true;
+                    return ActionResultType.SUCCESS;
                 }
 
             }
         }
-        return false;
+        return ActionResultType.PASS;
     }
 
     @SuppressWarnings("deprecation")

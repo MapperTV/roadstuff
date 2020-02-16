@@ -5,11 +5,8 @@ import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.ToolType;
 import tv.mapper.roadstuff.init.ModBlocks;
 
@@ -23,21 +20,9 @@ public class PaintableBlock extends Block
         this.materialType = materialType;
     }
 
-    @OnlyIn(Dist.CLIENT)
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
-    }
-
     public int getMaterialType()
     {
         return this.materialType;
-    }
-
-    @Override
-    public boolean isSolid(BlockState state)
-    {
-        return true;
     }
 
     @Override

@@ -24,7 +24,7 @@ import net.minecraft.state.EnumProperty;
 import net.minecraft.state.IntegerProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.SoundCategory;
@@ -56,17 +56,6 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
     {
         super(properties);
         this.setDefaultState(this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE).with(DIRECTION, Direction.NORTH).with(WATERLOGGED, Boolean.valueOf(false)));
-    }
-
-    @Override
-    public boolean isSolid(BlockState state)
-    {
-        return false;
-    }
-
-    public BlockRenderLayer getRenderLayer()
-    {
-        return BlockRenderLayer.CUTOUT;
     }
 
     public VoxelShape getShape(BlockState state, IBlockReader worldIn, BlockPos pos, ISelectionContext context)
@@ -102,12 +91,12 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
     }
 
     @Override
-    public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result)
+    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult result)
     {
         if(state.get(WATERLOGGED))
         {
             player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.underwater"), true);
-            return false;
+            return ActionResultType.FAIL;
         }
 
         ItemStack item = player.getHeldItem(hand);
@@ -120,7 +109,7 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
             {
                 if(!world.isRemote)
                     player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.empty"), true);
-                return false;
+                return ActionResultType.FAIL;
             }
 
             if(!item.hasTag())
@@ -138,7 +127,7 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
                     item.getTag().putInt("color", state.get(COLOR).getId());
                     world.playSound(null, pos, SoundEvents.ITEM_BUCKET_EMPTY_LAVA, SoundCategory.BLOCKS, .8F, 1.0F);
                 }
-                return true;
+                return ActionResultType.SUCCESS;
             }
         }
         if(item.getItem() instanceof DyeItem && !world.isRemote)
@@ -150,19 +139,19 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
                 if(dye.getDyeColor() == DyeColor.WHITE && state.get(COLOR) == EnumPaintColor.YELLOW)
                 {
                     player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.yellow"), true);
-                    return false;
+                    return ActionResultType.FAIL;
                 }
                 else if(dye.getDyeColor() == DyeColor.YELLOW && state.get(COLOR) == EnumPaintColor.WHITE)
                 {
                     player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.white"), true);
-                    return false;
+                    return ActionResultType.FAIL;
                 }
             }
 
             if(state.get(PAINT) >= MAX_PAINT)
             {
                 player.sendStatusMessage(new TranslationTextComponent("roadstuff.message.bucket.full"), true);
-                return false;
+                return ActionResultType.FAIL;
             }
 
             if(state.get(PAINT) < MAX_PAINT)
@@ -177,10 +166,10 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
                         player.getHeldItem(hand).shrink(1);
                     world.playSound(null, pos, SoundEvents.ITEM_BUCKET_FILL_LAVA, SoundCategory.BLOCKS, .8F, 0.9F);
                 }
-                return true;
+                return ActionResultType.SUCCESS;
             }
         }
-        return false;
+        return ActionResultType.FAIL;
     }
 
     @Override

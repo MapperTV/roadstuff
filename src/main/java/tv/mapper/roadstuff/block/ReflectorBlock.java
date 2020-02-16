@@ -41,12 +41,6 @@ public class ReflectorBlock extends Block implements IWaterLoggable
     }
 
     @Override
-    public boolean isSolid(BlockState state)
-    {
-        return false;
-    }
-
-    @Override
     public boolean canSpawnInBlock()
     {
         return true;
