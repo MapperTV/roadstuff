@@ -6,7 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
 import net.minecraft.util.ResourceLocation;
-import tv.mapper.mapperbase.MapperBase;
+import tv.mapper.roadstuff.RoadStuff;
 
 public class RSTags
 {
@@ -17,7 +17,7 @@ public class RSTags
 
         private static Tag<Block> tag(String name)
         {
-            return new BlockTags.Wrapper(new ResourceLocation(MapperBase.MODID, name));
+            return new BlockTags.Wrapper(new ResourceLocation(RoadStuff.MODID, name));
         }
     }
 
@@ -28,7 +28,7 @@ public class RSTags
 
         private static Tag<Item> tag(String name)
         {
-            return new ItemTags.Wrapper(new ResourceLocation(MapperBase.MODID, name));
+            return new ItemTags.Wrapper(new ResourceLocation(RoadStuff.MODID, name));
         }
     }
 

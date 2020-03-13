@@ -1,102 +1,139 @@
 package tv.mapper.roadstuff.data.gen;
 
+import java.util.Arrays;
+
+import org.codehaus.plexus.util.StringUtils;
+
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.DyeColor;
 import net.minecraftforge.common.data.LanguageProvider;
-import tv.mapper.mapperbase.MapperBase;
-import tv.mapper.mapperbase.block.BaseBlocks;
-import tv.mapper.mapperbase.item.BaseItems;
+import tv.mapper.roadstuff.block.RSBlockRegistry;
+import tv.mapper.roadstuff.item.RSItemRegistry;
 
 public class RSLang extends LanguageProvider
 {
     private String lang;
 
-    public RSLang(DataGenerator generator, String lang)
+    public RSLang(DataGenerator generator, String modid, String lang)
     {
-        super(generator, MapperBase.MODID, lang);
+        super(generator, modid, lang);
         this.lang = lang;
     }
 
     @Override
     protected void addTranslations()
     {
+        String frColorsF[] = {"blanche", "orange", "magenta", "bleu claire", "jaune", "vert claire", "rose", "grise", "gris claire", "cyan", "violette", "bleue", "marron", "verte", "rouge", "noire"};
+        String frColorsM[] = {"blanc", "orange", "magenta", "bleu clair", "jaune", "vert clair", "rose", "gris", "gris clair", "cyan", "violet", "bleu", "marron", "vert", "rouge", "noir"};
+
         switch(lang)
         {
             default:
             case "en_us":
-                add(BaseBlocks.STEEL_BLOCK, "Steel Block");
-                add(BaseBlocks.STEEL_SLAB, "Steel Slab");
-                add(BaseBlocks.STEEL_STAIRS, "Steel Stairs");
-                add(BaseBlocks.STEEL_WALL, "Steel Wall");
-                add(BaseBlocks.STEEL_PRESSURE_PLATE, "Steel Pressure Plate");
-                add(BaseBlocks.STEEL_FENCE, "Steel Fence");
+                add(RSBlockRegistry.ASPHALT_SLOPE.get(), "Asphalt Slope");
+                add(RSBlockRegistry.CONCRETE_SLOPE.get(), "Concrete Slope");
 
-                add(BaseBlocks.CONCRETE, "Concrete");
-                add(BaseBlocks.CONCRETE_SLAB, "Concrete Slab");
-                add(BaseBlocks.CONCRETE_STAIRS, "Concrete Stairs");
-                add(BaseBlocks.CONCRETE_WALL, "Concrete Wall");
-                add(BaseBlocks.CONCRETE_PRESSURE_PLATE, "Concrete Pressure Plate");
+                for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
+                {
+                    String color = DyeColor.byId(i).getName();
+                    String check[] = color.split("_");
+                    if(check.length > 1)
+                        color = StringUtils.capitalise(check[0]) + " " + StringUtils.capitalise(check[1]);
+                    else
+                        color = StringUtils.capitalise(check[0]);
 
-                add(BaseItems.BOLT, "Bolt");
-                add(BaseItems.FLATTER_HAMMER, "Flatter Hammer");
-                add(BaseItems.IRON_PLATE, "Iron Plate");
-                add(BaseItems.IRON_ROD, "Iron Rod");
-                add(BaseItems.STEEL_INGOT, "Steel Ingot");
-                add(BaseItems.STEEL_NUGGET, "Steel Nugget");
-                add(BaseItems.STEEL_PLATE, "Steel Plate");
-                add(BaseItems.STEEL_ROD, "Steel Rod");
+                    add(RSBlockRegistry.TRAFFIC_CONE_BLOCKS.get(DyeColor.byId(i)).get(), color + " Traffic Cone");
+                    add(RSBlockRegistry.TRAFFIC_BARREL_BLOCKS.get(DyeColor.byId(i)).get(), color + " Traffic Barrel");
+                    add(RSBlockRegistry.TRAFFIC_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), color + " Traffic Bollard");
+                    add(RSBlockRegistry.CYLINDRICAL_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), color + " Cylindrical Bollard");
+                    add(RSBlockRegistry.REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), color + " Reflector");
+                    add(RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), color + " Luminescent Reflector");
+                    add(RSBlockRegistry.GUARDRAIL_BLOCKS.get(DyeColor.byId(i)).get(), color + " Guardrail");
+                }
 
-                add(BaseItems.STEEL_AXE, "Steel Axe");
-                add(BaseItems.STEEL_PICKAXE, "Steel Pickaxe");
-                add(BaseItems.STEEL_SHOVEL, "Steel Shovel");
-                add(BaseItems.STEEL_HOE, "Steel Hoe");
-                add(BaseItems.STEEL_SWORD, "Steel Sword");
+                add(RSBlockRegistry.WHITE_BOLLARD.get(), "White Bollard");
+                add(RSBlockRegistry.YELLOW_BOLLARD.get(), "Yellow Bollard");
+                add(RSBlockRegistry.RED_BOLLARD.get(), "Red Bollard");
+                add(RSBlockRegistry.WHITE_SMALL_BOLLARD.get(), "White Small Bollard");
+                add(RSBlockRegistry.YELLOW_SMALL_BOLLARD.get(), "Yellow Small Bollard");
+                add(RSBlockRegistry.RED_SMALL_BOLLARD.get(), "Red Small Bollard");
 
-                add(BaseItems.STEEL_HELMET, "Steel Helmet");
-                add(BaseItems.STEEL_CHESTPLATE, "Steel Chestplate");
-                add(BaseItems.STEEL_LEGGINGS, "Steel Leggings");
-                add(BaseItems.STEEL_BOOTS, "Steel Boots");
+                add(RSBlockRegistry.STEEL_GUARDRAIL.get(), "Steel Guardrail");
 
-                add(BaseItems.STEEL_HORSE_ARMOR, "Steel Horse Armor");
+                add(RSBlockRegistry.PAINT_BUCKET.get(), "Paint Bucket");
+                add(RSItemRegistry.PAINT_BRUSH.get(), "Paint Brush");
 
-                add("itemGroup.mapperbase_group", "Mapper Base");
+                add("roadstuff.message.bucket.empty", "This bucket is empty!");
+                add("roadstuff.message.bucket.yellow", "This bucket is already filled with yellow paint!");
+                add("roadstuff.message.bucket.white", "This bucket is already filled with white paint!");
+                add("roadstuff.message.bucket.full", "This bucket is full!");
+                add("roadstuff.message.bucket.underwater", "You can't interact with a bucket under water!");
+
+                add("roadstuff.gui.paintbrush.title", "Paintbrush Configuration");
+                add("roadstuff.message.brush.gui.eraser", "Paint Eraser");
+                add("roadstuff.message.brush.gui.pattern", "Pattern n°");
+                add("roadstuff.message.brush.gui.paint", "Paint amount: ");
+                add("roadstuff.message.brush.gui.color", "Color: ");
+                add("roadstuff.message.brush.gui.fav1", "Right click on a pattern");
+                add("roadstuff.message.brush.gui.fav2", "to favorite it!");
+
+                add("roadstuff.message.paint.color.white", "White");
+                add("roadstuff.message.paint.color.yellow", "Yellow");
+
+                add("itemGroup.roadstuff_group", "Road Stuff");
                 break;
             case "fr_fr":
-                add(BaseBlocks.STEEL_BLOCK, "Bloc d'acier");
-                add(BaseBlocks.STEEL_SLAB, "Dalle en acier");
-                add(BaseBlocks.STEEL_STAIRS, "Escalier en acier");
-                add(BaseBlocks.STEEL_WALL, "Muret en acier");
-                add(BaseBlocks.STEEL_PRESSURE_PLATE, "Plaque de pression en acier");
-                add(BaseBlocks.STEEL_FENCE, "Barrière en acier");
+                add(RSBlockRegistry.ASPHALT_SLOPE.get(), "Pente en asphalte");
+                add(RSBlockRegistry.CONCRETE_SLOPE.get(), "Pente en béton");
 
-                add(BaseBlocks.CONCRETE, "Bloc de béton");
-                add(BaseBlocks.CONCRETE_SLAB, "Dalle en béton");
-                add(BaseBlocks.CONCRETE_STAIRS, "Escalier en béton");
-                add(BaseBlocks.CONCRETE_WALL, "Muret en béton");
-                add(BaseBlocks.CONCRETE_PRESSURE_PLATE, "Plaque de pression en béton");
+                for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
+                {
+                    String color = DyeColor.byId(i).getName();
+                    String check[] = color.split("_");
+                    if(check.length > 1)
+                        color = StringUtils.capitalise(check[0]) + " " + StringUtils.capitalise(check[1]);
+                    else
+                        color = StringUtils.capitalise(check[0]);
 
-                add(BaseItems.BOLT, "Boulon");
-                add(BaseItems.FLATTER_HAMMER, "Masse");
-                add(BaseItems.IRON_PLATE, "Plaque de fer");
-                add(BaseItems.IRON_ROD, "Barre de fer");
-                add(BaseItems.STEEL_INGOT, "Lingot d'acier");
-                add(BaseItems.STEEL_NUGGET, "Pépite d'acier");
-                add(BaseItems.STEEL_PLATE, "Plaque d'acier");
-                add(BaseItems.STEEL_ROD, "Barre d'acier");
+                    add(RSBlockRegistry.TRAFFIC_CONE_BLOCKS.get(DyeColor.byId(i)).get(), "Cône routier " + frColorsM[i]);
+                    add(RSBlockRegistry.TRAFFIC_BARREL_BLOCKS.get(DyeColor.byId(i)).get(), "Barril routier " + frColorsM[i]);
+                    add(RSBlockRegistry.TRAFFIC_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), "Bollard  routier " + frColorsM[i]);
+                    add(RSBlockRegistry.CYLINDRICAL_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), "Bollard cylindrique " + frColorsM[i]);
+                    add(RSBlockRegistry.REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), "Réflecteur " + frColorsM[i]);
+                    add(RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), "Réflecteur " + frColorsM[i] + " luminescent");
+                    add(RSBlockRegistry.GUARDRAIL_BLOCKS.get(DyeColor.byId(i)).get(), "Rambarde " + frColorsM[i]);
+                }
 
-                add(BaseItems.STEEL_AXE, "Hache en acier");
-                add(BaseItems.STEEL_PICKAXE, "Pioche en acier");
-                add(BaseItems.STEEL_SHOVEL, "Pelle en acier");
-                add(BaseItems.STEEL_HOE, "Houe en acier");
-                add(BaseItems.STEEL_SWORD, "Epee en acier");
+                add(RSBlockRegistry.WHITE_BOLLARD.get(), "Bollard blanc");
+                add(RSBlockRegistry.YELLOW_BOLLARD.get(), "Bollard jaune");
+                add(RSBlockRegistry.RED_BOLLARD.get(), "Bollard rouge");
+                add(RSBlockRegistry.WHITE_SMALL_BOLLARD.get(), "Petit bollard blanc");
+                add(RSBlockRegistry.YELLOW_SMALL_BOLLARD.get(), "Petit bollard jaune");
+                add(RSBlockRegistry.RED_SMALL_BOLLARD.get(), "Petit bollard rouge");
 
-                add(BaseItems.STEEL_HELMET, "Casque en acier");
-                add(BaseItems.STEEL_CHESTPLATE, "Plastron en acier");
-                add(BaseItems.STEEL_LEGGINGS, "Jambières en acier");
-                add(BaseItems.STEEL_BOOTS, "Bottes en acier");
+                add(RSBlockRegistry.STEEL_GUARDRAIL.get(), "Rambarde en acier");
 
-                add(BaseItems.STEEL_HORSE_ARMOR, "Armure en acier pour cheval");
+                add(RSBlockRegistry.PAINT_BUCKET.get(), "Seau de peinture");
+                add(RSItemRegistry.PAINT_BRUSH.get(), "Pinceau");
 
-                add("itemGroup.mapperbase_group", "Mapper Base");
+                add("roadstuff.message.bucket.empty", "Ce pot est vide !");
+                add("roadstuff.message.bucket.yellow", "Ce pot est déjà rempli de peinture jaune !");
+                add("roadstuff.message.bucket.white", "Ce pot est déjà rempli de peinture blanche !");
+                add("roadstuff.message.bucket.full", "Ce pot est plein !");
+                add("roadstuff.message.bucket.underwater", "Vous ne pouvez pas interagir avec un pot sous l'eau !");
+
+                add("roadstuff.gui.paintbrush.title", "Configuration du pinceau");
+                add("roadstuff.message.brush.gui.eraser", "Effaceur de peinture");
+                add("roadstuff.message.brush.gui.pattern", "Motif n°");
+                add("roadstuff.message.brush.gui.paint", "Quantité de peinture: ");
+                add("roadstuff.message.brush.gui.color", "Couleur: ");
+                add("roadstuff.message.brush.gui.fav1", "Clic droit sur un motif");
+                add("roadstuff.message.brush.gui.fav2", "pour le mettre en favori !");
+
+                add("roadstuff.message.paint.color.white", "Blanc");
+                add("roadstuff.message.paint.color.yellow", "Jaune");
+
+                add("itemGroup.roadstuff_group", "Road Stuff");
                 break;
         }
     }

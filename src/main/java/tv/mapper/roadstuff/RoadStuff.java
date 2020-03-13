@@ -11,14 +11,15 @@ import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import tv.mapper.roadstuff.block.RSBlockRegistry;
 import tv.mapper.roadstuff.config.RoadStuffConfig;
+import tv.mapper.roadstuff.item.RSItemRegistry;
 import tv.mapper.roadstuff.network.RSNetwork;
 import tv.mapper.roadstuff.proxy.ClientProxy;
 import tv.mapper.roadstuff.proxy.IProxy;
 import tv.mapper.roadstuff.proxy.ServerProxy;
 import tv.mapper.roadstuff.util.AsphaltPaintMap;
 import tv.mapper.roadstuff.util.ConcretePaintMap;
-import tv.mapper.roadstuff.world.OreGenerator;
 
 @Mod(RoadStuff.MODID)
 public class RoadStuff
@@ -40,6 +41,9 @@ public class RoadStuff
     {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RoadStuffConfig.COMMON_CONFIG);
 
+        RSBlockRegistry.init();
+        RSItemRegistry.init();
+        
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverSetup);
@@ -47,7 +51,7 @@ public class RoadStuff
 
     private void setup(final FMLCommonSetupEvent event)
     {
-        LOGGER.info("RoadStuff setup");
+        LOGGER.info("RoadStuff setup started!");
         proxy.setup(event);
 
         RSNetwork.registerNetworkPackets();
@@ -57,7 +61,7 @@ public class RoadStuff
         asphaltSlopeMap = new AsphaltPaintMap(true);
         concreteSlopeMap = new ConcretePaintMap(true);
 
-        OreGenerator.setupOregen();
+        // OreGenerator.setupOregen();
     }
 
     private void clientSetup(final FMLClientSetupEvent event)

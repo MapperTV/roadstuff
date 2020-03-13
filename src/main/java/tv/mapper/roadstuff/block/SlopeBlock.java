@@ -29,19 +29,19 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.common.ToolType;
-import tv.mapper.roadstuff.init.ModBlocks;
+import tv.mapper.mapperbase.block.PaintableBlock;
 
 public class SlopeBlock extends PaintableBlock implements IWaterLoggable
 {
     public static final IntegerProperty LAYERS = IntegerProperty.create("layers", 1, 4);
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    protected static final VoxelShape[] SHAPES = new VoxelShape[] {VoxelShapes.empty(), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D,
-        8.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
+    protected static final VoxelShape[] SHAPES = new VoxelShape[] {VoxelShapes.empty(), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 4.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 8.0D,
+        16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 12.0D, 16.0D), Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 16.0D, 16.0D)};
 
-    public SlopeBlock(Properties properties, int materialType)
+    public SlopeBlock(Properties properties, ToolType toolType, int materialType)
     {
-        super(properties, materialType);
+        super(properties, toolType, materialType);
         this.setDefaultState(this.stateContainer.getBaseState().with(LAYERS, Integer.valueOf(1)).with(WATERLOGGED, Boolean.valueOf(false)));
     }
 
@@ -74,13 +74,13 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
             switch(getMaterialType())
             {
                 case 0:
-                    itemCheck = ModBlocks.ASPHALT_SLOPE.asItem();
+                    itemCheck = RSBlockRegistry.ASPHALT_SLOPE.get().asItem();
                     break;
                 case 1:
-                    itemCheck = ModBlocks.CONCRETE_SLOPE.asItem();
+                    itemCheck = RSBlockRegistry.CONCRETE_SLOPE.get().asItem();
                     break;
                 default:
-                    itemCheck = ModBlocks.ASPHALT_SLOPE.asItem();
+                    itemCheck = RSBlockRegistry.ASPHALT_SLOPE.get().asItem();
                     break;
             }
 
@@ -124,9 +124,9 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
         switch(materialType)
         {
             case 0:
-                return new ItemStack(ModBlocks.ASPHALT_SLOPE);
+                return new ItemStack(RSBlockRegistry.ASPHALT_SLOPE.get());
             case 1:
-                return new ItemStack(ModBlocks.CONCRETE_SLOPE);
+                return new ItemStack(RSBlockRegistry.CONCRETE_SLOPE.get());
             default:
                 return null;
         }

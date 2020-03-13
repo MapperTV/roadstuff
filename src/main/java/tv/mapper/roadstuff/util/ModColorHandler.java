@@ -1,10 +1,11 @@
 package tv.mapper.roadstuff.util;
 
-import net.minecraft.block.Block;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.color.BlockColors;
 import net.minecraft.client.renderer.color.IBlockColor;
-import tv.mapper.roadstuff.init.ModBlocks;
+import net.minecraftforge.fml.RegistryObject;
+import tv.mapper.mapperbase.block.PaintableBlock;
+import tv.mapper.roadstuff.block.RSBlockRegistry;
 
 public class ModColorHandler
 {
@@ -17,28 +18,10 @@ public class ModColorHandler
             return ModConstants.YELLOW_COLOR;
         };
 
-        for(Block block : ModBlocks.MOD_PAINTABLEBLOCKS)
+        for(RegistryObject<PaintableBlock> block : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
         {
-            if(block.getRegistryName().toString().contains("yellow_line"))
-                blockColors.register(yellowColor, block);
+            if(block.get().getRegistryName().toString().contains("yellow_line"))
+                blockColors.register(yellowColor, block.get());
         }
     }
-
-    // public static void registerItemColorHandlers()
-    // {
-    // final BlockColors blockColors = Minecraft.getInstance().getBlockColors();
-    // final ItemColors itemColors = Minecraft.getInstance().getItemColors();
-    //
-    // final IItemColor yellowColor = (stack, tintIndex) ->
-    // {
-    // final BlockState state = ((BlockItem)stack.getItem()).getBlock().getDefaultState();
-    // return blockColors.getColor(state, null, null, tintIndex);
-    // };
-    //
-    // for(Item item : ModBlocks.MOD_ITEMS)
-    // {
-    // if(item.getRegistryName().toString().contains("yellow_line"))
-    // itemColors.register(yellowColor, item);
-    // }
-    // }
 }

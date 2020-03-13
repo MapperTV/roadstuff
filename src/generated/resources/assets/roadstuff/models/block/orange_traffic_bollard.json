@@ -1,0 +1,9 @@
+{
+  "parent": "roadstuff:block/traffic_bollard",
+  "textures": {
+    "bottom": "roadstuff:block/cone_bottom",
+    "side": "roadstuff:block/orange_cone_side",
+    "top": "roadstuff:block/orange_cone_top",
+    "particle": "roadstuff:block/orange_cone_side"
+  }
+}

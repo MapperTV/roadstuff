@@ -1,0 +1,6 @@
+{
+  "parent": "roadstuff:block/rect_bollard",
+  "textures": {
+    "all": "roadstuff:block/red_bollard"
+  }
+}

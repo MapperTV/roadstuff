@@ -1,7 +1,0 @@
-{
-    "parent": "roadstuff:block/slope/base/slope_8",
-    "textures": {
-        "base": "roadstuff:block/concrete",
-        "particle": "roadstuff:block/concrete"
-    }
-}

@@ -2,6 +2,11 @@ package tv.mapper.roadstuff.data.gen;
 
 import net.minecraft.data.BlockTagsProvider;
 import net.minecraft.data.DataGenerator;
+import net.minecraftforge.fml.RegistryObject;
+import tv.mapper.mapperbase.block.BaseBlocks;
+import tv.mapper.mapperbase.block.PaintableBlock;
+import tv.mapper.roadstuff.block.RSBlockRegistry;
+import tv.mapper.roadstuff.data.RSTags;
 
 public class RSBlockTags extends BlockTagsProvider
 {
@@ -13,15 +18,17 @@ public class RSBlockTags extends BlockTagsProvider
 
     public void registerTags()
     {
-        // this.getBuilder(BlockTags.STAIRS).add(BaseBlocks.STEEL_STAIRS, BaseBlocks.CONCRETE_STAIRS);
-        // this.getBuilder(BlockTags.SLABS).add(BaseBlocks.STEEL_SLAB, BaseBlocks.CONCRETE_SLAB);
-        // this.getBuilder(BlockTags.WALLS).add(BaseBlocks.STEEL_WALL, BaseBlocks.CONCRETE_WALL);
-        // this.getBuilder(BlockTags.FENCES).add(BaseBlocks.STEEL_FENCE);
-        // this.getBuilder(Tags.Blocks.FENCES).add(BaseBlocks.STEEL_FENCE);
-        // this.getBuilder(Tags.Blocks.STORAGE_BLOCKS).add(BaseBlocks.STEEL_BLOCK);
-        // this.getBuilder(BaseTags.ForgeBlocks.STORAGE_BLOCKS_STEEL).add(BaseBlocks.STEEL_BLOCK);
-        // this.getBuilder(BaseTags.ForgeBlocks.PRESSURE_PLATES).add(BaseBlocks.STEEL_PRESSURE_PLATE, BaseBlocks.CONCRETE_PRESSURE_PLATE);
-        // this.getBuilder(BaseTags.Blocks.CONCRETE).add(BaseBlocks.CONCRETE);
-    }
+        this.getBuilder(RSTags.Blocks.ASPHALT_ROAD).add(BaseBlocks.ASPHALT.get(), RSBlockRegistry.ASPHALT_SLOPE.get());
+        this.getBuilder(RSTags.Blocks.CONCRETE_ROAD).add(BaseBlocks.CONCRETE.get(), RSBlockRegistry.CONCRETE_SLOPE.get());
 
+        for(RegistryObject<PaintableBlock> block : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
+        {
+            String[] raw = block.get().getTranslationKey().split("_");
+
+            if(raw[0].contains("asphalt"))
+                this.getBuilder(RSTags.Blocks.ASPHALT_ROAD).add(block.get());
+            else
+                this.getBuilder(RSTags.Blocks.CONCRETE_ROAD).add(block.get());
+        }
+    }
 }

@@ -10,10 +10,10 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickBlock
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
+import tv.mapper.mapperbase.block.PaintableBlock;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.PaintableBlock;
-import tv.mapper.roadstuff.init.ModItems;
 import tv.mapper.roadstuff.item.BrushItem;
+import tv.mapper.roadstuff.item.RSItemRegistry;
 
 @Mod.EventBusSubscriber
 public class EventHandler
@@ -34,12 +34,12 @@ public class EventHandler
 
                 long timer = System.currentTimeMillis();
 
-                if(player.getHeldItemMainhand().getItem() == ModItems.PAINT_BRUSH)
+                if(player.getHeldItemMainhand().getItem() == RSItemRegistry.PAINT_BRUSH.get())
                     heldItem = player.getHeldItemMainhand();
-                else if(player.getHeldItemOffhand().getItem() == ModItems.PAINT_BRUSH)
+                else if(player.getHeldItemOffhand().getItem() == RSItemRegistry.PAINT_BRUSH.get())
                     heldItem = player.getHeldItemOffhand();
 
-                if(heldItem.getItem() == ModItems.PAINT_BRUSH)
+                if(heldItem.getItem() == RSItemRegistry.PAINT_BRUSH.get())
                 {
                     if(player.isCreative())
                     {

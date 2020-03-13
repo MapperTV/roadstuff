@@ -1,0 +1,7 @@
+{
+  "parent": "roadstuff:block/guardrail_inventory",
+  "textures": {
+    "all": "roadstuff:block/light_gray_guardrail",
+    "particle": "roadstuff:block/light_gray_guardrail"
+  }
+}

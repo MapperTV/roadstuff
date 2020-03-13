@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "roadstuff:block/bollard/yellow_small_bollard" },
-        "facing=east": { "model": "roadstuff:block/bollard/yellow_small_bollard", "y": 90 },
-        "facing=south": { "model": "roadstuff:block/bollard/yellow_small_bollard", "y": 180 },
-        "facing=west": { "model": "roadstuff:block/bollard/yellow_small_bollard", "y": 270 }
-    }
-}

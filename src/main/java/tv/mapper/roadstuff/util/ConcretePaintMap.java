@@ -2,8 +2,10 @@ package tv.mapper.roadstuff.util;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import net.minecraft.block.Block;
-import tv.mapper.roadstuff.block.PaintableBlock;
-import tv.mapper.roadstuff.init.ModBlocks;
+import net.minecraftforge.fml.RegistryObject;
+import tv.mapper.mapperbase.block.BaseBlocks;
+import tv.mapper.mapperbase.block.PaintableBlock;
+import tv.mapper.roadstuff.block.RSBlockRegistry;
 
 public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
 {
@@ -13,25 +15,30 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
     {
         super();
         if(!slope)
-            register(0, 0, ModBlocks.CONCRETE);
+            register(0, 0, BaseBlocks.CONCRETE.get());
         else if(slope)
-            register(0, 0, ModBlocks.CONCRETE_SLOPE);
+            register(0, 0, RSBlockRegistry.CONCRETE_SLOPE.get());
 
         int index = 1;
-        for(PaintableBlock blockWhite : ModBlocks.MOD_PAINTABLEBLOCKS)
+
+        PaintableBlock block;
+
+        for(RegistryObject<PaintableBlock> object : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
         {
-            if(blockWhite.getRegistryName().toString().contains("concrete_"))
+            block = object.get();
+
+            if(block.getRegistryName().toString().contains("concrete_"))
             {
-                if(blockWhite.getRegistryName().toString().contains("_white_"))
+                if(block.getRegistryName().toString().contains("_white_"))
                 {
-                    if(blockWhite.getRegistryName().toString().contains("slope") && slope)
+                    if(block.getRegistryName().toString().contains("slope") && slope)
                     {
-                        register(0, index, blockWhite);
+                        register(0, index, block);
                         index++;
                     }
-                    else if(!blockWhite.getRegistryName().toString().contains("slope") && !slope)
+                    else if(!block.getRegistryName().toString().contains("slope") && !slope)
                     {
-                        register(0, index, blockWhite);
+                        register(0, index, block);
                         index++;
                     }
                 }
@@ -40,25 +47,27 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
         }
 
         if(!slope)
-            register(1, 0, ModBlocks.CONCRETE);
+            register(1, 0, BaseBlocks.CONCRETE.get());
         else if(slope)
-            register(1, 0, ModBlocks.CONCRETE_SLOPE);
+            register(1, 0, RSBlockRegistry.CONCRETE_SLOPE.get());
 
         index = 1;
-        for(PaintableBlock blockYellow : ModBlocks.MOD_PAINTABLEBLOCKS)
+        for(RegistryObject<PaintableBlock> object : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
         {
-            if(blockYellow.getRegistryName().toString().contains("concrete_"))
+            block = object.get();
+
+            if(block.getRegistryName().toString().contains("concrete_"))
             {
-                if(blockYellow.getRegistryName().toString().contains("_yellow_"))
+                if(block.getRegistryName().toString().contains("_yellow_"))
                 {
-                    if(blockYellow.getRegistryName().toString().contains("slope") && slope)
+                    if(block.getRegistryName().toString().contains("slope") && slope)
                     {
-                        register(1, index, blockYellow);
+                        register(1, index, block);
                         index++;
                     }
-                    else if(!blockYellow.getRegistryName().toString().contains("slope") && !slope)
+                    else if(!block.getRegistryName().toString().contains("slope") && !slope)
                     {
-                        register(1, index, blockYellow);
+                        register(1, index, block);
                         index++;
                     }
                 }

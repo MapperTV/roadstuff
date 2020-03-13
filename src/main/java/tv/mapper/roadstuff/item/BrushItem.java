@@ -26,12 +26,13 @@ import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import tv.mapper.mapperbase.block.BaseBlocks;
+import tv.mapper.mapperbase.block.PaintableBlock;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.PaintableBlock;
+import tv.mapper.roadstuff.block.RSBlockRegistry;
 import tv.mapper.roadstuff.block.RotatablePaintBlock;
 import tv.mapper.roadstuff.block.RotatableSlopeBlock;
 import tv.mapper.roadstuff.block.SlopeBlock;
-import tv.mapper.roadstuff.init.ModBlocks;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 import tv.mapper.roadstuff.util.AsphaltPaintMap;
 import tv.mapper.roadstuff.util.ConcretePaintMap;
@@ -114,7 +115,7 @@ public class BrushItem extends Item
             if(player.isShiftKeyDown())
             {
                 if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(
-                    context.getPos()).getBlock() != ModBlocks.ASPHALT && context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.CONCRETE))
+                    context.getPos()).getBlock() != BaseBlocks.ASPHALT.get() && context.getWorld().getBlockState(context.getPos()).getBlock() != BaseBlocks.CONCRETE.get()))
                     return copyPattern(context.getWorld().getBlockState(context.getPos()), context.getWorld(), nbt, context.getPlayer());
                 else if(context.getWorld().isRemote)
                     BrushItemClient.displayBrushGui(nbt.getInt("pattern"), nbt.getInt("paint"), nbt.getInt("color"), nbt.getFloat("scroll"), nbt.getIntArray("favs"));
@@ -127,7 +128,7 @@ public class BrushItem extends Item
             if(context.getPlayer().isShiftKeyDown())
             {
                 if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(
-                    context.getPos()).getBlock() != ModBlocks.ASPHALT && context.getWorld().getBlockState(context.getPos()).getBlock() != ModBlocks.CONCRETE))
+                    context.getPos()).getBlock() != BaseBlocks.ASPHALT.get() && context.getWorld().getBlockState(context.getPos()).getBlock() != BaseBlocks.CONCRETE.get()))
                 {
                     return copyPattern(context.getWorld().getBlockState(context.getPos()), context.getWorld(), nbt, context.getPlayer());
                 }
@@ -283,8 +284,9 @@ public class BrushItem extends Item
                                         newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, player.getHorizontalFacing()).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
                                             SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockState(pos, newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, player.getHorizontalFacing().getOpposite()).with(SlopeBlock.LAYERS,
-                                        state.get(SlopeBlock.LAYERS)).with(SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockState(pos,
+                                        newBlock.getDefaultState().with(RotatableSlopeBlock.DIRECTION, player.getHorizontalFacing().getOpposite()).with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS)).with(
+                                            SlopeBlock.WATERLOGGED, state.get(SlopeBlock.WATERLOGGED)));
                             }
                             else
                                 world.setBlockState(pos, newBlock.getDefaultState());
@@ -380,7 +382,7 @@ public class BrushItem extends Item
     {
         BlockState state = world.getBlockState(pos);
 
-        if(state.getBlock() instanceof SlopeBlock && state.getBlock() != ModBlocks.ASPHALT_SLOPE && state.getBlock() != ModBlocks.CONCRETE_SLOPE)
+        if(state.getBlock() instanceof SlopeBlock && state.getBlock() != RSBlockRegistry.ASPHALT_SLOPE.get() && state.getBlock() != RSBlockRegistry.CONCRETE_SLOPE.get())
         {
             BlockState newBlock = getPaintableBlockFromMaterial(state);
 
@@ -397,7 +399,7 @@ public class BrushItem extends Item
                 }
             }
         }
-        else if(state.getBlock() instanceof PaintableBlock && !(state.getBlock() instanceof SlopeBlock) && state.getBlock() != ModBlocks.ASPHALT && state.getBlock() != ModBlocks.CONCRETE)
+        else if(state.getBlock() instanceof PaintableBlock && !(state.getBlock() instanceof SlopeBlock) && state.getBlock() != BaseBlocks.ASPHALT.get() && state.getBlock() != BaseBlocks.CONCRETE.get())
         {
             BlockState newBlock = getPaintableBlockFromMaterial(state);
 
@@ -464,9 +466,9 @@ public class BrushItem extends Item
             switch(((SlopeBlock)state.getBlock()).getMaterialType())
             {
                 case 0:
-                    return ModBlocks.ASPHALT_SLOPE.getDefaultState().with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS));
+                    return RSBlockRegistry.ASPHALT_SLOPE.get().getDefaultState().with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS));
                 case 1:
-                    return ModBlocks.CONCRETE_SLOPE.getDefaultState().with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS));
+                    return RSBlockRegistry.CONCRETE_SLOPE.get().getDefaultState().with(SlopeBlock.LAYERS, state.get(SlopeBlock.LAYERS));
                 default:
                     return null;
             }
@@ -476,9 +478,9 @@ public class BrushItem extends Item
             switch(((PaintableBlock)state.getBlock()).getMaterialType())
             {
                 case 0:
-                    return ModBlocks.ASPHALT.getDefaultState();
+                    return BaseBlocks.ASPHALT.get().getDefaultState();
                 case 1:
-                    return ModBlocks.CONCRETE.getDefaultState();
+                    return BaseBlocks.CONCRETE.get().getDefaultState();
                 default:
                     return null;
             }

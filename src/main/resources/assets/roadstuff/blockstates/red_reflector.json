@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=north": { "model": "roadstuff:block/red_reflector" },
-        "facing=east": { "model": "roadstuff:block/red_reflector", "y": 90 },
-        "facing=south": { "model": "roadstuff:block/red_reflector", "y": 180 },
-        "facing=west": { "model": "roadstuff:block/red_reflector", "y": 270 }
-    }
-}

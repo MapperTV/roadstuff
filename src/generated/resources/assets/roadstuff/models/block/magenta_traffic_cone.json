@@ -1,0 +1,9 @@
+{
+  "parent": "roadstuff:block/traffic_cone",
+  "textures": {
+    "bottom": "roadstuff:block/cone_bottom",
+    "side": "roadstuff:block/magenta_cone_side",
+    "top": "roadstuff:block/magenta_cone_top",
+    "particle": "roadstuff:block/magenta_cone_side"
+  }
+}

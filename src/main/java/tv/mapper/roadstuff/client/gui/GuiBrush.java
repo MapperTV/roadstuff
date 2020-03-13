@@ -113,7 +113,7 @@ public class GuiBrush extends Screen
         {
             if(i + (scroll * 9) < ModConstants.PATTERNS)
             {
-                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + (i + (9 * scroll)) + ".png"));
+                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/" + (i + (9 * scroll)) + ".png"));
                 blit(guiLeft + 16 * j + 9 + j * 2, guiTop + 18 + row, 0, 0, 16, 16, 16, 16);
 
                 j++;
@@ -126,7 +126,7 @@ public class GuiBrush extends Screen
         }
 
         // Draws current selected pattern
-        minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + pattern + ".png"));
+        minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/" + pattern + ".png"));
         blit(guiLeft + 193, guiTop + 18, 0, 0, 16, 16, 16, 16);
 
         // Draws favorites
@@ -135,7 +135,7 @@ public class GuiBrush extends Screen
         {
             if(favorites[i] != 0)
             {
-                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/line/" + (favorites[i] + ".png")));
+                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/" + (favorites[i] + ".png")));
                 blit(guiLeft + 193, guiTop + fav_y, 0, 0, 16, 16, 16, 16);
             }
             fav_y += 18;

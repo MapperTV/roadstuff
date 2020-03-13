@@ -1,0 +1,6 @@
+{
+  "parent": "roadstuff:block/cylindrical_bollard",
+  "textures": {
+    "all": "roadstuff:block/black_cylindrical_bollard"
+  }
+}

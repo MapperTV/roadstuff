@@ -1,63 +1,51 @@
 package tv.mapper.roadstuff.data.gen;
 
+import java.util.Arrays;
+
 import net.minecraft.data.DataGenerator;
+import net.minecraft.item.DyeColor;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile;
-import tv.mapper.mapperbase.MapperBase;
 
 public class RSItemModels extends ItemModelProvider
 {
-    public RSItemModels(DataGenerator generator, ExistingFileHelper existingFileHelper)
+    public RSItemModels(DataGenerator generator, String modid, ExistingFileHelper existingFileHelper)
     {
-        super(generator, MapperBase.MODID, existingFileHelper);
+        super(generator, modid, existingFileHelper);
     }
 
     @Override
     public String getName()
     {
-        return "Mapper Base Item Models";
+        return "RoadStuff Item Models";
     }
 
     @Override
     protected void registerModels()
     {
-        getBuilder("flatter_hammer").parent(new UncheckedModelFile("item/handheld")).texture("layer0", modLoc("item/flatter_hammer"));
-        getBuilder("steel_nugget").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/steel_nugget"));
-        getBuilder("steel_ingot").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/steel_ingot"));
-        getBuilder("steel_plate").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/steel_plate"));
-        getBuilder("steel_rod").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/steel_rod"));
+        getBuilder("asphalt_slope").parent(new UncheckedModelFile(modid + ":block/asphalt_slope_4"));
+        getBuilder("concrete_slope").parent(new UncheckedModelFile(modid + ":block/concrete_slope_4"));
 
-        getBuilder("iron_plate").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/iron_plate"));
-        getBuilder("iron_rod").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/iron_rod"));
+        for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
+        {
+            getBuilder(DyeColor.byId(i).getName() + "_traffic_cone").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getName() + "_traffic_cone"));
+            getBuilder(DyeColor.byId(i).getName() + "_traffic_barrel").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getName() + "_traffic_barrel"));
+            getBuilder(DyeColor.byId(i).getName() + "_traffic_bollard").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getName() + "_traffic_bollard"));
+            getBuilder(DyeColor.byId(i).getName() + "_cylindrical_bollard").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getName() + "_cylindrical_bollard"));
+            getBuilder(DyeColor.byId(i).getName() + "_reflector").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getName() + "_reflector"));
+            getBuilder(DyeColor.byId(i).getName() + "_luminescent_reflector").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getName() + "_reflector"));
+            getBuilder(DyeColor.byId(i).getName() + "_guardrail").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getName() + "_guardrail_inventory"));
+        }
 
-        getBuilder("bolt").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/bolt"));
+        getBuilder("white_bollard").parent(new UncheckedModelFile(modid + ":block/white_bollard"));
+        getBuilder("yellow_bollard").parent(new UncheckedModelFile(modid + ":block/yellow_bollard"));
+        getBuilder("red_bollard").parent(new UncheckedModelFile(modid + ":block/red_bollard"));
+        getBuilder("white_small_bollard").parent(new UncheckedModelFile(modid + ":block/white_small_bollard"));
+        getBuilder("yellow_small_bollard").parent(new UncheckedModelFile(modid + ":block/yellow_small_bollard"));
+        getBuilder("red_small_bollard").parent(new UncheckedModelFile(modid + ":block/red_small_bollard"));
 
-        getBuilder("steel_block").parent(new UncheckedModelFile(modid + ":block/steel_block"));
-        getBuilder("steel_slab").parent(new UncheckedModelFile(modid + ":block/steel_slab"));
-        getBuilder("steel_stairs").parent(new UncheckedModelFile(modid + ":block/steel_stairs"));
-        getBuilder("steel_wall").parent(new UncheckedModelFile(modid + ":block/steel_wall_inventory"));
-        getBuilder("steel_pressure_plate").parent(new UncheckedModelFile(modid + ":block/steel_pressure_plate"));
-        getBuilder("steel_fence").parent(new UncheckedModelFile(modid + ":block/steel_fence_inventory"));
-        
-        getBuilder("concrete").parent(new UncheckedModelFile(modid + ":block/concrete"));
-        getBuilder("concrete_slab").parent(new UncheckedModelFile(modid + ":block/concrete_slab"));
-        getBuilder("concrete_stairs").parent(new UncheckedModelFile(modid + ":block/concrete_stairs"));
-        getBuilder("concrete_wall").parent(new UncheckedModelFile(modid + ":block/concrete_wall_inventory"));
-        getBuilder("concrete_pressure_plate").parent(new UncheckedModelFile(modid + ":block/concrete_pressure_plate"));
-
-        getBuilder("steel_axe").parent(new UncheckedModelFile("item/handheld")).texture("layer0", modLoc("item/steel_axe"));
-        getBuilder("steel_pickaxe").parent(new UncheckedModelFile("item/handheld")).texture("layer0", modLoc("item/steel_pickaxe"));
-        getBuilder("steel_shovel").parent(new UncheckedModelFile("item/handheld")).texture("layer0", modLoc("item/steel_shovel"));
-        getBuilder("steel_hoe").parent(new UncheckedModelFile("item/handheld")).texture("layer0", modLoc("item/steel_hoe"));
-        getBuilder("steel_sword").parent(new UncheckedModelFile("item/handheld")).texture("layer0", modLoc("item/steel_sword"));
-
-        getBuilder("steel_helmet").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/steel_helmet"));
-        getBuilder("steel_chestplate").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/steel_chestplate"));
-        getBuilder("steel_leggings").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/steel_leggings"));
-        getBuilder("steel_boots").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/steel_boots"));
-
-        getBuilder("steel_horse_armor").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/steel_horse_armor"));
+        getBuilder("steel_guardrail").parent(new UncheckedModelFile(modid + ":block/steel_guardrail_inventory"));
     }
 
 }

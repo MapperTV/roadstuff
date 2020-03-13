@@ -10,14 +10,15 @@ import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
 import net.minecraftforge.common.ToolType;
+import tv.mapper.mapperbase.block.PaintableBlock;
 
 public class RotatablePaintBlock extends PaintableBlock
 {
     public static final DirectionProperty DIRECTION = HorizontalBlock.HORIZONTAL_FACING;
 
-    public RotatablePaintBlock(Properties properties, int materialType)
+    public RotatablePaintBlock(Properties properties, ToolType toolType, int materialType)
     {
-        super(properties, materialType);
+        super(properties, toolType, materialType);
         this.setDefaultState(this.getDefaultState().with(DIRECTION, Direction.NORTH));
     }
 

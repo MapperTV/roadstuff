@@ -14,9 +14,9 @@ public class RotatableSlopeBlock extends SlopeBlock
 {
     public static final DirectionProperty DIRECTION = HorizontalBlock.HORIZONTAL_FACING;
 
-    public RotatableSlopeBlock(Properties properties, int materialType)
+    public RotatableSlopeBlock(Properties properties, ToolType toolType, int materialType)
     {
-        super(properties, materialType);
+        super(properties, toolType, materialType);
         this.setDefaultState(this.stateContainer.getBaseState().with(LAYERS, Integer.valueOf(1)).with(DIRECTION, Direction.NORTH).with(WATERLOGGED, Boolean.valueOf(false)));
     }
 
