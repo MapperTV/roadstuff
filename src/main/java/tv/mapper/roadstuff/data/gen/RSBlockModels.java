@@ -88,9 +88,9 @@ public class RSBlockModels extends BlockModelProvider
 
         for(int i = 1; i < 9; i++)
         {
-            getBuilder("paint_bucket_white_" + i).parent(getExistingFile(modLoc("block/paint_bucket_" + i))).texture("paint_bucket", modLoc("block/paint_bucket_white")).texture("particle",
+            getBuilder("paint_bucket_white_" + i).parent(getExistingFile(modLoc("block/paint_bucket_" + i))).texture("all", modLoc("block/paint_bucket_white")).texture("particle",
                 modLoc("block/paint_bucket_white"));
-            getBuilder("paint_bucket_yellow_" + i).parent(getExistingFile(modLoc("block/paint_bucket_" + i))).texture("paint_bucket", modLoc("block/paint_bucket_yellow")).texture("particle",
+            getBuilder("paint_bucket_yellow_" + i).parent(getExistingFile(modLoc("block/paint_bucket_" + i))).texture("all", modLoc("block/paint_bucket_yellow")).texture("particle",
                 modLoc("block/paint_bucket_yellow"));
         }
     }
