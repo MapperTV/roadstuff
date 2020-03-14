@@ -195,11 +195,7 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
     {
-        BlockPos blockpos = pos.down();
-        BlockState blockstate = worldIn.getBlockState(blockpos);
-        if(blockstate.getBlock() instanceof PaintBucketBlock || !blockstate.isSolid())
-            return false;
-        return true;
+        return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP);
     }
 
     @SuppressWarnings("deprecation")

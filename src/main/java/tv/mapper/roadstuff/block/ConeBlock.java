@@ -88,9 +88,7 @@ public class ConeBlock extends Block implements IWaterLoggable
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
     {
-        if(!worldIn.getBlockState(pos.down()).isSolid())
-            return false;
-        return true;
+        return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP);
     }
 
     @Override

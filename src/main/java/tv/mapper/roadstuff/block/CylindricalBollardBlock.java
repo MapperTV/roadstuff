@@ -46,9 +46,7 @@ public class CylindricalBollardBlock extends CustomBlock implements IWaterLoggab
 
     public boolean isValidPosition(BlockState state, IWorldReader worldIn, BlockPos pos)
     {
-        if(!worldIn.getBlockState(pos.down()).isSolid() && !(worldIn.getBlockState(pos.down()).getBlock() instanceof CylindricalBollardBlock))
-            return false;
-        return true;
+        return hasEnoughSolidSide(worldIn, pos.down(), Direction.UP);
     }
 
     protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
