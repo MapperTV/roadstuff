@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:pink_traffic_bollard_from_white"
+    ]
+  },
+  "criteria": {
+    "has_white_traffic_bollard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "roadstuff:white_traffic_bollard"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:pink_traffic_bollard_from_white"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_white_traffic_bollard",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -18,5 +18,6 @@ public class RSItemTags extends ItemTagsProvider
     {
         this.getBuilder(RSTags.Items.ASPHALT_ROAD).add(BaseItems.ASPHALT_ITEM.get(), RSItemRegistry.ASPHALT_SLOPE_ITEM.get());
         this.getBuilder(RSTags.Items.CONCRETE_ROAD).add(BaseItems.CONCRETE_ITEM.get(), RSItemRegistry.CONCRETE_SLOPE_ITEM.get());
+        copy(RSTags.Blocks.REFLECTORS, RSTags.Items.REFLECTORS);
     }
 }

@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "roadstuff:cyan_luminescent_reflector"
+    ]
+  },
+  "criteria": {
+    "has_cyan_reflector": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "roadstuff:cyan_luminescent_reflector"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "roadstuff:cyan_luminescent_reflector"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_cyan_reflector",
+      "has_the_recipe"
+    ]
+  ]
+}

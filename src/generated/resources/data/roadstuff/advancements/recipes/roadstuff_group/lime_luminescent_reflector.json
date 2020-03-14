@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "roadstuff:lime_luminescent_reflector"
+    ]
+  },
+  "criteria": {
+    "has_lime_reflector": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "roadstuff:lime_luminescent_reflector"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "roadstuff:lime_luminescent_reflector"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_lime_reflector",
+      "has_the_recipe"
+    ]
+  ]
+}

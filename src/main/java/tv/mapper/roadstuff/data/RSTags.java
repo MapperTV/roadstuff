@@ -14,6 +14,7 @@ public class RSTags
     {
         public static final Tag<Block> CONCRETE_ROAD = tag("concrete_road");
         public static final Tag<Block> ASPHALT_ROAD = tag("asphalt_road");
+        public static final Tag<Block> REFLECTORS = tag("reflectors");
 
         private static Tag<Block> tag(String name)
         {
@@ -25,6 +26,7 @@ public class RSTags
     {
         public static final Tag<Item> CONCRETE_ROAD = tag("concrete_road");
         public static final Tag<Item> ASPHALT_ROAD = tag("asphalt_road");
+        public static final Tag<Item> REFLECTORS = tag("reflectors");
 
         private static Tag<Item> tag(String name)
         {
