@@ -3,12 +3,16 @@ package tv.mapper.roadstuff.data.gen;
 import java.util.Arrays;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.FourWayBlock;
+import net.minecraft.block.SixWayBlock;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.item.DyeColor;
 import net.minecraft.util.Direction;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile;
+import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.fml.RegistryObject;
 import tv.mapper.mapperbase.MapperBase;
@@ -64,11 +68,11 @@ public class RSBlockStates extends BlockStateProvider
             simpleBlock(RSBlockRegistry.CYLINDRICAL_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getName() + "_cylindrical_bollard"));
             horizontalBlock(RSBlockRegistry.REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getName() + "_reflector"), 0);
             horizontalBlock(RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getName() + "_reflector"), 0);
-            fourWayBlock(RSBlockRegistry.GUARDRAIL_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getName() + "_guardrail_post"),
+            guardrailBlock(RSBlockRegistry.GUARDRAIL_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getName() + "_guardrail_post"),
                 new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getName() + "_guardrail_side"));
         }
 
-        fourWayBlock(RSBlockRegistry.STEEL_GUARDRAIL.get(), new UncheckedModelFile(RoadStuff.MODID + ":block/steel_guardrail_post"), new UncheckedModelFile(RoadStuff.MODID + ":block/steel_guardrail_side"));
+        guardrailBlock(RSBlockRegistry.STEEL_GUARDRAIL.get(), new UncheckedModelFile(RoadStuff.MODID + ":block/steel_guardrail_post"), new UncheckedModelFile(RoadStuff.MODID + ":block/steel_guardrail_side"));
 
         horizontalBlock(RSBlockRegistry.YELLOW_BOLLARD.get(), new UncheckedModelFile(RoadStuff.MODID + ":block/yellow_bollard"), 180);
         horizontalBlock(RSBlockRegistry.WHITE_BOLLARD.get(), new UncheckedModelFile(RoadStuff.MODID + ":block/white_bollard"), 180);
@@ -127,6 +131,23 @@ public class RSBlockStates extends BlockStateProvider
                     new UncheckedModelFile(modelName)).rotationY((int)((dir.getHorizontalAngle() + offset) % 360)).addModel();
             }
         }
+    }
 
+    public void guardrailBlock(FourWayBlock block, ModelFile post, ModelFile side)
+    {
+        MultiPartBlockStateBuilder builder = getMultipartBuilder(block).part().modelFile(post).addModel().end();
+        guardrailBlock(builder, side);
+    }
+
+    public void guardrailBlock(MultiPartBlockStateBuilder builder, ModelFile side)
+    {
+        SixWayBlock.FACING_TO_PROPERTY_MAP.entrySet().forEach(e ->
+        {
+            Direction dir = e.getKey();
+            if(dir.getAxis().isHorizontal())
+            {
+                builder.part().modelFile(side).rotationY((((int)dir.getHorizontalAngle()) + 180) % 360).addModel().condition(e.getValue(), true);
+            }
+        });
     }
 }

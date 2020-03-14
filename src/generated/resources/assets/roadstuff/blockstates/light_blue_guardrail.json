@@ -10,8 +10,7 @@
         "north": "true"
       },
       "apply": {
-        "model": "roadstuff:block/light_blue_guardrail_side",
-        "uvlock": true
+        "model": "roadstuff:block/light_blue_guardrail_side"
       }
     },
     {
@@ -20,8 +19,7 @@
       },
       "apply": {
         "model": "roadstuff:block/light_blue_guardrail_side",
-        "y": 180,
-        "uvlock": true
+        "y": 180
       }
     },
     {
@@ -30,8 +28,7 @@
       },
       "apply": {
         "model": "roadstuff:block/light_blue_guardrail_side",
-        "y": 270,
-        "uvlock": true
+        "y": 270
       }
     },
     {
@@ -40,8 +37,7 @@
       },
       "apply": {
         "model": "roadstuff:block/light_blue_guardrail_side",
-        "y": 90,
-        "uvlock": true
+        "y": 90
       }
     }
   ]
