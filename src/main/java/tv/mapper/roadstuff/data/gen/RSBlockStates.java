@@ -118,10 +118,11 @@ public class RSBlockStates extends BlockStateProvider
         {
             for(int i = 0; i < 9; i++)
             {
-                modelName = i == 0 ? RoadStuff.MODID + ":block/paint_bucket" : RoadStuff.MODID + ":block/paint_bucket_" + i;
-
+                modelName = i == 0 ? RoadStuff.MODID + ":block/paint_bucket" : RoadStuff.MODID + ":block/paint_bucket_white_" + i;
                 builder.partialState().with(PaintBucketBlock.COLOR, EnumPaintColor.WHITE).with(PaintBucketBlock.DIRECTION, dir).with(PaintBucketBlock.PAINT, i).modelForState().modelFile(
                     new UncheckedModelFile(modelName)).rotationY((int)((dir.getHorizontalAngle() + offset) % 360)).addModel();
+
+                modelName = i == 0 ? RoadStuff.MODID + ":block/paint_bucket" : RoadStuff.MODID + ":block/paint_bucket_yellow_" + i;
                 builder.partialState().with(PaintBucketBlock.COLOR, EnumPaintColor.YELLOW).with(PaintBucketBlock.DIRECTION, dir).with(PaintBucketBlock.PAINT, i).modelForState().modelFile(
                     new UncheckedModelFile(modelName)).rotationY((int)((dir.getHorizontalAngle() + offset) % 360)).addModel();
             }

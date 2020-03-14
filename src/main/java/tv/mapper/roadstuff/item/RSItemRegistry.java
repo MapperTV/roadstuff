@@ -61,12 +61,12 @@ public class RSItemRegistry
     // ITEMS.register(type.getName() + "_small_bollard", () -> new BlockItem(RSBlockRegistry.SMALL_BOLLARD_BLOCKS.get(type).get(), new Item.Properties().group(ModItemGroups.ROADSTUFF))))).collect(
     // Collectors.toMap(Pair::getKey, Pair::getValue));
 
-    public static final Map<DyeColor, RegistryObject<BlockItem>> REFLECTOR_ITEMS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
-        ITEMS.register(type.getName() + "_reflector", () -> new BlockItem(RSBlockRegistry.REFLECTOR_BLOCKS.get(type).get(), new Item.Properties().group(ModItemGroups.ROADSTUFF))))).collect(
+    public static final Map<DyeColor, RegistryObject<ReflectorBlockItem>> REFLECTOR_ITEMS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
+        ITEMS.register(type.getName() + "_reflector", () -> new ReflectorBlockItem(RSBlockRegistry.REFLECTOR_BLOCKS.get(type).get(), new Item.Properties().group(ModItemGroups.ROADSTUFF), false)))).collect(
             Collectors.toMap(Pair::getKey, Pair::getValue));
-    public static final Map<DyeColor, RegistryObject<BlockItem>> LUMINESCENT_REFLECTOR_ITEMS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
+    public static final Map<DyeColor, RegistryObject<ReflectorBlockItem>> LUMINESCENT_REFLECTOR_ITEMS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
         ITEMS.register(type.getName() + "_luminescent_reflector",
-            () -> new BlockItem(RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(type).get(), new Item.Properties().group(ModItemGroups.ROADSTUFF).rarity(Rarity.UNCOMMON))))).collect(
+            () -> new ReflectorBlockItem(RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(type).get(), new Item.Properties().group(ModItemGroups.ROADSTUFF).rarity(Rarity.UNCOMMON), true)))).collect(
                 Collectors.toMap(Pair::getKey, Pair::getValue));
 
     public static final RegistryObject<BlockItem> STEEL_GUARDRAIL_ITEM = ITEMS.register("steel_guardrail",
@@ -75,8 +75,8 @@ public class RSItemRegistry
         ITEMS.register(type.getName() + "_guardrail", () -> new BlockItem(RSBlockRegistry.GUARDRAIL_BLOCKS.get(type).get(), new Item.Properties().group(ModItemGroups.ROADSTUFF))))).collect(
             Collectors.toMap(Pair::getKey, Pair::getValue));
 
-    public static final RegistryObject<BlockItem> PAINT_BUCKET_ITEM = ITEMS.register("paint_bucket",
-        () -> new BlockItem(RSBlockRegistry.PAINT_BUCKET.get(), new Item.Properties().group(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<BlockItemPaintBucket> PAINT_BUCKET_ITEM = ITEMS.register("paint_bucket",
+        () -> new BlockItemPaintBucket(RSBlockRegistry.PAINT_BUCKET.get(), new Item.Properties().group(ModItemGroups.ROADSTUFF).maxStackSize(1)));
 
     public static final RegistryObject<Item> PAINT_BRUSH = ITEMS.register("paint_brush", () -> new BrushItem(new Item.Properties().group(ModItemGroups.ROADSTUFF).maxStackSize(1)));
 
