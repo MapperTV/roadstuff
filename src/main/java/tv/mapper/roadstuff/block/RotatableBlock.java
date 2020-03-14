@@ -38,5 +38,4 @@ public class RotatableBlock extends CustomBlock
     {
         return this.getDefaultState().with(DIRECTION, context.getPlacementHorizontalFacing());
     }
-
 }

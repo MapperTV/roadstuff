@@ -62,6 +62,5 @@ public class BrushPacket
             }
         });
         context.get().setPacketHandled(true);
-
     }
 }

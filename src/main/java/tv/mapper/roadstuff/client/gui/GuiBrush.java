@@ -338,5 +338,4 @@ public class GuiBrush extends Screen
         int j1 = l + 179;
         return mouseX >= (double)k && mouseY >= (double)l && mouseX < (double)i1 && mouseY < (double)j1;
     }
-
 }

@@ -47,5 +47,4 @@ public class RSItemModels extends ItemModelProvider
 
         getBuilder("steel_guardrail").parent(new UncheckedModelFile(modid + ":block/steel_guardrail_inventory"));
     }
-
 }

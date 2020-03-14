@@ -24,5 +24,4 @@ public class ReflectorBlockItem extends BlockItem
         else
             return false;
     }
-
 }

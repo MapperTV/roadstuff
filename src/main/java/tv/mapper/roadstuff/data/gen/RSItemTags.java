@@ -8,7 +8,6 @@ import tv.mapper.roadstuff.item.RSItemRegistry;
 
 public class RSItemTags extends ItemTagsProvider
 {
-
     public RSItemTags(DataGenerator generatorIn)
     {
         super(generatorIn);

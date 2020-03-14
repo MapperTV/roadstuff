@@ -9,7 +9,8 @@ public class RSNetwork
 {
     public static final String PROTOCOL_VERSION = String.valueOf(1);
 
-    public static final SimpleChannel ROADSTUFF_CHANNEL = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(RoadStuff.MODID, "roadstuff_channel")).networkProtocolVersion(() -> PROTOCOL_VERSION).clientAcceptedVersions(PROTOCOL_VERSION::equals).serverAcceptedVersions(PROTOCOL_VERSION::equals).simpleChannel();
+    public static final SimpleChannel ROADSTUFF_CHANNEL = NetworkRegistry.ChannelBuilder.named(new ResourceLocation(RoadStuff.MODID, "roadstuff_channel")).networkProtocolVersion(
+        () -> PROTOCOL_VERSION).clientAcceptedVersions(PROTOCOL_VERSION::equals).serverAcceptedVersions(PROTOCOL_VERSION::equals).simpleChannel();
 
     public static void registerNetworkPackets()
     {

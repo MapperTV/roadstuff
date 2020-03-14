@@ -42,7 +42,7 @@ public class BlockItemPaintBucket extends BlockItem
         if(stack.hasTag())
         {
             String color = EnumPaintColor.getColorByID(stack.getTag().getInt("color")).getNameTranslated();
-            
+
             int paint = (stack.getTag().getInt("paint") * 100) / 8;
             if(paint < 10)
                 color = "X";

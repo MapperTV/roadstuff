@@ -23,16 +23,16 @@ public class GuardrailBlock extends FourWayBlock
     {
         super(2.0F, 2.0F, 16.0F, 16.0F, 16.0F, properties);
         this.setDefaultState(
-            this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(
-                WATERLOGGED, Boolean.valueOf(false)));
+            this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(WATERLOGGED,
+                Boolean.valueOf(false)));
     }
 
     public GuardrailBlock(Properties properties, ToolType toolType)
     {
         super(2.0F, 2.0F, 16.0F, 16.0F, 16.0F, properties);
         this.setDefaultState(
-            this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(
-                WATERLOGGED, Boolean.valueOf(false)));
+            this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(WATERLOGGED,
+                Boolean.valueOf(false)));
         this.toolType = toolType;
     }
 
@@ -49,12 +49,11 @@ public class GuardrailBlock extends FourWayBlock
         BlockState blockstate1 = iblockreader.getBlockState(blockpos2);
         BlockState blockstate2 = iblockreader.getBlockState(blockpos3);
         BlockState blockstate3 = iblockreader.getBlockState(blockpos4);
-        return super.getStateForPlacement(context).with(NORTH,
-            Boolean.valueOf(this.func_220111_a(blockstate, blockstate.canBeConnectedTo(iblockreader, blockpos1, Direction.SOUTH), Direction.SOUTH))).with(EAST,
-                Boolean.valueOf(this.func_220111_a(blockstate1, blockstate1.canBeConnectedTo(iblockreader, blockpos2, Direction.WEST), Direction.WEST))).with(SOUTH,
-                    Boolean.valueOf(this.func_220111_a(blockstate2, blockstate2.canBeConnectedTo(iblockreader, blockpos3, Direction.NORTH), Direction.NORTH))).with(WEST,
-                        Boolean.valueOf(this.func_220111_a(blockstate3, blockstate3.canBeConnectedTo(iblockreader, blockpos4, Direction.EAST), Direction.EAST))).with(WATERLOGGED,
-                            Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER));
+        return super.getStateForPlacement(context).with(NORTH, Boolean.valueOf(this.func_220111_a(blockstate, blockstate.canBeConnectedTo(iblockreader, blockpos1, Direction.SOUTH), Direction.SOUTH))).with(EAST,
+            Boolean.valueOf(this.func_220111_a(blockstate1, blockstate1.canBeConnectedTo(iblockreader, blockpos2, Direction.WEST), Direction.WEST))).with(SOUTH,
+                Boolean.valueOf(this.func_220111_a(blockstate2, blockstate2.canBeConnectedTo(iblockreader, blockpos3, Direction.NORTH), Direction.NORTH))).with(WEST,
+                    Boolean.valueOf(this.func_220111_a(blockstate3, blockstate3.canBeConnectedTo(iblockreader, blockpos4, Direction.EAST), Direction.EAST))).with(WATERLOGGED,
+                        Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER));
     }
 
     @SuppressWarnings("deprecation")

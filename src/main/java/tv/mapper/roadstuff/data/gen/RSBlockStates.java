@@ -26,7 +26,6 @@ import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 
 public class RSBlockStates extends BlockStateProvider
 {
-
     public RSBlockStates(DataGenerator gen, ExistingFileHelper exFileHelper)
     {
         super(gen, MapperBase.MODID, exFileHelper);

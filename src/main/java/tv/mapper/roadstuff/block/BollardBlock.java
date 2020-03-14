@@ -123,5 +123,4 @@ public class BollardBlock extends RotatableBlock implements IWaterLoggable
     {
         builder.add(DIRECTION).add(WATERLOGGED);
     }
-
 }

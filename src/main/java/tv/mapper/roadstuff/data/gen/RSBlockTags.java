@@ -13,7 +13,6 @@ import tv.mapper.roadstuff.data.RSTags;
 
 public class RSBlockTags extends BlockTagsProvider
 {
-
     public RSBlockTags(DataGenerator generatorIn)
     {
         super(generatorIn);

@@ -24,7 +24,6 @@ import tv.mapper.roadstuff.block.SlopeBlock;
 
 public class RSLootTables extends BaseLootTableProvider
 {
-
     public RSLootTables(DataGenerator dataGeneratorIn)
     {
         super(dataGeneratorIn);
@@ -100,5 +99,4 @@ public class RSLootTables extends BaseLootTableProvider
                                 BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(SlopeBlock.LAYERS, 4))))));
         return LootTable.builder().addLootPool(builder);
     }
-
 }

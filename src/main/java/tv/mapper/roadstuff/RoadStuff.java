@@ -4,15 +4,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import tv.mapper.roadstuff.block.RSBlockRegistry;
-import tv.mapper.roadstuff.config.RoadStuffConfig;
 import tv.mapper.roadstuff.item.RSItemRegistry;
 import tv.mapper.roadstuff.network.RSNetwork;
 import tv.mapper.roadstuff.proxy.ClientProxy;
@@ -39,11 +36,9 @@ public class RoadStuff
 
     public RoadStuff()
     {
-        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RoadStuffConfig.COMMON_CONFIG);
-
         RSBlockRegistry.init();
         RSItemRegistry.init();
-        
+
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::setup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::clientSetup);
         FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverSetup);
@@ -60,8 +55,6 @@ public class RoadStuff
         concreteMap = new ConcretePaintMap(false);
         asphaltSlopeMap = new AsphaltPaintMap(true);
         concreteSlopeMap = new ConcretePaintMap(true);
-
-        // OreGenerator.setupOregen();
     }
 
     private void clientSetup(final FMLClientSetupEvent event)
