@@ -54,9 +54,9 @@ public class RSBlockStates extends BlockStateProvider
                 number = raw[3];
 
             if(block.get() instanceof RotatableSlopeBlock)
-                rotatableSlopeBlock(block.get(), mat, number, 0);
+                rotatableSlopeBlock(block.get(), mat, number, 180);
             else
-                horizontalBlock(block.get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + mat + "_line_" + number), 0);
+                horizontalBlock(block.get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + mat + "_line_" + number), 180);
         }
 
         for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)

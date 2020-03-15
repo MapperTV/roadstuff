@@ -1,64 +1,64 @@
 {
   "variants": {
     "facing=north,layers=1": {
-      "model": "roadstuff:block/concrete_slope_4_line_160",
-      "y": 180
+      "model": "roadstuff:block/concrete_slope_4_line_160"
     },
     "facing=south,layers=1": {
-      "model": "roadstuff:block/concrete_slope_4_line_160"
+      "model": "roadstuff:block/concrete_slope_4_line_160",
+      "y": 180
     },
     "facing=west,layers=1": {
       "model": "roadstuff:block/concrete_slope_4_line_160",
-      "y": 90
+      "y": 270
     },
     "facing=east,layers=1": {
       "model": "roadstuff:block/concrete_slope_4_line_160",
-      "y": 270
+      "y": 90
     },
     "facing=north,layers=2": {
-      "model": "roadstuff:block/concrete_slope_8_line_160",
-      "y": 180
+      "model": "roadstuff:block/concrete_slope_8_line_160"
     },
     "facing=south,layers=2": {
-      "model": "roadstuff:block/concrete_slope_8_line_160"
+      "model": "roadstuff:block/concrete_slope_8_line_160",
+      "y": 180
     },
     "facing=west,layers=2": {
       "model": "roadstuff:block/concrete_slope_8_line_160",
-      "y": 90
+      "y": 270
     },
     "facing=east,layers=2": {
       "model": "roadstuff:block/concrete_slope_8_line_160",
-      "y": 270
+      "y": 90
     },
     "facing=north,layers=3": {
-      "model": "roadstuff:block/concrete_slope_12_line_160",
-      "y": 180
+      "model": "roadstuff:block/concrete_slope_12_line_160"
     },
     "facing=south,layers=3": {
-      "model": "roadstuff:block/concrete_slope_12_line_160"
+      "model": "roadstuff:block/concrete_slope_12_line_160",
+      "y": 180
     },
     "facing=west,layers=3": {
       "model": "roadstuff:block/concrete_slope_12_line_160",
-      "y": 90
+      "y": 270
     },
     "facing=east,layers=3": {
       "model": "roadstuff:block/concrete_slope_12_line_160",
-      "y": 270
+      "y": 90
     },
     "facing=north,layers=4": {
+      "model": "roadstuff:block/concrete_line_160"
+    },
+    "facing=south,layers=4": {
       "model": "roadstuff:block/concrete_line_160",
       "y": 180
     },
-    "facing=south,layers=4": {
-      "model": "roadstuff:block/concrete_line_160"
-    },
     "facing=west,layers=4": {
       "model": "roadstuff:block/concrete_line_160",
-      "y": 90
+      "y": 270
     },
     "facing=east,layers=4": {
       "model": "roadstuff:block/concrete_line_160",
-      "y": 270
+      "y": 90
     }
   }
 }
