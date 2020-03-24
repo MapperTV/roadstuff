@@ -29,3 +29,5 @@
 
 # Explicit ignores
 Thumbs.db
+._sync*
+Desktop.ini
