@@ -27,7 +27,7 @@ minecraft {
             workingDirectory project.file('run')
 
             property 'forge.logging.markers', ''
-            property 'forge.logging.console.level', ''
+            property 'forge.logging.console.level', 'debug'
 
             mods {
                 "${mod_name}" {
@@ -40,7 +40,7 @@ minecraft {
             workingDirectory project.file('run')
             
             property 'forge.logging.markers', ''
-            property 'forge.logging.console.level', ''
+            property 'forge.logging.console.level', 'debug'
 
             mods {
                 "${mod_name}" {
@@ -55,7 +55,7 @@ minecraft {
             property 'forge.logging.markers', ''
             property 'forge.logging.console.level', 'debug'
 
-            args '--mod', 'roadstuff', '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0]
+            args '--mod', 'roadstuff', '--all', '--output', file('src/generated/resources/'), '--existing', sourceSets.main.resources.srcDirs[0], '--input', file('src/main/resources')
             source sourceSets.main
         }
     }
