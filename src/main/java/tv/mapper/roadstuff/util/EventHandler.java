@@ -48,7 +48,7 @@ public class EventHandler
 
                     if(timer - RoadStuff.clickInterval > ModConstants.CLICK_DELAY && event.getSide() == LogicalSide.SERVER)
                     {
-                        if(player.isShiftKeyDown())
+                        if(player.isSneaking())
                             BrushItem.removeLine(world, pos, player);
                         else
                             BrushItem.paintLine(event.getFace(), state, world, pos, player, heldItem);

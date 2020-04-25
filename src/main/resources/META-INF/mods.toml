@@ -29,6 +29,6 @@ description='''Road Stuff 2 for Minecraft 1.15 brings you everything you need to
 [[dependencies.roadstuff]]
     modId="mapperbase"
     mandatory=true
-    versionRange="[1.15.2-1.0,]"
+    versionRange="[1.15.2-1.1,]"
     ordering="NONE"
     side="BOTH"

@@ -84,7 +84,7 @@ public class SlopeBlock extends PaintableBlock implements IWaterLoggable
                     break;
             }
 
-            if(!player.isShiftKeyDown() && state.get(LAYERS) < 4)
+            if(!player.isSneaking() && state.get(LAYERS) < 4)
             {
                 ItemStack stack = ItemStack.EMPTY;
                 if(player.getHeldItemMainhand().getItem() == itemCheck)

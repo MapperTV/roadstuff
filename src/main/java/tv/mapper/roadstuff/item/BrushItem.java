@@ -89,12 +89,12 @@ public class BrushItem extends Item
         {
             if(ModConstants.ALTERNATE_BRUSH)
             {
-                if(player.isShiftKeyDown())
+                if(player.isSneaking())
                     BrushItemClient.displayBrushGui(nbt.getInt("pattern"), nbt.getInt("paint"), nbt.getInt("color"), nbt.getFloat("scroll"), nbt.getIntArray("favs"));
             }
             else
             {
-                if(!player.isShiftKeyDown())
+                if(!player.isSneaking())
                     BrushItemClient.displayBrushGui(nbt.getInt("pattern"), nbt.getInt("paint"), nbt.getInt("color"), nbt.getFloat("scroll"), nbt.getIntArray("favs"));
             }
         }
@@ -112,7 +112,7 @@ public class BrushItem extends Item
             ItemStack heldItem = context.getItem();
             PlayerEntity player = context.getPlayer();
 
-            if(player.isShiftKeyDown())
+            if(player.isSneaking())
             {
                 if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(
                     context.getPos()).getBlock() != BaseBlocks.ASPHALT.get() && context.getWorld().getBlockState(context.getPos()).getBlock() != BaseBlocks.CONCRETE.get()))
@@ -125,7 +125,7 @@ public class BrushItem extends Item
         }
         else
         {
-            if(context.getPlayer().isShiftKeyDown())
+            if(context.getPlayer().isSneaking())
             {
                 if(context.getWorld().getBlockState(context.getPos()).getBlock() instanceof PaintableBlock && (context.getWorld().getBlockState(
                     context.getPos()).getBlock() != BaseBlocks.ASPHALT.get() && context.getWorld().getBlockState(context.getPos()).getBlock() != BaseBlocks.CONCRETE.get()))
