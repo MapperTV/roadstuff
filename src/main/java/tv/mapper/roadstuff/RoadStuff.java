@@ -22,7 +22,7 @@ import tv.mapper.roadstuff.util.ConcretePaintMap;
 public class RoadStuff
 {
     public static final String MODID = "roadstuff";
-    public static IProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> () -> new ServerProxy());
+    public static IProxy proxy = DistExecutor.safeRunForDist(() -> ClientProxy::new, () -> ServerProxy::new);
 
     public static AsphaltPaintMap asphaltMap;
     public static ConcretePaintMap concreteMap;

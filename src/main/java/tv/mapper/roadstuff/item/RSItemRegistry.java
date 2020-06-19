@@ -19,7 +19,7 @@ import tv.mapper.roadstuff.block.RSBlockRegistry;
 
 public class RSItemRegistry
 {
-    private static final DeferredRegister<Item> ITEMS = new DeferredRegister<>(ForgeRegistries.ITEMS, RoadStuff.MODID);
+    private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RoadStuff.MODID);
 
     public static final RegistryObject<BlockItem> ASPHALT_SLOPE_ITEM = ITEMS.register("asphalt_slope",
         () -> new BlockItem(RSBlockRegistry.ASPHALT_SLOPE.get(), new Item.Properties().group(ModItemGroups.ROADSTUFF)));

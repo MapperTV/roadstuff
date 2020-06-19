@@ -15,7 +15,7 @@ description='''Road Stuff 2 for Minecraft 1.15 brings you everything you need to
 [[dependencies.roadstuff]]
     modId="forge"
     mandatory=true
-    versionRange="[31,)"
+    versionRange="[31.2,)"
     ordering="NONE"
     side="BOTH"
 
@@ -30,5 +30,5 @@ description='''Road Stuff 2 for Minecraft 1.15 brings you everything you need to
     modId="mapperbase"
     mandatory=true
     versionRange="[1.15.2-1.1,]"
-    ordering="NONE"
+    ordering="AFTER"
     side="BOTH"

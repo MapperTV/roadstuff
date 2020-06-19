@@ -25,7 +25,7 @@ import tv.mapper.roadstuff.util.ModConstants;
 
 public class RSBlockRegistry
 {
-    private static final DeferredRegister<Block> BLOCKS = new DeferredRegister<>(ForgeRegistries.BLOCKS, RoadStuff.MODID);
+    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RoadStuff.MODID);
     public static Set<RegistryObject<PaintableBlock>> MOD_PAINTABLEBLOCKS = new LinkedHashSet<>();
 
     public static final RegistryObject<SlopeBlock> ASPHALT_SLOPE = BLOCKS.register("asphalt_slope",
