@@ -74,15 +74,18 @@ repositories {
         name = "ModMaven"
         url = "https://modmaven.k-4u.nl"
     }
+    maven {
+        url 'https://www.dogforce-games.com/maven/'
+    }
 }
 
 dependencies {
     minecraft "net.minecraftforge:forge:${mc_version}-${forge_version}"
 
-    compileOnly fg.deobf("mezz.jei:jei-${lib_mc_version}:${jei_version}:api")
-    runtimeOnly fg.deobf("mezz.jei:jei-${lib_mc_version}:${jei_version}")
+    compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
+    runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
     
-    deobf files("dep/mapperbase-${lib_mc_version}-${base_version}-deobf.jar")
+    deobf files("dep/mapperbase-${mc_version}-${base_version}-deobf.jar")
     
 }
 
