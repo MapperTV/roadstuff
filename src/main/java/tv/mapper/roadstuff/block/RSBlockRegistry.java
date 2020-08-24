@@ -58,20 +58,20 @@ public class RSBlockRegistry
     }
 
     public static final Map<DyeColor, RegistryObject<ConeBlock>> TRAFFIC_CONE_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
-        BLOCKS.register(type.getName() + "_traffic_cone",
+        BLOCKS.register(type.getString() + "_traffic_cone",
             () -> new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, type.getMapColor()).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.BAMBOO), EnumConeType.CONE)))).collect(
                 Collectors.toMap(Pair::getKey, Pair::getValue));
     public static final Map<DyeColor, RegistryObject<ConeBlock>> TRAFFIC_BARREL_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
-        BLOCKS.register(type.getName() + "_traffic_barrel",
+        BLOCKS.register(type.getString() + "_traffic_barrel",
             () -> new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, type.getMapColor()).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.BAMBOO), EnumConeType.BARREL)))).collect(
                 Collectors.toMap(Pair::getKey, Pair::getValue));
     public static final Map<DyeColor, RegistryObject<ConeBlock>> TRAFFIC_BOLLARD_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
-        BLOCKS.register(type.getName() + "_traffic_bollard",
+        BLOCKS.register(type.getString() + "_traffic_bollard",
             () -> new ConeBlock(Block.Properties.create(Material.MISCELLANEOUS, type.getMapColor()).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.BAMBOO), EnumConeType.BOLLARD)))).collect(
                 Collectors.toMap(Pair::getKey, Pair::getValue));
 
     public static final Map<DyeColor, RegistryObject<CylindricalBollardBlock>> CYLINDRICAL_BOLLARD_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
-        BLOCKS.register(type.getName() + "_cylindrical_bollard",
+        BLOCKS.register(type.getString() + "_cylindrical_bollard",
             () -> new CylindricalBollardBlock(Block.Properties.create(Material.MISCELLANEOUS, type.getMapColor()).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.BAMBOO))))).collect(
                 Collectors.toMap(Pair::getKey, Pair::getValue));
 
@@ -99,18 +99,20 @@ public class RSBlockRegistry
     // Collectors.toMap(Pair::getKey, Pair::getValue));
 
     public static final Map<DyeColor, RegistryObject<ReflectorBlock>> REFLECTOR_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
-        BLOCKS.register(type.getName() + "_reflector",
+        BLOCKS.register(type.getString() + "_reflector",
             () -> new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, type.getMapColor()).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL), false)))).collect(
                 Collectors.toMap(Pair::getKey, Pair::getValue));
-    public static final Map<DyeColor, RegistryObject<ReflectorBlock>> LUMINESCENT_REFLECTOR_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
-        BLOCKS.register(type.getName() + "_luminescent_reflector",
-            () -> new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, type.getMapColor()).hardnessAndResistance(0.1F, 3.0F).lightValue(14).sound(SoundType.METAL), true)))).collect(
-                Collectors.toMap(Pair::getKey, Pair::getValue));
+    public static final Map<DyeColor, RegistryObject<ReflectorBlock>> LUMINESCENT_REFLECTOR_BLOCKS = Arrays.stream(DyeColor.values()).map(
+        type -> Pair.of(type, BLOCKS.register(type.getString() + "_luminescent_reflector",
+            () -> new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, type.getMapColor()).hardnessAndResistance(0.1F, 3.0F).setLightLevel((state) ->
+            {
+                return 14;
+            }).sound(SoundType.METAL), true)))).collect(Collectors.toMap(Pair::getKey, Pair::getValue));
 
     public static final RegistryObject<GuardrailBlock> STEEL_GUARDRAIL = BLOCKS.register("steel_guardrail",
         () -> new GuardrailBlock(Block.Properties.create(Material.IRON, MaterialColor.BLACK).hardnessAndResistance(3.0F).sound(SoundType.LANTERN), ToolType.PICKAXE));
     public static final Map<DyeColor, RegistryObject<GuardrailBlock>> GUARDRAIL_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
-        BLOCKS.register(type.getName() + "_guardrail",
+        BLOCKS.register(type.getString() + "_guardrail",
             () -> new GuardrailBlock(Block.Properties.create(Material.IRON, type.getMapColor()).hardnessAndResistance(3.0F).sound(SoundType.LANTERN), ToolType.PICKAXE)))).collect(
                 Collectors.toMap(Pair::getKey, Pair::getValue));
 

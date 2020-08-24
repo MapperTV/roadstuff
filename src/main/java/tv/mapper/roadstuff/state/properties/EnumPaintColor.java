@@ -17,21 +17,21 @@ public enum EnumPaintColor implements IStringSerializable
         this.name = name;
     }
 
-    public String getName()
+    public String getString()
     {
         return this.name;
     }
-    
+
     public String getNameTranslated()
     {
         return new TranslationTextComponent("roadstuff.message.paint.color." + this.name).getString();
     }
-    
+
     public int getId()
     {
         return this.id;
     }
-    
+
     public static EnumPaintColor getColorByID(int id)
     {
         for(EnumPaintColor color : values())

@@ -10,8 +10,8 @@ import net.minecraft.block.ILiquidContainer;
 import net.minecraft.entity.item.ItemEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.DyeColor;
 import net.minecraft.item.DyeItem;
@@ -78,16 +78,16 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
     {
         ItemStack stack = context.getItem();
         BlockPos blockpos = context.getPos();
-        IFluidState ifluidstate = context.getWorld().getFluidState(blockpos);
+        FluidState FluidState = context.getWorld().getFluidState(blockpos);
 
         CompoundNBT tagCompound = stack.getTag();
         if(tagCompound != null)
         {
             return this.getDefaultState().with(PAINT, stack.getTag().getInt("paint")).with(COLOR, EnumPaintColor.values()[stack.getTag().getInt("color")]).with(DIRECTION,
-                context.getPlacementHorizontalFacing()).with(WATERLOGGED, Boolean.valueOf(Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER)));
+                context.getPlacementHorizontalFacing()).with(WATERLOGGED, Boolean.valueOf(Boolean.valueOf(FluidState.getFluid() == Fluids.WATER)));
         }
         return this.getDefaultState().with(PAINT, 0).with(COLOR, EnumPaintColor.WHITE).with(DIRECTION, context.getPlacementHorizontalFacing()).with(WATERLOGGED,
-            Boolean.valueOf(Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER)));
+            Boolean.valueOf(Boolean.valueOf(FluidState.getFluid() == Fluids.WATER)));
     }
 
     @Override
@@ -223,7 +223,7 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
     }
 
     @SuppressWarnings("deprecation")
-    public IFluidState getFluidState(BlockState state)
+    public FluidState getFluidState(BlockState state)
     {
         return state.get(WATERLOGGED) ? Fluids.WATER.getStillFluidState(false) : super.getFluidState(state);
     }
@@ -233,7 +233,7 @@ public class PaintBucketBlock extends Block implements IBucketPickupHandler, ILi
         return !state.get(WATERLOGGED) && fluidIn == Fluids.WATER;
     }
 
-    public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, IFluidState fluidStateIn)
+    public boolean receiveFluid(IWorld worldIn, BlockPos pos, BlockState state, FluidState fluidStateIn)
     {
         if(!state.get(WATERLOGGED) && fluidStateIn.getFluid() == Fluids.WATER)
         {

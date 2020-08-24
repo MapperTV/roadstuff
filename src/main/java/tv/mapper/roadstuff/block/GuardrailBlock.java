@@ -5,8 +5,8 @@ import javax.annotation.Nullable;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FourWayBlock;
+import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.StateContainer;
 import net.minecraft.util.Direction;
@@ -40,7 +40,7 @@ public class GuardrailBlock extends FourWayBlock
     {
         IBlockReader iblockreader = context.getWorld();
         BlockPos blockpos = context.getPos();
-        IFluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
+        FluidState ifluidstate = context.getWorld().getFluidState(context.getPos());
         BlockPos blockpos1 = blockpos.north();
         BlockPos blockpos2 = blockpos.east();
         BlockPos blockpos3 = blockpos.south();
@@ -49,10 +49,10 @@ public class GuardrailBlock extends FourWayBlock
         BlockState blockstate1 = iblockreader.getBlockState(blockpos2);
         BlockState blockstate2 = iblockreader.getBlockState(blockpos3);
         BlockState blockstate3 = iblockreader.getBlockState(blockpos4);
-        return super.getStateForPlacement(context).with(NORTH, Boolean.valueOf(this.func_220111_a(blockstate, blockstate.canBeConnectedTo(iblockreader, blockpos1, Direction.SOUTH), Direction.SOUTH))).with(EAST,
-            Boolean.valueOf(this.func_220111_a(blockstate1, blockstate1.canBeConnectedTo(iblockreader, blockpos2, Direction.WEST), Direction.WEST))).with(SOUTH,
-                Boolean.valueOf(this.func_220111_a(blockstate2, blockstate2.canBeConnectedTo(iblockreader, blockpos3, Direction.NORTH), Direction.NORTH))).with(WEST,
-                    Boolean.valueOf(this.func_220111_a(blockstate3, blockstate3.canBeConnectedTo(iblockreader, blockpos4, Direction.EAST), Direction.EAST))).with(WATERLOGGED,
+        return super.getStateForPlacement(context).with(NORTH, Boolean.valueOf(this.canConnect(blockstate, blockstate.isSolidSide(iblockreader, blockpos1, Direction.SOUTH), Direction.SOUTH))).with(EAST,
+            Boolean.valueOf(this.canConnect(blockstate1, blockstate1.isSolidSide(iblockreader, blockpos2, Direction.WEST), Direction.WEST))).with(SOUTH,
+                Boolean.valueOf(this.canConnect(blockstate2, blockstate2.isSolidSide(iblockreader, blockpos3, Direction.NORTH), Direction.NORTH))).with(WEST,
+                    Boolean.valueOf(this.canConnect(blockstate3, blockstate3.isSolidSide(iblockreader, blockpos4, Direction.EAST), Direction.EAST))).with(WATERLOGGED,
                         Boolean.valueOf(ifluidstate.getFluid() == Fluids.WATER));
     }
 
@@ -65,11 +65,11 @@ public class GuardrailBlock extends FourWayBlock
         }
 
         return facing.getAxis().getPlane() == Direction.Plane.HORIZONTAL ? stateIn.with(FACING_TO_PROPERTY_MAP.get(facing),
-            Boolean.valueOf(this.func_220111_a(facingState, facingState.canBeConnectedTo(worldIn, facingPos, facing.getOpposite()), facing.getOpposite()))) : super.updatePostPlacement(stateIn, facing,
-                facingState, worldIn, currentPos, facingPos);
+            Boolean.valueOf(this.canConnect(facingState, facingState.isSolidSide(worldIn, facingPos, facing.getOpposite()), facing.getOpposite()))) : super.updatePostPlacement(stateIn, facing, facingState,
+                worldIn, currentPos, facingPos);
     }
 
-    public boolean func_220111_a(BlockState p_220111_1_, boolean p_220111_2_, Direction p_220111_3_)
+    public boolean canConnect(BlockState p_220111_1_, boolean p_220111_2_, Direction p_220111_3_)
     {
         Block block = p_220111_1_.getBlock();
         boolean flag = block instanceof GuardrailBlock && p_220111_1_.getMaterial() == this.material;
