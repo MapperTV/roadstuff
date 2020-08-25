@@ -17,7 +17,6 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvents;
 import net.minecraft.util.math.BlockPos;
@@ -43,17 +42,6 @@ public class BrushItem extends Item
     public BrushItem(Properties properties)
     {
         super(properties);
-        this.addPropertyOverride(new ResourceLocation("color"), (itemStack, world, entity) ->
-        {
-            CompoundNBT nbt = checkNBT(itemStack);
-            if(nbt.getInt("paint") == 0)
-                return 0.0f;
-            else if(nbt.getInt("color") == 0)
-                return 0.5f;
-            else if(nbt.getInt("color") == 1)
-                return 1.0f;
-            return 0.0f;
-        });
     }
 
     @Override

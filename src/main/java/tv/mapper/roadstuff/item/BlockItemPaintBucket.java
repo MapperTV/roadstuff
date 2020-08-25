@@ -6,8 +6,6 @@ import net.minecraft.block.Block;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
@@ -19,20 +17,6 @@ public class BlockItemPaintBucket extends BlockItem
     public BlockItemPaintBucket(Block blockIn, Properties builder)
     {
         super(blockIn, builder);
-        this.addPropertyOverride(new ResourceLocation("color"), (itemStack, world, entity) ->
-        {
-            if(itemStack.hasTag())
-            {
-                CompoundNBT nbt = itemStack.getTag();
-                if(nbt.getInt("paint") == 0)
-                    return 0.0f;
-                else if(nbt.getInt("color") == 0)
-                    return 0.5f;
-                else if(nbt.getInt("color") == 1)
-                    return 1.0f;
-            }
-            return 0.0f;
-        });
     }
 
     @Override
