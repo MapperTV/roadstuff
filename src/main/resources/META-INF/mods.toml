@@ -1,6 +1,7 @@
 modLoader="javafml"
 loaderVersion="[32,)"
-issueTrackerURL="https://github.com/KillerMapper/roadstuff/issues"
+license="MIT License"
+issueTrackerURL="https://github.com/MapperTV/roadstuff/issues"
 [[mods]]
 modId="roadstuff"
 version="${file.jarVersion}"
@@ -29,6 +30,6 @@ description='''Road Stuff 2 for Minecraft 1.16 brings you everything you need to
 [[dependencies.roadstuff]]
     modId="mapperbase"
     mandatory=true
-    versionRange="[1.16.1-2.0.,]"
+    versionRange="[1.16.1-2.0.,)"
     ordering="AFTER"
     side="BOTH"
