@@ -40,8 +40,10 @@ public class RSGenerators
         generator.addProvider(new RSBlockModels(generator, modid, helper));
         generator.addProvider(new RSItemModels(generator, modid, helper));
 
-        generator.addProvider(new RSBlockTags(generator));
-        generator.addProvider(new RSItemTags(generator));
+        RSBlockTags rsBlockTags = new RSBlockTags(generator);
+
+        generator.addProvider(rsBlockTags);
+        generator.addProvider(new RSItemTags(generator, rsBlockTags));
 
         generator.addProvider(new RSLang(generator, modid, "en_us"));
         generator.addProvider(new RSLang(generator, modid, "fr_fr"));

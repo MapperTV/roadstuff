@@ -36,7 +36,7 @@ public class RSLang extends LanguageProvider
 
                 for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
                 {
-                    String color = DyeColor.byId(i).getName();
+                    String color = DyeColor.byId(i).getString();
                     String check[] = color.split("_");
                     if(check.length > 1)
                         color = StringUtils.capitalise(check[0]) + " " + StringUtils.capitalise(check[1]);
@@ -89,7 +89,7 @@ public class RSLang extends LanguageProvider
 
                 for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
                 {
-                    String color = DyeColor.byId(i).getName();
+                    String color = DyeColor.byId(i).getString();
                     String check[] = color.split("_");
                     if(check.length > 1)
                         color = StringUtils.capitalise(check[0]) + " " + StringUtils.capitalise(check[1]);

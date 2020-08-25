@@ -8,15 +8,15 @@ import tv.mapper.roadstuff.item.RSItemRegistry;
 
 public class RSItemTags extends ItemTagsProvider
 {
-    public RSItemTags(DataGenerator generatorIn)
+    public RSItemTags(DataGenerator generatorIn, RSBlockTags provider)
     {
-        super(generatorIn);
+        super(generatorIn, provider);
     }
 
     public void registerTags()
     {
-        this.getBuilder(RSTags.Items.ASPHALT_ROAD).add(BaseItems.ASPHALT_ITEM.get(), RSItemRegistry.ASPHALT_SLOPE_ITEM.get());
-        this.getBuilder(RSTags.Items.CONCRETE_ROAD).add(BaseItems.CONCRETE_ITEM.get(), RSItemRegistry.CONCRETE_SLOPE_ITEM.get());
+        this.getOrCreateBuilder(RSTags.Items.ASPHALT_ROAD).add(BaseItems.ASPHALT_ITEM.get(), RSItemRegistry.ASPHALT_SLOPE_ITEM.get());
+        this.getOrCreateBuilder(RSTags.Items.CONCRETE_ROAD).add(BaseItems.CONCRETE_ITEM.get(), RSItemRegistry.CONCRETE_SLOPE_ITEM.get());
         copy(RSTags.Blocks.REFLECTORS, RSTags.Items.REFLECTORS);
     }
 }
