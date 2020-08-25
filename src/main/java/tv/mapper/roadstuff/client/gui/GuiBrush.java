@@ -179,6 +179,7 @@ public class GuiBrush extends Screen
         this.font.drawStringWithShadow(stack, textPaint.getString() + paint, guiLeft + 225, guiTop + 40, new Color(255, 255, 255).getRGB());
         this.font.drawStringWithShadow(stack, textColor.getString() + EnumPaintColor.getColorByID(color).getNameTranslated(), guiLeft + 225, guiTop + 58, new Color(255, 255, 255).getRGB());
 
+        // Draw tooltip
         if(mouseX > guiLeft + 7 && mouseX < guiLeft + WIDTH - 43 && mouseY > guiTop + 14 && mouseY < guiTop + 196)
         {
             int patternHover = (posX - guiLeft - 9) / 18 + ((posY - guiTop - 9) / 18) * 9 + scroll * 9;
@@ -190,6 +191,7 @@ public class GuiBrush extends Screen
                 GuiUtils.drawHoveringText(stack, Arrays.asList(textPatternDisplay), mouseX, mouseY, width, height, -1, font);
             }
         }
+        // Draw favorite tooltip
         else if(mouseX > guiLeft + 191 && mouseX < guiLeft + 210 && mouseY > guiTop + 52 && mouseY < guiTop + 197)
         {
             int patternHover = ((favY - guiTop - 40) / 18);
@@ -211,7 +213,6 @@ public class GuiBrush extends Screen
                 patternTooltipFinal.add(patternTooltip);
             }
 
-            // TranslationTextComponent text = new TranslationTextComponent(patternTooltipFinal.toString());
             GuiUtils.drawHoveringText(stack, patternTooltipFinal, mouseX, mouseY, width, height, -1, font);
         }
 
@@ -280,7 +281,6 @@ public class GuiBrush extends Screen
         {
             RSNetwork.ROADSTUFF_CHANNEL.sendToServer(new BrushPacket(pattern, currentScroll, favorites));
             this.closeScreen();
-            RoadStuff.LOGGER.debug("lol");
             return true;
         }
         else
