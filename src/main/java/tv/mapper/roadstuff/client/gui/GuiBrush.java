@@ -186,33 +186,33 @@ public class GuiBrush extends Screen
                 GuiUtils.drawHoveringText(stack, Arrays.asList(textEraser), mouseX, mouseY, width, height, -1, font);
             else
             {
-                textPattern = new TranslationTextComponent(textPattern.toString() + patternHover);
-                GuiUtils.drawHoveringText(stack, Arrays.asList(textPattern), mouseX, mouseY, width, height, -1, font);
+                TranslationTextComponent textPatternDisplay = new TranslationTextComponent(textPattern.getString() + patternHover);
+                GuiUtils.drawHoveringText(stack, Arrays.asList(textPatternDisplay), mouseX, mouseY, width, height, -1, font);
             }
         }
         else if(mouseX > guiLeft + 191 && mouseX < guiLeft + 210 && mouseY > guiTop + 52 && mouseY < guiTop + 197)
         {
             int patternHover = ((favY - guiTop - 40) / 18);
 
-            List<String> patternTooltipFinal = new ArrayList<String>();
-            String patternTooltip = "";
-            String patternTooltip2 = "";
+            List<TranslationTextComponent> patternTooltipFinal = new ArrayList<TranslationTextComponent>();
+            TranslationTextComponent patternTooltip;
+            TranslationTextComponent patternTooltip2;
 
             if(favorites[patternHover] == 0)
             {
-                patternTooltip = textFav1.getString();
-                patternTooltip2 = textFav2.getString();
+                patternTooltip = new TranslationTextComponent(textFav1.getString());
+                patternTooltip2 = new TranslationTextComponent(textFav2.getString());
                 patternTooltipFinal.add(patternTooltip);
                 patternTooltipFinal.add(patternTooltip2);
             }
             else
             {
-                patternTooltip = textPattern.getString() + favorites[patternHover];
+                patternTooltip = new TranslationTextComponent(textPattern.getString() + favorites[patternHover]);
                 patternTooltipFinal.add(patternTooltip);
             }
 
-            TranslationTextComponent text = new TranslationTextComponent(patternTooltipFinal.toString());
-            GuiUtils.drawHoveringText(stack, Arrays.asList(text), mouseX, mouseY, width, height, -1, font);
+            // TranslationTextComponent text = new TranslationTextComponent(patternTooltipFinal.toString());
+            GuiUtils.drawHoveringText(stack, patternTooltipFinal, mouseX, mouseY, width, height, -1, font);
         }
 
     }
@@ -279,7 +279,8 @@ public class GuiBrush extends Screen
         if(this.shouldCloseOnEsc() && p_keyPressed_1_ == 256 || this.minecraft.gameSettings.keyBindInventory.isActiveAndMatches(InputMappings.getInputByCode(p_keyPressed_1_, p_keyPressed_2_)))
         {
             RSNetwork.ROADSTUFF_CHANNEL.sendToServer(new BrushPacket(pattern, currentScroll, favorites));
-            this.onClose();
+            this.closeScreen();
+            RoadStuff.LOGGER.debug("lol");
             return true;
         }
         else
