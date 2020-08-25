@@ -1,34 +1,34 @@
 modLoader="javafml"
-loaderVersion="[31,)"
+loaderVersion="[32,)"
 issueTrackerURL="https://github.com/KillerMapper/roadstuff/issues"
-logoFile="roadstuff_logo.png"
 [[mods]]
 modId="roadstuff"
 version="${file.jarVersion}"
 displayName="Road Stuff"
 #updateJSONURL="http://myurl.me/"
 displayURL="http://mapper.tv/roadstuff/"
+logoFile="roadstuff_logo.png"
 credits="The Forge team and community for the help and resources."
 authors="Mapper"
-description='''Road Stuff 2 for Minecraft 1.15 brings you everything you need to create the roads of your dreams!'''
+description='''Road Stuff 2 for Minecraft 1.16 brings you everything you need to create the roads of your dreams!'''
 
 [[dependencies.roadstuff]]
     modId="forge"
     mandatory=true
-    versionRange="[31.2,)"
+    versionRange="[32,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.roadstuff]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.15.2]"
+    versionRange="[1.16.1]"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.roadstuff]]
     modId="mapperbase"
     mandatory=true
-    versionRange="[1.15.2-1.1,]"
+    versionRange="[1.16.1-2.0.,]"
     ordering="AFTER"
     side="BOTH"
