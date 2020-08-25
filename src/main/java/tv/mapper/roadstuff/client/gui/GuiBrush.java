@@ -6,6 +6,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
+import com.mojang.blaze3d.matrix.MatrixStack;
+
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.util.InputMappings;
 import net.minecraft.util.ResourceLocation;
@@ -98,13 +100,13 @@ public class GuiBrush extends Screen
     }
 
     @Override
-    public void render(int mouseX, int mouseY, float partialTicks)
+    public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks)
     {
-        super.render(mouseX, mouseY, partialTicks);
+        super.render(stack, mouseX, mouseY, partialTicks);
 
-        renderBackground(0);
+        renderBackground(stack, 0);
         minecraft.getTextureManager().bindTexture(brush_gui);
-        blit(guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
+        blit(stack, guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
 
         // Draws patterns
         int j = 0;
@@ -114,7 +116,7 @@ public class GuiBrush extends Screen
             if(i + (scroll * 9) < ModConstants.PATTERNS)
             {
                 minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/" + (i + (9 * scroll)) + ".png"));
-                blit(guiLeft + 16 * j + 9 + j * 2, guiTop + 18 + row, 0, 0, 16, 16, 16, 16);
+                blit(stack, guiLeft + 16 * j + 9 + j * 2, guiTop + 18 + row, 0, 0, 16, 16, 16, 16);
 
                 j++;
                 if(j >= 9)
@@ -127,7 +129,7 @@ public class GuiBrush extends Screen
 
         // Draws current selected pattern
         minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/" + pattern + ".png"));
-        blit(guiLeft + 193, guiTop + 18, 0, 0, 16, 16, 16, 16);
+        blit(stack, guiLeft + 193, guiTop + 18, 0, 0, 16, 16, 16, 16);
 
         // Draws favorites
         int fav_y = 54;
@@ -136,7 +138,7 @@ public class GuiBrush extends Screen
             if(favorites[i] != 0)
             {
                 minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/" + (favorites[i] + ".png")));
-                blit(guiLeft + 193, guiTop + fav_y, 0, 0, 16, 16, 16, 16);
+                blit(stack, guiLeft + 193, guiTop + fav_y, 0, 0, 16, 16, 16, 16);
             }
             fav_y += 18;
         }
@@ -146,7 +148,7 @@ public class GuiBrush extends Screen
         {
             posX = Math.toIntExact(Math.round((mouseX - guiLeft - 9) / 18) * 18) + guiLeft + 9;
             posY = Math.toIntExact(Math.round((mouseY - guiTop - 17) / 18) * 18) + guiTop + 18;
-            fill(posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
+            fill(stack, posX, posY, posX + 16, posY + 16, new Color(255, 255, 255, 128).getRGB());
         }
 
         // Draws hover square above favs
@@ -154,7 +156,7 @@ public class GuiBrush extends Screen
         {
             favX = Math.toIntExact(Math.round((mouseX - guiLeft - 12) / 18) * 18) + guiLeft + 13;
             favY = Math.toIntExact(Math.round((mouseY - guiTop - 17) / 18) * 18) + guiTop + 18;
-            fill(favX, favY, favX + 16, favY + 16, new Color(255, 255, 255, 128).getRGB());
+            fill(stack, favX, favY, favX + 16, favY + 16, new Color(255, 255, 255, 128).getRGB());
         }
 
         // Draws selection box around the selected pattern
@@ -163,27 +165,30 @@ public class GuiBrush extends Screen
         if(boxY > guiTop && boxY < guiTop + HEIGHT - 27)
         {
             minecraft.getTextureManager().bindTexture(brush_gui);
-            blit(selectX, boxY, 256 - 22, 256 - 22, 22, 22);
+            blit(stack, selectX, boxY, 256 - 22, 256 - 22, 22, 22);
         }
 
         String title = textTitle.getString();
-        this.font.drawString(title, guiLeft + WIDTH / 2 - font.getStringWidth(title) / 2, guiTop + 6, 4210752);
+        this.font.drawString(stack, title, guiLeft + WIDTH / 2 - font.getStringWidth(title) / 2, guiTop + 6, 4210752);
 
         // Scrollbar
         minecraft.getTextureManager().bindTexture(brush_gui);
-        blit(guiLeft + WIDTH - 42, (int)(guiTop + 18 + 164 * this.currentScroll), 256 - 24, 0, 12, 15);
+        blit(stack, guiLeft + WIDTH - 42, (int)(guiTop + 18 + 164 * this.currentScroll), 256 - 24, 0, 12, 15);
 
-        this.font.drawStringWithShadow(textPattern.getString() + pattern, guiLeft + 225, guiTop + 22, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow(textPaint.getString() + paint, guiLeft + 225, guiTop + 40, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow(textColor.getString() + EnumPaintColor.getColorByID(color).getNameTranslated(), guiLeft + 225, guiTop + 58, new Color(255, 255, 255).getRGB());
+        this.font.drawStringWithShadow(stack, textPattern.getString() + pattern, guiLeft + 225, guiTop + 22, new Color(255, 255, 255).getRGB());
+        this.font.drawStringWithShadow(stack, textPaint.getString() + paint, guiLeft + 225, guiTop + 40, new Color(255, 255, 255).getRGB());
+        this.font.drawStringWithShadow(stack, textColor.getString() + EnumPaintColor.getColorByID(color).getNameTranslated(), guiLeft + 225, guiTop + 58, new Color(255, 255, 255).getRGB());
 
         if(mouseX > guiLeft + 7 && mouseX < guiLeft + WIDTH - 43 && mouseY > guiTop + 14 && mouseY < guiTop + 196)
         {
             int patternHover = (posX - guiLeft - 9) / 18 + ((posY - guiTop - 9) / 18) * 9 + scroll * 9;
             if(patternHover == 0)
-                GuiUtils.drawHoveringText(Arrays.asList(textEraser.getString()), mouseX, mouseY, width, height, -1, font);
+                GuiUtils.drawHoveringText(stack, Arrays.asList(textEraser), mouseX, mouseY, width, height, -1, font);
             else
-                GuiUtils.drawHoveringText(Arrays.asList(textPattern.getString() + patternHover), mouseX, mouseY, width, height, -1, font);
+            {
+                textPattern = new TranslationTextComponent(textPattern.toString() + patternHover);
+                GuiUtils.drawHoveringText(stack, Arrays.asList(textPattern), mouseX, mouseY, width, height, -1, font);
+            }
         }
         else if(mouseX > guiLeft + 191 && mouseX < guiLeft + 210 && mouseY > guiTop + 52 && mouseY < guiTop + 197)
         {
@@ -205,7 +210,9 @@ public class GuiBrush extends Screen
                 patternTooltip = textPattern.getString() + favorites[patternHover];
                 patternTooltipFinal.add(patternTooltip);
             }
-            GuiUtils.drawHoveringText(patternTooltipFinal, mouseX, mouseY, width, height, -1, font);
+
+            TranslationTextComponent text = new TranslationTextComponent(patternTooltipFinal.toString());
+            GuiUtils.drawHoveringText(stack, Arrays.asList(text), mouseX, mouseY, width, height, -1, font);
         }
 
     }
