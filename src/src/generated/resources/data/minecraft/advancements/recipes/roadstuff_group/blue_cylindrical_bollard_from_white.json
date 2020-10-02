@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:blue_cylindrical_bollard_from_white"
+    ]
+  },
+  "criteria": {
+    "has_white_cylindrical_bollard": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "roadstuff:white_cylindrical_bollard"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:blue_cylindrical_bollard_from_white"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_white_cylindrical_bollard",
+      "has_the_recipe"
+    ]
+  ]
+}

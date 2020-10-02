@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "roadstuff:red_reflector"
+    ]
+  },
+  "criteria": {
+    "has_reflector": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "roadstuff:reflectors"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "roadstuff:red_reflector"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_reflector",
+      "has_the_recipe"
+    ]
+  ]
+}

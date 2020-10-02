@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D",
+    "R",
+    "D"
+  ],
+  "key": {
+    "R": {
+      "tag": "roadstuff:reflectors"
+    },
+    "D": {
+      "tag": "forge:dyes/black"
+    }
+  },
+  "result": {
+    "item": "roadstuff:black_cylindrical_bollard"
+  }
+}

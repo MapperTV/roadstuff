@@ -1,0 +1,7 @@
+{
+  "parent": "roadstuff:block/reflector",
+  "textures": {
+    "texture": "roadstuff:block/orange_reflector",
+    "particle": "roadstuff:block/orange_reflector"
+  }
+}

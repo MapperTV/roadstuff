@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "DDD",
+    "D D",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "mapperbase:raw_bitumen"
+    },
+    "D": {
+      "tag": "forge:dyes/white"
+    }
+  },
+  "result": {
+    "item": "roadstuff:white_traffic_barrel"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "i ",
+    " i"
+  ],
+  "key": {
+    "i": {
+      "tag": "mapperbase:concrete"
+    }
+  },
+  "result": {
+    "item": "roadstuff:concrete_slope",
+    "count": 8
+  }
+}

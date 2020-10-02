@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:black_reflector_from_white"
+    ]
+  },
+  "criteria": {
+    "has_white_reflector": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "roadstuff:white_reflector"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:black_reflector_from_white"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_white_reflector",
+      "has_the_recipe"
+    ]
+  ]
+}

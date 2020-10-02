@@ -102,12 +102,10 @@ public class RSBlockRegistry
         BLOCKS.register(type.getString() + "_reflector",
             () -> new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, type.getMapColor()).hardnessAndResistance(0.1F, 3.0F).sound(SoundType.METAL), false)))).collect(
                 Collectors.toMap(Pair::getKey, Pair::getValue));
-    public static final Map<DyeColor, RegistryObject<ReflectorBlock>> LUMINESCENT_REFLECTOR_BLOCKS = Arrays.stream(DyeColor.values()).map(
-        type -> Pair.of(type, BLOCKS.register(type.getString() + "_luminescent_reflector",
-            () -> new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, type.getMapColor()).hardnessAndResistance(0.1F, 3.0F).setLightLevel((state) ->
-            {
-                return 14;
-            }).sound(SoundType.METAL), true)))).collect(Collectors.toMap(Pair::getKey, Pair::getValue));
+    public static final Map<DyeColor, RegistryObject<ReflectorBlock>> LUMINESCENT_REFLECTOR_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type,
+        BLOCKS.register(type.getString() + "_luminescent_reflector",
+            () -> new ReflectorBlock(Block.Properties.create(Material.MISCELLANEOUS, type.getMapColor()).hardnessAndResistance(0.1F, 3.0F).setLightLevel((state) -> 14).sound(SoundType.METAL), true)))).collect(
+                Collectors.toMap(Pair::getKey, Pair::getValue));
 
     public static final RegistryObject<GuardrailBlock> STEEL_GUARDRAIL = BLOCKS.register("steel_guardrail",
         () -> new GuardrailBlock(Block.Properties.create(Material.IRON, MaterialColor.BLACK).hardnessAndResistance(3.0F).sound(SoundType.LANTERN), ToolType.PICKAXE));

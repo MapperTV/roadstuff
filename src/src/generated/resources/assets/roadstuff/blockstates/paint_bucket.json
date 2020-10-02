@@ -1,0 +1,274 @@
+{
+  "variants": {
+    "color=white,facing=north,paint=0": {
+      "model": "roadstuff:block/paint_bucket",
+      "y": 180
+    },
+    "color=yellow,facing=north,paint=0": {
+      "model": "roadstuff:block/paint_bucket",
+      "y": 180
+    },
+    "color=white,facing=south,paint=0": {
+      "model": "roadstuff:block/paint_bucket"
+    },
+    "color=yellow,facing=south,paint=0": {
+      "model": "roadstuff:block/paint_bucket"
+    },
+    "color=white,facing=west,paint=0": {
+      "model": "roadstuff:block/paint_bucket",
+      "y": 90
+    },
+    "color=yellow,facing=west,paint=0": {
+      "model": "roadstuff:block/paint_bucket",
+      "y": 90
+    },
+    "color=white,facing=east,paint=0": {
+      "model": "roadstuff:block/paint_bucket",
+      "y": 270
+    },
+    "color=yellow,facing=east,paint=0": {
+      "model": "roadstuff:block/paint_bucket",
+      "y": 270
+    },
+    "color=white,facing=north,paint=1": {
+      "model": "roadstuff:block/paint_bucket_white_1",
+      "y": 180
+    },
+    "color=yellow,facing=north,paint=1": {
+      "model": "roadstuff:block/paint_bucket_yellow_1",
+      "y": 180
+    },
+    "color=white,facing=south,paint=1": {
+      "model": "roadstuff:block/paint_bucket_white_1"
+    },
+    "color=yellow,facing=south,paint=1": {
+      "model": "roadstuff:block/paint_bucket_yellow_1"
+    },
+    "color=white,facing=west,paint=1": {
+      "model": "roadstuff:block/paint_bucket_white_1",
+      "y": 90
+    },
+    "color=yellow,facing=west,paint=1": {
+      "model": "roadstuff:block/paint_bucket_yellow_1",
+      "y": 90
+    },
+    "color=white,facing=east,paint=1": {
+      "model": "roadstuff:block/paint_bucket_white_1",
+      "y": 270
+    },
+    "color=yellow,facing=east,paint=1": {
+      "model": "roadstuff:block/paint_bucket_yellow_1",
+      "y": 270
+    },
+    "color=white,facing=north,paint=2": {
+      "model": "roadstuff:block/paint_bucket_white_2",
+      "y": 180
+    },
+    "color=yellow,facing=north,paint=2": {
+      "model": "roadstuff:block/paint_bucket_yellow_2",
+      "y": 180
+    },
+    "color=white,facing=south,paint=2": {
+      "model": "roadstuff:block/paint_bucket_white_2"
+    },
+    "color=yellow,facing=south,paint=2": {
+      "model": "roadstuff:block/paint_bucket_yellow_2"
+    },
+    "color=white,facing=west,paint=2": {
+      "model": "roadstuff:block/paint_bucket_white_2",
+      "y": 90
+    },
+    "color=yellow,facing=west,paint=2": {
+      "model": "roadstuff:block/paint_bucket_yellow_2",
+      "y": 90
+    },
+    "color=white,facing=east,paint=2": {
+      "model": "roadstuff:block/paint_bucket_white_2",
+      "y": 270
+    },
+    "color=yellow,facing=east,paint=2": {
+      "model": "roadstuff:block/paint_bucket_yellow_2",
+      "y": 270
+    },
+    "color=white,facing=north,paint=3": {
+      "model": "roadstuff:block/paint_bucket_white_3",
+      "y": 180
+    },
+    "color=yellow,facing=north,paint=3": {
+      "model": "roadstuff:block/paint_bucket_yellow_3",
+      "y": 180
+    },
+    "color=white,facing=south,paint=3": {
+      "model": "roadstuff:block/paint_bucket_white_3"
+    },
+    "color=yellow,facing=south,paint=3": {
+      "model": "roadstuff:block/paint_bucket_yellow_3"
+    },
+    "color=white,facing=west,paint=3": {
+      "model": "roadstuff:block/paint_bucket_white_3",
+      "y": 90
+    },
+    "color=yellow,facing=west,paint=3": {
+      "model": "roadstuff:block/paint_bucket_yellow_3",
+      "y": 90
+    },
+    "color=white,facing=east,paint=3": {
+      "model": "roadstuff:block/paint_bucket_white_3",
+      "y": 270
+    },
+    "color=yellow,facing=east,paint=3": {
+      "model": "roadstuff:block/paint_bucket_yellow_3",
+      "y": 270
+    },
+    "color=white,facing=north,paint=4": {
+      "model": "roadstuff:block/paint_bucket_white_4",
+      "y": 180
+    },
+    "color=yellow,facing=north,paint=4": {
+      "model": "roadstuff:block/paint_bucket_yellow_4",
+      "y": 180
+    },
+    "color=white,facing=south,paint=4": {
+      "model": "roadstuff:block/paint_bucket_white_4"
+    },
+    "color=yellow,facing=south,paint=4": {
+      "model": "roadstuff:block/paint_bucket_yellow_4"
+    },
+    "color=white,facing=west,paint=4": {
+      "model": "roadstuff:block/paint_bucket_white_4",
+      "y": 90
+    },
+    "color=yellow,facing=west,paint=4": {
+      "model": "roadstuff:block/paint_bucket_yellow_4",
+      "y": 90
+    },
+    "color=white,facing=east,paint=4": {
+      "model": "roadstuff:block/paint_bucket_white_4",
+      "y": 270
+    },
+    "color=yellow,facing=east,paint=4": {
+      "model": "roadstuff:block/paint_bucket_yellow_4",
+      "y": 270
+    },
+    "color=white,facing=north,paint=5": {
+      "model": "roadstuff:block/paint_bucket_white_5",
+      "y": 180
+    },
+    "color=yellow,facing=north,paint=5": {
+      "model": "roadstuff:block/paint_bucket_yellow_5",
+      "y": 180
+    },
+    "color=white,facing=south,paint=5": {
+      "model": "roadstuff:block/paint_bucket_white_5"
+    },
+    "color=yellow,facing=south,paint=5": {
+      "model": "roadstuff:block/paint_bucket_yellow_5"
+    },
+    "color=white,facing=west,paint=5": {
+      "model": "roadstuff:block/paint_bucket_white_5",
+      "y": 90
+    },
+    "color=yellow,facing=west,paint=5": {
+      "model": "roadstuff:block/paint_bucket_yellow_5",
+      "y": 90
+    },
+    "color=white,facing=east,paint=5": {
+      "model": "roadstuff:block/paint_bucket_white_5",
+      "y": 270
+    },
+    "color=yellow,facing=east,paint=5": {
+      "model": "roadstuff:block/paint_bucket_yellow_5",
+      "y": 270
+    },
+    "color=white,facing=north,paint=6": {
+      "model": "roadstuff:block/paint_bucket_white_6",
+      "y": 180
+    },
+    "color=yellow,facing=north,paint=6": {
+      "model": "roadstuff:block/paint_bucket_yellow_6",
+      "y": 180
+    },
+    "color=white,facing=south,paint=6": {
+      "model": "roadstuff:block/paint_bucket_white_6"
+    },
+    "color=yellow,facing=south,paint=6": {
+      "model": "roadstuff:block/paint_bucket_yellow_6"
+    },
+    "color=white,facing=west,paint=6": {
+      "model": "roadstuff:block/paint_bucket_white_6",
+      "y": 90
+    },
+    "color=yellow,facing=west,paint=6": {
+      "model": "roadstuff:block/paint_bucket_yellow_6",
+      "y": 90
+    },
+    "color=white,facing=east,paint=6": {
+      "model": "roadstuff:block/paint_bucket_white_6",
+      "y": 270
+    },
+    "color=yellow,facing=east,paint=6": {
+      "model": "roadstuff:block/paint_bucket_yellow_6",
+      "y": 270
+    },
+    "color=white,facing=north,paint=7": {
+      "model": "roadstuff:block/paint_bucket_white_7",
+      "y": 180
+    },
+    "color=yellow,facing=north,paint=7": {
+      "model": "roadstuff:block/paint_bucket_yellow_7",
+      "y": 180
+    },
+    "color=white,facing=south,paint=7": {
+      "model": "roadstuff:block/paint_bucket_white_7"
+    },
+    "color=yellow,facing=south,paint=7": {
+      "model": "roadstuff:block/paint_bucket_yellow_7"
+    },
+    "color=white,facing=west,paint=7": {
+      "model": "roadstuff:block/paint_bucket_white_7",
+      "y": 90
+    },
+    "color=yellow,facing=west,paint=7": {
+      "model": "roadstuff:block/paint_bucket_yellow_7",
+      "y": 90
+    },
+    "color=white,facing=east,paint=7": {
+      "model": "roadstuff:block/paint_bucket_white_7",
+      "y": 270
+    },
+    "color=yellow,facing=east,paint=7": {
+      "model": "roadstuff:block/paint_bucket_yellow_7",
+      "y": 270
+    },
+    "color=white,facing=north,paint=8": {
+      "model": "roadstuff:block/paint_bucket_white_8",
+      "y": 180
+    },
+    "color=yellow,facing=north,paint=8": {
+      "model": "roadstuff:block/paint_bucket_yellow_8",
+      "y": 180
+    },
+    "color=white,facing=south,paint=8": {
+      "model": "roadstuff:block/paint_bucket_white_8"
+    },
+    "color=yellow,facing=south,paint=8": {
+      "model": "roadstuff:block/paint_bucket_yellow_8"
+    },
+    "color=white,facing=west,paint=8": {
+      "model": "roadstuff:block/paint_bucket_white_8",
+      "y": 90
+    },
+    "color=yellow,facing=west,paint=8": {
+      "model": "roadstuff:block/paint_bucket_yellow_8",
+      "y": 90
+    },
+    "color=white,facing=east,paint=8": {
+      "model": "roadstuff:block/paint_bucket_white_8",
+      "y": 270
+    },
+    "color=yellow,facing=east,paint=8": {
+      "model": "roadstuff:block/paint_bucket_yellow_8",
+      "y": 270
+    }
+  }
+}

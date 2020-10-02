@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "D",
+    "G",
+    "B"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:dusts/glowstone"
+    },
+    "B": {
+      "item": "mapperbase:asphalt"
+    },
+    "D": {
+      "tag": "forge:dyes/light_blue"
+    }
+  },
+  "result": {
+    "item": "roadstuff:light_blue_reflector"
+  }
+}

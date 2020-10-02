@@ -1,0 +1,35 @@
+modLoader="javafml"
+loaderVersion="[32,)"
+license="MIT License"
+issueTrackerURL="https://github.com/MapperTV/roadstuff/issues"
+[[mods]]
+modId="roadstuff"
+version="${file.jarVersion}"
+displayName="Road Stuff"
+#updateJSONURL="http://myurl.me/"
+displayURL="http://mapper.tv/roadstuff/"
+logoFile="roadstuff_logo.png"
+credits="The Forge team and community for the help and resources."
+authors="Mapper"
+description='''Road Stuff 2 for Minecraft 1.16 brings you everything you need to create the roads of your dreams!'''
+
+[[dependencies.roadstuff]]
+    modId="forge"
+    mandatory=true
+    versionRange="[32,)"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.roadstuff]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.16.1]"
+    ordering="NONE"
+    side="BOTH"
+
+[[dependencies.roadstuff]]
+    modId="mapperbase"
+    mandatory=true
+    versionRange="[1.16.1-2.0.,)"
+    ordering="AFTER"
+    side="BOTH"

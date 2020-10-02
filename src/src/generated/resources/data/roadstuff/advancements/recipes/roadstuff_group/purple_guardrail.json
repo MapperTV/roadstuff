@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "roadstuff:purple_guardrail"
+    ]
+  },
+  "criteria": {
+    "has_steel_reflector": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "roadstuff:steel_guardrail"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "roadstuff:purple_guardrail"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_steel_reflector",
+      "has_the_recipe"
+    ]
+  ]
+}

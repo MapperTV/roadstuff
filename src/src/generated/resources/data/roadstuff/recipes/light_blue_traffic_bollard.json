@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " D ",
+    " D ",
+    "BBB"
+  ],
+  "key": {
+    "B": {
+      "item": "mapperbase:raw_bitumen"
+    },
+    "D": {
+      "tag": "forge:dyes/light_blue"
+    }
+  },
+  "result": {
+    "item": "roadstuff:light_blue_traffic_bollard"
+  }
+}

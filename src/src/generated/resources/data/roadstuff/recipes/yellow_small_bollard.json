@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "R",
+    "S"
+  ],
+  "key": {
+    "S": {
+      "tag": "forge:rods/wooden"
+    },
+    "R": {
+      "item": "roadstuff:yellow_reflector"
+    }
+  },
+  "result": {
+    "item": "roadstuff:yellow_small_bollard"
+  }
+}
