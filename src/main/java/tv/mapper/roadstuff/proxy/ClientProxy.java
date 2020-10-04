@@ -31,7 +31,7 @@ public class ClientProxy implements IProxy
 
         RenderTypeLookup.setRenderLayer(RSBlockRegistry.PAINT_BUCKET.get(), cutoutPredicate);
 
-        ItemModelsProperties.func_239418_a_(RSItemRegistry.PAINT_BUCKET_ITEM.get(), new ResourceLocation("color"), (itemStack, world, entity) ->
+        ItemModelsProperties.registerProperty(RSItemRegistry.PAINT_BUCKET_ITEM.get(), new ResourceLocation("color"), (itemStack, world, entity) ->
         {
             if(itemStack.hasTag())
             {
@@ -46,7 +46,7 @@ public class ClientProxy implements IProxy
             return 0.0f;
         });
 
-        ItemModelsProperties.func_239418_a_(RSItemRegistry.PAINT_BRUSH.get(), new ResourceLocation("color"), (itemStack, world, entity) ->
+        ItemModelsProperties.registerProperty(RSItemRegistry.PAINT_BRUSH.get(), new ResourceLocation("color"), (itemStack, world, entity) ->
         {
             CompoundNBT nbt = BrushItem.checkNBT(itemStack);
             if(nbt.getInt("paint") == 0)

@@ -2,15 +2,17 @@ package tv.mapper.roadstuff.data.gen;
 
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import tv.mapper.mapperbase.item.BaseItems;
+import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.data.RSTags;
 import tv.mapper.roadstuff.item.RSItemRegistry;
 
 public class RSItemTags extends ItemTagsProvider
 {
-    public RSItemTags(DataGenerator generatorIn, RSBlockTags provider)
+    public RSItemTags(DataGenerator generatorIn, RSBlockTags provider, ExistingFileHelper existingFileHelper)
     {
-        super(generatorIn, provider);
+        super(generatorIn, provider, RoadStuff.MODID, existingFileHelper);
     }
 
     public void registerTags()

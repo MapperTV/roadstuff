@@ -5,7 +5,7 @@ import java.util.Collections;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.resources.ResourcePackType;
 import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.client.model.generators.ExistingFileHelper;
+import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
@@ -40,11 +40,10 @@ public class RSGenerators
         generator.addProvider(new RSBlockModels(generator, modid, helper));
         generator.addProvider(new RSItemModels(generator, modid, helper));
 
-        RSBlockTags rsBlockTags = new RSBlockTags(generator);
+        RSBlockTags rsBlockTags = new RSBlockTags(generator, helper);
 
         generator.addProvider(rsBlockTags);
-        generator.addProvider(new RSItemTags(generator, rsBlockTags));
-
+        generator.addProvider(new RSItemTags(generator, rsBlockTags, helper));
         generator.addProvider(new RSLang(generator, modid, "en_us"));
         generator.addProvider(new RSLang(generator, modid, "fr_fr"));
     }
