@@ -16,7 +16,7 @@ description='''Road Stuff 2 for Minecraft 1.16 brings you everything you need to
 [[dependencies.roadstuff]]
     modId="forge"
     mandatory=true
-    versionRange="[34,)"
+    versionRange="[34.1.34,)"
     ordering="NONE"
     side="BOTH"
 
@@ -30,6 +30,6 @@ description='''Road Stuff 2 for Minecraft 1.16 brings you everything you need to
 [[dependencies.roadstuff]]
     modId="mapperbase"
     mandatory=true
-    versionRange="[1.16.3-2.1.,)"
+    versionRange="[1.16.3-2.2.,)"
     ordering="AFTER"
     side="BOTH"
