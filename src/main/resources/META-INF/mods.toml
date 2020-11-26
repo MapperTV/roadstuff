@@ -1,5 +1,5 @@
 modLoader="javafml"
-loaderVersion="[34,)"
+loaderVersion="[35,)"
 license="MIT License"
 issueTrackerURL="https://github.com/MapperTV/roadstuff/issues"
 [[mods]]
@@ -16,20 +16,20 @@ description='''Road Stuff 2 for Minecraft 1.16 brings you everything you need to
 [[dependencies.roadstuff]]
     modId="forge"
     mandatory=true
-    versionRange="[34.1.34,)"
+    versionRange="[35.1.4,)"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.roadstuff]]
     modId="minecraft"
     mandatory=true
-    versionRange="[1.16.3]"
+    versionRange="[1.16.4]"
     ordering="NONE"
     side="BOTH"
 
 [[dependencies.roadstuff]]
     modId="mapperbase"
     mandatory=true
-    versionRange="[1.16.3-2.2.,)"
+    versionRange="[1.16.4-2.3.,)"
     ordering="AFTER"
     side="BOTH"
