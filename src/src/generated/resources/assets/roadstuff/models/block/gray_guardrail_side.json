@@ -1,7 +1,0 @@
-{
-  "parent": "roadstuff:block/guardrail_side",
-  "textures": {
-    "all": "roadstuff:block/gray_guardrail",
-    "particle": "roadstuff:block/gray_guardrail"
-  }
-}

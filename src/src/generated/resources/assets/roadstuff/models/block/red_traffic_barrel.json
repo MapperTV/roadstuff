@@ -1,9 +1,0 @@
-{
-  "parent": "roadstuff:block/traffic_barrel",
-  "textures": {
-    "bottom": "roadstuff:block/cone_bottom",
-    "side": "roadstuff:block/red_cone_side",
-    "top": "roadstuff:block/red_cone_top",
-    "particle": "roadstuff:block/red_cone_side"
-  }
-}

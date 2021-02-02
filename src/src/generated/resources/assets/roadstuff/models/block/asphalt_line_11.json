@@ -1,8 +1,0 @@
-{
-  "parent": "roadstuff:block/cube_line",
-  "textures": {
-    "base": "mapperbase:block/asphalt",
-    "overlay": "roadstuff:block/11",
-    "particle": "mapperbase:block/asphalt"
-  }
-}

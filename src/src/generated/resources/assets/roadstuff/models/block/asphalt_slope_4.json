@@ -1,7 +1,0 @@
-{
-  "parent": "roadstuff:block/slope_4",
-  "textures": {
-    "base": "mapperbase:block/asphalt",
-    "particle": "mapperbase:block/asphalt"
-  }
-}
