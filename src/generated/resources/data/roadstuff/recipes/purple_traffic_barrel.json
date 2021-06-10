@@ -7,7 +7,7 @@
   ],
   "key": {
     "B": {
-      "item": "mapperbase:raw_bitumen"
+      "tag": "forge:bitumen"
     },
     "D": {
       "tag": "forge:dyes/purple"

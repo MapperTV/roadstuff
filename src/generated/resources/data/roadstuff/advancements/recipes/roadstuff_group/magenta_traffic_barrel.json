@@ -11,7 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "mapperbase:raw_bitumen"
+            "tag": "forge:bitumen"
           }
         ]
       }

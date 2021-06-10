@@ -34,12 +34,12 @@ public class RSRecipes extends RecipeProvider
 
         for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
         {
-            ShapedRecipeBuilder.shapedRecipe(RSBlockRegistry.TRAFFIC_CONE_BLOCKS.get(DyeColor.byId(i)).get()).patternLine(" D ").patternLine("D D").patternLine("BBB").key('B', BaseItems.RAW_BITUMEN.get()).key(
-                'D', DyeColor.byId(i).getTag()).addCriterion("has_bitumen", hasItem(BaseItems.RAW_BITUMEN.get())).build(consumer);
+            ShapedRecipeBuilder.shapedRecipe(RSBlockRegistry.TRAFFIC_CONE_BLOCKS.get(DyeColor.byId(i)).get()).patternLine(" D ").patternLine("D D").patternLine("BBB").key('B', BaseTags.ForgeItems.BITUMEN).key(
+                'D', DyeColor.byId(i).getTag()).addCriterion("has_bitumen", hasItem(BaseTags.ForgeItems.BITUMEN)).build(consumer);
             ShapedRecipeBuilder.shapedRecipe(RSBlockRegistry.TRAFFIC_BARREL_BLOCKS.get(DyeColor.byId(i)).get()).patternLine("DDD").patternLine("D D").patternLine("BBB").key('B',
-                BaseItems.RAW_BITUMEN.get()).key('D', DyeColor.byId(i).getTag()).addCriterion("has_bitumen", hasItem(BaseItems.RAW_BITUMEN.get())).build(consumer);
+                BaseTags.ForgeItems.BITUMEN).key('D', DyeColor.byId(i).getTag()).addCriterion("has_bitumen", hasItem(BaseTags.ForgeItems.BITUMEN)).build(consumer);
             ShapedRecipeBuilder.shapedRecipe(RSBlockRegistry.TRAFFIC_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get()).patternLine(" D ").patternLine(" D ").patternLine("BBB").key('B',
-                BaseItems.RAW_BITUMEN.get()).key('D', DyeColor.byId(i).getTag()).addCriterion("has_bitumen", hasItem(BaseItems.RAW_BITUMEN.get())).build(consumer);
+                BaseTags.ForgeItems.BITUMEN).key('D', DyeColor.byId(i).getTag()).addCriterion("has_bitumen", hasItem(BaseTags.ForgeItems.BITUMEN)).build(consumer);
 
             ShapedRecipeBuilder.shapedRecipe(RSBlockRegistry.CYLINDRICAL_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get()).patternLine("D").patternLine("R").patternLine("D").key('R', RSTags.Items.REFLECTORS).key('D',
                 DyeColor.byId(i).getTag()).addCriterion("has_reflector", hasItem(RSTags.Items.REFLECTORS)).build(consumer);
