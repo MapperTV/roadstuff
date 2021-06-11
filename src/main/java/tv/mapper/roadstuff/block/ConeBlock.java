@@ -25,13 +25,15 @@ public class ConeBlock extends Block implements IWaterLoggable
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
     private static final VoxelShape CONE_BASE = Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 1.0D, 14.0D);
-    private static final VoxelShape CONE1 = Block.makeCuboidShape(3.0D, 0.0D, 3.0D, 13.0D, 4.0D, 13.0D);
+    private static final VoxelShape CONE1 = Block.makeCuboidShape(3.0D, 2.0D, 3.0D, 13.0D, 4.0D, 13.0D);
     private static final VoxelShape CONE2 = Block.makeCuboidShape(4.0D, 4.0D, 4.0D, 12.0D, 7.0D, 12.0D);
     private static final VoxelShape CONE3 = Block.makeCuboidShape(5.0D, 6.0D, 5.0D, 11.0D, 10.0D, 11.0D);
     private static final VoxelShape CONE4 = Block.makeCuboidShape(6.0D, 9.0D, 6.0D, 10.0D, 13.0D, 10.0D);
     private static final VoxelShape CONE5 = Block.makeCuboidShape(7.0D, 13.0D, 7.0D, 9.0D, 16.0D, 9.0D);
-
+    
     private static final VoxelShape CONE = VoxelShapes.or(CONE_BASE, VoxelShapes.or(CONE1, VoxelShapes.or(CONE2, VoxelShapes.or(CONE3, VoxelShapes.or(CONE4, CONE5)))));
+
+    private static final VoxelShape CONE_COL = Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 10.0D, 18.0D, 10.0D);
 
     private static final VoxelShape BARREL_BASE = Block.makeCuboidShape(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D);
     private static final VoxelShape BARREL_MAIN = Block.makeCuboidShape(4.0D, 1.0D, 4.0D, 12.0D, 14.0D, 12.0D);
@@ -39,11 +41,15 @@ public class ConeBlock extends Block implements IWaterLoggable
 
     private static final VoxelShape BARREL = VoxelShapes.or(BARREL_BASE, VoxelShapes.or(BARREL_MAIN, BARREL_HANDLE));
 
+    private static final VoxelShape BARREL_COL = Block.makeCuboidShape(5.0D, 0.0D, 5.0D, 11.0D, 18.0D, 11.0D);
+
     private static final VoxelShape BOLLARD_BOTTOM = Block.makeCuboidShape(4.0D, 0.0D, 4.0D, 12.0D, 1.0D, 12.0D);
     private static final VoxelShape BOLLARD_BASE = Block.makeCuboidShape(6.0D, 1.0D, 6.0D, 10.0D, 2.0D, 10.0D);
     private static final VoxelShape BOLLARD_PORT = Block.makeCuboidShape(7.0D, 2.0D, 7.0D, 9.0D, 16.0D, 9.0D);
 
     private static final VoxelShape BOLLARD = VoxelShapes.or(BOLLARD_BOTTOM, VoxelShapes.or(BOLLARD_BASE, BOLLARD_PORT));
+    
+    private static final VoxelShape BOLLARD_COL = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 18.0D, 10.0D);
 
     private EnumConeType type;
 
@@ -76,11 +82,11 @@ public class ConeBlock extends Block implements IWaterLoggable
         switch(type)
         {
             case CONE:
-                return CONE;
+                return CONE_COL;
             case BARREL:
-                return BARREL;
+                return BARREL_COL;
             case BOLLARD:
-                return BOLLARD;
+                return BOLLARD_COL;
             default:
                 return CONE;
         }
