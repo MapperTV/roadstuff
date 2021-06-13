@@ -21,7 +21,7 @@ public class GuardrailBlock extends FourWayBlock
 
     public GuardrailBlock(Properties properties)
     {
-        super(2.0F, 2.0F, 16.0F, 16.0F, 16.0F, properties);
+        super(2.0F, 2.0F, 16.0F, 16.0F, 18.5F, properties);
         this.setDefaultState(
             this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(WATERLOGGED,
                 Boolean.valueOf(false)));
@@ -29,7 +29,7 @@ public class GuardrailBlock extends FourWayBlock
 
     public GuardrailBlock(Properties properties, ToolType toolType)
     {
-        super(2.0F, 2.0F, 16.0F, 16.0F, 16.0F, properties);
+        super(2.0F, 2.0F, 16.0F, 16.0F, 18.5F, properties);
         this.setDefaultState(
             this.stateContainer.getBaseState().with(NORTH, Boolean.valueOf(false)).with(EAST, Boolean.valueOf(false)).with(SOUTH, Boolean.valueOf(false)).with(WEST, Boolean.valueOf(false)).with(WATERLOGGED,
                 Boolean.valueOf(false)));

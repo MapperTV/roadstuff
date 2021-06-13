@@ -54,7 +54,7 @@ public class RSRecipes extends RecipeProvider
                 DyeColor.byId(i).getTag()).addCriterion("has_steel_reflector", hasItem(RSBlockRegistry.STEEL_GUARDRAIL.get())).build(consumer);
         }
 
-        ShapedRecipeBuilder.shapedRecipe(RSBlockRegistry.STEEL_GUARDRAIL.get()).patternLine("PPP").patternLine(" R ").key('P', BaseTags.ForgeItems.PLATES_STEEL).key('R',
+        ShapedRecipeBuilder.shapedRecipe(RSBlockRegistry.STEEL_GUARDRAIL.get(), 8).patternLine("PPP").patternLine(" R ").key('P', BaseTags.ForgeItems.PLATES_STEEL).key('R',
             BaseTags.ForgeItems.RODS_STEEL).addCriterion("has_steel_plate", hasItem(BaseTags.ForgeItems.PLATES_STEEL)).build(consumer);
 
         ShapedRecipeBuilder.shapedRecipe(RSBlockRegistry.RED_BOLLARD.get()).patternLine("R").patternLine("S").patternLine("S").key('S', Tags.Items.RODS_WOODEN).key('R',
