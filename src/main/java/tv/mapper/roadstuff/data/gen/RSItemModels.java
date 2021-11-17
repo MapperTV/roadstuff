@@ -3,7 +3,7 @@ package tv.mapper.roadstuff.data.gen;
 import java.util.Arrays;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -29,13 +29,13 @@ public class RSItemModels extends ItemModelProvider
 
         for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
         {
-            getBuilder(DyeColor.byId(i).getString() + "_traffic_cone").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getString() + "_traffic_cone"));
-            getBuilder(DyeColor.byId(i).getString() + "_traffic_barrel").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getString() + "_traffic_barrel"));
-            getBuilder(DyeColor.byId(i).getString() + "_traffic_bollard").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getString() + "_traffic_bollard"));
-            getBuilder(DyeColor.byId(i).getString() + "_cylindrical_bollard").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getString() + "_cylindrical_bollard"));
-            getBuilder(DyeColor.byId(i).getString() + "_reflector").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getString() + "_reflector"));
-            getBuilder(DyeColor.byId(i).getString() + "_luminescent_reflector").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getString() + "_reflector"));
-            getBuilder(DyeColor.byId(i).getString() + "_guardrail").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getString() + "_guardrail_inventory"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_traffic_cone").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_traffic_cone"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_traffic_barrel").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_traffic_barrel"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_traffic_bollard").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_traffic_bollard"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_cylindrical_bollard").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_cylindrical_bollard"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_reflector").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_reflector"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_luminescent_reflector").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_reflector"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_guardrail").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_guardrail_inventory"));
         }
 
         getBuilder("white_bollard").parent(new UncheckedModelFile(modid + ":block/white_bollard"));

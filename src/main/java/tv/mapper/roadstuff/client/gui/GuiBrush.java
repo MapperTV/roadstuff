@@ -6,16 +6,17 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
-import com.mojang.blaze3d.matrix.MatrixStack;
+import com.mojang.blaze3d.platform.InputConstants;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
 
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.util.InputMappings;
-import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.MathHelper;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.fml.client.gui.GuiUtils;
+import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
+import net.minecraftforge.fmlclient.gui.GuiUtils;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.network.BrushPacket;
 import tv.mapper.roadstuff.network.RSNetwork;
@@ -24,7 +25,7 @@ import tv.mapper.roadstuff.util.ModConstants;
 
 public class GuiBrush extends Screen
 {
-    public static final ITextComponent title = new StringTextComponent("Paintbrush");
+    public static final Component title = new TextComponent("Paintbrush");
 
     private static final int WIDTH = 217;
     private static final int HEIGHT = 205;
@@ -50,13 +51,13 @@ public class GuiBrush extends Screen
     int favX;
     int favY;
 
-    private TranslationTextComponent textTitle = new TranslationTextComponent("roadstuff.gui.paintbrush.title");
-    private TranslationTextComponent textEraser = new TranslationTextComponent("roadstuff.message.brush.gui.eraser");
-    private TranslationTextComponent textPattern = new TranslationTextComponent("roadstuff.message.brush.gui.pattern");
-    private TranslationTextComponent textPaint = new TranslationTextComponent("roadstuff.message.brush.gui.paint");
-    private TranslationTextComponent textColor = new TranslationTextComponent("roadstuff.message.brush.gui.color");
-    private TranslationTextComponent textFav1 = new TranslationTextComponent("roadstuff.message.brush.gui.fav1");
-    private TranslationTextComponent textFav2 = new TranslationTextComponent("roadstuff.message.brush.gui.fav2");
+    private TranslatableComponent textTitle = new TranslatableComponent("roadstuff.gui.paintbrush.title");
+    private TranslatableComponent textEraser = new TranslatableComponent("roadstuff.message.brush.gui.eraser");
+    private TranslatableComponent textPattern = new TranslatableComponent("roadstuff.message.brush.gui.pattern");
+    private TranslatableComponent textPaint = new TranslatableComponent("roadstuff.message.brush.gui.paint");
+    private TranslatableComponent textColor = new TranslatableComponent("roadstuff.message.brush.gui.color");
+    private TranslatableComponent textFav1 = new TranslatableComponent("roadstuff.message.brush.gui.fav1");
+    private TranslatableComponent textFav2 = new TranslatableComponent("roadstuff.message.brush.gui.fav2");
 
     private static final ResourceLocation brush_gui = new ResourceLocation(RoadStuff.MODID, "textures/gui/brush.png");
 
@@ -100,12 +101,12 @@ public class GuiBrush extends Screen
     }
 
     @Override
-    public void render(MatrixStack stack, int mouseX, int mouseY, float partialTicks)
+    public void render(PoseStack stack, int mouseX, int mouseY, float partialTicks)
     {
         super.render(stack, mouseX, mouseY, partialTicks);
 
         renderBackground(stack, 0);
-        minecraft.getTextureManager().bindTexture(brush_gui);
+        RenderSystem.setShaderTexture(0, brush_gui);
         blit(stack, guiLeft, guiTop, 0, 0, WIDTH, HEIGHT);
 
         // Draws patterns
@@ -115,7 +116,7 @@ public class GuiBrush extends Screen
         {
             if(i + (scroll * 9) < ModConstants.PATTERNS)
             {
-                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/" + (i + (9 * scroll)) + ".png"));
+                RenderSystem.setShaderTexture(0, new ResourceLocation(RoadStuff.MODID, "textures/block/" + (i + (9 * scroll)) + ".png"));
                 blit(stack, guiLeft + 16 * j + 9 + j * 2, guiTop + 18 + row, 0, 0, 16, 16, 16, 16);
 
                 j++;
@@ -128,7 +129,7 @@ public class GuiBrush extends Screen
         }
 
         // Draws current selected pattern
-        minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/" + pattern + ".png"));
+        RenderSystem.setShaderTexture(0, new ResourceLocation(RoadStuff.MODID, "textures/block/" + pattern + ".png"));
         blit(stack, guiLeft + 193, guiTop + 18, 0, 0, 16, 16, 16, 16);
 
         // Draws favorites
@@ -137,7 +138,7 @@ public class GuiBrush extends Screen
         {
             if(favorites[i] != 0)
             {
-                minecraft.getTextureManager().bindTexture(new ResourceLocation(RoadStuff.MODID, "textures/block/" + (favorites[i] + ".png")));
+                RenderSystem.setShaderTexture(0, new ResourceLocation(RoadStuff.MODID, "textures/block/" + (favorites[i] + ".png")));
                 blit(stack, guiLeft + 193, guiTop + fav_y, 0, 0, 16, 16, 16, 16);
             }
             fav_y += 18;
@@ -164,20 +165,20 @@ public class GuiBrush extends Screen
 
         if(boxY > guiTop && boxY < guiTop + HEIGHT - 27)
         {
-            minecraft.getTextureManager().bindTexture(brush_gui);
+            RenderSystem.setShaderTexture(0, brush_gui);
             blit(stack, selectX, boxY, 256 - 22, 256 - 22, 22, 22);
         }
 
         String title = textTitle.getString();
-        this.font.drawString(stack, title, guiLeft + WIDTH / 2 - font.getStringWidth(title) / 2, guiTop + 6, 4210752);
+        this.font.draw(stack, title, guiLeft + WIDTH / 2 - font.width(title) / 2, guiTop + 6, 4210752);
 
         // Scrollbar
-        minecraft.getTextureManager().bindTexture(brush_gui);
+        RenderSystem.setShaderTexture(0, brush_gui);
         blit(stack, guiLeft + WIDTH - 42, (int)(guiTop + 18 + 164 * this.currentScroll), 256 - 24, 0, 12, 15);
 
-        this.font.drawStringWithShadow(stack, textPattern.getString() + pattern, guiLeft + 225, guiTop + 22, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow(stack, textPaint.getString() + paint, guiLeft + 225, guiTop + 40, new Color(255, 255, 255).getRGB());
-        this.font.drawStringWithShadow(stack, textColor.getString() + EnumPaintColor.getColorByID(color).getNameTranslated(), guiLeft + 225, guiTop + 58, new Color(255, 255, 255).getRGB());
+        this.font.drawShadow(stack, textPattern.getString() + pattern, guiLeft + 225, guiTop + 22, new Color(255, 255, 255).getRGB());
+        this.font.drawShadow(stack, textPaint.getString() + paint, guiLeft + 225, guiTop + 40, new Color(255, 255, 255).getRGB());
+        this.font.drawShadow(stack, textColor.getString() + EnumPaintColor.getColorByID(color).getNameTranslated(), guiLeft + 225, guiTop + 58, new Color(255, 255, 255).getRGB());
 
         // Draw tooltip
         if(mouseX > guiLeft + 7 && mouseX < guiLeft + WIDTH - 43 && mouseY > guiTop + 14 && mouseY < guiTop + 196)
@@ -187,7 +188,7 @@ public class GuiBrush extends Screen
                 GuiUtils.drawHoveringText(stack, Arrays.asList(textEraser), mouseX, mouseY, width, height, -1, font);
             else
             {
-                TranslationTextComponent textPatternDisplay = new TranslationTextComponent(textPattern.getString() + patternHover);
+                TranslatableComponent textPatternDisplay = new TranslatableComponent(textPattern.getString() + patternHover);
                 GuiUtils.drawHoveringText(stack, Arrays.asList(textPatternDisplay), mouseX, mouseY, width, height, -1, font);
             }
         }
@@ -196,20 +197,20 @@ public class GuiBrush extends Screen
         {
             int patternHover = ((favY - guiTop - 40) / 18);
 
-            List<TranslationTextComponent> patternTooltipFinal = new ArrayList<TranslationTextComponent>();
-            TranslationTextComponent patternTooltip;
-            TranslationTextComponent patternTooltip2;
+            List<TranslatableComponent> patternTooltipFinal = new ArrayList<TranslatableComponent>();
+            TranslatableComponent patternTooltip;
+            TranslatableComponent patternTooltip2;
 
             if(favorites[patternHover] == 0)
             {
-                patternTooltip = new TranslationTextComponent(textFav1.getString());
-                patternTooltip2 = new TranslationTextComponent(textFav2.getString());
+                patternTooltip = new TranslatableComponent(textFav1.getString());
+                patternTooltip2 = new TranslatableComponent(textFav2.getString());
                 patternTooltipFinal.add(patternTooltip);
                 patternTooltipFinal.add(patternTooltip2);
             }
             else
             {
-                patternTooltip = new TranslationTextComponent(textPattern.getString() + favorites[patternHover]);
+                patternTooltip = new TranslatableComponent(textPattern.getString() + favorites[patternHover]);
                 patternTooltipFinal.add(patternTooltip);
             }
 
@@ -277,10 +278,10 @@ public class GuiBrush extends Screen
 
     public boolean keyPressed(int p_keyPressed_1_, int p_keyPressed_2_, int p_keyPressed_3_)
     {
-        if(this.shouldCloseOnEsc() && p_keyPressed_1_ == 256 || this.minecraft.gameSettings.keyBindInventory.isActiveAndMatches(InputMappings.getInputByCode(p_keyPressed_1_, p_keyPressed_2_)))
+        if(this.shouldCloseOnEsc() && p_keyPressed_1_ == 256 || this.minecraft.options.keyInventory.isActiveAndMatches(InputConstants.getKey(p_keyPressed_1_, p_keyPressed_2_)))
         {
             RSNetwork.ROADSTUFF_CHANNEL.sendToServer(new BrushPacket(pattern, currentScroll, favorites));
-            this.closeScreen();
+            this.onClose();
             return true;
         }
         else
@@ -300,7 +301,7 @@ public class GuiBrush extends Screen
 
         int i = (ModConstants.PATTERNS + 375) / ROWS;
         this.currentScroll = (float)((double)this.currentScroll - p_mouseScrolled_5_ / (double)i);
-        this.currentScroll = MathHelper.clamp(this.currentScroll, 0.0F, 1.0F);
+        this.currentScroll = Mth.clamp(this.currentScroll, 0.0F, 1.0F);
 
         return true;
     }
@@ -313,7 +314,7 @@ public class GuiBrush extends Screen
             int i = this.guiTop + 18;
             int j = i + 179;
             this.currentScroll = ((float)p_mouseDragged_3_ - (float)i - 7.5F) / ((float)(j - i) - 15.0F);
-            this.currentScroll = MathHelper.clamp(this.currentScroll, 0.0F, 1.0F);
+            this.currentScroll = Mth.clamp(this.currentScroll, 0.0F, 1.0F);
             scroll = (int)((currentScroll + 0.01) * ROWS);
             if(scroll < 0)
                 scroll = 0;

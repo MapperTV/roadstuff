@@ -3,8 +3,8 @@ package tv.mapper.roadstuff.data.gen;
 import java.util.Arrays;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.DyeColor;
-import net.minecraft.util.ResourceLocation;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraftforge.client.model.generators.BlockModelProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import tv.mapper.mapperbase.MapperBase;
@@ -52,26 +52,26 @@ public class RSBlockModels extends BlockModelProvider
 
         for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
         {
-            getBuilder(DyeColor.byId(i).getString() + "_traffic_cone").parent(getExistingFile(modLoc("block/traffic_cone"))).texture("bottom", modLoc("block/cone_bottom")).texture("side",
-                modLoc("block/" + DyeColor.byId(i).getString() + "_cone_side")).texture("top", modLoc("block/" + DyeColor.byId(i).getString() + "_cone_top")).texture("particle",
-                    modLoc("block/" + DyeColor.byId(i).getString() + "_cone_side"));
-            getBuilder(DyeColor.byId(i).getString() + "_traffic_bollard").parent(getExistingFile(modLoc("block/traffic_bollard"))).texture("bottom", modLoc("block/cone_bottom")).texture("side",
-                modLoc("block/" + DyeColor.byId(i).getString() + "_cone_side")).texture("top", modLoc("block/" + DyeColor.byId(i).getString() + "_cone_top")).texture("particle",
-                    modLoc("block/" + DyeColor.byId(i).getString() + "_cone_side"));
-            getBuilder(DyeColor.byId(i).getString() + "_traffic_barrel").parent(getExistingFile(modLoc("block/traffic_barrel"))).texture("bottom", modLoc("block/cone_bottom")).texture("side",
-                modLoc("block/" + DyeColor.byId(i).getString() + "_cone_side")).texture("top", modLoc("block/" + DyeColor.byId(i).getString() + "_cone_top")).texture("particle",
-                    modLoc("block/" + DyeColor.byId(i).getString() + "_cone_side"));
-            getBuilder(DyeColor.byId(i).getString() + "_cylindrical_bollard").parent(getExistingFile(modLoc("block/cylindrical_bollard"))).texture("all",
-                modLoc("block/" + DyeColor.byId(i).getString() + "_cylindrical_bollard"));
-            getBuilder(DyeColor.byId(i).getString() + "_reflector").parent(getExistingFile(modLoc("block/reflector"))).texture("texture", modLoc("block/" + DyeColor.byId(i).getString() + "_reflector")).texture(
-                "particle", modLoc("block/" + DyeColor.byId(i).getString() + "_reflector"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_traffic_cone").parent(getExistingFile(modLoc("block/traffic_cone"))).texture("bottom", modLoc("block/cone_bottom")).texture("side",
+                modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_cone_side")).texture("top", modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_cone_top")).texture("particle",
+                    modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_cone_side"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_traffic_bollard").parent(getExistingFile(modLoc("block/traffic_bollard"))).texture("bottom", modLoc("block/cone_bottom")).texture("side",
+                modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_cone_side")).texture("top", modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_cone_top")).texture("particle",
+                    modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_cone_side"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_traffic_barrel").parent(getExistingFile(modLoc("block/traffic_barrel"))).texture("bottom", modLoc("block/cone_bottom")).texture("side",
+                modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_cone_side")).texture("top", modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_cone_top")).texture("particle",
+                    modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_cone_side"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_cylindrical_bollard").parent(getExistingFile(modLoc("block/cylindrical_bollard"))).texture("all",
+                modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_cylindrical_bollard"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_reflector").parent(getExistingFile(modLoc("block/reflector"))).texture("texture", modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_reflector")).texture(
+                "particle", modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_reflector"));
 
-            getBuilder(DyeColor.byId(i).getString() + "_guardrail_post").parent(getExistingFile(modLoc("block/guardrail_post"))).texture("all",
-                modLoc("block/" + DyeColor.byId(i).getString() + "_guardrail")).texture("particle", modLoc("block/" + DyeColor.byId(i).getString() + "_guardrail"));
-            getBuilder(DyeColor.byId(i).getString() + "_guardrail_side").parent(getExistingFile(modLoc("block/guardrail_side"))).texture("all",
-                modLoc("block/" + DyeColor.byId(i).getString() + "_guardrail")).texture("particle", modLoc("block/" + DyeColor.byId(i).getString() + "_guardrail"));
-            getBuilder(DyeColor.byId(i).getString() + "_guardrail_inventory").parent(getExistingFile(modLoc("block/guardrail_inventory"))).texture("all",
-                modLoc("block/" + DyeColor.byId(i).getString() + "_guardrail")).texture("particle", modLoc("block/" + DyeColor.byId(i).getString() + "_guardrail"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_guardrail_post").parent(getExistingFile(modLoc("block/guardrail_post"))).texture("all",
+                modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_guardrail")).texture("particle", modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_guardrail"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_guardrail_side").parent(getExistingFile(modLoc("block/guardrail_side"))).texture("all",
+                modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_guardrail")).texture("particle", modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_guardrail"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_guardrail_inventory").parent(getExistingFile(modLoc("block/guardrail_inventory"))).texture("all",
+                modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_guardrail")).texture("particle", modLoc("block/" + DyeColor.byId(i).getSerializedName() + "_guardrail"));
         }
 
         getBuilder("steel_guardrail_post").parent(getExistingFile(modLoc("block/guardrail_post"))).texture("all", modLoc("block/steel_guardrail")).texture("particle", modLoc("block/steel_guardrail"));

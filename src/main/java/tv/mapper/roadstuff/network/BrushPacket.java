@@ -2,10 +2,10 @@ package tv.mapper.roadstuff.network;
 
 import java.util.function.Supplier;
 
-import net.minecraft.entity.player.ServerPlayerEntity;
-import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.PacketBuffer;
-import net.minecraftforge.fml.network.NetworkEvent;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraftforge.fmllegacy.network.NetworkEvent;
 import tv.mapper.roadstuff.item.BrushItem;
 
 public class BrushPacket
@@ -21,14 +21,14 @@ public class BrushPacket
         this.favs = favs;
     }
 
-    public static void encode(BrushPacket packet, PacketBuffer buffer)
+    public static void encode(BrushPacket packet, FriendlyByteBuf buffer)
     {
         buffer.writeInt(packet.pattern);
         buffer.writeFloat(packet.scroll);
         buffer.writeVarIntArray(packet.favs);
     }
 
-    public static BrushPacket decode(PacketBuffer buffer)
+    public static BrushPacket decode(FriendlyByteBuf buffer)
     {
         int pattern = buffer.readInt();
         float scroll = buffer.readFloat();
@@ -42,19 +42,19 @@ public class BrushPacket
     {
         context.get().enqueueWork(() ->
         {
-            ServerPlayerEntity sender = context.get().getSender();
+            ServerPlayer sender = context.get().getSender();
 
-            if(sender.getHeldItemMainhand().getItem() instanceof BrushItem)
+            if(sender.getMainHandItem().getItem() instanceof BrushItem)
             {
-                CompoundNBT nbt = sender.getHeldItemMainhand().getTag();
+                CompoundTag nbt = sender.getMainHandItem().getTag();
 
                 nbt.putInt("pattern", packet.pattern);
                 nbt.putFloat("scroll", packet.scroll);
                 nbt.putIntArray("favs", packet.favs);
             }
-            else if(sender.getHeldItemOffhand().getItem() instanceof BrushItem)
+            else if(sender.getOffhandItem().getItem() instanceof BrushItem)
             {
-                CompoundNBT nbt = sender.getHeldItemOffhand().getTag();
+                CompoundTag nbt = sender.getOffhandItem().getTag();
 
                 nbt.putInt("pattern", packet.pattern);
                 nbt.putFloat("scroll", packet.scroll);

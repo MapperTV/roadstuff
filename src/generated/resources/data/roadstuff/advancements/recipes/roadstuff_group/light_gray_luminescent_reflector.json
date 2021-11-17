@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "roadstuff:light_gray_luminescent_reflector"
+            "items": [
+              "roadstuff:light_gray_luminescent_reflector"
+            ]
           }
         ]
       }

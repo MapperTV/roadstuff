@@ -3,7 +3,8 @@
   "pools": [
     {
       "name": "asphalt_yellow_line_72",
-      "rolls": 1,
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",

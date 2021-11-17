@@ -2,15 +2,17 @@ package tv.mapper.roadstuff.item;
 
 import java.util.List;
 
-import net.minecraft.block.Block;
-import net.minecraft.client.util.ITooltipFlag;
-import net.minecraft.item.BlockItem;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
-import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraft.world.World;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.world.level.Level;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
+
+import net.minecraft.world.item.Item.Properties;
 
 public class BlockItemPaintBucket extends BlockItem
 {
@@ -20,9 +22,9 @@ public class BlockItemPaintBucket extends BlockItem
     }
 
     @Override
-    public void addInformation(ItemStack stack, World player, List<ITextComponent> list, ITooltipFlag flag)
+    public void appendHoverText(ItemStack stack, Level player, List<Component> list, TooltipFlag flag)
     {
-        super.addInformation(stack, player, list, flag);
+        super.appendHoverText(stack, player, list, flag);
         if(stack.hasTag())
         {
             String color = EnumPaintColor.getColorByID(stack.getTag().getInt("color")).getNameTranslated();
@@ -30,8 +32,8 @@ public class BlockItemPaintBucket extends BlockItem
             int paint = (stack.getTag().getInt("paint") * 100) / 8;
             if(paint < 10)
                 color = "X";
-            list.add(new StringTextComponent(new TranslationTextComponent("roadstuff.message.brush.gui.color").getString() + color));
-            list.add(new StringTextComponent(new TranslationTextComponent("roadstuff.message.brush.gui.paint").getString() + paint + "%"));
+            list.add(new TextComponent(new TranslatableComponent("roadstuff.message.brush.gui.color").getString() + color));
+            list.add(new TextComponent(new TranslatableComponent("roadstuff.message.brush.gui.paint").getString() + paint + "%"));
         }
     }
 }

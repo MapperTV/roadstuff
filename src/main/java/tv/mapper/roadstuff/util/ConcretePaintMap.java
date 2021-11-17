@@ -1,8 +1,8 @@
 package tv.mapper.roadstuff.util;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
-import net.minecraft.block.Block;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import tv.mapper.mapperbase.block.BaseBlocks;
 import tv.mapper.mapperbase.block.PaintableBlock;
 import tv.mapper.roadstuff.block.RSBlockRegistry;

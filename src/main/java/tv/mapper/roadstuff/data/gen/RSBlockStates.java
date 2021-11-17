@@ -2,19 +2,19 @@ package tv.mapper.roadstuff.data.gen;
 
 import java.util.Arrays;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.FourWayBlock;
-import net.minecraft.block.SixWayBlock;
+import net.minecraft.core.Direction;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.DyeColor;
-import net.minecraft.util.Direction;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.CrossCollisionBlock;
+import net.minecraft.world.level.block.PipeBlock;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import tv.mapper.mapperbase.MapperBase;
 import tv.mapper.mapperbase.block.PaintableBlock;
 import tv.mapper.roadstuff.RoadStuff;
@@ -41,7 +41,7 @@ public class RSBlockStates extends BlockStateProvider
         {
             String mat, number;
 
-            String[] raw = block.get().getTranslationKey().split("_");
+            String[] raw = block.get().getDescriptionId().split("_");
 
             if(raw[0].contains("asphalt"))
                 mat = "asphalt";
@@ -61,14 +61,14 @@ public class RSBlockStates extends BlockStateProvider
 
         for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
         {
-            simpleBlock(RSBlockRegistry.TRAFFIC_CONE_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getString() + "_traffic_cone"));
-            simpleBlock(RSBlockRegistry.TRAFFIC_BARREL_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getString() + "_traffic_barrel"));
-            simpleBlock(RSBlockRegistry.TRAFFIC_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getString() + "_traffic_bollard"));
-            simpleBlock(RSBlockRegistry.CYLINDRICAL_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getString() + "_cylindrical_bollard"));
-            horizontalBlock(RSBlockRegistry.REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getString() + "_reflector"), 0);
-            horizontalBlock(RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getString() + "_reflector"), 0);
-            guardrailBlock(RSBlockRegistry.GUARDRAIL_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getString() + "_guardrail_post"),
-                new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getString() + "_guardrail_side"));
+            simpleBlock(RSBlockRegistry.TRAFFIC_CONE_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getSerializedName() + "_traffic_cone"));
+            simpleBlock(RSBlockRegistry.TRAFFIC_BARREL_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getSerializedName() + "_traffic_barrel"));
+            simpleBlock(RSBlockRegistry.TRAFFIC_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getSerializedName() + "_traffic_bollard"));
+            simpleBlock(RSBlockRegistry.CYLINDRICAL_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getSerializedName() + "_cylindrical_bollard"));
+            horizontalBlock(RSBlockRegistry.REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getSerializedName() + "_reflector"), 0);
+            horizontalBlock(RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getSerializedName() + "_reflector"), 0);
+            guardrailBlock(RSBlockRegistry.GUARDRAIL_BLOCKS.get(DyeColor.byId(i)).get(), new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getSerializedName() + "_guardrail_post"),
+                new UncheckedModelFile(RoadStuff.MODID + ":block/" + DyeColor.byId(i).getSerializedName() + "_guardrail_side"));
         }
 
         guardrailBlock(RSBlockRegistry.STEEL_GUARDRAIL.get(), new UncheckedModelFile(RoadStuff.MODID + ":block/steel_guardrail_post"), new UncheckedModelFile(RoadStuff.MODID + ":block/steel_guardrail_side"));
@@ -107,7 +107,7 @@ public class RSBlockStates extends BlockStateProvider
                 modelName = i == 4 ? RoadStuff.MODID + ":block/" + name + "_line_" + pattern : RoadStuff.MODID + ":block/" + name + "_slope_" + i * 4 + "_line_" + pattern;
 
                 builder.partialState().with(RotatableSlopeBlock.DIRECTION, dir).with(RotatableSlopeBlock.LAYERS, i).modelForState().modelFile(new UncheckedModelFile(modelName)).rotationY(
-                    (int)((dir.getHorizontalAngle() + offset) % 360)).addModel();
+                    (int)((dir.toYRot() + offset) % 360)).addModel();
             }
         }
     }
@@ -123,16 +123,16 @@ public class RSBlockStates extends BlockStateProvider
             {
                 modelName = i == 0 ? RoadStuff.MODID + ":block/paint_bucket" : RoadStuff.MODID + ":block/paint_bucket_white_" + i;
                 builder.partialState().with(PaintBucketBlock.COLOR, EnumPaintColor.WHITE).with(PaintBucketBlock.DIRECTION, dir).with(PaintBucketBlock.PAINT, i).modelForState().modelFile(
-                    new UncheckedModelFile(modelName)).rotationY((int)((dir.getHorizontalAngle() + offset) % 360)).addModel();
+                    new UncheckedModelFile(modelName)).rotationY((int)((dir.toYRot() + offset) % 360)).addModel();
 
                 modelName = i == 0 ? RoadStuff.MODID + ":block/paint_bucket" : RoadStuff.MODID + ":block/paint_bucket_yellow_" + i;
                 builder.partialState().with(PaintBucketBlock.COLOR, EnumPaintColor.YELLOW).with(PaintBucketBlock.DIRECTION, dir).with(PaintBucketBlock.PAINT, i).modelForState().modelFile(
-                    new UncheckedModelFile(modelName)).rotationY((int)((dir.getHorizontalAngle() + offset) % 360)).addModel();
+                    new UncheckedModelFile(modelName)).rotationY((int)((dir.toYRot() + offset) % 360)).addModel();
             }
         }
     }
 
-    public void guardrailBlock(FourWayBlock block, ModelFile post, ModelFile side)
+    public void guardrailBlock(CrossCollisionBlock block, ModelFile post, ModelFile side)
     {
         MultiPartBlockStateBuilder builder = getMultipartBuilder(block).part().modelFile(post).addModel().end();
         guardrailBlock(builder, side);
@@ -140,12 +140,12 @@ public class RSBlockStates extends BlockStateProvider
 
     public void guardrailBlock(MultiPartBlockStateBuilder builder, ModelFile side)
     {
-        SixWayBlock.FACING_TO_PROPERTY_MAP.entrySet().forEach(e ->
+        PipeBlock.PROPERTY_BY_DIRECTION.entrySet().forEach(e ->
         {
             Direction dir = e.getKey();
             if(dir.getAxis().isHorizontal())
             {
-                builder.part().modelFile(side).rotationY((((int)dir.getHorizontalAngle()) + 180) % 360).addModel().condition(e.getValue(), true);
+                builder.part().modelFile(side).rotationY((((int)dir.toYRot()) + 180) % 360).addModel().condition(e.getValue(), true);
             }
         });
     }

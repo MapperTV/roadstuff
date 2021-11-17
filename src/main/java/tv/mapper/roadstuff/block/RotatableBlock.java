@@ -2,40 +2,41 @@ package tv.mapper.roadstuff.block;
 
 import javax.annotation.Nullable;
 
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalBlock;
-import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.state.DirectionProperty;
-import net.minecraft.state.StateContainer;
-import net.minecraft.util.Direction;
-import net.minecraftforge.common.ToolType;
+import net.minecraft.core.Direction;
+import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import tv.mapper.mapperbase.block.CustomBlock;
+import tv.mapper.mapperbase.block.ToolTiers;
+import tv.mapper.mapperbase.block.ToolTypes;
 
 public class RotatableBlock extends CustomBlock
 {
-    public static final DirectionProperty DIRECTION = HorizontalBlock.HORIZONTAL_FACING;
+    public static final DirectionProperty DIRECTION = HorizontalDirectionalBlock.FACING;
 
-    public RotatableBlock(Properties properties)
+    public RotatableBlock(Properties properties, ToolTypes tool)
     {
-        super(properties);
-        this.setDefaultState(this.getDefaultState().with(DIRECTION, Direction.NORTH));
+        super(properties, tool);
+        this.registerDefaultState(this.defaultBlockState().setValue(DIRECTION, Direction.NORTH));
     }
 
-    public RotatableBlock(Properties properties, ToolType toolType)
+    public RotatableBlock(Properties properties, ToolTypes tool, ToolTiers tier)
     {
-        super(properties);
-        this.toolType = toolType;
+        super(properties, tool, tier);
+        this.tool = tool;
     }
 
-    protected void fillStateContainer(StateContainer.Builder<Block, BlockState> builder)
+    protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
     {
         builder.add(DIRECTION);
     }
 
     @Nullable
-    public BlockState getStateForPlacement(BlockItemUseContext context)
+    public BlockState getStateForPlacement(BlockPlaceContext context)
     {
-        return this.getDefaultState().with(DIRECTION, context.getPlacementHorizontalFacing());
+        return this.defaultBlockState().setValue(DIRECTION, context.getHorizontalDirection());
     }
 }

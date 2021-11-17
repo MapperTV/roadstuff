@@ -1,9 +1,9 @@
 package tv.mapper.roadstuff.util;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.renderer.color.BlockColors;
-import net.minecraft.client.renderer.color.IBlockColor;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.client.color.block.BlockColor;
+import net.minecraft.client.color.block.BlockColors;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import tv.mapper.mapperbase.block.PaintableBlock;
 import tv.mapper.roadstuff.block.RSBlockRegistry;
 
@@ -13,7 +13,7 @@ public class ModColorHandler
     {
         final BlockColors blockColors = Minecraft.getInstance().getBlockColors();
 
-        final IBlockColor yellowColor = (state, blockAccess, pos, tintIndex) ->
+        final BlockColor yellowColor = (state, blockAccess, pos, tintIndex) ->
         {
             return ModConstants.YELLOW_COLOR;
         };

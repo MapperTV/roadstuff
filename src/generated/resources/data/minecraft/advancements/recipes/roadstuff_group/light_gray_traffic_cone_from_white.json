@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "roadstuff:white_traffic_cone"
+            "items": [
+              "roadstuff:white_traffic_cone"
+            ]
           }
         ]
       }

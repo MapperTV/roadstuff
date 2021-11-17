@@ -5,7 +5,7 @@ import java.util.Arrays;
 import org.codehaus.plexus.util.StringUtils;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.DyeColor;
+import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.common.data.LanguageProvider;
 import tv.mapper.roadstuff.block.RSBlockRegistry;
 import tv.mapper.roadstuff.item.RSItemRegistry;
@@ -36,7 +36,7 @@ public class RSLang extends LanguageProvider
 
                 for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
                 {
-                    String color = DyeColor.byId(i).getString();
+                    String color = DyeColor.byId(i).getSerializedName();
                     String check[] = color.split("_");
                     if(check.length > 1)
                         color = StringUtils.capitalise(check[0]) + " " + StringUtils.capitalise(check[1]);
@@ -89,7 +89,7 @@ public class RSLang extends LanguageProvider
 
                 for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
                 {
-                    String color = DyeColor.byId(i).getString();
+                    String color = DyeColor.byId(i).getSerializedName();
                     String check[] = color.split("_");
                     if(check.length > 1)
                         color = StringUtils.capitalise(check[0]) + " " + StringUtils.capitalise(check[1]);

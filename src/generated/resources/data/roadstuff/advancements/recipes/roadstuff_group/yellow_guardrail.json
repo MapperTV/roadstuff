@@ -11,7 +11,9 @@
       "conditions": {
         "items": [
           {
-            "item": "roadstuff:steel_guardrail"
+            "items": [
+              "roadstuff:steel_guardrail"
+            ]
           }
         ]
       }

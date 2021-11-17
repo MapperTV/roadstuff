@@ -2,18 +2,18 @@ package tv.mapper.roadstuff.data.gen;
 
 import java.util.Arrays;
 
-import net.minecraft.advancements.criterion.StatePropertiesPredicate;
-import net.minecraft.block.Block;
+import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.data.DataGenerator;
-import net.minecraft.item.DyeColor;
-import net.minecraft.loot.ConstantRange;
-import net.minecraft.loot.ItemLootEntry;
-import net.minecraft.loot.LootPool;
-import net.minecraft.loot.LootTable;
-import net.minecraft.loot.conditions.BlockStateProperty;
-import net.minecraft.loot.conditions.SurvivesExplosion;
-import net.minecraft.loot.functions.SetCount;
-import net.minecraftforge.fml.RegistryObject;
+import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.storage.loot.LootPool;
+import net.minecraft.world.level.storage.loot.LootTable;
+import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
+import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
+import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
+import net.minecraftforge.fmllegacy.RegistryObject;
 import tv.mapper.mapperbase.block.BaseBlocks;
 import tv.mapper.mapperbase.block.PaintableBlock;
 import tv.mapper.mapperbase.data.gen.BaseLootTableProvider;
@@ -52,8 +52,7 @@ public class RSLootTables extends BaseLootTableProvider
             lootTables.put(RSBlockRegistry.TRAFFIC_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.TRAFFIC_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get()));
             lootTables.put(RSBlockRegistry.CYLINDRICAL_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.CYLINDRICAL_BOLLARD_BLOCKS.get(DyeColor.byId(i)).get()));
             lootTables.put(RSBlockRegistry.REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get()));
-            lootTables.put(RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(),
-                createStandardTable(RoadStuff.MODID, RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get()));
+            lootTables.put(RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.LUMINESCENT_REFLECTOR_BLOCKS.get(DyeColor.byId(i)).get()));
             lootTables.put(RSBlockRegistry.GUARDRAIL_BLOCKS.get(DyeColor.byId(i)).get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.GUARDRAIL_BLOCKS.get(DyeColor.byId(i)).get()));
         }
 
@@ -76,8 +75,8 @@ public class RSLootTables extends BaseLootTableProvider
             drop = BaseBlocks.CONCRETE.get();
 
         String name = block.getRegistryName().toString().replace(modid + ":", "");
-        LootPool.Builder builder = LootPool.builder().name(name).rolls(ConstantRange.of(1)).addEntry(ItemLootEntry.builder(drop)).acceptCondition(SurvivesExplosion.builder());
-        return LootTable.builder().addLootPool(builder);
+        LootPool.Builder builder = LootPool.lootPool().name(name).setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(drop)).when(ExplosionCondition.survivesExplosion());
+        return LootTable.lootTable().withPool(builder);
     }
 
     protected LootTable.Builder createSlopeTable(String modid, Block block, int mat)
@@ -90,13 +89,7 @@ public class RSLootTables extends BaseLootTableProvider
         else
             drop = RSBlockRegistry.CONCRETE_SLOPE.get();
 
-        LootPool.Builder builder = LootPool.builder().name(name).rolls(ConstantRange.of(1)).addEntry(withExplosionDecay(block,
-            ItemLootEntry.builder(drop).acceptFunction(SetCount.builder(ConstantRange.of(2)).acceptCondition(
-                BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(SlopeBlock.LAYERS, 2)))).acceptFunction(
-                    SetCount.builder(ConstantRange.of(3)).acceptCondition(
-                        BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(SlopeBlock.LAYERS, 3)))).acceptFunction(
-                            SetCount.builder(ConstantRange.of(4)).acceptCondition(
-                                BlockStateProperty.builder(block).fromProperties(StatePropertiesPredicate.Builder.newBuilder().withIntProp(SlopeBlock.LAYERS, 4))))));
-        return LootTable.builder().addLootPool(builder);
+        LootPool.Builder builder = LootPool.lootPool().name(name).setRolls(ConstantValue.exactly(1)).add(withExplosionDecay(block, LootItem.lootTableItem(drop).apply(SetItemCountFunction.setCount(ConstantValue.exactly(2)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlopeBlock.LAYERS, 2)))).apply(SetItemCountFunction.setCount(ConstantValue.exactly(3)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlopeBlock.LAYERS, 3)))).apply(SetItemCountFunction.setCount(ConstantValue.exactly(4)).when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(block).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(SlopeBlock.LAYERS, 4))))));
+        return LootTable.lootTable().withPool(builder);
     }
 }

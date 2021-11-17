@@ -1,11 +1,11 @@
 package tv.mapper.roadstuff.util;
 
-import net.minecraft.block.BlockState;
-import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.Direction;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.World;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickBlock;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
@@ -24,20 +24,20 @@ public class EventHandler
         if(event.getFace() == Direction.UP && !ModConstants.ALTERNATE_BRUSH)
         {
             BlockPos pos = event.getPos();
-            World world = event.getWorld();
+            Level world = event.getWorld();
             BlockState state = world.getBlockState(pos);
 
             if(state.getBlock() instanceof PaintableBlock)
             {
-                PlayerEntity player = event.getPlayer();
+                Player player = event.getPlayer();
                 ItemStack heldItem = ItemStack.EMPTY;
 
                 long timer = System.currentTimeMillis();
 
-                if(player.getHeldItemMainhand().getItem() == RSItemRegistry.PAINT_BRUSH.get())
-                    heldItem = player.getHeldItemMainhand();
-                else if(player.getHeldItemOffhand().getItem() == RSItemRegistry.PAINT_BRUSH.get())
-                    heldItem = player.getHeldItemOffhand();
+                if(player.getMainHandItem().getItem() == RSItemRegistry.PAINT_BRUSH.get())
+                    heldItem = player.getMainHandItem();
+                else if(player.getOffhandItem().getItem() == RSItemRegistry.PAINT_BRUSH.get())
+                    heldItem = player.getOffhandItem();
 
                 if(heldItem.getItem() == RSItemRegistry.PAINT_BRUSH.get())
                 {
@@ -48,7 +48,7 @@ public class EventHandler
 
                     if(timer - RoadStuff.clickInterval > ModConstants.CLICK_DELAY && event.getSide() == LogicalSide.SERVER)
                     {
-                        if(player.isSneaking())
+                        if(player.isShiftKeyDown())
                             BrushItem.removeLine(world, pos, player);
                         else
                             BrushItem.paintLine(event.getFace(), state, world, pos, player, heldItem);

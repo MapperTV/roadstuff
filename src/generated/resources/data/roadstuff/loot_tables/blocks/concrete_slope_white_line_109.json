@@ -3,7 +3,8 @@
   "pools": [
     {
       "name": "concrete_slope_white_line_109",
-      "rolls": 1,
+      "rolls": 1.0,
+      "bonus_rolls": 0.0,
       "entries": [
         {
           "type": "minecraft:item",
@@ -19,7 +20,8 @@
                   }
                 }
               ],
-              "count": 2
+              "count": 2.0,
+              "add": false
             },
             {
               "function": "minecraft:set_count",
@@ -32,7 +34,8 @@
                   }
                 }
               ],
-              "count": 3
+              "count": 3.0,
+              "add": false
             },
             {
               "function": "minecraft:set_count",
@@ -45,7 +48,8 @@
                   }
                 }
               ],
-              "count": 4
+              "count": 4.0,
+              "add": false
             },
             {
               "function": "minecraft:explosion_decay"

@@ -7,6 +7,6 @@ public class BrushItemClient
 {
     public static void displayBrushGui(int pattern, int paint, int color, float scroll, int[] favs)
     {
-        Minecraft.getInstance().displayGuiScreen(new GuiBrush(pattern, paint, color, scroll, favs));
+        Minecraft.getInstance().setScreen(new GuiBrush(pattern, paint, color, scroll, favs));
     }
 }
