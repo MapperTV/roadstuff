@@ -1,22 +1,18 @@
 {
-  "type": "minecraft:crafting_shaped",
-  "pattern": [
-    "D",
-    "G",
-    "B"
-  ],
-  "key": {
-    "G": {
-      "tag": "forge:dusts/glowstone"
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:gems/quartz"
     },
-    "B": {
-      "item": "mapperbase:asphalt"
+    {
+      "item": "roadstuff:raw_bitumen"
     },
-    "D": {
+    {
       "tag": "forge:dyes/red"
     }
-  },
+  ],
   "result": {
-    "item": "roadstuff:red_reflector"
+    "item": "roadstuff:red_reflector",
+    "count": 4
   }
 }

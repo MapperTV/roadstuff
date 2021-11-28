@@ -1,0 +1,7 @@
+{
+  "parent": "mapperbase:block/slope_6",
+  "textures": {
+    "base": "roadstuff:block/concrete",
+    "particle": "roadstuff:block/concrete"
+  }
+}

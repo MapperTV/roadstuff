@@ -34,6 +34,24 @@ public class RSLang extends LanguageProvider
                 add(RSBlockRegistry.ASPHALT_SLOPE.get(), "Asphalt Slope");
                 add(RSBlockRegistry.CONCRETE_SLOPE.get(), "Concrete Slope");
 
+                add(RSBlockRegistry.CONCRETE.get(), "Concrete");
+                add(RSBlockRegistry.CONCRETE_SLAB.get(), "Concrete Slab");
+                add(RSBlockRegistry.CONCRETE_STAIRS.get(), "Concrete Stairs");
+                add(RSBlockRegistry.CONCRETE_WALL.get(), "Concrete Wall");
+                add(RSBlockRegistry.CONCRETE_PRESSURE_PLATE.get(), "Concrete Pressure Plate");
+                add(RSBlockRegistry.CONCRETE_FENCE.get(), "Concrete Fence");
+                add(RSBlockRegistry.CONCRETE_FENCE_GATE.get(), "Concrete Fence Gate");
+
+                add(RSBlockRegistry.ASPHALT.get(), "Asphalt");
+                add(RSBlockRegistry.ASPHALT_SLAB.get(), "Asphalt Slab");
+                add(RSBlockRegistry.ASPHALT_STAIRS.get(), "Asphalt Stairs");
+                add(RSBlockRegistry.ASPHALT_PRESSURE_PLATE.get(), "Asphalt Pressure Plate");
+
+                add(RSItemRegistry.RAW_BITUMEN.get(), "Raw Bitumen");
+                add(RSBlockRegistry.BITUMEN_ORE.get(), "Bitumen Ore");
+                add(RSBlockRegistry.BITUMEN_BLOCK.get(), "Block of Bitumen");
+                add(RSItemRegistry.BITUMINOUS_COAL.get(), "Bituminous Coal");
+
                 for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
                 {
                     String color = DyeColor.byId(i).getSerializedName();
@@ -83,9 +101,28 @@ public class RSLang extends LanguageProvider
 
                 add("itemGroup.roadstuff_group", "Road Stuff");
                 break;
+
             case "fr_fr":
                 add(RSBlockRegistry.ASPHALT_SLOPE.get(), "Pente en asphalte");
                 add(RSBlockRegistry.CONCRETE_SLOPE.get(), "Pente en béton");
+
+                add(RSBlockRegistry.CONCRETE.get(), "Bloc de béton");
+                add(RSBlockRegistry.CONCRETE_SLAB.get(), "Dalle en béton");
+                add(RSBlockRegistry.CONCRETE_STAIRS.get(), "Escalier en béton");
+                add(RSBlockRegistry.CONCRETE_WALL.get(), "Muret en béton");
+                add(RSBlockRegistry.CONCRETE_PRESSURE_PLATE.get(), "Plaque de pression en béton");
+                add(RSBlockRegistry.CONCRETE_FENCE.get(), "Barrière en béton");
+                add(RSBlockRegistry.CONCRETE_FENCE_GATE.get(), "Portillon en béton");
+
+                add(RSBlockRegistry.ASPHALT.get(), "Asphalte");
+                add(RSBlockRegistry.ASPHALT_SLAB.get(), "Dalle d'asphalte");
+                add(RSBlockRegistry.ASPHALT_STAIRS.get(), "Escalier d'asphalte");
+                add(RSBlockRegistry.ASPHALT_PRESSURE_PLATE.get(), "Plaque de pression d'asphalte");
+                
+                add(RSItemRegistry.RAW_BITUMEN.get(), "Bitume brut");
+                add(RSBlockRegistry.BITUMEN_ORE.get(), "Minerai de bitume");
+                add(RSBlockRegistry.BITUMEN_BLOCK.get(), "Bloc de bitume");
+                add(RSItemRegistry.BITUMINOUS_COAL.get(), "Charbon bitumineux");
 
                 for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
                 {

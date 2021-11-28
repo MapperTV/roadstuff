@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=top": {
+      "model": "roadstuff:block/asphalt_slab_top"
+    },
+    "type=bottom": {
+      "model": "roadstuff:block/asphalt_slab"
+    },
+    "type=double": {
+      "model": "roadstuff:block/asphalt"
+    }
+  }
+}

@@ -19,11 +19,11 @@ public class RSGenerators
 
         generator.addProvider(new RSRecipes(generator));
         generator.addProvider(new RSLootTables(generator));
-        generator.addProvider(new RSBlockStates(generator, existingFileHelper));
+        generator.addProvider(new RSBlockStates(generator, modid, existingFileHelper));
         generator.addProvider(new RSBlockModels(generator, modid, existingFileHelper));
         generator.addProvider(new RSItemModels(generator, modid, existingFileHelper));
 
-        RSBlockTags rsBlockTags = new RSBlockTags(generator, existingFileHelper);
+        RSBlockTags rsBlockTags = new RSBlockTags(generator, modid, existingFileHelper);
 
         generator.addProvider(rsBlockTags);
         generator.addProvider(new RSItemTags(generator, rsBlockTags, existingFileHelper));

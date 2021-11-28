@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "roadstuff:block/concrete_pressure_plate"
+    },
+    "powered=true": {
+      "model": "roadstuff:block/concrete_pressure_plate_down"
+    }
+  }
+}

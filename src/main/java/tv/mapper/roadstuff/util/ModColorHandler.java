@@ -3,8 +3,8 @@ package tv.mapper.roadstuff.util;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.color.block.BlockColor;
 import net.minecraft.client.color.block.BlockColors;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fmllegacy.RegistryObject;
-import tv.mapper.mapperbase.block.PaintableBlock;
 import tv.mapper.roadstuff.block.RSBlockRegistry;
 
 public class ModColorHandler
@@ -18,7 +18,7 @@ public class ModColorHandler
             return ModConstants.YELLOW_COLOR;
         };
 
-        for(RegistryObject<PaintableBlock> block : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
+        for(RegistryObject<Block> block : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
         {
             if(block.get().getRegistryName().toString().contains("yellow_line"))
                 blockColors.register(yellowColor, block.get());

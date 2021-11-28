@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "xxx",
+    "xyx",
+    "xxx"
+  ],
+  "key": {
+    "x": {
+      "tag": "forge:bitumen"
+    },
+    "y": {
+      "item": "minecraft:coal"
+    }
+  },
+  "result": {
+    "item": "roadstuff:bituminous_coal",
+    "count": 8
+  }
+}

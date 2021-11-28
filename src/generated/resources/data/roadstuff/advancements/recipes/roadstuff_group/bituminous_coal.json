@@ -1,0 +1,45 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "roadstuff:bituminous_coal"
+    ]
+  },
+  "criteria": {
+    "has_raw_bitumen": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "forge:bitumen"
+          }
+        ]
+      }
+    },
+    "has_coal": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:coal"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "roadstuff:bituminous_coal"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_raw_bitumen",
+      "has_coal",
+      "has_the_recipe"
+    ]
+  ]
+}

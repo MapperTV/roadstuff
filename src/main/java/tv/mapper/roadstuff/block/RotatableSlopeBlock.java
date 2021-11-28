@@ -6,10 +6,10 @@ import net.minecraft.world.level.block.HorizontalDirectionalBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import tv.mapper.mapperbase.block.ToolTiers;
-import tv.mapper.mapperbase.block.ToolTypes;
+import tv.mapper.mapperbase.world.level.block.ToolTiers;
+import tv.mapper.mapperbase.world.level.block.ToolTypes;
 
-public class RotatableSlopeBlock extends SlopeBlock
+public class RotatableSlopeBlock extends PaintableSlopeBlock
 {
     public static final DirectionProperty DIRECTION = HorizontalDirectionalBlock.FACING;
 

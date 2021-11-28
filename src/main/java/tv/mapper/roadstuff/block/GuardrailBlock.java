@@ -11,11 +11,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import tv.mapper.mapperbase.block.ToolTiers;
-import tv.mapper.mapperbase.block.ToolType;
-import tv.mapper.mapperbase.block.ToolTypes;
+import tv.mapper.mapperbase.world.level.block.ToolManager;
+import tv.mapper.mapperbase.world.level.block.ToolTiers;
+import tv.mapper.mapperbase.world.level.block.ToolTypes;
 
-public class GuardrailBlock extends CrossCollisionBlock implements ToolType
+public class GuardrailBlock extends CrossCollisionBlock implements ToolManager
 {
     protected ToolTiers tier;
     protected ToolTypes tool;

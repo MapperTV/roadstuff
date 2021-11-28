@@ -10,8 +10,8 @@ import net.minecraftforge.event.entity.player.PlayerInteractEvent.LeftClickBlock
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
-import tv.mapper.mapperbase.block.PaintableBlock;
 import tv.mapper.roadstuff.RoadStuff;
+import tv.mapper.roadstuff.block.PaintSystem;
 import tv.mapper.roadstuff.item.BrushItem;
 import tv.mapper.roadstuff.item.RSItemRegistry;
 
@@ -27,7 +27,7 @@ public class EventHandler
             Level world = event.getWorld();
             BlockState state = world.getBlockState(pos);
 
-            if(state.getBlock() instanceof PaintableBlock)
+            if(state.getBlock() instanceof PaintSystem)
             {
                 Player player = event.getPlayer();
                 ItemStack heldItem = ItemStack.EMPTY;

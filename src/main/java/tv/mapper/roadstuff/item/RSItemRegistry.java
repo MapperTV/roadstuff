@@ -14,6 +14,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
+import tv.mapper.mapperbase.world.item.FuelItem;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.RSBlockRegistry;
 
@@ -21,8 +22,26 @@ public class RSItemRegistry
 {
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RoadStuff.MODID);
 
+    public static final RegistryObject<Item> CONCRETE_ITEM = ITEMS.register("concrete", () -> new BlockItem(RSBlockRegistry.CONCRETE.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> CONCRETE_STAIRS_ITEM = ITEMS.register("concrete_stairs", () -> new BlockItem(RSBlockRegistry.CONCRETE_STAIRS.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> CONCRETE_SLAB_ITEM = ITEMS.register("concrete_slab", () -> new BlockItem(RSBlockRegistry.CONCRETE_SLAB.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> CONCRETE_WALL_ITEM = ITEMS.register("concrete_wall", () -> new BlockItem(RSBlockRegistry.CONCRETE_WALL.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> CONCRETE_PRESSURE_PLATE_ITEM = ITEMS.register("concrete_pressure_plate", () -> new BlockItem(RSBlockRegistry.CONCRETE_PRESSURE_PLATE.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> CONCRETE_FENCE_ITEM = ITEMS.register("concrete_fence", () -> new BlockItem(RSBlockRegistry.CONCRETE_FENCE.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> CONCRETE_FENCE_GATE_ITEM = ITEMS.register("concrete_fence_gate", () -> new BlockItem(RSBlockRegistry.CONCRETE_FENCE_GATE.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+
+    public static final RegistryObject<Item> ASPHALT_ITEM = ITEMS.register("asphalt", () -> new BlockItem(RSBlockRegistry.ASPHALT.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> ASPHALT_STAIRS_ITEM = ITEMS.register("asphalt_stairs", () -> new BlockItem(RSBlockRegistry.ASPHALT_STAIRS.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> ASPHALT_SLAB_ITEM = ITEMS.register("asphalt_slab", () -> new BlockItem(RSBlockRegistry.ASPHALT_SLAB.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> ASPHALT_PRESSURE_PLATE_ITEM = ITEMS.register("asphalt_pressure_plate", () -> new BlockItem(RSBlockRegistry.ASPHALT_PRESSURE_PLATE.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+
     public static final RegistryObject<BlockItem> ASPHALT_SLOPE_ITEM = ITEMS.register("asphalt_slope", () -> new BlockItem(RSBlockRegistry.ASPHALT_SLOPE.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
     public static final RegistryObject<BlockItem> CONCRETE_SLOPE_ITEM = ITEMS.register("concrete_slope", () -> new BlockItem(RSBlockRegistry.CONCRETE_SLOPE.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+
+    public static final RegistryObject<Item> RAW_BITUMEN = ITEMS.register("raw_bitumen", () -> new Item(new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> BITUMEN_ORE_ITEM = ITEMS.register("bitumen_ore", () -> new BlockItem(RSBlockRegistry.BITUMEN_ORE.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> BITUMEN_ITEM = ITEMS.register("bitumen_block", () -> new BlockItem(RSBlockRegistry.BITUMEN_BLOCK.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
+    public static final RegistryObject<Item> BITUMINOUS_COAL = ITEMS.register("bituminous_coal", () -> new FuelItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF), 250));
 
     public static final Map<DyeColor, RegistryObject<BlockItem>> TRAFFIC_CONE_ITEMS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type, ITEMS.register(type.getSerializedName() + "_traffic_cone", () -> new BlockItem(RSBlockRegistry.TRAFFIC_CONE_BLOCKS.get(type).get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF))))).collect(Collectors.toMap(Pair::getKey, Pair::getValue));
     public static final Map<DyeColor, RegistryObject<BlockItem>> TRAFFIC_BARREL_ITEMS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type, ITEMS.register(type.getSerializedName() + "_traffic_barrel", () -> new BlockItem(RSBlockRegistry.TRAFFIC_BARREL_BLOCKS.get(type).get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF))))).collect(Collectors.toMap(Pair::getKey, Pair::getValue));

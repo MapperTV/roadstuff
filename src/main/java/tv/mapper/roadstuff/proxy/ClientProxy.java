@@ -7,9 +7,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fmllegacy.RegistryObject;
-import tv.mapper.mapperbase.block.PaintableBlock;
 import tv.mapper.roadstuff.block.RSBlockRegistry;
 import tv.mapper.roadstuff.item.BrushItem;
 import tv.mapper.roadstuff.item.RSItemRegistry;
@@ -24,7 +24,7 @@ public class ClientProxy implements IProxy
 
         Predicate<RenderType> cutoutPredicate = renderType -> renderType == RenderType.cutout();
 
-        for(RegistryObject<PaintableBlock> block : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
+        for(RegistryObject<Block> block : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
         {
             ItemBlockRenderTypes.setRenderLayer(block.get(), cutoutPredicate);
         }

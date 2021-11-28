@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "roadstuff:raw_bitumen_from_smelting"
+    ]
+  },
+  "criteria": {
+    "has_bitumen_ore": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "roadstuff:bitumen_ore"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "roadstuff:raw_bitumen_from_smelting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_bitumen_ore",
+      "has_the_recipe"
+    ]
+  ]
+}

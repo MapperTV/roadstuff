@@ -22,9 +22,9 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import tv.mapper.mapperbase.block.CustomBlock;
-import tv.mapper.mapperbase.block.ToolTiers;
-import tv.mapper.mapperbase.block.ToolTypes;
+import tv.mapper.mapperbase.world.level.block.CustomBlock;
+import tv.mapper.mapperbase.world.level.block.ToolTiers;
+import tv.mapper.mapperbase.world.level.block.ToolTypes;
 
 public class ReflectorBlock extends CustomBlock implements SimpleWaterloggedBlock
 {
@@ -42,7 +42,7 @@ public class ReflectorBlock extends CustomBlock implements SimpleWaterloggedBloc
         this.registerDefaultState(this.stateDefinition.any().setValue(DIRECTION, Direction.NORTH).setValue(WATERLOGGED, Boolean.valueOf(false)));
         this.isLuminescent = isLuminescent;
     }
-    
+
     public ReflectorBlock(Properties properties, ToolTypes tool, ToolTiers tier, boolean isLuminescent)
     {
         super(properties, tool, tier);

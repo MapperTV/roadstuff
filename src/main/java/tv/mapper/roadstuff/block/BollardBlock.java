@@ -19,8 +19,8 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import tv.mapper.mapperbase.block.ToolTiers;
-import tv.mapper.mapperbase.block.ToolTypes;
+import tv.mapper.mapperbase.world.level.block.ToolTiers;
+import tv.mapper.mapperbase.world.level.block.ToolTypes;
 
 public class BollardBlock extends RotatableBlock implements SimpleWaterloggedBlock
 {

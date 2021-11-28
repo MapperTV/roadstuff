@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "minecraft:asphalt_slab_from_asphalt_stonecutting"
+    ]
+  },
+  "criteria": {
+    "has_asphalt": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "roadstuff:asphalt"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "minecraft:asphalt_slab_from_asphalt_stonecutting"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_asphalt",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "roadstuff:concrete_block_from_slabs"
+    ]
+  },
+  "criteria": {
+    "has_concrete_slab": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "roadstuff:concrete_slab"
+            ]
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "roadstuff:concrete_block_from_slabs"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_concrete_slab",
+      "has_the_recipe"
+    ]
+  ]
+}

@@ -14,15 +14,15 @@ import net.minecraft.world.level.storage.loot.predicates.ExplosionCondition;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraftforge.fmllegacy.RegistryObject;
-import tv.mapper.mapperbase.block.BaseBlocks;
-import tv.mapper.mapperbase.block.PaintableBlock;
-import tv.mapper.mapperbase.data.gen.BaseLootTableProvider;
+import tv.mapper.mapperbase.data.gen.BaseLootTables;
+import tv.mapper.mapperbase.world.level.block.SlopeBlock;
 import tv.mapper.roadstuff.RoadStuff;
+import tv.mapper.roadstuff.block.PaintableRoadBlock;
 import tv.mapper.roadstuff.block.RSBlockRegistry;
 import tv.mapper.roadstuff.block.RotatableSlopeBlock;
-import tv.mapper.roadstuff.block.SlopeBlock;
+import tv.mapper.roadstuff.item.RSItemRegistry;
 
-public class RSLootTables extends BaseLootTableProvider
+public class RSLootTables extends BaseLootTables
 {
     public RSLootTables(DataGenerator dataGeneratorIn)
     {
@@ -35,14 +35,31 @@ public class RSLootTables extends BaseLootTableProvider
         lootTables.put(RSBlockRegistry.ASPHALT_SLOPE.get(), createSlopeTable(RoadStuff.MODID, RSBlockRegistry.ASPHALT_SLOPE.get(), RSBlockRegistry.ASPHALT_SLOPE.get().getMaterialType()));
         lootTables.put(RSBlockRegistry.CONCRETE_SLOPE.get(), createSlopeTable(RoadStuff.MODID, RSBlockRegistry.CONCRETE_SLOPE.get(), RSBlockRegistry.CONCRETE_SLOPE.get().getMaterialType()));
 
-        for(RegistryObject<PaintableBlock> object : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
+        lootTables.put(RSBlockRegistry.CONCRETE_SLOPE.get(), createSlopeTable(RoadStuff.MODID, RSBlockRegistry.CONCRETE_SLOPE.get()));
+        lootTables.put(RSBlockRegistry.CONCRETE.get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.CONCRETE.get()));
+        lootTables.put(RSBlockRegistry.CONCRETE_SLAB.get(), createSlabTable(RoadStuff.MODID, RSBlockRegistry.CONCRETE_SLAB.get()));
+        lootTables.put(RSBlockRegistry.CONCRETE_STAIRS.get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.CONCRETE_STAIRS.get()));
+        lootTables.put(RSBlockRegistry.CONCRETE_WALL.get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.CONCRETE_WALL.get()));
+        lootTables.put(RSBlockRegistry.CONCRETE_PRESSURE_PLATE.get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.CONCRETE_PRESSURE_PLATE.get()));
+        lootTables.put(RSBlockRegistry.CONCRETE_FENCE.get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.CONCRETE_FENCE.get()));
+
+        lootTables.put(RSBlockRegistry.ASPHALT.get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.ASPHALT.get()));
+        lootTables.put(RSBlockRegistry.ASPHALT_SLOPE.get(), createSlopeTable(RoadStuff.MODID, RSBlockRegistry.ASPHALT_SLOPE.get()));
+        lootTables.put(RSBlockRegistry.ASPHALT_SLAB.get(), createSlabTable(RoadStuff.MODID, RSBlockRegistry.ASPHALT_SLAB.get()));
+        lootTables.put(RSBlockRegistry.ASPHALT_STAIRS.get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.ASPHALT_STAIRS.get()));
+        lootTables.put(RSBlockRegistry.ASPHALT_PRESSURE_PLATE.get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.ASPHALT_PRESSURE_PLATE.get()));
+
+        lootTables.put(RSBlockRegistry.BITUMEN_BLOCK.get(), createStandardTable(RoadStuff.MODID, RSBlockRegistry.BITUMEN_BLOCK.get()));
+        lootTables.put(RSBlockRegistry.BITUMEN_ORE.get(), createSilkTable(RoadStuff.MODID, RSBlockRegistry.BITUMEN_ORE.get(), RSItemRegistry.RAW_BITUMEN.get(), 3, 8, 2));
+
+        for(RegistryObject<Block> object : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
         {
             Block block = object.get();
 
             if(block instanceof RotatableSlopeBlock)
                 lootTables.put(block, createSlopeTable(RoadStuff.MODID, block, ((RotatableSlopeBlock)block).getMaterialType()));
             else
-                lootTables.put(block, createRoadBlockTable(RoadStuff.MODID, block, ((PaintableBlock)block).getMaterialType()));
+                lootTables.put(block, createRoadBlockTable(RoadStuff.MODID, block, ((PaintableRoadBlock)block).getMaterialType()));
         }
 
         for(int i = 0; i < Arrays.stream(DyeColor.values()).count(); i++)
@@ -70,9 +87,9 @@ public class RSLootTables extends BaseLootTableProvider
     {
         Block drop;
         if(mat == 0)
-            drop = BaseBlocks.ASPHALT.get();
+            drop = RSBlockRegistry.ASPHALT.get();
         else
-            drop = BaseBlocks.CONCRETE.get();
+            drop = RSBlockRegistry.CONCRETE.get();
 
         String name = block.getRegistryName().toString().replace(modid + ":", "");
         LootPool.Builder builder = LootPool.lootPool().name(name).setRolls(ConstantValue.exactly(1)).add(LootItem.lootTableItem(drop)).when(ExplosionCondition.survivesExplosion());

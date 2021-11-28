@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "mapperbase:asphalt",
+    "roadstuff:asphalt",
     "roadstuff:asphalt_slope",
     "roadstuff:asphalt_white_line_1",
     "roadstuff:asphalt_yellow_line_1",

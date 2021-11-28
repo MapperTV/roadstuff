@@ -8,8 +8,10 @@ import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
 
+import net.minecraft.util.valueproviders.UniformInt;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.material.Material;
@@ -18,23 +20,42 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
-import tv.mapper.mapperbase.block.PaintableBlock;
-import tv.mapper.mapperbase.block.ToolTypes;
+import tv.mapper.mapperbase.world.level.block.CustomBlock;
+import tv.mapper.mapperbase.world.level.block.CustomFenceBlock;
+import tv.mapper.mapperbase.world.level.block.CustomFenceGateBlock;
+import tv.mapper.mapperbase.world.level.block.CustomOreBlock;
+import tv.mapper.mapperbase.world.level.block.CustomPressurePlateBlock;
+import tv.mapper.mapperbase.world.level.block.CustomSlabBlock;
+import tv.mapper.mapperbase.world.level.block.CustomStairsBlock;
+import tv.mapper.mapperbase.world.level.block.CustomWallBlock;
+import tv.mapper.mapperbase.world.level.block.ToolTiers;
+import tv.mapper.mapperbase.world.level.block.ToolTypes;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.ConeBlock.EnumConeType;
 import tv.mapper.roadstuff.util.ModConstants;
 
 public class RSBlockRegistry
 {
-    private static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RoadStuff.MODID);
-    public static Set<RegistryObject<PaintableBlock>> MOD_PAINTABLEBLOCKS = new LinkedHashSet<>();
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, RoadStuff.MODID);
+    public static Set<RegistryObject<Block>> MOD_PAINTABLEBLOCKS = new LinkedHashSet<>();
 
     private static Properties concreteProperties = Block.Properties.of(Material.STONE, MaterialColor.STONE).strength(1.5F, 6.0F).sound(SoundType.STONE).requiresCorrectToolForDrops();
     private static Properties asphaltProperties = Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(1.5F, 6.0F).sound(SoundType.STONE).requiresCorrectToolForDrops();
     private static Properties bollardProperties = Block.Properties.of(Material.DECORATION, MaterialColor.QUARTZ).strength(0.1F, 3.0F).sound(SoundType.BAMBOO).requiresCorrectToolForDrops();
 
-    public static final RegistryObject<SlopeBlock> ASPHALT_SLOPE = BLOCKS.register("asphalt_slope", () -> new SlopeBlock(asphaltProperties, ToolTypes.PICKAXE, 0));
-    public static final RegistryObject<SlopeBlock> CONCRETE_SLOPE = BLOCKS.register("concrete_slope", () -> new SlopeBlock(concreteProperties, ToolTypes.PICKAXE, 1));
+    public static final RegistryObject<PaintableRoadBlock> CONCRETE = BLOCKS.register("concrete", () -> new PaintableRoadBlock(concreteProperties, ToolTypes.PICKAXE, 1));
+    public static final RegistryObject<CustomStairsBlock> CONCRETE_STAIRS = BLOCKS.register("concrete_stairs", () -> new CustomStairsBlock(() -> CONCRETE.get().defaultBlockState(), concreteProperties, ToolTypes.PICKAXE, ToolTiers.WOOD));
+    public static final RegistryObject<CustomSlabBlock> CONCRETE_SLAB = BLOCKS.register("concrete_slab", () -> new CustomSlabBlock(concreteProperties, ToolTypes.PICKAXE, ToolTiers.WOOD));
+    public static final RegistryObject<CustomWallBlock> CONCRETE_WALL = BLOCKS.register("concrete_wall", () -> new CustomWallBlock(concreteProperties, ToolTypes.PICKAXE));
+    public static final RegistryObject<CustomFenceBlock> CONCRETE_FENCE = BLOCKS.register("concrete_fence", () -> new CustomFenceBlock(concreteProperties, ToolTypes.PICKAXE, ToolTiers.WOOD));
+    public static final RegistryObject<CustomFenceGateBlock> CONCRETE_FENCE_GATE = BLOCKS.register("concrete_fence_gate", () -> new CustomFenceGateBlock(concreteProperties, ToolTypes.PICKAXE, ToolTiers.IRON));
+
+    public static final RegistryObject<PaintableRoadBlock> ASPHALT = BLOCKS.register("asphalt", () -> new PaintableRoadBlock(asphaltProperties, ToolTypes.PICKAXE, 0));
+    public static final RegistryObject<CustomStairsBlock> ASPHALT_STAIRS = BLOCKS.register("asphalt_stairs", () -> new CustomStairsBlock(() -> ASPHALT.get().defaultBlockState(), asphaltProperties, ToolTypes.PICKAXE, ToolTiers.WOOD));
+    public static final RegistryObject<CustomSlabBlock> ASPHALT_SLAB = BLOCKS.register("asphalt_slab", () -> new CustomSlabBlock(asphaltProperties, ToolTypes.PICKAXE, ToolTiers.WOOD));
+
+    public static final RegistryObject<PaintableSlopeBlock> ASPHALT_SLOPE = BLOCKS.register("asphalt_slope", () -> new PaintableSlopeBlock(asphaltProperties, ToolTypes.PICKAXE, 0));
+    public static final RegistryObject<PaintableSlopeBlock> CONCRETE_SLOPE = BLOCKS.register("concrete_slope", () -> new PaintableSlopeBlock(concreteProperties, ToolTypes.PICKAXE, 1));
 
     static
     {
@@ -51,6 +72,9 @@ public class RSBlockRegistry
             MOD_PAINTABLEBLOCKS.add(BLOCKS.register("concrete_slope_yellow_line_" + i, () -> new RotatableSlopeBlock(concreteProperties, ToolTypes.PICKAXE, 1)));
         }
     }
+
+    public static final RegistryObject<CustomBlock> BITUMEN_BLOCK = BLOCKS.register("bitumen_block", () -> new CustomBlock(Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(3.0F).requiresCorrectToolForDrops(), ToolTypes.PICKAXE));
+    public static final RegistryObject<CustomOreBlock> BITUMEN_ORE = BLOCKS.register("bitumen_ore", () -> new CustomOreBlock(Block.Properties.of(Material.STONE, MaterialColor.COLOR_BLACK).strength(3.0F).requiresCorrectToolForDrops(), UniformInt.of(0, 1), ToolTypes.PICKAXE));
 
     public static final Map<DyeColor, RegistryObject<ConeBlock>> TRAFFIC_CONE_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type, BLOCKS.register(type.getSerializedName() + "_traffic_cone", () -> new ConeBlock(Block.Properties.of(Material.DECORATION, type.getMaterialColor()).strength(0.1F, 3.0F).sound(SoundType.BAMBOO), ToolTypes.NONE, EnumConeType.CONE)))).collect(Collectors.toMap(Pair::getKey, Pair::getValue));
     public static final Map<DyeColor, RegistryObject<ConeBlock>> TRAFFIC_BARREL_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type, BLOCKS.register(type.getSerializedName() + "_traffic_barrel", () -> new ConeBlock(Block.Properties.of(Material.DECORATION, type.getMaterialColor()).strength(0.1F, 3.0F).sound(SoundType.BAMBOO), ToolTypes.NONE, EnumConeType.BARREL)))).collect(Collectors.toMap(Pair::getKey, Pair::getValue));
@@ -78,6 +102,9 @@ public class RSBlockRegistry
     public static final Map<DyeColor, RegistryObject<GuardrailBlock>> GUARDRAIL_BLOCKS = Arrays.stream(DyeColor.values()).map(type -> Pair.of(type, BLOCKS.register(type.getSerializedName() + "_guardrail", () -> new GuardrailBlock(Block.Properties.of(Material.METAL, type.getMaterialColor()).strength(3.0F).sound(SoundType.LANTERN), ToolTypes.PICKAXE)))).collect(Collectors.toMap(Pair::getKey, Pair::getValue));
 
     public static final RegistryObject<PaintBucketBlock> PAINT_BUCKET = BLOCKS.register("paint_bucket", () -> new PaintBucketBlock(Block.Properties.of(Material.METAL, MaterialColor.COLOR_GRAY).strength(0.5F, 3.0F).sound(SoundType.LANTERN), ToolTypes.PICKAXE));
+
+    public static final RegistryObject<CustomPressurePlateBlock> ASPHALT_PRESSURE_PLATE = BLOCKS.register("asphalt_pressure_plate", () -> new CustomPressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, asphaltProperties.noCollission(), ToolTypes.PICKAXE));
+    public static final RegistryObject<CustomPressurePlateBlock> CONCRETE_PRESSURE_PLATE = BLOCKS.register("concrete_pressure_plate", () -> new CustomPressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, concreteProperties.noCollission(), ToolTypes.PICKAXE));
 
     public static void init()
     {

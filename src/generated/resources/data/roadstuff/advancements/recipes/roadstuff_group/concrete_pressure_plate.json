@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "roadstuff:concrete_pressure_plate"
+    ]
+  },
+  "criteria": {
+    "has_concrete_block": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "tag": "roadstuff:concrete"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "roadstuff:concrete_pressure_plate"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "has_concrete_block",
+      "has_the_recipe"
+    ]
+  ]
+}

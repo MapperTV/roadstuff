@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "GS",
+    "SG"
+  ],
+  "key": {
+    "G": {
+      "tag": "forge:gravel"
+    },
+    "S": {
+      "tag": "forge:sand"
+    }
+  },
+  "result": {
+    "item": "roadstuff:concrete",
+    "count": 4
+  }
+}

@@ -3,11 +3,9 @@ package tv.mapper.roadstuff.util;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fmllegacy.RegistryObject;
-import tv.mapper.mapperbase.block.BaseBlocks;
-import tv.mapper.mapperbase.block.PaintableBlock;
 import tv.mapper.roadstuff.block.RSBlockRegistry;
 
-public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
+public class ConcretePaintMap extends Int2ObjectArrayMap<Block>
 {
     private static final long serialVersionUID = -2560468416060236377L;
 
@@ -15,15 +13,15 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
     {
         super();
         if(!slope)
-            register(0, 0, BaseBlocks.CONCRETE.get());
+            register(0, 0, RSBlockRegistry.CONCRETE.get());
         else if(slope)
             register(0, 0, RSBlockRegistry.CONCRETE_SLOPE.get());
 
         int index = 1;
 
-        PaintableBlock block;
+        Block block;
 
-        for(RegistryObject<PaintableBlock> object : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
+        for(RegistryObject<Block> object : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
         {
             block = object.get();
 
@@ -47,12 +45,12 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
         }
 
         if(!slope)
-            register(1, 0, BaseBlocks.CONCRETE.get());
+            register(1, 0, RSBlockRegistry.CONCRETE.get());
         else if(slope)
             register(1, 0, RSBlockRegistry.CONCRETE_SLOPE.get());
 
         index = 1;
-        for(RegistryObject<PaintableBlock> object : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
+        for(RegistryObject<Block> object : RSBlockRegistry.MOD_PAINTABLEBLOCKS)
         {
             block = object.get();
 
@@ -75,7 +73,7 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
         }
     }
 
-    public void register(int color, int pattern, PaintableBlock block)
+    public void register(int color, int pattern, Block block)
     {
         int id = 0;
         if(color == 1)
@@ -83,7 +81,7 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
         this.put(id + pattern, block);
     }
 
-    public PaintableBlock getBlockFor(int color, int pattern)
+    public Block getBlockFor(int color, int pattern)
     {
         int id = 0;
         if(color == 1)
@@ -91,7 +89,7 @@ public class ConcretePaintMap extends Int2ObjectArrayMap<PaintableBlock>
         return this.get(id + pattern);
     }
 
-    public int[] getParamsFor(PaintableBlock blockIn)
+    public int[] getParamsFor(Block blockIn)
     {
         int i = 0;
         int color = 0, pattern = 0;

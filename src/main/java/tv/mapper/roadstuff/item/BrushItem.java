@@ -2,42 +2,41 @@ package tv.mapper.roadstuff.item;
 
 import java.util.List;
 
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.item.TooltipFlag;
+import net.minecraft.ChatFormatting;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.TextComponent;
+import net.minecraft.network.chat.TranslatableComponent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.TextComponent;
-import net.minecraft.ChatFormatting;
-import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.world.level.Level;
-import tv.mapper.mapperbase.block.BaseBlocks;
-import tv.mapper.mapperbase.block.PaintableBlock;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.state.BlockState;
+import tv.mapper.mapperbase.world.level.block.SlopeBlock;
 import tv.mapper.roadstuff.RoadStuff;
+import tv.mapper.roadstuff.block.PaintSystem;
+import tv.mapper.roadstuff.block.PaintableRoadBlock;
+import tv.mapper.roadstuff.block.PaintableSlopeBlock;
 import tv.mapper.roadstuff.block.RSBlockRegistry;
 import tv.mapper.roadstuff.block.RotatablePaintBlock;
 import tv.mapper.roadstuff.block.RotatableSlopeBlock;
-import tv.mapper.roadstuff.block.SlopeBlock;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 import tv.mapper.roadstuff.util.AsphaltPaintMap;
 import tv.mapper.roadstuff.util.ConcretePaintMap;
 import tv.mapper.roadstuff.util.ModConstants;
-
-import net.minecraft.world.item.Item.Properties;
 
 public class BrushItem extends Item
 {
@@ -49,7 +48,7 @@ public class BrushItem extends Item
     @Override
     public boolean canAttackBlock(BlockState state, Level worldIn, BlockPos pos, Player player)
     {
-        if(player.isCreative() && state.getBlock() instanceof PaintableBlock)
+        if(player.isCreative() && state.getBlock() instanceof PaintableRoadBlock)
             return false;
         return true;
     }
@@ -104,8 +103,7 @@ public class BrushItem extends Item
 
             if(player.isShiftKeyDown())
             {
-                if(context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof PaintableBlock && (context.getLevel().getBlockState(
-                    context.getClickedPos()).getBlock() != BaseBlocks.ASPHALT.get() && context.getLevel().getBlockState(context.getClickedPos()).getBlock() != BaseBlocks.CONCRETE.get()))
+                if(context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof PaintSystem)
                     return copyPattern(context.getLevel().getBlockState(context.getClickedPos()), context.getLevel(), nbt, context.getPlayer());
                 else if(context.getLevel().isClientSide)
                     BrushItemClient.displayBrushGui(nbt.getInt("pattern"), nbt.getInt("paint"), nbt.getInt("color"), nbt.getFloat("scroll"), nbt.getIntArray("favs"));
@@ -117,8 +115,7 @@ public class BrushItem extends Item
         {
             if(context.getPlayer().isShiftKeyDown())
             {
-                if(context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof PaintableBlock && (context.getLevel().getBlockState(
-                    context.getClickedPos()).getBlock() != BaseBlocks.ASPHALT.get() && context.getLevel().getBlockState(context.getClickedPos()).getBlock() != BaseBlocks.CONCRETE.get()))
+                if(context.getLevel().getBlockState(context.getClickedPos()).getBlock() instanceof PaintSystem)
                 {
                     return copyPattern(context.getLevel().getBlockState(context.getClickedPos()), context.getLevel(), nbt, context.getPlayer());
                 }
@@ -138,8 +135,7 @@ public class BrushItem extends Item
 
             if(stack.getTag().getInt("paint") == 0)
                 color = "X";
-            list.add(new TextComponent(new TranslatableComponent("roadstuff.message.brush.gui.pattern").getString() + stack.getTag().getInt(
-                "pattern") + "; " + new TranslatableComponent("roadstuff.message.brush.gui.color").getString() + color));
+            list.add(new TextComponent(new TranslatableComponent("roadstuff.message.brush.gui.pattern").getString() + stack.getTag().getInt("pattern") + "; " + new TranslatableComponent("roadstuff.message.brush.gui.color").getString() + color));
             list.add(new TextComponent(new TranslatableComponent("roadstuff.message.brush.gui.paint").getString() + stack.getTag().getInt("paint")));
         }
     }
@@ -198,9 +194,9 @@ public class BrushItem extends Item
                 return removeLine(world, pos, player);
             }
 
-            if(state.getBlock() instanceof SlopeBlock)
+            if(state.getBlock() instanceof PaintableSlopeBlock)
             {
-                switch(((SlopeBlock)state.getBlock()).getMaterialType())
+                switch(((PaintSystem)state.getBlock()).getMaterialType())
                 {
                     case 0:
                         newBlock = RoadStuff.asphaltSlopeMap.getBlockFor(color, pattern);
@@ -220,43 +216,33 @@ public class BrushItem extends Item
                         {
                             case NORTH:
                                 if(player.getMainHandItem() == stack)
-                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.EAST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                        SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.EAST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.WEST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                        SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.WEST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 break;
                             case EAST:
                                 if(player.getMainHandItem() == stack)
-                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.SOUTH).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                        SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.SOUTH).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.NORTH).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                        SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.NORTH).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 break;
                             case SOUTH:
                                 if(player.getMainHandItem() == stack)
-                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.WEST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                        SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.WEST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.EAST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                        SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.EAST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 break;
                             case WEST:
                                 if(player.getMainHandItem() == stack)
-                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.NORTH).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                        SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.NORTH).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.SOUTH).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                        SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.SOUTH).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 break;
                             default:
                                 if(player.getMainHandItem() == stack)
-                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.EAST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                        SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.EAST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.WEST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                        SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, Direction.WEST).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 break;
                         }
                     }
@@ -270,13 +256,9 @@ public class BrushItem extends Item
                             if(newBlock instanceof RotatableSlopeBlock)
                             {
                                 if(player.getMainHandItem() == stack)
-                                    world.setBlockAndUpdate(pos,
-                                        newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, player.getDirection()).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                            SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, player.getDirection()).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                                 else
-                                    world.setBlockAndUpdate(pos,
-                                        newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, player.getDirection().getOpposite()).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(
-                                            SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
+                                    world.setBlockAndUpdate(pos, newBlock.defaultBlockState().setValue(RotatableSlopeBlock.DIRECTION, player.getDirection().getOpposite()).setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS)).setValue(SlopeBlock.WATERLOGGED, state.getValue(SlopeBlock.WATERLOGGED)));
                             }
                             else
                                 world.setBlockAndUpdate(pos, newBlock.defaultBlockState());
@@ -287,9 +269,9 @@ public class BrushItem extends Item
                     }
                 }
             }
-            else if(state.getBlock() instanceof PaintableBlock)
+            else if(state.getBlock() instanceof PaintSystem)
             {
-                switch(((PaintableBlock)state.getBlock()).getMaterialType())
+                switch(((PaintSystem)state.getBlock()).getMaterialType())
                 {
                     case 0:
                         newBlock = RoadStuff.asphaltMap.getBlockFor(color, pattern);
@@ -389,7 +371,7 @@ public class BrushItem extends Item
                 }
             }
         }
-        else if(state.getBlock() instanceof PaintableBlock && !(state.getBlock() instanceof SlopeBlock) && state.getBlock() != BaseBlocks.ASPHALT.get() && state.getBlock() != BaseBlocks.CONCRETE.get())
+        else if(state.getBlock() instanceof PaintSystem && !(state.getBlock() instanceof SlopeBlock) && state.getBlock() != RSBlockRegistry.ASPHALT.get() && state.getBlock() != RSBlockRegistry.CONCRETE.get())
         {
             BlockState newBlock = getPaintableBlockFromMaterial(state);
 
@@ -411,8 +393,8 @@ public class BrushItem extends Item
 
     private InteractionResult copyPattern(BlockState state, Level world, CompoundTag nbt, Player player)
     {
-        PaintableBlock block = (PaintableBlock)state.getBlock();
-        int materialType = block.getMaterialType();
+        Block block = state.getBlock();
+        int materialType = ((PaintSystem)block).getMaterialType();
 
         AsphaltPaintMap asphaltMap = null;
         ConcretePaintMap concreteMap = null;
@@ -437,9 +419,9 @@ public class BrushItem extends Item
             if(!world.isClientSide)
             {
                 int[] params = {0, 0};
-                if(((PaintableBlock)state.getBlock()).getMaterialType() == 0)
+                if(((PaintSystem)state.getBlock()).getMaterialType() == 0)
                     params = asphaltMap.getParamsFor(block);
-                else if(((PaintableBlock)state.getBlock()).getMaterialType() == 1)
+                else if(((PaintSystem)state.getBlock()).getMaterialType() == 1)
                     params = concreteMap.getParamsFor(block);
                 nbt.putInt("pattern", params[1]);
                 player.displayClientMessage(new TextComponent(ChatFormatting.WHITE + "Copied pattern " + params[1] + " into brush"), true);
@@ -451,9 +433,9 @@ public class BrushItem extends Item
 
     private static BlockState getPaintableBlockFromMaterial(BlockState state)
     {
-        if(state.getBlock() instanceof SlopeBlock)
+        if(state.getBlock() instanceof PaintSystem)
         {
-            switch(((SlopeBlock)state.getBlock()).getMaterialType())
+            switch(((PaintSystem)state.getBlock()).getMaterialType())
             {
                 case 0:
                     return RSBlockRegistry.ASPHALT_SLOPE.get().defaultBlockState().setValue(SlopeBlock.LAYERS, state.getValue(SlopeBlock.LAYERS));
@@ -465,12 +447,12 @@ public class BrushItem extends Item
         }
         else
         {
-            switch(((PaintableBlock)state.getBlock()).getMaterialType())
+            switch(((PaintSystem)state.getBlock()).getMaterialType())
             {
                 case 0:
-                    return BaseBlocks.ASPHALT.get().defaultBlockState();
+                    return RSBlockRegistry.ASPHALT.get().defaultBlockState();
                 case 1:
-                    return BaseBlocks.CONCRETE.get().defaultBlockState();
+                    return RSBlockRegistry.CONCRETE.get().defaultBlockState();
                 default:
                     return null;
             }

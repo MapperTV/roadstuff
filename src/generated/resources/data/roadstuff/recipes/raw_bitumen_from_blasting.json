@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:blasting",
+  "ingredient": {
+    "item": "roadstuff:bitumen_ore"
+  },
+  "result": "roadstuff:raw_bitumen",
+  "experience": 0.1,
+  "cookingtime": 100
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "roadstuff:block/painted_slope_6",
+  "textures": {
+    "base": "roadstuff:block/asphalt",
+    "overlay": "roadstuff:block/276",
+    "particle": "roadstuff:block/asphalt"
+  }
+}

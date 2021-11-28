@@ -4,12 +4,17 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import tv.mapper.mapperbase.util.ConfigChecker;
 import tv.mapper.roadstuff.block.RSBlockRegistry;
+import tv.mapper.roadstuff.config.RSConfig;
+import tv.mapper.roadstuff.config.RSConfig.CommonConfig;
 import tv.mapper.roadstuff.item.RSItemRegistry;
 import tv.mapper.roadstuff.network.RSNetwork;
 import tv.mapper.roadstuff.proxy.ClientProxy;
@@ -17,6 +22,8 @@ import tv.mapper.roadstuff.proxy.IProxy;
 import tv.mapper.roadstuff.proxy.ServerProxy;
 import tv.mapper.roadstuff.util.AsphaltPaintMap;
 import tv.mapper.roadstuff.util.ConcretePaintMap;
+import tv.mapper.roadstuff.world.RSFeatures;
+import tv.mapper.roadstuff.world.RSOres;
 
 @Mod(RoadStuff.MODID)
 public class RoadStuff
@@ -36,6 +43,8 @@ public class RoadStuff
 
     public RoadStuff()
     {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, RSConfig.COMMON_CONFIG);
+
         RSBlockRegistry.init();
         RSItemRegistry.init();
 
@@ -50,6 +59,15 @@ public class RoadStuff
         proxy.setup(event);
 
         RSNetwork.registerNetworkPackets();
+
+        if(!CommonConfig.BITUMEN_GENERATION.get())
+            LOGGER.info("Road Stuff worldgen is disabled by config.");
+        else
+        {
+            RSOres.initOres();
+            ConfigChecker.checkConfig(RSConfig.CommonConfig.BITUMEN_BIOME_LIST.get(), MODID);
+            RSFeatures.registerFeatures();
+        }
 
         asphaltMap = new AsphaltPaintMap(false);
         concreteMap = new ConcretePaintMap(false);

@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "ingredient": {
+    "item": "roadstuff:asphalt"
+  },
+  "result": "roadstuff:asphalt_stairs",
+  "count": 1
+}

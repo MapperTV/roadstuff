@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "forge:storage_blocks/bitumen"
+    }
+  ],
+  "result": {
+    "item": "roadstuff:raw_bitumen",
+    "count": 9
+  }
+}

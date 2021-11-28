@@ -8,7 +8,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "mapperbase:asphalt"
+          "name": "roadstuff:asphalt"
         }
       ],
       "conditions": [

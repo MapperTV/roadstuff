@@ -1,62 +1,122 @@
 {
   "variants": {
     "facing=north,layers=1": {
-      "model": "roadstuff:block/concrete_slope_4_line_236"
+      "model": "roadstuff:block/concrete_slope_2_line_236"
     },
     "facing=south,layers=1": {
-      "model": "roadstuff:block/concrete_slope_4_line_236",
+      "model": "roadstuff:block/concrete_slope_2_line_236",
       "y": 180
     },
     "facing=west,layers=1": {
-      "model": "roadstuff:block/concrete_slope_4_line_236",
+      "model": "roadstuff:block/concrete_slope_2_line_236",
       "y": 270
     },
     "facing=east,layers=1": {
-      "model": "roadstuff:block/concrete_slope_4_line_236",
+      "model": "roadstuff:block/concrete_slope_2_line_236",
       "y": 90
     },
     "facing=north,layers=2": {
-      "model": "roadstuff:block/concrete_slope_8_line_236"
+      "model": "roadstuff:block/concrete_slope_4_line_236"
     },
     "facing=south,layers=2": {
-      "model": "roadstuff:block/concrete_slope_8_line_236",
+      "model": "roadstuff:block/concrete_slope_4_line_236",
       "y": 180
     },
     "facing=west,layers=2": {
-      "model": "roadstuff:block/concrete_slope_8_line_236",
+      "model": "roadstuff:block/concrete_slope_4_line_236",
       "y": 270
     },
     "facing=east,layers=2": {
-      "model": "roadstuff:block/concrete_slope_8_line_236",
+      "model": "roadstuff:block/concrete_slope_4_line_236",
       "y": 90
     },
     "facing=north,layers=3": {
-      "model": "roadstuff:block/concrete_slope_12_line_236"
+      "model": "roadstuff:block/concrete_slope_6_line_236"
     },
     "facing=south,layers=3": {
-      "model": "roadstuff:block/concrete_slope_12_line_236",
+      "model": "roadstuff:block/concrete_slope_6_line_236",
       "y": 180
     },
     "facing=west,layers=3": {
-      "model": "roadstuff:block/concrete_slope_12_line_236",
+      "model": "roadstuff:block/concrete_slope_6_line_236",
       "y": 270
     },
     "facing=east,layers=3": {
-      "model": "roadstuff:block/concrete_slope_12_line_236",
+      "model": "roadstuff:block/concrete_slope_6_line_236",
       "y": 90
     },
     "facing=north,layers=4": {
-      "model": "roadstuff:block/concrete_line_236"
+      "model": "roadstuff:block/concrete_slope_8_line_236"
     },
     "facing=south,layers=4": {
-      "model": "roadstuff:block/concrete_line_236",
+      "model": "roadstuff:block/concrete_slope_8_line_236",
       "y": 180
     },
     "facing=west,layers=4": {
-      "model": "roadstuff:block/concrete_line_236",
+      "model": "roadstuff:block/concrete_slope_8_line_236",
       "y": 270
     },
     "facing=east,layers=4": {
+      "model": "roadstuff:block/concrete_slope_8_line_236",
+      "y": 90
+    },
+    "facing=north,layers=5": {
+      "model": "roadstuff:block/concrete_slope_10_line_236"
+    },
+    "facing=south,layers=5": {
+      "model": "roadstuff:block/concrete_slope_10_line_236",
+      "y": 180
+    },
+    "facing=west,layers=5": {
+      "model": "roadstuff:block/concrete_slope_10_line_236",
+      "y": 270
+    },
+    "facing=east,layers=5": {
+      "model": "roadstuff:block/concrete_slope_10_line_236",
+      "y": 90
+    },
+    "facing=north,layers=6": {
+      "model": "roadstuff:block/concrete_slope_12_line_236"
+    },
+    "facing=south,layers=6": {
+      "model": "roadstuff:block/concrete_slope_12_line_236",
+      "y": 180
+    },
+    "facing=west,layers=6": {
+      "model": "roadstuff:block/concrete_slope_12_line_236",
+      "y": 270
+    },
+    "facing=east,layers=6": {
+      "model": "roadstuff:block/concrete_slope_12_line_236",
+      "y": 90
+    },
+    "facing=north,layers=7": {
+      "model": "roadstuff:block/concrete_slope_14_line_236"
+    },
+    "facing=south,layers=7": {
+      "model": "roadstuff:block/concrete_slope_14_line_236",
+      "y": 180
+    },
+    "facing=west,layers=7": {
+      "model": "roadstuff:block/concrete_slope_14_line_236",
+      "y": 270
+    },
+    "facing=east,layers=7": {
+      "model": "roadstuff:block/concrete_slope_14_line_236",
+      "y": 90
+    },
+    "facing=north,layers=8": {
+      "model": "roadstuff:block/concrete_line_236"
+    },
+    "facing=south,layers=8": {
+      "model": "roadstuff:block/concrete_line_236",
+      "y": 180
+    },
+    "facing=west,layers=8": {
+      "model": "roadstuff:block/concrete_line_236",
+      "y": 270
+    },
+    "facing=east,layers=8": {
       "model": "roadstuff:block/concrete_line_236",
       "y": 90
     }
