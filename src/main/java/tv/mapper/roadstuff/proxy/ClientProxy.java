@@ -7,6 +7,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fmllegacy.RegistryObject;
@@ -46,71 +47,19 @@ public class ClientProxy implements IProxy
             return 0.0f;
         });
 
-        ItemProperties.register(RSItemRegistry.WOODEN_PAINT_BRUSH.get(), new ResourceLocation("color"), (itemStack, world, entity, id) ->
+        for(RegistryObject<Item> item : RSItemRegistry.MOD_PAINTBRUSHES)
         {
-            CompoundTag nbt = BrushItem.checkNBT(itemStack);
-            if(nbt.getInt("paint") == 0)
+            ItemProperties.register(item.get(), new ResourceLocation("color"), (itemStack, world, entity, id) ->
+            {
+                CompoundTag nbt = BrushItem.checkNBT(itemStack);
+                if(nbt.getInt("paint") == 0)
+                    return 0.0f;
+                else if(nbt.getInt("color") == 0)
+                    return 0.5f;
+                else if(nbt.getInt("color") == 1)
+                    return 1.0f;
                 return 0.0f;
-            else if(nbt.getInt("color") == 0)
-                return 0.5f;
-            else if(nbt.getInt("color") == 1)
-                return 1.0f;
-            return 0.0f;
-        });
-        ItemProperties.register(RSItemRegistry.STONE_PAINT_BRUSH.get(), new ResourceLocation("color"), (itemStack, world, entity, id) ->
-        {
-            CompoundTag nbt = BrushItem.checkNBT(itemStack);
-            if(nbt.getInt("paint") == 0)
-                return 0.0f;
-            else if(nbt.getInt("color") == 0)
-                return 0.5f;
-            else if(nbt.getInt("color") == 1)
-                return 1.0f;
-            return 0.0f;
-        });
-        ItemProperties.register(RSItemRegistry.IRON_PAINT_BRUSH.get(), new ResourceLocation("color"), (itemStack, world, entity, id) ->
-        {
-            CompoundTag nbt = BrushItem.checkNBT(itemStack);
-            if(nbt.getInt("paint") == 0)
-                return 0.0f;
-            else if(nbt.getInt("color") == 0)
-                return 0.5f;
-            else if(nbt.getInt("color") == 1)
-                return 1.0f;
-            return 0.0f;
-        });
-        ItemProperties.register(RSItemRegistry.GOLDEN_PAINT_BRUSH.get(), new ResourceLocation("color"), (itemStack, world, entity, id) ->
-        {
-            CompoundTag nbt = BrushItem.checkNBT(itemStack);
-            if(nbt.getInt("paint") == 0)
-                return 0.0f;
-            else if(nbt.getInt("color") == 0)
-                return 0.5f;
-            else if(nbt.getInt("color") == 1)
-                return 1.0f;
-            return 0.0f;
-        });
-        ItemProperties.register(RSItemRegistry.DIAMOND_PAINT_BRUSH.get(), new ResourceLocation("color"), (itemStack, world, entity, id) ->
-        {
-            CompoundTag nbt = BrushItem.checkNBT(itemStack);
-            if(nbt.getInt("paint") == 0)
-                return 0.0f;
-            else if(nbt.getInt("color") == 0)
-                return 0.5f;
-            else if(nbt.getInt("color") == 1)
-                return 1.0f;
-            return 0.0f;
-        });
-        ItemProperties.register(RSItemRegistry.NETHERITE_PAINT_BRUSH.get(), new ResourceLocation("color"), (itemStack, world, entity, id) ->
-        {
-            CompoundTag nbt = BrushItem.checkNBT(itemStack);
-            if(nbt.getInt("paint") == 0)
-                return 0.0f;
-            else if(nbt.getInt("color") == 0)
-                return 0.5f;
-            else if(nbt.getInt("color") == 1)
-                return 1.0f;
-            return 0.0f;
-        });
+            });
+        }
     }
 }

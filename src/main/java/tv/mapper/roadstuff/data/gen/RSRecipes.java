@@ -87,7 +87,9 @@ public class RSRecipes extends BaseRecipes
         ShapedRecipeBuilder.shaped(RSItemRegistry.STONE_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', RSItemRegistry.WOODEN_PAINT_BRUSH.get()).define('S', Tags.Items.COBBLESTONE).unlockedBy("has_cobblestone", has(Tags.Items.COBBLESTONE)).save(consumer);
         ShapedRecipeBuilder.shaped(RSItemRegistry.IRON_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', RSItemRegistry.STONE_PAINT_BRUSH.get()).define('S', Tags.Items.INGOTS_IRON).unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
         ShapedRecipeBuilder.shaped(RSItemRegistry.GOLDEN_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', RSItemRegistry.IRON_PAINT_BRUSH.get()).define('S', Tags.Items.INGOTS_GOLD).unlockedBy("has_gold", has(Tags.Items.INGOTS_GOLD)).save(consumer);
+        ShapedRecipeBuilder.shaped(RSItemRegistry.STEEL_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', RSItemRegistry.IRON_PAINT_BRUSH.get()).define('S', BaseTags.ForgeItems.INGOTS_STEEL).unlockedBy("has_steel", has(BaseTags.ForgeItems.INGOTS_STEEL)).save(consumer);
         ShapedRecipeBuilder.shaped(RSItemRegistry.DIAMOND_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', RSItemRegistry.GOLDEN_PAINT_BRUSH.get()).define('S', Tags.Items.GEMS_DIAMOND).unlockedBy("has_diamond", has(Tags.Items.GEMS_DIAMOND)).save(consumer);
+        ShapedRecipeBuilder.shaped(RSItemRegistry.DIAMOND_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', RSItemRegistry.STEEL_PAINT_BRUSH.get()).define('S', Tags.Items.GEMS_DIAMOND).unlockedBy("has_diamond", has(Tags.Items.GEMS_DIAMOND)).save(consumer, "diamond_brush_from_steel");
 
         UpgradeRecipeBuilder.smithing(Ingredient.of(RSItemRegistry.DIAMOND_PAINT_BRUSH.get()), Ingredient.of(Items.NETHERITE_INGOT), RSItemRegistry.NETHERITE_PAINT_BRUSH.get()).unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT)).save(consumer, "netherite_brush_smithing");
 

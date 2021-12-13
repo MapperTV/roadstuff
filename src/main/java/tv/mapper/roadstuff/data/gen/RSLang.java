@@ -83,6 +83,7 @@ public class RSLang extends LanguageProvider
                 add(RSItemRegistry.WOODEN_PAINT_BRUSH.get(), "Wooden Paint Brush");
                 add(RSItemRegistry.STONE_PAINT_BRUSH.get(), "Stone Paint Brush");
                 add(RSItemRegistry.IRON_PAINT_BRUSH.get(), "Iron Paint Brush");
+                add(RSItemRegistry.STEEL_PAINT_BRUSH.get(), "Steel Paint Brush");
                 add(RSItemRegistry.GOLDEN_PAINT_BRUSH.get(), "Golden Paint Brush");
                 add(RSItemRegistry.DIAMOND_PAINT_BRUSH.get(), "Diamond Paint Brush");
                 add(RSItemRegistry.NETHERITE_PAINT_BRUSH.get(), "Netherite Paint Brush");
@@ -123,7 +124,7 @@ public class RSLang extends LanguageProvider
                 add(RSBlockRegistry.ASPHALT_SLAB.get(), "Dalle d'asphalte");
                 add(RSBlockRegistry.ASPHALT_STAIRS.get(), "Escalier d'asphalte");
                 add(RSBlockRegistry.ASPHALT_PRESSURE_PLATE.get(), "Plaque de pression d'asphalte");
-                
+
                 add(RSItemRegistry.RAW_BITUMEN.get(), "Bitume brut");
                 add(RSBlockRegistry.BITUMEN_ORE.get(), "Minerai de bitume");
                 add(RSBlockRegistry.BITUMEN_BLOCK.get(), "Bloc de bitume");
@@ -160,6 +161,7 @@ public class RSLang extends LanguageProvider
                 add(RSItemRegistry.WOODEN_PAINT_BRUSH.get(), "Pinceau en bois");
                 add(RSItemRegistry.STONE_PAINT_BRUSH.get(), "Pinceau en pierre");
                 add(RSItemRegistry.IRON_PAINT_BRUSH.get(), "Pinceau en fer");
+                add(RSItemRegistry.STEEL_PAINT_BRUSH.get(), "Pinceau en acier");
                 add(RSItemRegistry.GOLDEN_PAINT_BRUSH.get(), "Pinceau en or");
                 add(RSItemRegistry.DIAMOND_PAINT_BRUSH.get(), "Pinceau en diamant");
                 add(RSItemRegistry.NETHERITE_PAINT_BRUSH.get(), "Pinceau en Netherite");

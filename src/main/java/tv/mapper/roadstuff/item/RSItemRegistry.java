@@ -1,7 +1,9 @@
 package tv.mapper.roadstuff.item;
 
 import java.util.Arrays;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import org.apache.commons.lang3.tuple.Pair;
@@ -21,6 +23,8 @@ import tv.mapper.roadstuff.block.RSBlockRegistry;
 public class RSItemRegistry
 {
     private static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, RoadStuff.MODID);
+
+    public static Set<RegistryObject<Item>> MOD_PAINTBRUSHES = new LinkedHashSet<>();
 
     public static final RegistryObject<Item> CONCRETE_ITEM = ITEMS.register("concrete", () -> new BlockItem(RSBlockRegistry.CONCRETE.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
     public static final RegistryObject<Item> CONCRETE_STAIRS_ITEM = ITEMS.register("concrete_stairs", () -> new BlockItem(RSBlockRegistry.CONCRETE_STAIRS.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF)));
@@ -77,8 +81,20 @@ public class RSItemRegistry
     public static final RegistryObject<Item> STONE_PAINT_BRUSH = ITEMS.register("stone_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 64));
     public static final RegistryObject<Item> IRON_PAINT_BRUSH = ITEMS.register("iron_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 128));
     public static final RegistryObject<Item> GOLDEN_PAINT_BRUSH = ITEMS.register("golden_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 256));
+    public static final RegistryObject<Item> STEEL_PAINT_BRUSH = ITEMS.register("steel_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 384));
     public static final RegistryObject<Item> DIAMOND_PAINT_BRUSH = ITEMS.register("diamond_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 512));
     public static final RegistryObject<Item> NETHERITE_PAINT_BRUSH = ITEMS.register("netherite_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 1024));
+
+    static
+    {
+        MOD_PAINTBRUSHES.add(WOODEN_PAINT_BRUSH);
+        MOD_PAINTBRUSHES.add(STONE_PAINT_BRUSH);
+        MOD_PAINTBRUSHES.add(IRON_PAINT_BRUSH);
+        MOD_PAINTBRUSHES.add(GOLDEN_PAINT_BRUSH);
+        MOD_PAINTBRUSHES.add(STEEL_PAINT_BRUSH);
+        MOD_PAINTBRUSHES.add(DIAMOND_PAINT_BRUSH);
+        MOD_PAINTBRUSHES.add(NETHERITE_PAINT_BRUSH);
+    }
 
     public static void init()
     {
