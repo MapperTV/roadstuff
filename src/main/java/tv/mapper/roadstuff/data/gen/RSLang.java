@@ -80,7 +80,12 @@ public class RSLang extends LanguageProvider
                 add(RSBlockRegistry.STEEL_GUARDRAIL.get(), "Steel Guardrail");
 
                 add(RSBlockRegistry.PAINT_BUCKET.get(), "Paint Bucket");
-                add(RSItemRegistry.PAINT_BRUSH.get(), "Paint Brush");
+                add(RSItemRegistry.WOODEN_PAINT_BRUSH.get(), "Wooden Paint Brush");
+                add(RSItemRegistry.STONE_PAINT_BRUSH.get(), "Stone Paint Brush");
+                add(RSItemRegistry.IRON_PAINT_BRUSH.get(), "Iron Paint Brush");
+                add(RSItemRegistry.GOLDEN_PAINT_BRUSH.get(), "Golden Paint Brush");
+                add(RSItemRegistry.DIAMOND_PAINT_BRUSH.get(), "Diamond Paint Brush");
+                add(RSItemRegistry.NETHERITE_PAINT_BRUSH.get(), "Netherite Paint Brush");
 
                 add("roadstuff.message.bucket.empty", "This bucket is empty!");
                 add("roadstuff.message.bucket.yellow", "This bucket is already filled with yellow paint!");
@@ -152,7 +157,12 @@ public class RSLang extends LanguageProvider
                 add(RSBlockRegistry.STEEL_GUARDRAIL.get(), "Rambarde en acier");
 
                 add(RSBlockRegistry.PAINT_BUCKET.get(), "Seau de peinture");
-                add(RSItemRegistry.PAINT_BRUSH.get(), "Pinceau");
+                add(RSItemRegistry.WOODEN_PAINT_BRUSH.get(), "Pinceau en bois");
+                add(RSItemRegistry.STONE_PAINT_BRUSH.get(), "Pinceau en pierre");
+                add(RSItemRegistry.IRON_PAINT_BRUSH.get(), "Pinceau en fer");
+                add(RSItemRegistry.GOLDEN_PAINT_BRUSH.get(), "Pinceau en or");
+                add(RSItemRegistry.DIAMOND_PAINT_BRUSH.get(), "Pinceau en diamant");
+                add(RSItemRegistry.NETHERITE_PAINT_BRUSH.get(), "Pinceau en Netherite");
 
                 add("roadstuff.message.bucket.empty", "Ce pot est vide !");
                 add("roadstuff.message.bucket.yellow", "Ce pot est déjà rempli de peinture jaune !");

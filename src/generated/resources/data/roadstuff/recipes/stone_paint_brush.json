@@ -6,13 +6,13 @@
   ],
   "key": {
     "W": {
-      "tag": "minecraft:wool"
+      "item": "roadstuff:wooden_paint_brush"
     },
     "S": {
-      "tag": "forge:rods/wooden"
+      "tag": "forge:cobblestone"
     }
   },
   "result": {
-    "item": "roadstuff:paint_brush"
+    "item": "roadstuff:stone_paint_brush"
   }
 }

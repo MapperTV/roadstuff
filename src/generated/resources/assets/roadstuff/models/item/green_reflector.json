@@ -1,3 +1,6 @@
 {
-  "parent": "roadstuff:block/green_reflector"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "roadstuff:item/green_reflector"
+  }
 }

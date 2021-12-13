@@ -1,0 +1,11 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "roadstuff:item/wooden_paint_brush"
+    },
+    "overrides": [
+        {"predicate": {"color": 0.0 }, "model": "roadstuff:item/wooden_paint_brush" },
+        {"predicate": {"color": 0.5 }, "model": "roadstuff:item/wooden_paint_brush_white" },
+        {"predicate": {"color": 1.0 }, "model": "roadstuff:item/wooden_paint_brush_yellow" }
+    ]
+}

@@ -2,16 +2,18 @@
   "parent": "minecraft:recipes/root",
   "rewards": {
     "recipes": [
-      "roadstuff:paint_brush"
+      "minecraft:netherite_brush_smithing"
     ]
   },
   "criteria": {
-    "has_wool": {
+    "has_netherite_ingot": {
       "trigger": "minecraft:inventory_changed",
       "conditions": {
         "items": [
           {
-            "tag": "minecraft:wool"
+            "items": [
+              "minecraft:netherite_ingot"
+            ]
           }
         ]
       }
@@ -19,13 +21,13 @@
     "has_the_recipe": {
       "trigger": "minecraft:recipe_unlocked",
       "conditions": {
-        "recipe": "roadstuff:paint_brush"
+        "recipe": "minecraft:netherite_brush_smithing"
       }
     }
   },
   "requirements": [
     [
-      "has_wool",
+      "has_netherite_ingot",
       "has_the_recipe"
     ]
   ]

@@ -38,8 +38,8 @@ public class RSItemModels extends BaseItemModels
             getBuilder(DyeColor.byId(i).getSerializedName() + "_traffic_barrel").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_traffic_barrel"));
             getBuilder(DyeColor.byId(i).getSerializedName() + "_traffic_bollard").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_traffic_bollard"));
             getBuilder(DyeColor.byId(i).getSerializedName() + "_cylindrical_bollard").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_cylindrical_bollard"));
-            getBuilder(DyeColor.byId(i).getSerializedName() + "_reflector").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_reflector"));
-            getBuilder(DyeColor.byId(i).getSerializedName() + "_luminescent_reflector").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_reflector"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_reflector").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/" + DyeColor.byId(i).getSerializedName() + "_reflector"));
+            getBuilder(DyeColor.byId(i).getSerializedName() + "_luminescent_reflector").parent(new UncheckedModelFile("item/generated")).texture("layer0", modLoc("item/" + DyeColor.byId(i).getSerializedName() + "_reflector"));
             getBuilder(DyeColor.byId(i).getSerializedName() + "_guardrail").parent(new UncheckedModelFile(modid + ":block/" + DyeColor.byId(i).getSerializedName() + "_guardrail_inventory"));
         }
 

@@ -73,7 +73,12 @@ public class RSItemRegistry
 
     public static final RegistryObject<BlockItemPaintBucket> PAINT_BUCKET_ITEM = ITEMS.register("paint_bucket", () -> new BlockItemPaintBucket(RSBlockRegistry.PAINT_BUCKET.get(), new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1)));
 
-    public static final RegistryObject<Item> PAINT_BRUSH = ITEMS.register("paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1)));
+    public static final RegistryObject<Item> WOODEN_PAINT_BRUSH = ITEMS.register("wooden_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 32));
+    public static final RegistryObject<Item> STONE_PAINT_BRUSH = ITEMS.register("stone_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 64));
+    public static final RegistryObject<Item> IRON_PAINT_BRUSH = ITEMS.register("iron_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 128));
+    public static final RegistryObject<Item> GOLDEN_PAINT_BRUSH = ITEMS.register("golden_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 256));
+    public static final RegistryObject<Item> DIAMOND_PAINT_BRUSH = ITEMS.register("diamond_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 512));
+    public static final RegistryObject<Item> NETHERITE_PAINT_BRUSH = ITEMS.register("netherite_paint_brush", () -> new BrushItem(new Item.Properties().tab(ModItemGroups.ROADSTUFF).stacksTo(1), 1024));
 
     public static void init()
     {

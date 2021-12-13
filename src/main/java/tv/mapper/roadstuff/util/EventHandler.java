@@ -13,7 +13,6 @@ import net.minecraftforge.fml.common.Mod;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.block.PaintSystem;
 import tv.mapper.roadstuff.item.BrushItem;
-import tv.mapper.roadstuff.item.RSItemRegistry;
 
 @Mod.EventBusSubscriber
 public class EventHandler
@@ -34,12 +33,12 @@ public class EventHandler
 
                 long timer = System.currentTimeMillis();
 
-                if(player.getMainHandItem().getItem() == RSItemRegistry.PAINT_BRUSH.get())
+                if(player.getMainHandItem().getItem() instanceof BrushItem)
                     heldItem = player.getMainHandItem();
-                else if(player.getOffhandItem().getItem() == RSItemRegistry.PAINT_BRUSH.get())
+                else if(player.getOffhandItem().getItem() instanceof BrushItem)
                     heldItem = player.getOffhandItem();
 
-                if(heldItem.getItem() == RSItemRegistry.PAINT_BRUSH.get())
+                if(heldItem.getItem() instanceof BrushItem)
                 {
                     if(player.isCreative())
                     {

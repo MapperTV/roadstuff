@@ -1,0 +1,6 @@
+{
+    "parent": "item/generated",
+    "textures": {
+        "layer0": "roadstuff:item/diamond_paint_brush_yellow"
+    }
+}

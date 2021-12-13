@@ -45,7 +45,6 @@ import tv.mapper.mapperbase.world.level.block.ToolTiers;
 import tv.mapper.mapperbase.world.level.block.ToolTypes;
 import tv.mapper.roadstuff.item.BrushItem;
 import tv.mapper.roadstuff.state.properties.EnumPaintColor;
-import tv.mapper.roadstuff.util.ModConstants;
 
 public class PaintBucketBlock extends CustomBlock implements SimpleWaterloggedBlock
 {
@@ -124,14 +123,14 @@ public class PaintBucketBlock extends CustomBlock implements SimpleWaterloggedBl
             if(!item.hasTag())
                 item.setTag(BrushItem.checkNBT(item));
 
-            if((item.getTag().getInt("paint") < ModConstants.BRUSH_MAX_PAINT && paint > 0) || (item.getTag().getInt("paint") == ModConstants.BRUSH_MAX_PAINT && item.getTag().getInt("color") != state.getValue(COLOR).getId()))
+            if((item.getTag().getInt("paint") < ((BrushItem)item.getItem()).getMaxPaint() && paint > 0) || (item.getTag().getInt("paint") == ((BrushItem)item.getItem()).getMaxPaint() && item.getTag().getInt("color") != state.getValue(COLOR).getId()))
             {
                 if(!world.isClientSide)
                 {
                     if(!player.isCreative())
                         world.setBlockAndUpdate(pos, state.setValue(PAINT, state.getValue(PAINT) - 1));
 
-                    item.getTag().putInt("paint", ModConstants.BRUSH_MAX_PAINT);
+                    item.getTag().putInt("paint", ((BrushItem)item.getItem()).getMaxPaint());
                     item.getTag().putInt("color", state.getValue(COLOR).getId());
                     world.playSound(null, pos, SoundEvents.BUCKET_EMPTY_LAVA, SoundSource.BLOCKS, .8F, 1.0F);
                 }
@@ -274,14 +273,12 @@ public class PaintBucketBlock extends CustomBlock implements SimpleWaterloggedBl
     @Override
     public ItemStack pickupBlock(LevelAccessor p_152719_, BlockPos p_152720_, BlockState p_152721_)
     {
-        // TODO Auto-generated method stub
         return null;
     }
 
     @Override
     public Optional<SoundEvent> getPickupSound()
     {
-        // TODO Auto-generated method stub
         return null;
     }
 }

@@ -33,8 +33,7 @@ public class ReflectorBlock extends CustomBlock implements SimpleWaterloggedBloc
     @SuppressWarnings("unused")
     private boolean isLuminescent;
 
-    private static final VoxelShape SHAPE_EW = Block.box(4.0D, 0.0D, 5.0D, 12.0D, 2.0D, 11.0D);
-    private static final VoxelShape SHAPE_NS = Block.box(5.0D, 0.0D, 4.0D, 11.0D, 2.0D, 12.0D);
+    private static final VoxelShape SHAPE = Block.box(6.0D, 0.0D, 6.0D, 10.0D, 1.0D, 10.0D);
 
     public ReflectorBlock(Properties properties, ToolTypes tool, boolean isLuminescent)
     {
@@ -59,19 +58,7 @@ public class ReflectorBlock extends CustomBlock implements SimpleWaterloggedBloc
     @Override
     public VoxelShape getShape(BlockState state, BlockGetter worldIn, BlockPos pos, CollisionContext context)
     {
-        switch((Direction)state.getValue(DIRECTION))
-        {
-            case NORTH:
-                return SHAPE_NS;
-            case SOUTH:
-                return SHAPE_NS;
-            case WEST:
-                return SHAPE_EW;
-            case EAST:
-                return SHAPE_EW;
-            default:
-                return SHAPE_NS;
-        }
+        return SHAPE;
     }
 
     @Override

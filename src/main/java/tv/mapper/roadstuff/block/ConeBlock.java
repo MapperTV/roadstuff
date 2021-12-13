@@ -38,8 +38,8 @@ public class ConeBlock extends CustomBlock implements SimpleWaterloggedBlock
 
     private static final VoxelShape CONE_COL = Block.box(4.0D, 0.0D, 4.0D, 10.0D, 18.0D, 10.0D);
 
-    private static final VoxelShape BARREL_BASE = Block.box(1.0D, 0.0D, 1.0D, 15.0D, 1.0D, 15.0D);
-    private static final VoxelShape BARREL_MAIN = Block.box(4.0D, 1.0D, 4.0D, 12.0D, 14.0D, 12.0D);
+    private static final VoxelShape BARREL_BASE = Block.box(3.0D, 0.0D, 3.0D, 13.0D, 1.0D, 13.0D);
+    private static final VoxelShape BARREL_MAIN = Block.box(5.0D, 1.0D, 5.0D, 11.0D, 14.0D, 11.0D);
     private static final VoxelShape BARREL_HANDLE = Block.box(5.0D, 14.0D, 7.0D, 11.0D, 16.0D, 9.0D);
 
     private static final VoxelShape BARREL = Shapes.or(BARREL_BASE, Shapes.or(BARREL_MAIN, BARREL_HANDLE));

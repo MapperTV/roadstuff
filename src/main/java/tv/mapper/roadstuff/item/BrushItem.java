@@ -40,9 +40,12 @@ import tv.mapper.roadstuff.util.ModConstants;
 
 public class BrushItem extends Item
 {
-    public BrushItem(Properties properties)
+    private int paintQuantity;
+
+    public BrushItem(Properties properties, int paintQuantity)
     {
         super(properties);
+        this.paintQuantity = paintQuantity;
     }
 
     @Override
@@ -152,7 +155,7 @@ public class BrushItem extends Item
     @Override
     public double getDurabilityForDisplay(ItemStack stack)
     {
-        return 1 - ((double)checkNBT(stack).getInt("paint") / (double)ModConstants.BRUSH_MAX_PAINT);
+        return 1 - ((double)checkNBT(stack).getInt("paint") / paintQuantity);
     }
 
     public static CompoundTag checkNBT(ItemStack stack)
@@ -433,7 +436,7 @@ public class BrushItem extends Item
 
     private static BlockState getPaintableBlockFromMaterial(BlockState state)
     {
-        if(state.getBlock() instanceof PaintSystem)
+        if(state.getBlock() instanceof PaintableSlopeBlock)
         {
             switch(((PaintSystem)state.getBlock()).getMaterialType())
             {
@@ -458,4 +461,10 @@ public class BrushItem extends Item
             }
         }
     }
+
+    public int getMaxPaint()
+    {
+        return this.paintQuantity;
+    }
+
 }

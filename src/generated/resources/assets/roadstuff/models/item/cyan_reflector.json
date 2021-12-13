@@ -1,3 +1,6 @@
 {
-  "parent": "roadstuff:block/cyan_reflector"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "roadstuff:item/cyan_reflector"
+  }
 }

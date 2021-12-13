@@ -1,3 +1,6 @@
 {
-  "parent": "roadstuff:block/magenta_reflector"
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "roadstuff:item/magenta_reflector"
+  }
 }

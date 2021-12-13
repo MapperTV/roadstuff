@@ -8,6 +8,7 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.data.recipes.UpgradeRecipeBuilder;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Items;
@@ -82,7 +83,13 @@ public class RSRecipes extends BaseRecipes
 
         ShapedRecipeBuilder.shaped(RSBlockRegistry.PAINT_BUCKET.get()).pattern("I I").pattern("I I").pattern(" I ").define('I', Tags.Items.INGOTS_IRON).unlockedBy("has_iron_ingot", has(Tags.Items.INGOTS_IRON)).save(consumer);
 
-        ShapedRecipeBuilder.shaped(RSItemRegistry.PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', ItemTags.WOOL).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_wool", has(ItemTags.WOOL)).save(consumer);
+        ShapedRecipeBuilder.shaped(RSItemRegistry.WOODEN_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', ItemTags.WOOL).define('S', Tags.Items.RODS_WOODEN).unlockedBy("has_wool", has(ItemTags.WOOL)).save(consumer);
+        ShapedRecipeBuilder.shaped(RSItemRegistry.STONE_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', RSItemRegistry.WOODEN_PAINT_BRUSH.get()).define('S', Tags.Items.COBBLESTONE).unlockedBy("has_cobblestone", has(Tags.Items.COBBLESTONE)).save(consumer);
+        ShapedRecipeBuilder.shaped(RSItemRegistry.IRON_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', RSItemRegistry.STONE_PAINT_BRUSH.get()).define('S', Tags.Items.INGOTS_IRON).unlockedBy("has_iron", has(Tags.Items.INGOTS_IRON)).save(consumer);
+        ShapedRecipeBuilder.shaped(RSItemRegistry.GOLDEN_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', RSItemRegistry.IRON_PAINT_BRUSH.get()).define('S', Tags.Items.INGOTS_GOLD).unlockedBy("has_gold", has(Tags.Items.INGOTS_GOLD)).save(consumer);
+        ShapedRecipeBuilder.shaped(RSItemRegistry.DIAMOND_PAINT_BRUSH.get()).pattern(" W").pattern("S ").define('W', RSItemRegistry.GOLDEN_PAINT_BRUSH.get()).define('S', Tags.Items.GEMS_DIAMOND).unlockedBy("has_diamond", has(Tags.Items.GEMS_DIAMOND)).save(consumer);
+
+        UpgradeRecipeBuilder.smithing(Ingredient.of(RSItemRegistry.DIAMOND_PAINT_BRUSH.get()), Ingredient.of(Items.NETHERITE_INGOT), RSItemRegistry.NETHERITE_PAINT_BRUSH.get()).unlocks("has_netherite_ingot", has(Items.NETHERITE_INGOT)).save(consumer, "netherite_brush_smithing");
 
         for(int j = 1; j < Arrays.stream(DyeColor.values()).count(); j++)
         {
