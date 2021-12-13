@@ -100,6 +100,7 @@ public class GuiBrush extends Screen
         selectY = guiTop + 15 + (pattern / 9) * 18;
     }
 
+    @SuppressWarnings("removal")
     @Override
     public void render(PoseStack stack, int mouseX, int mouseY, float partialTicks)
     {
