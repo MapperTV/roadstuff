@@ -8221,7 +8221,7 @@ c3dbdb00b69aee620832df5865a71182a8a4da0c assets/roadstuff/models/item/yellow_gua
 ad91ccedb1d63010e2bc672bade270f8fab7adcc assets/roadstuff/models/item/yellow_traffic_cone.json
 7d2951f524df47852825b59cc22f9c061a324f26 data/forge/tags/blocks/fence_gates.json
 2f1d0e17c05270e21623536f6f92f044033c6382 data/forge/tags/blocks/fences.json
-b301e512d8c0352fa5162f63905324d34843733f data/forge/tags/blocks/needs_wood_tool.json
+38573e41e5888f14447971805d3111a6e4f7f601 data/forge/tags/blocks/needs_wood_tool.json
 19ad961c0d739a0371f67f0c3e3ce03e4946140e data/forge/tags/blocks/ores.json
 19ad961c0d739a0371f67f0c3e3ce03e4946140e data/forge/tags/blocks/ores/bitumen.json
 f1ce0162f5305abe5955cd562b076b01e0b5da73 data/forge/tags/blocks/pressure_plates.json
@@ -8464,7 +8464,6 @@ fdd1f9f8958fbdbbede1ca8f261b9327898e3ffe data/minecraft/recipes/yellow_luminesce
 39b0423b03df334e9de415e9662f830d39bcc460 data/minecraft/recipes/yellow_traffic_cone_from_white.json
 2f1d0e17c05270e21623536f6f92f044033c6382 data/minecraft/tags/blocks/fences.json
 fc47e526589c3baf8e0c7a2c149d0a755eb1a9ac data/minecraft/tags/blocks/mineable/pickaxe.json
-7d2951f524df47852825b59cc22f9c061a324f26 data/minecraft/tags/blocks/needs_iron_tool.json
 5bbfdc6ddc7da301d44183d6b2e3200cdc4a09f9 data/minecraft/tags/blocks/slabs.json
 4cc02de33382fbdf56ccd06d5bf10593ab92313c data/minecraft/tags/blocks/stairs.json
 4db3e3de33e843843301f20610fa0ffada3b6a1a data/minecraft/tags/blocks/walls.json

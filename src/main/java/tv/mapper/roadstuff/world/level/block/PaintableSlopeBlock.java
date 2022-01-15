@@ -4,7 +4,7 @@ import tv.mapper.mapperbase.world.level.block.SlopeBlock;
 import tv.mapper.mapperbase.world.level.block.ToolTiers;
 import tv.mapper.mapperbase.world.level.block.ToolTypes;
 
-public class PaintableSlopeBlock extends SlopeBlock
+public class PaintableSlopeBlock extends SlopeBlock implements PaintSystem
 {
     protected int materialType = 0;
 
