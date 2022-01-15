@@ -7,8 +7,8 @@ import org.codehaus.plexus.util.StringUtils;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.world.item.DyeColor;
 import net.minecraftforge.common.data.LanguageProvider;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
-import tv.mapper.roadstuff.item.RSItemRegistry;
+import tv.mapper.roadstuff.world.item.RSItemRegistry;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
 
 public class RSLang extends LanguageProvider
 {

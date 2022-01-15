@@ -1,4 +1,4 @@
-package tv.mapper.roadstuff.item;
+package tv.mapper.roadstuff.world.item;
 
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;

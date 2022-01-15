@@ -11,8 +11,8 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.fml.common.Mod;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.PaintSystem;
-import tv.mapper.roadstuff.item.BrushItem;
+import tv.mapper.roadstuff.world.item.BrushItem;
+import tv.mapper.roadstuff.world.level.block.PaintSystem;
 
 @Mod.EventBusSubscriber
 public class EventHandler

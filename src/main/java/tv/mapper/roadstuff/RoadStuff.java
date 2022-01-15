@@ -12,10 +12,8 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLDedicatedServerSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import tv.mapper.mapperbase.util.ConfigChecker;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
 import tv.mapper.roadstuff.config.RSConfig;
 import tv.mapper.roadstuff.config.RSConfig.CommonConfig;
-import tv.mapper.roadstuff.item.RSItemRegistry;
 import tv.mapper.roadstuff.network.RSNetwork;
 import tv.mapper.roadstuff.proxy.ClientProxy;
 import tv.mapper.roadstuff.proxy.IProxy;
@@ -24,6 +22,8 @@ import tv.mapper.roadstuff.util.AsphaltPaintMap;
 import tv.mapper.roadstuff.util.ConcretePaintMap;
 import tv.mapper.roadstuff.world.RSFeatures;
 import tv.mapper.roadstuff.world.RSOres;
+import tv.mapper.roadstuff.world.item.RSItemRegistry;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
 
 @Mod(RoadStuff.MODID)
 public class RoadStuff

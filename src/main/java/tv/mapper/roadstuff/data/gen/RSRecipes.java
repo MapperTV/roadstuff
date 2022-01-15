@@ -17,9 +17,9 @@ import net.minecraftforge.common.Tags;
 import tv.mapper.mapperbase.data.BaseTags;
 import tv.mapper.mapperbase.data.gen.BaseRecipes;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
 import tv.mapper.roadstuff.data.RSTags;
-import tv.mapper.roadstuff.item.RSItemRegistry;
+import tv.mapper.roadstuff.world.item.RSItemRegistry;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
 
 public class RSRecipes extends BaseRecipes
 {

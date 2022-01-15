@@ -17,10 +17,10 @@ import net.minecraftforge.fmllegacy.RegistryObject;
 import tv.mapper.mapperbase.data.gen.BaseLootTables;
 import tv.mapper.mapperbase.world.level.block.SlopeBlock;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.PaintableRoadBlock;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
-import tv.mapper.roadstuff.block.RotatableSlopeBlock;
-import tv.mapper.roadstuff.item.RSItemRegistry;
+import tv.mapper.roadstuff.world.item.RSItemRegistry;
+import tv.mapper.roadstuff.world.level.block.PaintableRoadBlock;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
+import tv.mapper.roadstuff.world.level.block.RotatableSlopeBlock;
 
 public class RSLootTables extends BaseLootTables
 {

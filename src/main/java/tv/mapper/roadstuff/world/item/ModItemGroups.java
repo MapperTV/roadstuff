@@ -1,9 +1,9 @@
-package tv.mapper.roadstuff.item;
+package tv.mapper.roadstuff.world.item;
 
 import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
 
 public class ModItemGroups
 {

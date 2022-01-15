@@ -20,11 +20,11 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import tv.mapper.mapperbase.data.gen.BaseBlockStates;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.PaintBucketBlock;
-import tv.mapper.roadstuff.block.PaintSystem;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
-import tv.mapper.roadstuff.block.RotatableSlopeBlock;
-import tv.mapper.roadstuff.state.properties.EnumPaintColor;
+import tv.mapper.roadstuff.world.level.block.PaintBucketBlock;
+import tv.mapper.roadstuff.world.level.block.PaintSystem;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
+import tv.mapper.roadstuff.world.level.block.RotatableSlopeBlock;
+import tv.mapper.roadstuff.world.level.block.state.properties.EnumPaintColor;
 
 public class RSBlockStates extends BaseBlockStates
 {

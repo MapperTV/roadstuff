@@ -1,4 +1,4 @@
-package tv.mapper.roadstuff.item;
+package tv.mapper.roadstuff.world.item;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -18,7 +18,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import tv.mapper.mapperbase.world.item.FuelItem;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
 
 public class RSItemRegistry
 {

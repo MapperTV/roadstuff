@@ -1,4 +1,4 @@
-package tv.mapper.roadstuff.item;
+package tv.mapper.roadstuff.world.item;
 
 import java.util.List;
 
@@ -27,16 +27,16 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import tv.mapper.mapperbase.world.level.block.SlopeBlock;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.PaintSystem;
-import tv.mapper.roadstuff.block.PaintableRoadBlock;
-import tv.mapper.roadstuff.block.PaintableSlopeBlock;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
-import tv.mapper.roadstuff.block.RotatablePaintBlock;
-import tv.mapper.roadstuff.block.RotatableSlopeBlock;
-import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 import tv.mapper.roadstuff.util.AsphaltPaintMap;
 import tv.mapper.roadstuff.util.ConcretePaintMap;
 import tv.mapper.roadstuff.util.ModConstants;
+import tv.mapper.roadstuff.world.level.block.PaintSystem;
+import tv.mapper.roadstuff.world.level.block.PaintableRoadBlock;
+import tv.mapper.roadstuff.world.level.block.PaintableSlopeBlock;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
+import tv.mapper.roadstuff.world.level.block.RotatablePaintBlock;
+import tv.mapper.roadstuff.world.level.block.RotatableSlopeBlock;
+import tv.mapper.roadstuff.world.level.block.state.properties.EnumPaintColor;
 
 public class BrushItem extends Item
 {

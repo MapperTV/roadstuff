@@ -6,7 +6,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.data.RSTags;
-import tv.mapper.roadstuff.item.RSItemRegistry;
+import tv.mapper.roadstuff.world.item.RSItemRegistry;
 
 public class RSItemTags extends ItemTagsProvider
 {

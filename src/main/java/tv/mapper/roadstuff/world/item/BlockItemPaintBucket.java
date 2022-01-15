@@ -1,4 +1,4 @@
-package tv.mapper.roadstuff.item;
+package tv.mapper.roadstuff.world.item;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import tv.mapper.roadstuff.state.properties.EnumPaintColor;
+import tv.mapper.roadstuff.world.level.block.state.properties.EnumPaintColor;
 
 public class BlockItemPaintBucket extends BlockItem
 {

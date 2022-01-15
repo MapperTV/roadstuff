@@ -1,4 +1,4 @@
-package tv.mapper.roadstuff.block;
+package tv.mapper.roadstuff.world.level.block;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

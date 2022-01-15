@@ -1,7 +1,7 @@
-package tv.mapper.roadstuff.item;
+package tv.mapper.roadstuff.world.item;
 
 import net.minecraft.client.Minecraft;
-import tv.mapper.roadstuff.client.gui.GuiBrush;
+import tv.mapper.roadstuff.client.gui.screens.GuiBrush;
 
 public class BrushItemClient
 {

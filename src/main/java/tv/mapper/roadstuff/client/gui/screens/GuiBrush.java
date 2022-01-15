@@ -1,4 +1,4 @@
-package tv.mapper.roadstuff.client.gui;
+package tv.mapper.roadstuff.client.gui.screens;
 
 import java.awt.Color;
 import java.util.ArrayList;
@@ -20,8 +20,8 @@ import net.minecraftforge.fmlclient.gui.GuiUtils;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.network.BrushPacket;
 import tv.mapper.roadstuff.network.RSNetwork;
-import tv.mapper.roadstuff.state.properties.EnumPaintColor;
 import tv.mapper.roadstuff.util.ModConstants;
+import tv.mapper.roadstuff.world.level.block.state.properties.EnumPaintColor;
 
 public class GuiBrush extends Screen
 {

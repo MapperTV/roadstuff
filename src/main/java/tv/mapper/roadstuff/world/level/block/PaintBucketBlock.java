@@ -1,4 +1,4 @@
-package tv.mapper.roadstuff.block;
+package tv.mapper.roadstuff.world.level.block;
 
 import java.util.Optional;
 
@@ -43,8 +43,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import tv.mapper.mapperbase.world.level.block.CustomBlock;
 import tv.mapper.mapperbase.world.level.block.ToolTiers;
 import tv.mapper.mapperbase.world.level.block.ToolTypes;
-import tv.mapper.roadstuff.item.BrushItem;
-import tv.mapper.roadstuff.state.properties.EnumPaintColor;
+import tv.mapper.roadstuff.world.item.BrushItem;
+import tv.mapper.roadstuff.world.level.block.state.properties.EnumPaintColor;
 
 public class PaintBucketBlock extends CustomBlock implements SimpleWaterloggedBlock
 {

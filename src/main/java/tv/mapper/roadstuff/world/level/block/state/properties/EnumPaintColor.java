@@ -1,4 +1,4 @@
-package tv.mapper.roadstuff.state.properties;
+package tv.mapper.roadstuff.world.level.block.state.properties;
 
 import net.minecraft.util.StringRepresentable;
 import net.minecraft.network.chat.TranslatableComponent;

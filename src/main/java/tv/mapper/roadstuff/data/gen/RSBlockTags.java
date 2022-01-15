@@ -11,8 +11,8 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.fmllegacy.RegistryObject;
 import tv.mapper.mapperbase.data.BaseTags;
 import tv.mapper.mapperbase.data.gen.BaseBlockTags;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
 import tv.mapper.roadstuff.data.RSTags;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
 
 public class RSBlockTags extends BaseBlockTags
 {

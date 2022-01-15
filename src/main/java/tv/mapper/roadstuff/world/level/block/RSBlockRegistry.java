@@ -1,4 +1,4 @@
-package tv.mapper.roadstuff.block;
+package tv.mapper.roadstuff.world.level.block;
 
 import java.util.Arrays;
 import java.util.LinkedHashSet;
@@ -28,11 +28,10 @@ import tv.mapper.mapperbase.world.level.block.CustomPressurePlateBlock;
 import tv.mapper.mapperbase.world.level.block.CustomSlabBlock;
 import tv.mapper.mapperbase.world.level.block.CustomStairsBlock;
 import tv.mapper.mapperbase.world.level.block.CustomWallBlock;
-import tv.mapper.mapperbase.world.level.block.ToolTiers;
 import tv.mapper.mapperbase.world.level.block.ToolTypes;
 import tv.mapper.roadstuff.RoadStuff;
-import tv.mapper.roadstuff.block.ConeBlock.EnumConeType;
 import tv.mapper.roadstuff.util.ModConstants;
+import tv.mapper.roadstuff.world.level.block.ConeBlock.EnumConeType;
 
 public class RSBlockRegistry
 {
@@ -44,15 +43,15 @@ public class RSBlockRegistry
     private static Properties bollardProperties = Block.Properties.of(Material.DECORATION, MaterialColor.QUARTZ).strength(0.1F, 3.0F).sound(SoundType.BAMBOO).requiresCorrectToolForDrops();
 
     public static final RegistryObject<PaintableRoadBlock> CONCRETE = BLOCKS.register("concrete", () -> new PaintableRoadBlock(concreteProperties, ToolTypes.PICKAXE, 1));
-    public static final RegistryObject<CustomStairsBlock> CONCRETE_STAIRS = BLOCKS.register("concrete_stairs", () -> new CustomStairsBlock(() -> CONCRETE.get().defaultBlockState(), concreteProperties, ToolTypes.PICKAXE, ToolTiers.WOOD));
-    public static final RegistryObject<CustomSlabBlock> CONCRETE_SLAB = BLOCKS.register("concrete_slab", () -> new CustomSlabBlock(concreteProperties, ToolTypes.PICKAXE, ToolTiers.WOOD));
+    public static final RegistryObject<CustomStairsBlock> CONCRETE_STAIRS = BLOCKS.register("concrete_stairs", () -> new CustomStairsBlock(() -> CONCRETE.get().defaultBlockState(), concreteProperties, ToolTypes.PICKAXE));
+    public static final RegistryObject<CustomSlabBlock> CONCRETE_SLAB = BLOCKS.register("concrete_slab", () -> new CustomSlabBlock(concreteProperties, ToolTypes.PICKAXE));
     public static final RegistryObject<CustomWallBlock> CONCRETE_WALL = BLOCKS.register("concrete_wall", () -> new CustomWallBlock(concreteProperties, ToolTypes.PICKAXE));
-    public static final RegistryObject<CustomFenceBlock> CONCRETE_FENCE = BLOCKS.register("concrete_fence", () -> new CustomFenceBlock(concreteProperties, ToolTypes.PICKAXE, ToolTiers.WOOD));
-    public static final RegistryObject<CustomFenceGateBlock> CONCRETE_FENCE_GATE = BLOCKS.register("concrete_fence_gate", () -> new CustomFenceGateBlock(concreteProperties, ToolTypes.PICKAXE, ToolTiers.IRON));
+    public static final RegistryObject<CustomFenceBlock> CONCRETE_FENCE = BLOCKS.register("concrete_fence", () -> new CustomFenceBlock(concreteProperties, ToolTypes.PICKAXE));
+    public static final RegistryObject<CustomFenceGateBlock> CONCRETE_FENCE_GATE = BLOCKS.register("concrete_fence_gate", () -> new CustomFenceGateBlock(concreteProperties, ToolTypes.PICKAXE));
 
     public static final RegistryObject<PaintableRoadBlock> ASPHALT = BLOCKS.register("asphalt", () -> new PaintableRoadBlock(asphaltProperties, ToolTypes.PICKAXE, 0));
-    public static final RegistryObject<CustomStairsBlock> ASPHALT_STAIRS = BLOCKS.register("asphalt_stairs", () -> new CustomStairsBlock(() -> ASPHALT.get().defaultBlockState(), asphaltProperties, ToolTypes.PICKAXE, ToolTiers.WOOD));
-    public static final RegistryObject<CustomSlabBlock> ASPHALT_SLAB = BLOCKS.register("asphalt_slab", () -> new CustomSlabBlock(asphaltProperties, ToolTypes.PICKAXE, ToolTiers.WOOD));
+    public static final RegistryObject<CustomStairsBlock> ASPHALT_STAIRS = BLOCKS.register("asphalt_stairs", () -> new CustomStairsBlock(() -> ASPHALT.get().defaultBlockState(), asphaltProperties, ToolTypes.PICKAXE));
+    public static final RegistryObject<CustomSlabBlock> ASPHALT_SLAB = BLOCKS.register("asphalt_slab", () -> new CustomSlabBlock(asphaltProperties, ToolTypes.PICKAXE));
 
     public static final RegistryObject<PaintableSlopeBlock> ASPHALT_SLOPE = BLOCKS.register("asphalt_slope", () -> new PaintableSlopeBlock(asphaltProperties, ToolTypes.PICKAXE, 0));
     public static final RegistryObject<PaintableSlopeBlock> CONCRETE_SLOPE = BLOCKS.register("concrete_slope", () -> new PaintableSlopeBlock(concreteProperties, ToolTypes.PICKAXE, 1));
@@ -66,10 +65,10 @@ public class RSBlockRegistry
             MOD_PAINTABLEBLOCKS.add(BLOCKS.register("concrete_white_line_" + i, () -> new RotatablePaintBlock(concreteProperties, ToolTypes.PICKAXE, 1)));
             MOD_PAINTABLEBLOCKS.add(BLOCKS.register("concrete_yellow_line_" + i, () -> new RotatablePaintBlock(concreteProperties, ToolTypes.PICKAXE, 1)));
 
-            MOD_PAINTABLEBLOCKS.add(BLOCKS.register("asphalt_slope_white_line_" + i, () -> new RotatableSlopeBlock(asphaltProperties, ToolTypes.PICKAXE, 0)));
-            MOD_PAINTABLEBLOCKS.add(BLOCKS.register("asphalt_slope_yellow_line_" + i, () -> new RotatableSlopeBlock(asphaltProperties, ToolTypes.PICKAXE, 0)));
-            MOD_PAINTABLEBLOCKS.add(BLOCKS.register("concrete_slope_white_line_" + i, () -> new RotatableSlopeBlock(concreteProperties, ToolTypes.PICKAXE, 1)));
-            MOD_PAINTABLEBLOCKS.add(BLOCKS.register("concrete_slope_yellow_line_" + i, () -> new RotatableSlopeBlock(concreteProperties, ToolTypes.PICKAXE, 1)));
+            MOD_PAINTABLEBLOCKS.add(BLOCKS.register("asphalt_slope_white_line_" + i, () -> new RotatableSlopeBlock(asphaltProperties, ASPHALT_SLOPE.get(), ToolTypes.PICKAXE, 0)));
+            MOD_PAINTABLEBLOCKS.add(BLOCKS.register("asphalt_slope_yellow_line_" + i, () -> new RotatableSlopeBlock(asphaltProperties, ASPHALT_SLOPE.get(), ToolTypes.PICKAXE, 0)));
+            MOD_PAINTABLEBLOCKS.add(BLOCKS.register("concrete_slope_white_line_" + i, () -> new RotatableSlopeBlock(concreteProperties, CONCRETE_SLOPE.get(), ToolTypes.PICKAXE, 1)));
+            MOD_PAINTABLEBLOCKS.add(BLOCKS.register("concrete_slope_yellow_line_" + i, () -> new RotatableSlopeBlock(concreteProperties, CONCRETE_SLOPE.get(), ToolTypes.PICKAXE, 1)));
         }
     }
 

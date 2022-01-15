@@ -11,10 +11,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fmllegacy.RegistryObject;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
-import tv.mapper.roadstuff.item.BrushItem;
-import tv.mapper.roadstuff.item.RSItemRegistry;
 import tv.mapper.roadstuff.util.ModColorHandler;
+import tv.mapper.roadstuff.world.item.BrushItem;
+import tv.mapper.roadstuff.world.item.RSItemRegistry;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
 
 public class ClientProxy implements IProxy
 {

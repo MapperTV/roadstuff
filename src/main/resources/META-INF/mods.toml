@@ -11,7 +11,7 @@ displayURL="http://mapper.tv/roadstuff/"
 logoFile="roadstuff_logo.png"
 credits="The Forge team and community for the help and resources."
 authors="Mapper"
-description='''Road Stuff 2 for Minecraft 1.16 brings you everything you need to create the roads of your dreams!'''
+description='''Road Stuff 2 for Minecraft 1.17 brings you everything you need to create the roads of your dreams!'''
 
 [[dependencies.roadstuff]]
     modId="forge"

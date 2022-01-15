@@ -3,7 +3,7 @@ package tv.mapper.roadstuff.util;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.fmllegacy.RegistryObject;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
 
 public class ConcretePaintMap extends Int2ObjectArrayMap<Block>
 {

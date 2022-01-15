@@ -9,8 +9,8 @@ import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
 import tv.mapper.mapperbase.MapperBase;
 import tv.mapper.mapperbase.config.BaseConfig.ClientConfig;
-import tv.mapper.roadstuff.block.RSBlockRegistry;
 import tv.mapper.roadstuff.config.RSConfig.CommonConfig;
+import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
 
 public class RSFeatures
 {
