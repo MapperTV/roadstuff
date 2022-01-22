@@ -2,7 +2,7 @@ package tv.mapper.roadstuff.util;
 
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import net.minecraft.world.level.block.Block;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
 
 public class AsphaltPaintMap extends Int2ObjectArrayMap<Block>

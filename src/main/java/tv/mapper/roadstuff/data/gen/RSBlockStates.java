@@ -17,7 +17,7 @@ import net.minecraftforge.client.model.generators.ModelFile.UncheckedModelFile;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
 import net.minecraftforge.client.model.generators.VariantBlockStateBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
-import net.minecraftforge.fmllegacy.RegistryObject;
+import net.minecraftforge.registries.RegistryObject;
 import tv.mapper.mapperbase.data.gen.BaseBlockStates;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.world.level.block.PaintBucketBlock;

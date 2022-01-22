@@ -11,6 +11,7 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
@@ -144,7 +145,7 @@ public class BrushItem extends Item
     }
 
     @Override
-    public boolean showDurabilityBar(ItemStack stack)
+    public boolean isBarVisible(ItemStack stack)
     {
         if(checkNBT(stack).getInt("paint") > 0)
             return true;
@@ -153,9 +154,16 @@ public class BrushItem extends Item
     }
 
     @Override
-    public double getDurabilityForDisplay(ItemStack stack)
+    public int getBarWidth(ItemStack stack)
     {
-        return 1 - ((double)checkNBT(stack).getInt("paint") / paintQuantity);
+        return (checkNBT(stack).getInt("paint") * 13) / this.getMaxPaint();
+    }
+
+    @Override
+    public int getBarColor(ItemStack pStack)
+    {
+        float f = Math.max(0.0F, (float)checkNBT(pStack).getInt("paint") / (float)this.getMaxPaint());
+        return Mth.hsvToRgb(f / 3.0F, 1.0F, 1.0F);
     }
 
     public static CompoundTag checkNBT(ItemStack stack)

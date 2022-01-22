@@ -2,8 +2,8 @@ package tv.mapper.roadstuff.client.gui.screens;
 
 import java.awt.Color;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.IntStream;
 
 import com.mojang.blaze3d.platform.InputConstants;
@@ -16,7 +16,6 @@ import net.minecraft.network.chat.TextComponent;
 import net.minecraft.network.chat.TranslatableComponent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
-import net.minecraftforge.fmlclient.gui.GuiUtils;
 import tv.mapper.roadstuff.RoadStuff;
 import tv.mapper.roadstuff.network.BrushPacket;
 import tv.mapper.roadstuff.network.RSNetwork;
@@ -100,7 +99,6 @@ public class GuiBrush extends Screen
         selectY = guiTop + 15 + (pattern / 9) * 18;
     }
 
-    @SuppressWarnings("removal")
     @Override
     public void render(PoseStack stack, int mouseX, int mouseY, float partialTicks)
     {
@@ -177,7 +175,10 @@ public class GuiBrush extends Screen
         RenderSystem.setShaderTexture(0, brush_gui);
         blit(stack, guiLeft + WIDTH - 42, (int)(guiTop + 18 + 164 * this.currentScroll), 256 - 24, 0, 12, 15);
 
-        this.font.drawShadow(stack, textPattern.getString() + pattern, guiLeft + 225, guiTop + 22, new Color(255, 255, 255).getRGB());
+        if(pattern == 0)
+            this.font.drawShadow(stack, textEraser, guiLeft + 225, guiTop + 22, new Color(255, 255, 255).getRGB());
+        else
+            this.font.drawShadow(stack, textPattern.getString() + pattern, guiLeft + 225, guiTop + 22, new Color(255, 255, 255).getRGB());
         this.font.drawShadow(stack, textPaint.getString() + paint, guiLeft + 225, guiTop + 40, new Color(255, 255, 255).getRGB());
         this.font.drawShadow(stack, textColor.getString() + EnumPaintColor.getColorByID(color).getNameTranslated(), guiLeft + 225, guiTop + 58, new Color(255, 255, 255).getRGB());
 
@@ -186,11 +187,11 @@ public class GuiBrush extends Screen
         {
             int patternHover = (posX - guiLeft - 9) / 18 + ((posY - guiTop - 9) / 18) * 9 + scroll * 9;
             if(patternHover == 0)
-                GuiUtils.drawHoveringText(stack, Arrays.asList(textEraser), mouseX, mouseY, width, height, -1, font);
+                renderTooltip(stack, textEraser, mouseX, mouseY);
             else
             {
                 TranslatableComponent textPatternDisplay = new TranslatableComponent(textPattern.getString() + patternHover);
-                GuiUtils.drawHoveringText(stack, Arrays.asList(textPatternDisplay), mouseX, mouseY, width, height, -1, font);
+                renderTooltip(stack, textPatternDisplay, mouseX, mouseY);
             }
         }
         // Draw favorite tooltip
@@ -198,9 +199,9 @@ public class GuiBrush extends Screen
         {
             int patternHover = ((favY - guiTop - 40) / 18);
 
-            List<TranslatableComponent> patternTooltipFinal = new ArrayList<TranslatableComponent>();
-            TranslatableComponent patternTooltip;
-            TranslatableComponent patternTooltip2;
+            List<Component> patternTooltipFinal = new ArrayList<Component>();
+            Component patternTooltip;
+            Component patternTooltip2;
 
             if(favorites[patternHover] == 0)
             {
@@ -215,7 +216,7 @@ public class GuiBrush extends Screen
                 patternTooltipFinal.add(patternTooltip);
             }
 
-            GuiUtils.drawHoveringText(stack, patternTooltipFinal, mouseX, mouseY, width, height, -1, font);
+            renderTooltip(stack, patternTooltipFinal, Optional.empty(), mouseX, mouseY);
         }
 
     }

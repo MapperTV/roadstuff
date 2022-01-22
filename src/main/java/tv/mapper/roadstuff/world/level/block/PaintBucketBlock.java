@@ -210,7 +210,7 @@ public class PaintBucketBlock extends CustomBlock implements SimpleWaterloggedBl
     {
         if(stateIn.getValue(WATERLOGGED))
         {
-            worldIn.getLiquidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
+            worldIn.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(worldIn));
         }
 
         return super.updateShape(stateIn, facing, facingState, worldIn, currentPos, facingPos);
@@ -247,7 +247,7 @@ public class PaintBucketBlock extends CustomBlock implements SimpleWaterloggedBl
             if(!worldIn.isClientSide())
             {
                 worldIn.setBlock(pos, state.setValue(WATERLOGGED, Boolean.valueOf(true)), 3);
-                worldIn.getLiquidTicks().scheduleTick(pos, fluidStateIn.getType(), fluidStateIn.getType().getTickDelay(worldIn));
+                worldIn.scheduleTick(pos, fluidStateIn.getType(), fluidStateIn.getType().getTickDelay(worldIn));
             }
 
             return true;

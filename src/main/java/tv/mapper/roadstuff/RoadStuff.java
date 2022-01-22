@@ -20,7 +20,6 @@ import tv.mapper.roadstuff.proxy.IProxy;
 import tv.mapper.roadstuff.proxy.ServerProxy;
 import tv.mapper.roadstuff.util.AsphaltPaintMap;
 import tv.mapper.roadstuff.util.ConcretePaintMap;
-import tv.mapper.roadstuff.world.RSFeatures;
 import tv.mapper.roadstuff.world.RSOres;
 import tv.mapper.roadstuff.world.item.RSItemRegistry;
 import tv.mapper.roadstuff.world.level.block.RSBlockRegistry;
@@ -66,7 +65,6 @@ public class RoadStuff
         {
             RSOres.initOres();
             ConfigChecker.checkConfig(RSConfig.CommonConfig.BITUMEN_BIOME_LIST.get(), MODID);
-            RSFeatures.registerFeatures();
         }
 
         asphaltMap = new AsphaltPaintMap(false);
