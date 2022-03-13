@@ -70,12 +70,12 @@ public class RSLang extends LanguageProvider
                     add(RSBlockRegistry.GUARDRAIL_BLOCKS.get(DyeColor.byId(i)).get(), color + " Guardrail");
                 }
 
-                add(RSBlockRegistry.WHITE_BOLLARD.get(), "White Bollard");
-                add(RSBlockRegistry.YELLOW_BOLLARD.get(), "Yellow Bollard");
-                add(RSBlockRegistry.RED_BOLLARD.get(), "Red Bollard");
-                add(RSBlockRegistry.WHITE_SMALL_BOLLARD.get(), "White Small Bollard");
-                add(RSBlockRegistry.YELLOW_SMALL_BOLLARD.get(), "Yellow Small Bollard");
-                add(RSBlockRegistry.RED_SMALL_BOLLARD.get(), "Red Small Bollard");
+                add(RSBlockRegistry.WHITE_BOLLARD.get(), "White Delineator");
+                add(RSBlockRegistry.YELLOW_BOLLARD.get(), "Yellow Delineator");
+                add(RSBlockRegistry.RED_BOLLARD.get(), "Red Delineator");
+                add(RSBlockRegistry.WHITE_SMALL_BOLLARD.get(), "White Small Delineator");
+                add(RSBlockRegistry.YELLOW_SMALL_BOLLARD.get(), "Yellow Small Delineator");
+                add(RSBlockRegistry.RED_SMALL_BOLLARD.get(), "Red Small Delineator");
 
                 add(RSBlockRegistry.STEEL_GUARDRAIL.get(), "Steel Guardrail");
 
@@ -148,12 +148,12 @@ public class RSLang extends LanguageProvider
                     add(RSBlockRegistry.GUARDRAIL_BLOCKS.get(DyeColor.byId(i)).get(), "Rambarde " + frColorsM[i]);
                 }
 
-                add(RSBlockRegistry.WHITE_BOLLARD.get(), "Bollard blanc");
-                add(RSBlockRegistry.YELLOW_BOLLARD.get(), "Bollard jaune");
-                add(RSBlockRegistry.RED_BOLLARD.get(), "Bollard rouge");
-                add(RSBlockRegistry.WHITE_SMALL_BOLLARD.get(), "Petit bollard blanc");
-                add(RSBlockRegistry.YELLOW_SMALL_BOLLARD.get(), "Petit bollard jaune");
-                add(RSBlockRegistry.RED_SMALL_BOLLARD.get(), "Petit bollard rouge");
+                add(RSBlockRegistry.WHITE_BOLLARD.get(), "Délinéateur blanc");
+                add(RSBlockRegistry.YELLOW_BOLLARD.get(), "Délinéateur jaune");
+                add(RSBlockRegistry.RED_BOLLARD.get(), "Délinéateur rouge");
+                add(RSBlockRegistry.WHITE_SMALL_BOLLARD.get(), "Petit délinéateur blanc");
+                add(RSBlockRegistry.YELLOW_SMALL_BOLLARD.get(), "Petit délinéateur jaune");
+                add(RSBlockRegistry.RED_SMALL_BOLLARD.get(), "Petit délinéateur rouge");
 
                 add(RSBlockRegistry.STEEL_GUARDRAIL.get(), "Rambarde en acier");
 

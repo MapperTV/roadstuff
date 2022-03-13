@@ -1,0 +1,16 @@
+{
+  "block.roadstuff.asphalt": "Асфальт",
+  "block.roadstuff.asphalt_pressure_plate": "Асфальтовая нажимная пластина",
+  "block.roadstuff.asphalt_slab": "Асфальтовая плита",
+  "block.roadstuff.asphalt_stairs": "Ступени из асфальта",
+  "block.roadstuff.bitumen_block": "Блок битума",
+  "block.roadstuff.bitumen_ore": "Битумная руда",
+  "block.roadstuff.concrete": "Цемент",
+  "block.roadstuff.concrete_fence": "Цементный забор",
+  "block.roadstuff.concrete_fence_gate": "Цементная калитка",
+  "block.roadstuff.concrete_pressure_plate": "Цементная нажимная плита",
+  "block.roadstuff.concrete_slab": "Цементная плита",
+  "block.roadstuff.concrete_stairs": "Цементные ступени",
+  "block.roadstuff.concrete_wall": "Цементная стена",
+  "item.roadstuff.raw_bitumen": "Необработанный битум"
+}
