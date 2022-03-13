@@ -6,6 +6,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
@@ -38,5 +40,18 @@ public class RotatableBlock extends CustomBlock
     public BlockState getStateForPlacement(BlockPlaceContext context)
     {
         return this.defaultBlockState().setValue(DIRECTION, context.getHorizontalDirection());
+    }
+
+    @Override
+    public BlockState rotate(BlockState pState, Rotation pRotation)
+    {
+        return pState.setValue(DIRECTION, pRotation.rotate(pState.getValue(DIRECTION)));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror)
+    {
+        return pState.rotate(pMirror.getRotation(pState.getValue(DIRECTION)));
     }
 }

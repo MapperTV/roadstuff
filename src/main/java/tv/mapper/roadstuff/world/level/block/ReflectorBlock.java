@@ -11,6 +11,8 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -104,5 +106,18 @@ public class ReflectorBlock extends CustomBlock implements SimpleWaterloggedBloc
     public FluidState getFluidState(BlockState state)
     {
         return state.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+    }
+
+    @Override
+    public BlockState rotate(BlockState pState, Rotation pRotation)
+    {
+        return pState.setValue(DIRECTION, pRotation.rotate(pState.getValue(DIRECTION)));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror)
+    {
+        return pState.rotate(pMirror.getRotation(pState.getValue(DIRECTION)));
     }
 }

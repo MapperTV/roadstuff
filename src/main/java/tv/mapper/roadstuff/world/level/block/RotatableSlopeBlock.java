@@ -6,6 +6,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
@@ -40,5 +42,18 @@ public class RotatableSlopeBlock extends PaintableSlopeBlock
     public ItemStack getCloneItemStack(BlockGetter worldIn, BlockPos pos, BlockState state)
     {
         return new ItemStack(this.pickBlock);
+    }
+
+    @Override
+    public BlockState rotate(BlockState pState, Rotation pRotation)
+    {
+        return pState.setValue(DIRECTION, pRotation.rotate(pState.getValue(DIRECTION)));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror)
+    {
+        return pState.rotate(pMirror.getRotation(pState.getValue(DIRECTION)));
     }
 }

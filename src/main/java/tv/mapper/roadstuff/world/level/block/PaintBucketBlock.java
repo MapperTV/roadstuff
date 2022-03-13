@@ -26,6 +26,8 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.HorizontalDirectionalBlock;
+import net.minecraft.world.level.block.Mirror;
+import net.minecraft.world.level.block.Rotation;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
@@ -280,5 +282,18 @@ public class PaintBucketBlock extends CustomBlock implements SimpleWaterloggedBl
     public Optional<SoundEvent> getPickupSound()
     {
         return null;
+    }
+
+    @Override
+    public BlockState rotate(BlockState pState, Rotation pRotation)
+    {
+        return pState.setValue(DIRECTION, pRotation.rotate(pState.getValue(DIRECTION)));
+    }
+
+    @SuppressWarnings("deprecation")
+    @Override
+    public BlockState mirror(BlockState pState, Mirror pMirror)
+    {
+        return pState.rotate(pMirror.getRotation(pState.getValue(DIRECTION)));
     }
 }
